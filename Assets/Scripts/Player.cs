@@ -7,14 +7,10 @@ public enum PlayerSlot
     PC1, PC2
 }
 
-[RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(NormalShotManager))]
 [RequireComponent(typeof(UniqueShotManager))]
 public abstract class Player : Ship
 {
-    public float hitPoint;
-    public float speed;
-
     private PlayerSlot playerSlot;
 
     private string activeKey = null;
@@ -34,11 +30,6 @@ public abstract class Player : Ship
 
         while (true)
         {
-            switch (keyInput())
-            {
-                case "NormalShot": Debug.Log("ns"); nsm.shot(transform); break;
-                case "UniqueShot": Debug.Log("us"); usm.shot(transform); break;
-            }
             
             yield return new WaitForSeconds(0.01f);
         }
@@ -48,26 +39,6 @@ public abstract class Player : Ship
     {
         move();
 	}
-
-    string keyInput()
-    {
-        if (Input.GetKeyDown(KeyCode.Z)) { activeKey = "Z"; }
-        if (Input.GetKeyDown(KeyCode.X)) { activeKey = "X"; }
-
-        if (Input.GetKeyUp(KeyCode.Z) && activeKey == "Z") { activeKey = null; }
-        if (Input.GetKeyUp(KeyCode.X) && activeKey == "X") { activeKey = null; }
-
-        if (Input.GetKey(KeyCode.Z) && (activeKey == "Z" || activeKey == null))
-        {
-            return "NormalShot";
-        }
-        if (Input.GetKey(KeyCode.X) && (activeKey == "X" || activeKey == null))
-        {
-            return "UniqueShot";
-        }
-
-        return null;
-    }
 
     // 移動処理
     void move()
@@ -105,37 +76,39 @@ public abstract class Player : Ship
     void OnTriggerEnter2D(Collider2D c)
     {
         string layerName = LayerMask.LayerToName(c.gameObject.layer);
-
+        
         switch (layerName)
         {
             case "Bullet (Enemy)":
 
-                // todo
-                // c.gameObjectからパラメータを抽出する(powerが欲しい)
+                // todo: c.gameObjectからパラメータを抽出する(powerが欲しい)
 
+                damage(0.0f);   // 自分のダメージ処理
                 Destroy(c.gameObject); // 弾の削除
-                damage(); // 自分のダメージ処理
+
                 break;
 
             case "Enemy":
+                
+                // todo: c.gameObjectからパラメータを抽出する(powerが欲しい)
 
-                // todo
-                // c.gameObjectからパラメータを抽出する(powerが欲しい)
-
-                damage(); // 自分のダメージ処理
+                damage(0.0f); // 自分のダメージ処理
                 break;
         }
     }
 
-    void damage()
+    void damage(float _damage)
     {
-
+        this.hitPoint -= _damage;
+        if (hitPoint < 0)
+        {
+            dead();
+        }
     }
 
     void dead()
     {
+        Destroy(this.gameObject);
         //FindObjectOfType<GameManager>().gameSet();
-        this.Explosion();
-        Destroy(gameObject);
     }
 }

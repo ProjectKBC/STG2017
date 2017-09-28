@@ -187,6 +187,102 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 114483341815307416, guid: d00a09f99b4d08b43b5738dd99d39b76,
+        type: 2}
+      propertyPath: speed
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114660894857642642, guid: d00a09f99b4d08b43b5738dd99d39b76,
+        type: 2}
+      propertyPath: isCharge
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114660894857642642, guid: d00a09f99b4d08b43b5738dd99d39b76,
+        type: 2}
+      propertyPath: chargeTime
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114660894857642642, guid: d00a09f99b4d08b43b5738dd99d39b76,
+        type: 2}
+      propertyPath: speed
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 114079880353178374, guid: d00a09f99b4d08b43b5738dd99d39b76,
+        type: 2}
+      propertyPath: isCharge
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114079880353178374, guid: d00a09f99b4d08b43b5738dd99d39b76,
+        type: 2}
+      propertyPath: chargeTime
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114079880353178374, guid: d00a09f99b4d08b43b5738dd99d39b76,
+        type: 2}
+      propertyPath: keyCode
+      value: 120
+      objectReference: {fileID: 0}
+    - target: {fileID: 114660894857642642, guid: d00a09f99b4d08b43b5738dd99d39b76,
+        type: 2}
+      propertyPath: param.shotDelay
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114660894857642642, guid: d00a09f99b4d08b43b5738dd99d39b76,
+        type: 2}
+      propertyPath: param.lifeTime
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114660894857642642, guid: d00a09f99b4d08b43b5738dd99d39b76,
+        type: 2}
+      propertyPath: param.speed
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 114660894857642642, guid: d00a09f99b4d08b43b5738dd99d39b76,
+        type: 2}
+      propertyPath: param.power
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114079880353178374, guid: d00a09f99b4d08b43b5738dd99d39b76,
+        type: 2}
+      propertyPath: param.shotDelay
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114079880353178374, guid: d00a09f99b4d08b43b5738dd99d39b76,
+        type: 2}
+      propertyPath: param.lifeTime
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114079880353178374, guid: d00a09f99b4d08b43b5738dd99d39b76,
+        type: 2}
+      propertyPath: param.speed
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 114079880353178374, guid: d00a09f99b4d08b43b5738dd99d39b76,
+        type: 2}
+      propertyPath: param.power
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114079880353178374, guid: d00a09f99b4d08b43b5738dd99d39b76,
+        type: 2}
+      propertyPath: param.isCharge
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114079880353178374, guid: d00a09f99b4d08b43b5738dd99d39b76,
+        type: 2}
+      propertyPath: param.chargeTime
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114079880353178374, guid: d00a09f99b4d08b43b5738dd99d39b76,
+        type: 2}
+      propertyPath: bullet
+      value: 
+      objectReference: {fileID: 114926088611520972, guid: d8c740c2de2d1b246826bc1754d397ea,
+        type: 2}
+    - target: {fileID: 114660894857642642, guid: d00a09f99b4d08b43b5738dd99d39b76,
+        type: 2}
+      propertyPath: param.chargeTime
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d00a09f99b4d08b43b5738dd99d39b76, type: 2}
   m_IsPrefabParent: 0
