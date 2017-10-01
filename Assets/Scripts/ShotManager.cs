@@ -5,7 +5,7 @@ using UnityEngine;
 public abstract class ShotManager : MonoBehaviour
 {
     public Bullet bullet;  // 弾のPrefab
-    [SerializeField] public BulletParam param; // パラメータ構造体
+    [SerializeField] public BulletParam param; // パラメータクラス
     public KeyCode keyCode;
 
     private void init()
@@ -15,12 +15,8 @@ public abstract class ShotManager : MonoBehaviour
     IEnumerator Start()
     {
         init();
-        while(true)
+        while (true)
         {
-            if (keyInput() == keyCode)
-            {
-                shot();
-            }
 
             yield return new WaitForSeconds(0.01f);
         }
@@ -53,48 +49,39 @@ public abstract class ShotManager : MonoBehaviour
         return Input.GetKey(keyCode);
     }
 
-    private float chargeBeginTime = 0;
-    private bool isCharging = false;
-    private bool canChargeShot = false;
     // チャージ関連を管理する関数 trueでショット発射
+    private float chargeBeginTime = 0;
+    private bool  canChargeShot = false;
     private bool ChargeInput()
     {
-        // チャージ中
-        if (isCharging)
+        // チャージ開始判定
+        if (Input.GetKeyDown(keyCode))
         {
-            // チャージの完了判定
-            if (Time.time - chargeBeginTime >= param.chargeTime)
-            {
-                canChargeShot = true;
-            }
-
-            if (Input.GetKeyUp(keyCode))
-            {
-                isCharging      = false;
-                chargeBeginTime = 0;
-                canChargeShot   = false;
-
-                if (canChargeShot) { return true; }
-            }
-
-            return false;
-        }
-        // チャージ中ではない
-        else
-        {
-            if (Input.GetKeyDown(keyCode))
-            {
-                isCharging = true;
-                chargeBeginTime = Time.time;
-            }
-            return false;
+            chargeBeginTime = Time.time;
         }
 
+        // チャージ完了判定
+        if (Time.time - chargeBeginTime >= param.chargeTime)
+        {
+            Debug.Log("can shot");
+            canChargeShot = true;
+        }
+
+        // チャージ発射or解除判定
+        if (Input.GetKeyUp(keyCode))
+        {
+            if (canChargeShot) { return true; }
+
+            chargeBeginTime = 0;
+            canChargeShot   = false;
+        }
+
+        return false;
     }
 
     // ショット判定と弾の生成を行う関数
     private float timeElapsed = 0;
-    private void shot()
+    public void shot()
     {
         if (Time.time - timeElapsed >= param.shotDelay)
         {

@@ -9,19 +9,30 @@ public enum PlayerSlot
 
 [RequireComponent(typeof(NormalShotManager))]
 [RequireComponent(typeof(UniqueShotManager))]
+[RequireComponent(typeof(Skill))]
 public abstract class Player : Ship
 {
     private PlayerSlot playerSlot;
-
-    private string activeKey = null;
-
+    
     private NormalShotManager nsm;
     private UniqueShotManager usm;
+    private Skill skill;
+
+    private KeyCode NormalShotKey;
+    private KeyCode UniqueShotKey;
+    private KeyCode SkillKey;
+
+    private string state = "None";
 
     private void init()
     {
-        nsm = GetComponent<NormalShotManager>();
-        usm = GetComponent<UniqueShotManager>();
+        nsm   = GetComponent<NormalShotManager>();
+        usm   = GetComponent<UniqueShotManager>();
+        skill = GetComponent<Skill>();
+
+        NormalShotKey = nsm.keyCode;
+        UniqueShotKey = usm.keyCode;
+        SkillKey = skill.keyCode;
     }
 
     IEnumerator Start ()
@@ -30,7 +41,22 @@ public abstract class Player : Ship
 
         while (true)
         {
-            
+            InputManager();
+
+            switch (state)
+            {
+                case "NormalShot":
+                    nsm.shot();
+                    break;
+
+                case "UniqueShot":
+                    usm.shot();
+                    break;
+
+                case "Skill":
+                    break;
+            }
+
             yield return new WaitForSeconds(0.01f);
         }
     }
@@ -39,6 +65,38 @@ public abstract class Player : Ship
     {
         move();
 	}
+
+    void InputManager()
+    {
+        if (Input.GetKeyDown(NormalShotKey) && state != "Skill")
+        {
+            state = "NormalShot";
+            return;
+        }
+        if (Input.GetKeyDown(UniqueShotKey) && state != "Skill")
+        {
+            state = "UniqueShot";
+            return;
+        }
+        if (Input.GetKeyDown(SkillKey))
+        {
+            state = "Skill";
+        }
+
+
+        if (Input.GetKeyUp(NormalShotKey) && state == "NormalShot")
+        {
+            state = "None";
+        }
+        if (Input.GetKeyUp(UniqueShotKey) && state == "UniqueShot")
+        {
+            state = "None";
+        }
+        if (Input.GetKeyUp(SkillKey) && state == "Skill")
+        {
+            state = "None";
+        }
+    }
 
     // 移動処理
     void move()
