@@ -5,14 +5,16 @@ using UnityEngine;
 [System.Serializable]
 public class BulletParam
 {
-    public string name;      // ショットの名前
+    public string name;         // ショットの名前
+    public AudioClip shotSound; // ショット音
+
     public float shotDelay;  // ショット間隔
     public float lifeTime;   // 生存時間
     public float speed;      // 弾丸速度
     public float power;      // 攻撃力
     public bool  isCharge;   // チャージ有無
     public float chargeTime; // チャージ時間
-    public AudioClip shotSound; // ショット音
+    public bool isPenetrate; // 貫通性の有無
 
     public Vector3 initialPosition;    // 自機を起点とした初期位置
     //public Quaternion initialRotation; // 自機を起点とした初期角度？
@@ -54,7 +56,7 @@ public abstract class Bullet : MonoBehaviour
 
     }
 
-        // 気にしなくていい（弾生成時にパラメータを渡すための関数）
+    // 気にしなくていい（弾生成時にパラメータを渡すための関数）
     public static Bullet Instantiate(Bullet _bullet, BulletParam _param, Vector3 _position, Quaternion _rotation)
     {
         Bullet obj = Instantiate(_bullet, _position + _param.initialPosition, _rotation) as Bullet;
