@@ -2,7 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Skill : MonoBehaviour
+public abstract class Skill : MonoBehaviour
 {
     public KeyCode keyCode;
+
+    public void shot()
+    {
+
+    }
 }

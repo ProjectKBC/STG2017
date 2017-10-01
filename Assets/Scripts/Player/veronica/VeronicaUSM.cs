@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class NormalShotManager : ShotManager
+public class VeronicaUSM : ShotManager
 {
 
 }

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ProtoUSM : UniqueShotManager
+public class VeronicaPlayer : Player
 {
 
 }

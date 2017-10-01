@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ProtoNSM : NormalShotManager
+public class ProtoNSM : ShotManager
 {
 
 }

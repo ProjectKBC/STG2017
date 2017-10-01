@@ -8,8 +8,11 @@ public abstract class ShotManager : MonoBehaviour
     [SerializeField] public BulletParam param; // パラメータクラス
     public KeyCode keyCode;
 
+    private AudioSource audioSource;
+
     private void init()
     {
+        audioSource = gameObject.GetComponent<AudioSource>();
     }
 
     IEnumerator Start()
@@ -20,28 +23,6 @@ public abstract class ShotManager : MonoBehaviour
 
             yield return new WaitForSeconds(0.01f);
         }
-    }
-
-    // ZキーとXキーの同時押しを対処する入力仕分け関数
-    private KeyCode activeKey = KeyCode.None;
-    KeyCode keyInput()
-    {
-        if (Input.GetKeyDown(KeyCode.Z)) { activeKey = KeyCode.Z; }
-        if (Input.GetKeyDown(KeyCode.X)) { activeKey = KeyCode.X; }
-
-        if (Input.GetKeyUp(KeyCode.Z) && activeKey == KeyCode.Z) { activeKey = KeyCode.None; }
-        if (Input.GetKeyUp(KeyCode.X) && activeKey == KeyCode.X) { activeKey = KeyCode.None; }
-
-        if (Input.GetKey(KeyCode.Z) && (activeKey == KeyCode.Z || activeKey == KeyCode.None))
-        {
-            return KeyCode.Z;
-        }
-        if (Input.GetKey(KeyCode.X) && (activeKey == KeyCode.X || activeKey == KeyCode.None))
-        {
-            return KeyCode.X;
-        }
-
-        return KeyCode.None;
     }
 
     private bool NormalInput()
@@ -55,7 +36,7 @@ public abstract class ShotManager : MonoBehaviour
     private bool ChargeInput()
     {
         // チャージ開始判定
-        if (Input.GetKeyDown(keyCode))
+        if (chargeBeginTime == 0)
         {
             chargeBeginTime = Time.time;
         }
@@ -70,7 +51,12 @@ public abstract class ShotManager : MonoBehaviour
         // チャージ発射or解除判定
         if (Input.GetKeyUp(keyCode))
         {
-            if (canChargeShot) { return true; }
+            if (canChargeShot)
+            {
+                chargeBeginTime = 0;
+                canChargeShot = false;
+                return true;
+            }
 
             chargeBeginTime = 0;
             canChargeShot   = false;
@@ -90,6 +76,7 @@ public abstract class ShotManager : MonoBehaviour
             {
                 if (ChargeInput())
                 {
+                    audioSource.PlayOneShot(param.shotSound);
                     timeElapsed = Time.time;
                     Bullet.Instantiate(bullet, param, transform.position, transform.rotation);
                 }
@@ -99,6 +86,7 @@ public abstract class ShotManager : MonoBehaviour
             {
                 if (NormalInput())
                 {
+                    audioSource.PlayOneShot(param.shotSound);
                     timeElapsed = Time.time;
                     Bullet.Instantiate(bullet, param, transform.position, transform.rotation);
                 }

@@ -19,14 +19,15 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4564306326318434}
+  - component: {fileID: 82533431048496914}
   - component: {fileID: 212152155036704254}
   - component: {fileID: 95495366862512056}
   - component: {fileID: 50343865905368414}
   - component: {fileID: 61905617687630428}
-  - component: {fileID: 82009482468266072}
-  - component: {fileID: 114660894857642642}
-  - component: {fileID: 114079880353178374}
-  - component: {fileID: 114483341815307416}
+  - component: {fileID: 114599767849722420}
+  - component: {fileID: 114406571477051180}
+  - component: {fileID: 114293129560723324}
+  - component: {fileID: 114261390625496730}
   m_Layer: 8
   m_Name: veronica
   m_TagString: Untagged
@@ -92,7 +93,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.02, y: 0.02}
   m_EdgeRadius: 0
---- !u!82 &82009482468266072
+--- !u!82 &82533431048496914
 AudioSource:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -101,10 +102,10 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 1743f0d445b86480b8ecfdbc8c84a5f9, type: 3}
-  m_PlayOnAwake: 0
-  m_Volume: 0.3
-  m_Pitch: 0.64
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
   Loop: 0
   Mute: 0
   Spatialize: 0
@@ -141,7 +142,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 2
       time: 0
-      value: 1
+      value: 0
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -189,7 +190,7 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
---- !u!114 &114079880353178374
+--- !u!114 &114261390625496730
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -197,15 +198,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1381941399765418}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 185059056057f7b47aa268376608f21b, type: 3}
+  m_Script: {fileID: 11500000, guid: 5d949b495b7be7943a7faa075a4da053, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bullet: {fileID: 114692490886301418, guid: 4e7fd2cc1cfd48f4b9eb10dabda949ba, type: 2}
-  shotDelay: 0.1
-  lifeTime: 0.15
-  speed: 10
-  power: 0
---- !u!114 &114483341815307416
+  keyCode: 99
+--- !u!114 &114293129560723324
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -213,28 +210,57 @@ MonoBehaviour:
   m_GameObject: {fileID: 1381941399765418}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c35f0ab5e348e8840b2a462d6ec5835d, type: 3}
+  m_Script: {fileID: 11500000, guid: 9027f80ad6fdfc3428d1860ab7135dab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bullet: {fileID: 114254312219786380, guid: 4e7fd2cc1cfd48f4b9eb10dabda949ba, type: 2}
+  param:
+    name: "\u30CE\u30D6\u30EC\u30B9"
+    shotDelay: 0
+    lifeTime: 1
+    speed: 0
+    power: 3
+    isCharge: 1
+    chargeTime: 2
+    shotSound: {fileID: 8300000, guid: 7859a29f2a04c764d9f84132b39eed1b, type: 3}
+    InitialPosirion: {x: 0, y: 3, z: 0}
+  keyCode: 120
+--- !u!114 &114406571477051180
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1381941399765418}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 720a23b10a17bb746b5754bb9d5769d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bullet: {fileID: 114396921439157842, guid: 7d8d10a3874e2e846ba749cb6e72652e, type: 2}
+  param:
+    name: "\u30A2\u30D7\u30C1\u30C6\u30E5\u30FC\u30C9"
+    shotDelay: 0.75
+    lifeTime: 0.5
+    speed: 2
+    power: 1
+    isCharge: 0
+    chargeTime: 0
+    shotSound: {fileID: 8300000, guid: 7859a29f2a04c764d9f84132b39eed1b, type: 3}
+    InitialPosirion: {x: 0, y: 1, z: 0}
+  keyCode: 122
+--- !u!114 &114599767849722420
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1381941399765418}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21ff26f6d4da1344380ff61c8710fc75, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   hitPoint: 10
   speed: 5
---- !u!114 &114660894857642642
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1381941399765418}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1300679bf32831e4d9b463d13e57796b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bullet: {fileID: 114924002774967562, guid: 7d8d10a3874e2e846ba749cb6e72652e, type: 2}
-  shotDelay: 0.1
-  lifeTime: 3
-  speed: 3
-  power: 0
-  chargeTime: 0
 --- !u!212 &212152155036704254
 SpriteRenderer:
   m_ObjectHideFlags: 1

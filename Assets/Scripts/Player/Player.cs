@@ -7,32 +7,25 @@ public enum PlayerSlot
     PC1, PC2
 }
 
-[RequireComponent(typeof(NormalShotManager))]
-[RequireComponent(typeof(UniqueShotManager))]
 [RequireComponent(typeof(Skill))]
 public abstract class Player : Ship
 {
     private PlayerSlot playerSlot;
     
-    private NormalShotManager nsm;
-    private UniqueShotManager usm;
+    private Dictionary<string, ShotManager> shotManager = new Dictionary<string, ShotManager>();
     private Skill skill;
-
-    private KeyCode NormalShotKey;
-    private KeyCode UniqueShotKey;
-    private KeyCode SkillKey;
 
     private string state = "None";
 
     private void init()
     {
-        nsm   = GetComponent<NormalShotManager>();
-        usm   = GetComponent<UniqueShotManager>();
-        skill = GetComponent<Skill>();
+        ShotManager[] tmp = GetComponents<ShotManager>();
+        foreach(ShotManager x in tmp)
+        {
+            shotManager.Add(x.param.name, x);
+        }
 
-        NormalShotKey = nsm.keyCode;
-        UniqueShotKey = usm.keyCode;
-        SkillKey = skill.keyCode;
+        skill = GetComponent<Skill>();
     }
 
     IEnumerator Start ()
@@ -43,18 +36,18 @@ public abstract class Player : Ship
         {
             InputManager();
 
-            switch (state)
+            if (state == "Skill" || state == "Skill(KeyUp)")
             {
-                case "NormalShot":
-                    nsm.shot();
-                    break;
+                skill.shot();
+                yield return new WaitForSeconds(0.01f); ;
+            }
 
-                case "UniqueShot":
-                    usm.shot();
-                    break;
-
-                case "Skill":
-                    break;
+            foreach (string key in shotManager.Keys)
+            {
+                if (state == key || state == key + "(KeyUp)")
+                {
+                    shotManager[key].shot(); break;
+                }
             }
 
             yield return new WaitForSeconds(0.01f);
@@ -68,6 +61,41 @@ public abstract class Player : Ship
 
     void InputManager()
     {
+        foreach (string key in shotManager.Keys)
+        {
+            if (state == key + "(KeyUp)")
+            {
+                state = "None";
+            }
+
+            if (Input.GetKeyDown(shotManager[key].keyCode) && state != "Skill")
+            {
+                state = key;
+            }
+        }
+        if (Input.GetKeyDown(skill.keyCode))
+        {
+            state = "Skill";
+        }
+
+        foreach (string key in shotManager.Keys)
+        {
+            if (Input.GetKeyUp(shotManager[key].keyCode) && state == key)
+            {
+                state = key + "(KeyUp)";
+            }
+        }
+        if (Input.GetKeyUp(skill.keyCode) && state == "Skill")
+        {
+            state = "Skill(KeyUp)";
+        }
+
+        /*
+        if (state == "NormalShot(KeyUp)" || state == "UniqueShot(KeyUp)" || state == "Skill(KeyUp)")
+        {
+            state = "None";
+        }
+
         if (Input.GetKeyDown(NormalShotKey) && state != "Skill")
         {
             state = "NormalShot";
@@ -86,16 +114,17 @@ public abstract class Player : Ship
 
         if (Input.GetKeyUp(NormalShotKey) && state == "NormalShot")
         {
-            state = "None";
+            state = "NormalShot(KeyUp)";
         }
         if (Input.GetKeyUp(UniqueShotKey) && state == "UniqueShot")
         {
-            state = "None";
+            state = "UniqueShot(KeyUp)";
         }
         if (Input.GetKeyUp(SkillKey) && state == "Skill")
         {
-            state = "None";
+            state = "Skill(KeyUp)";
         }
+        */
     }
 
     // 移動処理
