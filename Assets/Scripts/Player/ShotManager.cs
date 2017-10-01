@@ -4,9 +4,11 @@ using UnityEngine;
 
 public abstract class ShotManager : MonoBehaviour
 {
-    public Bullet bullet;  // 弾のPrefab
-    [SerializeField] public BulletParam param; // パラメータクラス
-    public KeyCode keyCode;
+
+    [SerializeField]
+    public BulletParam param; // パラメータクラス
+    public Bullet bullet;     // 弾のPrefab
+    public KeyCode keyCode;   // 発射ボタン
 
     private AudioSource audioSource;
 

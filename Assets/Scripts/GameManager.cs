@@ -1,45 +1,45 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+
+public class GameUIManager
+{
+}
 
 // シングルトン
 public sealed class GameManager : MonoBehaviour
 {
-    private Vector2 MarginAreaTop    { get; set; }
-    private Vector2 MarginAreaLeft   { get; set; }    
-    private Vector2 MarginAreaRight  { get; set; }
-    private Vector2 MarginAreaBottom { get; set; }
-    private Vector2 MarginAreaCenter { get; set; }
-
-    private Vector2 PC1AreaMin { get; set; }
-    private Vector2 PC1AreaMax { get; set; }
-    private Vector2 PC2AreaMin { get; set; }
-    private Vector2 PC2AreaMax { get; set; }
-
-    private static GameManager inst = new GameManager();
-    public static GameManager Inst { get { return inst; } }
-    private GameManager()
+    private static GameManager inst;
+    private GameManager() { Debug.Log("manager created");}
+    public static GameManager Inst
     {
-        MarginAreaTop    = new Vector2(Screen.width, 10);
-        MarginAreaLeft   = new Vector2(10, Screen.height);
-        MarginAreaRight  = new Vector2(10, Screen.height);
-        MarginAreaBottom = new Vector2(Screen.width, 10);
-        MarginAreaCenter = new Vector2(10, Screen.height);
+        get
+        {
+            if (inst == null)
+            {
+                GameObject go = new GameObject("GameManager");
+                inst = go.AddComponent<GameManager>();
+            }
 
-        PC1AreaMin = new Vector2(0 + MarginAreaTop.x,                   0 + MarginAreaTop.y);
-        PC1AreaMax = new Vector2(Screen.width/2 - MarginAreaCenter.x/2, Screen.height - MarginAreaBottom.y);
-        PC2AreaMin = new Vector2(Screen.width/2 + MarginAreaCenter.x/2, 0 + MarginAreaTop.y);
-        PC2AreaMax = new Vector2(Screen.width - MarginAreaRight.x,      Screen.height - MarginAreaBottom.y);
+            return inst;
+        }
+    }
 
-        Debug.Log("manager created");
+    public Vector4 pc1Area = new Vector4(-8.0f, -4.8f, -0.9f, 4.8f);
+    public Vector4 pc2Area = new Vector4( 0.9f, -4.8f,  8.0f, 4.8f);
+
+    private void Start()
+    {
+        Debug.Log("manager start");
     }
 
     public Vector2 getAreaMin(PlayerSlot PlayerSlot)
     {
         switch (PlayerSlot)
         {
-            case PlayerSlot.PC1: return PC1AreaMin;
-            case PlayerSlot.PC2: return PC2AreaMin;
+            case PlayerSlot.PC1: return new Vector2(pc1Area.x, pc1Area.y);
+            case PlayerSlot.PC2: return new Vector2(pc2Area.x, pc2Area.y);
             default: return new Vector2(-1, -1);
         }
     }
@@ -48,8 +48,8 @@ public sealed class GameManager : MonoBehaviour
     {
         switch (PlayerSlot)
         {
-            case PlayerSlot.PC1: return PC1AreaMax;
-            case PlayerSlot.PC2: return PC2AreaMax;
+            case PlayerSlot.PC1: return new Vector2(pc1Area.z, pc1Area.w);
+            case PlayerSlot.PC2: return new Vector2(pc2Area.z, pc2Area.w);
             default: return new Vector2(-1, -1);
         }
     }

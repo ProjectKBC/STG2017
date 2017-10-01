@@ -10,21 +10,32 @@ public enum PlayerSlot
 [RequireComponent(typeof(Skill))]
 public abstract class Player : Ship
 {
-    private PlayerSlot playerSlot;
+    [SerializeField]
+    private PlayerSlot playerSlot; // プレイヤー番号
     
+    // ShotManagerを確保するリスト
     private Dictionary<string, ShotManager> shotManager = new Dictionary<string, ShotManager>();
-    private Skill skill;
+    private Skill skill; // スキル
 
     private string state = "None";
 
     private void init()
     {
+        // スポーン地の設定
+        switch (playerSlot)
+        {
+            case PlayerSlot.PC1: transform.position = new Vector2(-4.5f, -2.5f); break;
+            case PlayerSlot.PC2: transform.position = new Vector2(4.5f,  -2.5f); break;
+        }
+
+        // ShotManagerの読み込み
         ShotManager[] tmp = GetComponents<ShotManager>();
-        foreach(ShotManager x in tmp)
+        foreach (ShotManager x in tmp)
         {
             shotManager.Add(x.param.name, x);
         }
 
+        // Skillの読み込み
         skill = GetComponent<Skill>();
     }
 
@@ -89,42 +100,7 @@ public abstract class Player : Ship
         {
             state = "Skill(KeyUp)";
         }
-
-        /*
-        if (state == "NormalShot(KeyUp)" || state == "UniqueShot(KeyUp)" || state == "Skill(KeyUp)")
-        {
-            state = "None";
-        }
-
-        if (Input.GetKeyDown(NormalShotKey) && state != "Skill")
-        {
-            state = "NormalShot";
-            return;
-        }
-        if (Input.GetKeyDown(UniqueShotKey) && state != "Skill")
-        {
-            state = "UniqueShot";
-            return;
-        }
-        if (Input.GetKeyDown(SkillKey))
-        {
-            state = "Skill";
-        }
-
-
-        if (Input.GetKeyUp(NormalShotKey) && state == "NormalShot")
-        {
-            state = "NormalShot(KeyUp)";
-        }
-        if (Input.GetKeyUp(UniqueShotKey) && state == "UniqueShot")
-        {
-            state = "UniqueShot(KeyUp)";
-        }
-        if (Input.GetKeyUp(SkillKey) && state == "Skill")
-        {
-            state = "Skill(KeyUp)";
-        }
-        */
+        
     }
 
     // 移動処理
@@ -134,13 +110,10 @@ public abstract class Player : Ship
         float y = Input.GetAxisRaw("Vertical");
 
         Vector2 direction = new Vector2(x, y).normalized;
+
+        Vector2 min = GameManager.Inst.getAreaMin(playerSlot);
+        Vector2 max = GameManager.Inst.getAreaMax(playerSlot);
         
-        Vector2 min = Camera.main.ViewportToWorldPoint(new Vector2(0, 0));
-        Vector2 max = Camera.main.ViewportToWorldPoint(new Vector2(1, 1));
-
-        //Vector2 min = GameManager.Inst.getAreaMin(this.playerSlot);
-        //Vector2 max = GameManager.Inst.getAreaMax(this.playerSlot);
-
         Vector2 pos = transform.position;
 
         // Shiftで低速移動
