@@ -10,8 +10,7 @@ public enum PlayerSlot
 [RequireComponent(typeof(Skill))]
 public abstract class Player : Ship
 {
-    [SerializeField]
-    private PlayerSlot playerSlot; // プレイヤー番号
+    public PlayerSlot playerSlot { get; set; } // プレイヤー番号
     
     // ShotManagerを確保するリスト
     private Dictionary<string, ShotManager> shotManager = new Dictionary<string, ShotManager>();
@@ -21,12 +20,14 @@ public abstract class Player : Ship
 
     private void init()
     {
+        /* GameManagerがやってくれる
         // スポーン地の設定
         switch (playerSlot)
         {
             case PlayerSlot.PC1: transform.position = new Vector2(-4.5f, -2.5f); break;
-            case PlayerSlot.PC2: transform.position = new Vector2(4.5f,  -2.5f); break;
+            case PlayerSlot.PC2: transform.position = new Vector2(4.5f, -2.5f); break;
         }
+        */
 
         // ShotManagerの読み込み
         ShotManager[] tmp = GetComponents<ShotManager>();
@@ -170,5 +171,13 @@ public abstract class Player : Ship
     {
         Destroy(this.gameObject);
         //FindObjectOfType<GameManager>().gameSet();
+    }
+
+    // 気にしなくていい（生成時にパラメータを渡すための関数）
+    public static Player Instantiate(Player _player, PlayerSlot _slot, Vector3 _position, Quaternion _rotation)
+    {
+        Player obj = Instantiate(_player, _position, _rotation) as Player;
+        obj.playerSlot = _slot;
+        return obj;
     }
 }

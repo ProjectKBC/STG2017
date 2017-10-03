@@ -29,7 +29,7 @@ GameObject:
   - component: {fileID: 114293129560723324}
   - component: {fileID: 114261390625496730}
   m_Layer: 8
-  m_Name: veronica
+  m_Name: Veronica
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -213,17 +213,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9027f80ad6fdfc3428d1860ab7135dab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bullet: {fileID: 114254312219786380, guid: 4e7fd2cc1cfd48f4b9eb10dabda949ba, type: 2}
   param:
     name: "\u30CE\u30D6\u30EC\u30B9"
+    shotSound: {fileID: 8300000, guid: 7859a29f2a04c764d9f84132b39eed1b, type: 3}
     shotDelay: 0
     lifeTime: 1
     speed: 0
     power: 3
     isCharge: 1
     chargeTime: 2
-    shotSound: {fileID: 8300000, guid: 7859a29f2a04c764d9f84132b39eed1b, type: 3}
-    InitialPosirion: {x: 0, y: 3, z: 0}
+    isPenetrate: 0
+    initialPosition: {x: 0, y: 0, z: 0}
+  bullet: {fileID: 114254312219786380, guid: 4e7fd2cc1cfd48f4b9eb10dabda949ba, type: 2}
   keyCode: 120
 --- !u!114 &114406571477051180
 MonoBehaviour:
@@ -236,17 +237,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 720a23b10a17bb746b5754bb9d5769d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bullet: {fileID: 114396921439157842, guid: 7d8d10a3874e2e846ba749cb6e72652e, type: 2}
   param:
     name: "\u30A2\u30D7\u30C1\u30C6\u30E5\u30FC\u30C9"
+    shotSound: {fileID: 8300000, guid: 7859a29f2a04c764d9f84132b39eed1b, type: 3}
     shotDelay: 0.75
     lifeTime: 0.5
     speed: 2
     power: 1
     isCharge: 0
     chargeTime: 0
-    shotSound: {fileID: 8300000, guid: 7859a29f2a04c764d9f84132b39eed1b, type: 3}
-    InitialPosirion: {x: 0, y: 1, z: 0}
+    isPenetrate: 0
+    initialPosition: {x: 0, y: 0, z: 0}
+  bullet: {fileID: 114396921439157842, guid: 7d8d10a3874e2e846ba749cb6e72652e, type: 2}
   keyCode: 122
 --- !u!114 &114599767849722420
 MonoBehaviour:

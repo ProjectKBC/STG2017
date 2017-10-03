@@ -3,15 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class GameUIManager
-{
-}
-
 // シングルトン
 public sealed class GameManager : MonoBehaviour
 {
+    // 各プレイヤーの行動可能範囲
+    public Vector4 pc1Area = new Vector4(-8.0f, -4.8f, -0.9f, 4.8f);
+    public Vector4 pc2Area = new Vector4(0.9f,  -4.8f,  8.0f, 4.8f);
+
+    // 
+    public string pc1Name;
+    public string pc2Name;
+
     private static GameManager inst;
-    private GameManager() { Debug.Log("manager created");}
+    private GameManager() { Debug.Log("game_manager created");}
     public static GameManager Inst
     {
         get
@@ -26,17 +30,15 @@ public sealed class GameManager : MonoBehaviour
         }
     }
 
-    public Vector4 pc1Area = new Vector4(-8.0f, -4.8f, -0.9f, 4.8f);
-    public Vector4 pc2Area = new Vector4( 0.9f, -4.8f,  8.0f, 4.8f);
-
     private void Start()
     {
-        Debug.Log("manager start");
+        Debug.Log("game_manager start");
+        createPlayer(pc1Name, pc2Name);
     }
 
-    public Vector2 getAreaMin(PlayerSlot PlayerSlot)
+    public Vector2 getAreaMin(PlayerSlot _playerSlot)
     {
-        switch (PlayerSlot)
+        switch (_playerSlot)
         {
             case PlayerSlot.PC1: return new Vector2(pc1Area.x, pc1Area.y);
             case PlayerSlot.PC2: return new Vector2(pc2Area.x, pc2Area.y);
@@ -44,9 +46,9 @@ public sealed class GameManager : MonoBehaviour
         }
     }
 
-    public Vector2 getAreaMax(PlayerSlot PlayerSlot)
+    public Vector2 getAreaMax(PlayerSlot _playerSlot)
     {
-        switch (PlayerSlot)
+        switch (_playerSlot)
         {
             case PlayerSlot.PC1: return new Vector2(pc1Area.z, pc1Area.w);
             case PlayerSlot.PC2: return new Vector2(pc2Area.z, pc2Area.w);
@@ -57,5 +59,29 @@ public sealed class GameManager : MonoBehaviour
     public void gameSet()
     {
 
+    }
+
+    private void createPlayer(string _pc1Name, string _pc2Name)
+    {
+        Player tmp;
+
+        GameObject pc1 = Instantiate
+        (
+            PlayerManager.Inst.getCharacterPrefab(_pc1Name),
+            new Vector3(-4.5f, -2.5f),
+            new Quaternion()
+        ) as GameObject;
+
+        tmp = pc1.GetComponent<Player>();
+        tmp.playerSlot = PlayerSlot.PC1;
+
+        GameObject pc2 = Instantiate
+        (
+            PlayerManager.Inst.getCharacterPrefab(_pc2Name),
+            new Vector3(4.5f, -2.5f),
+            new Quaternion()
+        );
+        tmp = pc2.GetComponent<Player>();
+        tmp.playerSlot = PlayerSlot.PC2;
     }
 }
