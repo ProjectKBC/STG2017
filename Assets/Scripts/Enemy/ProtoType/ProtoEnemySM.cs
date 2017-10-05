@@ -2,10 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Veronica
+public class ProtoEnemySM : EnemyShotManager
 {
-    public sealed class VeronicaSkill : Skill
-    {
 
-    }
 }

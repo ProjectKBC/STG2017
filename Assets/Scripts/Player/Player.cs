@@ -10,7 +10,8 @@ public enum PlayerSlot
 [RequireComponent(typeof(Skill))]
 public abstract class Player : Ship
 {
-    public PlayerSlot playerSlot { get; set; } // プレイヤー番号
+    // プレイヤー番号
+    public PlayerSlot playerSlot { get; set; }
     
     // ShotManagerを確保するリスト
     private Dictionary<string, ShotManager> shotManager = new Dictionary<string, ShotManager>();
@@ -20,15 +21,6 @@ public abstract class Player : Ship
 
     private void init()
     {
-        /* GameManagerがやってくれる
-        // スポーン地の設定
-        switch (playerSlot)
-        {
-            case PlayerSlot.PC1: transform.position = new Vector2(-4.5f, -2.5f); break;
-            case PlayerSlot.PC2: transform.position = new Vector2(4.5f, -2.5f); break;
-        }
-        */
-
         // ShotManagerの読み込み
         ShotManager[] tmp = GetComponents<ShotManager>();
         foreach (ShotManager x in tmp)

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+// Manager関連を生成するクラス 火つけ石
 public class FireLitStone : MonoBehaviour
 {
     public string _pc1Name;

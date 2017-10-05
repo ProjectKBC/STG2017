@@ -4,22 +4,19 @@ using UnityEngine;
 
 public abstract class ShotManager : MonoBehaviour
 {
-
+    public Bullet bullet;     // 弾のPrefab
     [SerializeField]
     public BulletParam param; // パラメータクラス
-    public Bullet bullet;     // 弾のPrefab
-    public KeyCode keyCode;   // 発射ボタン
 
+    public KeyCode keyCode;   // 発射ボタン
     private AudioSource audioSource;
 
-    private void init()
-    {
-        audioSource = gameObject.GetComponent<AudioSource>();
-    }
+    public virtual void init() { }
 
     IEnumerator Start()
     {
         init();
+        audioSource = gameObject.GetComponent<AudioSource>();
         while (true)
         {
 
@@ -50,18 +47,19 @@ public abstract class ShotManager : MonoBehaviour
             canChargeShot = true;
         }
 
-        // チャージ発射or解除判定
-        if (Input.GetKeyUp(keyCode))
+        // チャージ発射判定
+        if (Input.GetKeyUp(keyCode) && canChargeShot)
         {
-            if (canChargeShot)
-            {
-                chargeBeginTime = 0;
-                canChargeShot = false;
-                return true;
-            }
-
             chargeBeginTime = 0;
             canChargeShot   = false;
+            return true;
+        }
+
+        // チャージ解除判定
+        if (Input.GetKey(keyCode) == false)
+        {
+            chargeBeginTime = 0;
+            canChargeShot = false;
         }
 
         return false;

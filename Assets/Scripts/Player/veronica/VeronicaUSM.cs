@@ -2,7 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class VeronicaUSM : ShotManager
+namespace Veronica
 {
-
+    public sealed class VeronicaUSM : ShotManager
+    {
+        override public void init()
+        {
+            /*
+             * 自動生成化したい
+            bullet = new GameObject().AddComponent<VeronicaUB>();
+            */
+        }
+    }
 }
+ 

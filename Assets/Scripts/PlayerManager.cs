@@ -1,10 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 // シングルトン
 public sealed class PlayerManager : MonoBehaviour
 {
+    // キャラクターのprefabを格納する連想配列
     private Dictionary<string, GameObject> CharacterPrefabs = new Dictionary<string, GameObject>();
 
     private static PlayerManager inst;
@@ -26,7 +28,6 @@ public sealed class PlayerManager : MonoBehaviour
     private void Start()
     {
         Debug.Log("player_manager start");
-        Debug.Log(Resources.LoadAll("Prefabs/Characters")[0].name);
         Object[] tmp = Resources.LoadAll("Prefabs/Characters");
 
         for (int i = 0; i < tmp.Length; ++i)

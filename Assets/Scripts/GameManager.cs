@@ -10,7 +10,7 @@ public sealed class GameManager : MonoBehaviour
     public Vector4 pc1Area = new Vector4(-8.0f, -4.8f, -0.9f, 4.8f);
     public Vector4 pc2Area = new Vector4(0.9f,  -4.8f,  8.0f, 4.8f);
 
-    // 
+    // 選択されたキャラクターの名前
     public string pc1Name;
     public string pc2Name;
 

@@ -2,7 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class VeronicaPlayer : Player
+namespace Veronica
 {
+    public sealed class VeronicaPlayer : Player
+    {
 
+    }
 }

@@ -45,13 +45,13 @@ public abstract class Bullet : MonoBehaviour
     }
 
     // 初期設定関数
-    virtual public void init()
+    public virtual void init()
     {
 
     }
 
     // move関数：弾の動きはここに書く 
-    virtual public void move()
+    public virtual void move()
     {
 
     }

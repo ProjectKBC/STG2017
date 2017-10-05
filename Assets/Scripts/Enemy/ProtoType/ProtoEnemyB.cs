@@ -2,10 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Veronica
+public class ProtoEnemyB : Bullet
 {
-    public sealed class VeronicaSkill : Skill
-    {
 
-    }
 }

@@ -5,7 +5,14 @@ using UnityEngine;
 [RequireComponent(typeof(EnemyShotManager))]
 public abstract class Enemy : Ship
 {
-    private EnemyShotManager nsm;
+    /*
+     * パターン化したい
+     * 動き
+     * ショット
+    */
+
+    // ShotManagerを確保するリスト
+    private Dictionary<string, ShotManager> shotManager = new Dictionary<string, ShotManager>();
 
     IEnumerator Start ()
     {
@@ -22,13 +29,13 @@ public abstract class Enemy : Ship
     }
 
     // 移動軌跡などを書き込む関数
-    private void move()
+    public virtual void move()
     {
 
     }
 
     // ショットする条件やショットそのものの処理
-    private void shot()
+    public virtual void shot()
     {
 
     }
