@@ -85,7 +85,7 @@ BoxCollider2D:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
     oldSize: {x: 0.96, y: 0.96}
-    newSize: {x: 0.96, y: 0.96}
+    newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
@@ -214,6 +214,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9027f80ad6fdfc3428d1860ab7135dab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bullet: {fileID: 114254312219786380, guid: 4e7fd2cc1cfd48f4b9eb10dabda949ba, type: 2}
   param:
     name: "\u30CE\u30D6\u30EC\u30B9CC"
     shotSound: {fileID: 8300000, guid: 7859a29f2a04c764d9f84132b39eed1b, type: 3}
@@ -224,8 +225,10 @@ MonoBehaviour:
     isCharge: 0
     chargeTime: 2
     isPenetrate: 0
+    isShotCount: 0
+    shotMaxCount: 0
+    reloadTime: 0
     initialPosition: {x: 0, y: 0, z: 0}
-  bullet: {fileID: 114254312219786380, guid: 4e7fd2cc1cfd48f4b9eb10dabda949ba, type: 2}
   keyCode: 120
 --- !u!114 &114679377063774258
 MonoBehaviour:
@@ -238,6 +241,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 720a23b10a17bb746b5754bb9d5769d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bullet: {fileID: 114396921439157842, guid: 7d8d10a3874e2e846ba749cb6e72652e, type: 2}
   param:
     name: "\u30A2\u30D7\u30C1\u30C6\u30E5\u30FC\u30C9CC"
     shotSound: {fileID: 8300000, guid: 7859a29f2a04c764d9f84132b39eed1b, type: 3}
@@ -248,8 +252,10 @@ MonoBehaviour:
     isCharge: 0
     chargeTime: 0
     isPenetrate: 0
+    isShotCount: 0
+    shotMaxCount: 0
+    reloadTime: 0
     initialPosition: {x: 0, y: 0, z: 0}
-  bullet: {fileID: 114396921439157842, guid: 7d8d10a3874e2e846ba749cb6e72652e, type: 2}
   keyCode: 122
 --- !u!114 &114962089204125980
 MonoBehaviour:
@@ -300,7 +306,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.96, y: 0.96}
+  m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1

@@ -8,6 +8,7 @@ namespace Veronica
     {
         override public void init()
         {
+			base.init();
             /*
              * 自動生成化したい
             bullet = new GameObject().AddComponent<VeronicaUB>();

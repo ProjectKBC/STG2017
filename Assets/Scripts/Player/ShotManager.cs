@@ -11,12 +11,19 @@ public abstract class ShotManager : MonoBehaviour
     public KeyCode keyCode;   // 発射ボタン
     private AudioSource audioSource;
 
-    public virtual void init() { }
+
+	private float reloadTimeElapsed = 0;
+	private int shotCount = 0; // 現在の残弾数
+
+    public virtual void init()
+	{
+		shotCount = param.shotMaxCount;
+		audioSource = gameObject.GetComponent<AudioSource>();
+	}
 
     IEnumerator Start()
     {
         init();
-        audioSource = gameObject.GetComponent<AudioSource>();
         while (true)
         {
 
@@ -69,8 +76,16 @@ public abstract class ShotManager : MonoBehaviour
     private float timeElapsed = 0;
     public void shot()
     {
+		// リロード判定
+		if (Time.time - reloadTimeElapsed >= param.reloadTime && shotCount <= 0)
+		{
+			shotCount = param.shotMaxCount;
+		}
+
+		if (param.isShotCount && shotCount <= 0) { return; }
+
         if (Time.time - timeElapsed >= param.shotDelay)
-        {
+		{
             // チャージショット
             if (param.isCharge)
             {
@@ -79,6 +94,9 @@ public abstract class ShotManager : MonoBehaviour
                     audioSource.PlayOneShot(param.shotSound);
                     timeElapsed = Time.time;
                     Bullet.Instantiate(bullet, param, transform.position, transform.rotation);
+
+					// 弾数を減らす
+					if (param.isShotCount) { shotCount--; }
                 }
             }
             // 通常ショット
@@ -89,8 +107,18 @@ public abstract class ShotManager : MonoBehaviour
                     audioSource.PlayOneShot(param.shotSound);
                     timeElapsed = Time.time;
                     Bullet.Instantiate(bullet, param, transform.position, transform.rotation);
+
+					// 弾数を減らす
+					if (param.isShotCount) { shotCount--; }
                 }
             }
         }
+
+		// リロード開始
+		if (param.isShotCount && shotCount <= 0)
+		{
+			reloadTimeElapsed = Time.time;
+		}
+
     }
 }
