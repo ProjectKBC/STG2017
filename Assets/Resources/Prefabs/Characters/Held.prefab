@@ -222,11 +222,11 @@ MonoBehaviour:
     lifeTime: 5
     speed: 7
     power: 9
+    isPenetrate: 0
     isCharge: 0
     chargeTime: 0
-    isPenetrate: 0
-    isShotCount: 1
-    shotMaxCount: 10
+    isBulletLimit: 1
+    bulletMaxNum: 10
     reloadTime: 5
     initialPosition: {x: 0, y: 0, z: 0}
   keyCode: 120
@@ -261,11 +261,11 @@ MonoBehaviour:
     lifeTime: 5
     speed: 10
     power: 2
+    isPenetrate: 0
     isCharge: 0
     chargeTime: 0
-    isPenetrate: 0
-    isShotCount: 0
-    shotMaxCount: 0
+    isBulletLimit: 0
+    bulletMaxNum: 0
     reloadTime: 0
     initialPosition: {x: 0, y: 0, z: 0}
   keyCode: 122

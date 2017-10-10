@@ -12,12 +12,15 @@ public class BulletParam
     public float lifeTime;   // 生存時間
     public float speed;      // 弾丸速度
     public float power;      // 攻撃力
+
+    public bool isPenetrate; // 貫通性の有無
+
     public bool  isCharge;   // チャージ有無
     public float chargeTime; // チャージ時間
-    public bool isPenetrate; // 貫通性の有無
-	public bool isShotCount; // 弾数制限の有無
-	public int shotMaxCount; // 弾数制限
-	public float reloadTime; // リロード時間
+    
+    public bool  isBulletLimit; // 弾数制限の有無
+	public int   bulletMaxNum;  // 弾数制限
+	public float reloadTime;   // リロード時間
 
     public Vector3 initialPosition;    // 自機を起点とした初期位置
     //public Quaternion initialRotation; // 自機を起点とした初期角度？

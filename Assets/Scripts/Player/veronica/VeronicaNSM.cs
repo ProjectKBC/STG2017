@@ -6,9 +6,9 @@ namespace Veronica
 {
     public sealed class VeronicaNSM : ShotManager
     {
-        override public void init()
+        override public void Init()
         {
-			base.init();
+			base.Init();
             /*
              * 自動生成化したい
             bullet = new GameObject().AddComponent<VeronicaNB>();

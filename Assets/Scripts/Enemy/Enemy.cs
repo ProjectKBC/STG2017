@@ -13,6 +13,12 @@ public abstract class Enemy : Ship
 
     // ShotManagerを確保するリスト
     private Dictionary<string, ShotManager> shotManager = new Dictionary<string, ShotManager>();
+    private float hitPoint;
+
+    private void Init()
+    {
+        hitPoint = base.maxHitPoint;
+    }
 
     IEnumerator Start ()
     {

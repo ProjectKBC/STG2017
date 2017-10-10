@@ -17,9 +17,11 @@ public abstract class Player : Ship
     private Dictionary<string, ShotManager> shotManager = new Dictionary<string, ShotManager>();
     private Skill skill; // スキル
 
+    [System.NonSerialized]
+    public float hitPoint;
     private string state = "None";
 
-    private void init()
+    private void Init()
     {
         // ShotManagerの読み込み
         ShotManager[] tmp = GetComponents<ShotManager>();
@@ -30,11 +32,14 @@ public abstract class Player : Ship
 
         // Skillの読み込み
         skill = GetComponent<Skill>();
+
+        // HPの初期化
+        hitPoint = base.maxHitPoint;
     }
 
     IEnumerator Start ()
     {
-        init();
+        Init();
 
         while (true)
         {
@@ -50,7 +55,7 @@ public abstract class Player : Ship
             {
                 if (state == key || state == key + "(KeyUp)")
                 {
-                    shotManager[key].shot(); break;
+                    shotManager[key].Shot(); break;
                 }
             }
 
@@ -60,7 +65,7 @@ public abstract class Player : Ship
 	
 	void Update ()
     {
-        move();
+        Move();
 	}
 
     void InputManager()
@@ -97,7 +102,7 @@ public abstract class Player : Ship
     }
 
     // 移動処理
-    void move()
+    void Move()
     {
         float x = Input.GetAxisRaw("Horizontal");
         float y = Input.GetAxisRaw("Vertical");
@@ -152,7 +157,7 @@ public abstract class Player : Ship
 
     void damage(float _damage)
     {
-        this.hitPoint -= _damage;
+        hitPoint -= _damage;
         if (hitPoint < 0)
         {
             dead();
