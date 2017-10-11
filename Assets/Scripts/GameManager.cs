@@ -33,10 +33,10 @@ public sealed class GameManager : MonoBehaviour
     private void Start()
     {
         Debug.Log("game_manager start");
-        createPlayer(pc1Name, pc2Name);
+        CreatePlayer(pc1Name, pc2Name);
     }
 
-    public Vector2 getAreaMin(PlayerSlot _playerSlot)
+    public Vector2 GetAreaMin(PlayerSlot _playerSlot)
     {
         switch (_playerSlot)
         {
@@ -46,7 +46,7 @@ public sealed class GameManager : MonoBehaviour
         }
     }
 
-    public Vector2 getAreaMax(PlayerSlot _playerSlot)
+    public Vector2 GetAreaMax(PlayerSlot _playerSlot)
     {
         switch (_playerSlot)
         {
@@ -56,31 +56,34 @@ public sealed class GameManager : MonoBehaviour
         }
     }
 
-    public void gameSet()
+    public void GameSet()
     {
 
     }
 
-    private void createPlayer(string _pc1Name, string _pc2Name)
+    private void CreatePlayer(string _pc1Name, string _pc2Name)
     {
         Player tmp;
 
         GameObject pc1 = Instantiate
         (
-            PlayerManager.Inst.getCharacterPrefab(_pc1Name),
+            PlayerManager.Inst.GetCharacterPrefab(_pc1Name),
             new Vector3(-4.5f, -2.5f),
             new Quaternion()
         ) as GameObject;
 
+        pc1.name = PlayerManager.Inst.GetCharacterPrefab(_pc1Name).name; Debug.Log("1");
         tmp = pc1.GetComponent<Player>();
         tmp.playerSlot = PlayerSlot.PC1;
 
         GameObject pc2 = Instantiate
         (
-            PlayerManager.Inst.getCharacterPrefab(_pc2Name),
+            PlayerManager.Inst.GetCharacterPrefab(_pc2Name),
             new Vector3(4.5f, -2.5f),
             new Quaternion()
         );
+
+        pc2.name = PlayerManager.Inst.GetCharacterPrefab(_pc2Name).name; Debug.Log("2");
         tmp = pc2.GetComponent<Player>();
         tmp.playerSlot = PlayerSlot.PC2;
     }

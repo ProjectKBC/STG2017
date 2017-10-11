@@ -7,15 +7,61 @@ public class PlayerUIManager : MonoBehaviour
 {
     private Player player;
     
-    public Canvas mainCanvas;
+    [System.NonSerialized] public GameObject mainCanvas;
+    [System.NonSerialized] public Image hitPointImage;
+    [System.NonSerialized] public Text  hitPointText;
+    [System.NonSerialized] public Image gageImage;
+    [System.NonSerialized] public Text  gageText;
+    [System.NonSerialized] public Image iconImage;
+    [System.NonSerialized] public Text  iconText;
+
+    private const float width  = 780;
+    private const float height = 1020;
 
     void Start()
     {
         player = GetComponent<Player>();
+        
+        while (true) { if (player.Started) { break; } }
 
+        CreateUI();
+        SettingUI();
+    }
 
+    void Update()
+    {
+        hitPointImage.fillAmount = player.hitPoint / player.maxHitPoint;
+        hitPointText.text = ((float)player.hitPoint).ToString();
+        
+        // todo: ShotManagerからparamを持ってきて、チャージ要素を検出する
+    }
+    
+    private void CreateUI()
+    {
+        switch (player.playerSlot)
+        {
+            case PlayerSlot.PC1:
+                mainCanvas = Instantiate
+                    (
+                        Resources.Load("Prefabs/UI/PC1Canvas"),
+                        GameObject.Find("Canvas").transform
+                    ) as GameObject;
+                break;
+
+            case PlayerSlot.PC2:
+                mainCanvas = Instantiate
+                    (
+                        Resources.Load("Prefabs/UI/PC2Canvas"),
+                        GameObject.Find("Canvas").transform
+                    ) as GameObject;
+                break;
+        }
+    }
+
+    private void SettingUI()
+    {
         Canvas target = null;
-        foreach (Transform child in mainCanvas.transform)
+        foreach (Transform child in mainCanvas.GetComponentsInChildren<Transform>())
         {
             switch (child.name)
             {
@@ -24,11 +70,12 @@ public class PlayerUIManager : MonoBehaviour
                     RectTransform rt = null;
                     Image i = null;
                     Text t = null;
-                    foreach (Transform c_child in target.transform)
+
+                    foreach (Transform c_child in target.GetComponentsInChildren<Transform>())
                     {
                         switch (c_child.name)
                         {
-                            case "HPBar":
+                            case "Bar":
                                 rt = c_child.gameObject.GetComponent<RectTransform>();
                                 rt.anchoredPosition = new Vector3(0, 0, 0);
                                 rt.sizeDelta        = new Vector2(672, 72);
@@ -39,14 +86,22 @@ public class PlayerUIManager : MonoBehaviour
                                 rt.localScale       = new Vector3(1, 1, 1);
 
                                 i = c_child.gameObject.GetComponent<Image>();
-                                i.sprite        = null;
-                                i.color         = new Color(204, 68, 68, 136);
-                                i.material      = null;
-                                i.raycastTarget = true;
+                                i.sprite         = Resources.Load<Sprite>("Sprites/UI/HPBar");
+                                i.color          = new Color(1,1,1,1);
+                                i.material       = null;
+                                i.raycastTarget  = true;
+                                i.type           = Image.Type.Filled;
+                                i.fillMethod     = Image.FillMethod.Horizontal;
+                                i.fillOrigin     = 3;
+                                i.fillAmount     = 1.0f;
+                                i.fillClockwise  = true;
+                                i.preserveAspect = false;
+
+                                hitPointImage = i;
                                 break;
 
 
-                            case "HPText":
+                            case "Text":
                                 rt = c_child.gameObject.GetComponent<RectTransform>();
                                 rt.anchoredPosition = new Vector3(0, 0, 0);
                                 rt.sizeDelta        = new Vector2(160, 72);
@@ -58,7 +113,7 @@ public class PlayerUIManager : MonoBehaviour
 
                                 t = c_child.gameObject.GetComponent<Text>();
                                 t.text                 = ((float)player.hitPoint).ToString();
-                                t.font                 = new Font("Arial");
+                                t.font                 = Resources.GetBuiltinResource(typeof(Font), "Arial.ttf") as Font;
                                 t.fontStyle            = FontStyle.Normal;
                                 t.fontSize             = 36;
                                 t.supportRichText      = true;
@@ -67,22 +122,24 @@ public class PlayerUIManager : MonoBehaviour
                                 t.horizontalOverflow   = HorizontalWrapMode.Wrap;
                                 t.verticalOverflow     = VerticalWrapMode.Truncate;
                                 t.resizeTextForBestFit = false;
-                                t.color                = new Color(50, 50, 50, 255);
+                                t.color                = new Color(0.196f, 0.196f, 0.196f, 1.0f);
                                 t.material             = null;
                                 t.raycastTarget        = true;
+
+                                hitPointText = t;
                                 break;
 
                         }
                     }
                     break;
 
-                case "ChargeCanvas":
+                case "GageCanvas":
                     target = child.gameObject.GetComponent<Canvas>();
                     foreach (Transform c_child in target.transform)
                     {
                         switch (c_child.name)
                         {
-                            case "ChargeBar":
+                            case "Bar":
                                 rt = c_child.gameObject.GetComponent<RectTransform>();
                                 rt.anchoredPosition = new Vector3(0, 0, 0);
                                 rt.sizeDelta        = new Vector2(72, 432);
@@ -93,14 +150,22 @@ public class PlayerUIManager : MonoBehaviour
                                 rt.localScale       = new Vector3(1, 1, 1);
 
                                 i = c_child.gameObject.GetComponent<Image>();
-                                i.sprite        = null;
-                                i.color         = new Color(204, 204, 68, 136);
-                                i.material      = null;
-                                i.raycastTarget = true;
+                                i.sprite         = Resources.Load<Sprite>("Sprites/UI/GageBar");
+                                i.color          = new Color(1,1,1,1);
+                                i.material       = null;
+                                i.raycastTarget  = true;
+                                i.type           = Image.Type.Filled;
+                                i.fillMethod     = Image.FillMethod.Horizontal;
+                                i.fillOrigin     = 3;
+                                i.fillAmount     = 1.0f;
+                                i.fillClockwise  = true;
+                                i.preserveAspect = false;
+
+                                gageImage = i;
                                 break;
 
 
-                            case "ChargeText":
+                            case "Text":
                                 rt = c_child.gameObject.GetComponent<RectTransform>();
                                 rt.anchoredPosition = new Vector3(0, 0, 0);
                                 rt.sizeDelta        = new Vector2(72, 540);
@@ -112,7 +177,7 @@ public class PlayerUIManager : MonoBehaviour
 
                                 t = c_child.gameObject.GetComponent<Text>();
                                 t.text                 = "";
-                                t.font                 = new Font("Arial");
+                                t.font                 = Resources.GetBuiltinResource(typeof(Font), "Arial.ttf") as Font;
                                 t.fontStyle            = FontStyle.Normal;
                                 t.fontSize             = 36;
                                 t.supportRichText      = true;
@@ -121,9 +186,11 @@ public class PlayerUIManager : MonoBehaviour
                                 t.horizontalOverflow   = HorizontalWrapMode.Wrap;
                                 t.verticalOverflow     = VerticalWrapMode.Truncate;
                                 t.resizeTextForBestFit = false;
-                                t.color                = new Color(50, 50, 50, 255);
+                                t.color                = new Color(0.196f, 0.196f, 0.196f, 1.0f);
                                 t.material             = null;
                                 t.raycastTarget        = true;
+
+                                gageText = t;
                                 break;
 
                         }
@@ -148,13 +215,15 @@ public class PlayerUIManager : MonoBehaviour
 
                                 i = c_child.gameObject.GetComponent<Image>();
                                 i.sprite        = null;
-                                i.color         = new Color(255, 255, 255, 136);
+                                i.color         = new Color(1.0f, 1.0f, 1.0f, 0.5333f);
                                 i.material      = null;
                                 i.raycastTarget = true;
+
+                                iconImage = i;
                                 break;
 
 
-                            case "IconText":
+                            case "Text":
                                 rt = c_child.gameObject.GetComponent<RectTransform>();
                                 rt.anchoredPosition = new Vector3(0, 0, 0);
                                 rt.sizeDelta        = new Vector2(108, 108);
@@ -165,8 +234,8 @@ public class PlayerUIManager : MonoBehaviour
                                 rt.localScale       = new Vector3(1, 1, 1);
 
                                 t = c_child.gameObject.GetComponent<Text>();
-                                t.text                 = player.name;
-                                t.font                 = new Font("Arial");
+                                t.text                 = player.name; Debug.Log("4 " + t.text);
+                                t.font                 = Resources.GetBuiltinResource(typeof(Font), "Arial.ttf") as Font;
                                 t.fontStyle            = FontStyle.Normal;
                                 t.fontSize             = 18;
                                 t.supportRichText      = true;
@@ -175,9 +244,11 @@ public class PlayerUIManager : MonoBehaviour
                                 t.horizontalOverflow   = HorizontalWrapMode.Wrap;
                                 t.verticalOverflow     = VerticalWrapMode.Truncate;
                                 t.resizeTextForBestFit = false;
-                                t.color                = new Color(50, 50, 50, 255);
+                                t.color                = new Color(0.196f, 0.196f, 0.196f, 1.0f);
                                 t.material             = null;
                                 t.raycastTarget        = true;
+
+                                iconText = t;
                                 break;
 
                         }
@@ -185,38 +256,6 @@ public class PlayerUIManager : MonoBehaviour
                     break;
             }
         }
-        
-        //this.initParameter();
-
     }
 
-    /*
-    void Update()
-    {
-        lifeGage.fillAmount = player.hitPoint / player.maxHitPoint;
-    }
-
-    private void initParameter()
-    {
-        lifeGage = GameObject.Find("LifeGage").GetComponent<Image>();
-        lifeGage.fillAmount = 1;
-
-        lifeRedGage = GameObject.Find("LifeRedGage").GetComponent<Image>();
-        lifeRedGage.fillAmount = 1;
-    }
-    */
-
-    private void CreateUI()
-    {
-        switch (player.playerSlot)
-        {
-            case PlayerSlot.PC1:
-                mainCanvas = Instantiate(Resources.Load("Prefabs/UI/PC1Canvas")) as Canvas;
-                break;
-
-            case PlayerSlot.PC2:
-                mainCanvas = Instantiate(Resources.Load("Prefabs/UI/PC2Canvas")) as Canvas;
-                break;
-        }
-    }
 }

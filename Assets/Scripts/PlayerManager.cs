@@ -50,7 +50,7 @@ public sealed class PlayerManager : MonoBehaviour
         
     }
     
-    public GameObject getCharacterPrefab(string _name)
+    public GameObject GetCharacterPrefab(string _name)
     {
         if (CharacterPrefabs.ContainsKey(_name) == false) { return null; }
 

@@ -41,7 +41,7 @@ GameObject:
   - component: {fileID: 114852296382541904}
   - component: {fileID: 114193572630283460}
   m_Layer: 5
-  m_Name: ChargeCanvas
+  m_Name: GageCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -76,7 +76,7 @@ GameObject:
   - component: {fileID: 222434667141949658}
   - component: {fileID: 114207821936159010}
   m_Layer: 5
-  m_Name: HPBar
+  m_Name: Bar
   m_TagString: PC2
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -128,7 +128,7 @@ GameObject:
   - component: {fileID: 222281803494613890}
   - component: {fileID: 114707784029529182}
   m_Layer: 5
-  m_Name: ChargeBar
+  m_Name: Bar
   m_TagString: PC2
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -217,7 +217,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Veronica
+  m_Text: 
 --- !u!114 &114193572630283460
 MonoBehaviour:
   m_ObjectHideFlags: 1

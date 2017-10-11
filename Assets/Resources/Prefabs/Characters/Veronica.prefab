@@ -28,6 +28,7 @@ GameObject:
   - component: {fileID: 114406571477051180}
   - component: {fileID: 114293129560723324}
   - component: {fileID: 114261390625496730}
+  - component: {fileID: 114573852889598108}
   m_Layer: 8
   m_Name: Veronica
   m_TagString: Untagged
@@ -221,9 +222,12 @@ MonoBehaviour:
     lifeTime: 1
     speed: 0
     power: 3
+    isPenetrate: 0
     isCharge: 1
     chargeTime: 2
-    isPenetrate: 0
+    isBulletLimit: 0
+    bulletMaxNum: 0
+    reloadTime: 0
     initialPosition: {x: 0, y: 0, z: 0}
   keyCode: 120
 --- !u!114 &114406571477051180
@@ -245,11 +249,32 @@ MonoBehaviour:
     lifeTime: 0.5
     speed: 2
     power: 1
+    isPenetrate: 0
     isCharge: 0
     chargeTime: 0
-    isPenetrate: 0
+    isBulletLimit: 0
+    bulletMaxNum: 0
+    reloadTime: 0
     initialPosition: {x: 0, y: 0, z: 0}
   keyCode: 122
+--- !u!114 &114573852889598108
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1381941399765418}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff63c36de3b522240a06e60965005537, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mainCanvas: {fileID: 0}
+  hitPointImage: {fileID: 0}
+  hitPointText: {fileID: 0}
+  gageImage: {fileID: 0}
+  gageText: {fileID: 0}
+  iconImage: {fileID: 0}
+  iconText: {fileID: 0}
 --- !u!114 &114599767849722420
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -261,8 +286,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21ff26f6d4da1344380ff61c8710fc75, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hitPoint: 10
+  maxHitPoint: 10
   speed: 5
+  skill: {fileID: 0}
+  Started: 0
 --- !u!212 &212152155036704254
 SpriteRenderer:
   m_ObjectHideFlags: 1

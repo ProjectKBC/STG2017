@@ -14,8 +14,6 @@ namespace Held
 	// シングルトン
 	public class Held : MonoBehaviour
 	{
-		private string name;
-
 		private static Held inst;
 		private Held()
 		{

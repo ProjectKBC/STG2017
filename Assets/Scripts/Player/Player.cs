@@ -17,8 +17,8 @@ public abstract class Player : Ship
     public Dictionary<string, ShotManager> shotManager = new Dictionary<string, ShotManager>();
     public Skill skill; // スキル
 
-    [System.NonSerialized]
-    public float hitPoint;
+    [System.NonSerialized] public float hitPoint;
+    [System.NonSerialized] public bool Started = false;
     private string state = "None";
 
     private void Init()
@@ -35,6 +35,9 @@ public abstract class Player : Ship
 
         // HPの初期化
         hitPoint = base.maxHitPoint;
+
+        Debug.Log("3");
+        Started = true;
     }
 
     IEnumerator Start ()
@@ -44,6 +47,8 @@ public abstract class Player : Ship
         while (true)
         {
             InputManager();
+
+            /* debug */ if (Input.GetKeyDown(KeyCode.Q)) { --hitPoint; }
 
             if (state == "Skill" || state == "Skill(KeyUp)")
             {
@@ -109,8 +114,8 @@ public abstract class Player : Ship
 
         Vector2 direction = new Vector2(x, y).normalized;
 
-        Vector2 min = GameManager.Inst.getAreaMin(playerSlot);
-        Vector2 max = GameManager.Inst.getAreaMax(playerSlot);
+        Vector2 min = GameManager.Inst.GetAreaMin(playerSlot);
+        Vector2 max = GameManager.Inst.GetAreaMax(playerSlot);
         
         Vector2 pos = transform.position;
 

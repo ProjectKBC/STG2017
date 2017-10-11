@@ -14,8 +14,6 @@ namespace Veronica
     // シングルトン
     public class Veronica : MonoBehaviour
     {
-        private string name;
-
         private static Veronica inst;
         private Veronica()
         {
