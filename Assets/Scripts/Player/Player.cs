@@ -12,10 +12,10 @@ public abstract class Player : Ship
 {
     // プレイヤー番号
     public PlayerSlot playerSlot { get; set; }
-    
+
     // ShotManagerを確保するリスト
-    private Dictionary<string, ShotManager> shotManager = new Dictionary<string, ShotManager>();
-    private Skill skill; // スキル
+    public Dictionary<string, ShotManager> shotManager = new Dictionary<string, ShotManager>();
+    public Skill skill; // スキル
 
     [System.NonSerialized]
     public float hitPoint;

@@ -523,6 +523,18 @@ Prefab:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1010986725546516, guid: 7248013e04b1d6e46839b1c58cb90954, type: 2}
+      propertyPath: m_Name
+      value: HPText
+      objectReference: {fileID: 0}
+    - target: {fileID: 1408208821526496, guid: 7248013e04b1d6e46839b1c58cb90954, type: 2}
+      propertyPath: m_Name
+      value: ChaegeText
+      objectReference: {fileID: 0}
+    - target: {fileID: 1712059108045944, guid: 7248013e04b1d6e46839b1c58cb90954, type: 2}
+      propertyPath: m_Name
+      value: IconText
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7248013e04b1d6e46839b1c58cb90954, type: 2}
   m_IsPrefabParent: 0
