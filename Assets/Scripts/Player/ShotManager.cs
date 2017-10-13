@@ -91,16 +91,10 @@ public abstract class ShotManager : MonoBehaviour
         // チャージ発射判定
         if (Input.GetKeyUp(keyCode) && canChargeShot)
         {
+            InstBullet();
             chargeBeginTime = 0;
             canChargeShot = false;
             return true;
-        }
-
-        // チャージ解除判定
-        if (Input.GetKey(keyCode) == false)
-        {
-            chargeBeginTime = 0;
-            canChargeShot = false;
         }
 
         return false;
@@ -119,5 +113,36 @@ public abstract class ShotManager : MonoBehaviour
         lastShotTime = Time.time;
         audioSource.PlayOneShot(param.shotSound);
         Bullet.Instantiate(bullet, param, transform.position, transform.rotation);
+    }
+
+    public void Maintenance()
+    {
+        switch (param.shotMode)
+        {
+            case ShotMode.SimpleShot: SimpleMaintenance(); return;
+
+            case ShotMode.ChargeShot: ChargeMaintenance(); return;
+
+            case ShotMode.LimitShot: LimitMaintenance(); return;
+        }
+    }
+    
+    private void LimitMaintenance()
+    {
+        // 残弾がなく、リロードタイムを過ぎた場合 -> リロードする
+        if (Time.time - lastReloadTime >= param.reloadTime && bulletNum <= 0)
+        {
+            bulletNum = param.bulletMaxNum;
+        }
+    }
+    
+    private void ChargeMaintenance()
+    {
+        chargeBeginTime = 0;
+        canChargeShot = false;
+    }
+
+    private void SimpleMaintenance()
+    {
     }
 }

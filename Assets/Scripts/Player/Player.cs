@@ -27,12 +27,6 @@ public abstract class Player : Ship
         ShotManager[] tmp = GetComponents<ShotManager>();
         foreach (ShotManager x in tmp)
         {
-            if (x.param.shotMode == ShotMode.SimpleShot)
-            {
-                x.param.gage.barType = GageBarType.None;
-                x.param.gage.effectType = GageEffectType.None;
-                x.param.gage.countType = GageCountType.None;
-            }
             shotManager.Add(x.param.name, x);
         }
 
@@ -66,7 +60,13 @@ public abstract class Player : Ship
             {
                 if (state == key || state == key + "(KeyUp)")
                 {
-                    shotManager[key].Shot(); break;
+                    if (state == key + "(KeyUp)") { Debug.Log(key + "(KeyUp)"); }
+                    shotManager[key].Shot();
+                    continue;
+                }
+                else
+                {
+                    shotManager[key].Maintenance();
                 }
             }
 

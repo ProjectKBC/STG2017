@@ -232,7 +232,7 @@ MonoBehaviour:
   param:
     name: "\u30D4\u30FC\u30B9\u30E1\u30FC\u30AB\u30FC"
     shotSound: {fileID: 8300000, guid: 7859a29f2a04c764d9f84132b39eed1b, type: 3}
-    shotDelay: 1
+    shotDelay: 0.25
     lifeTime: 5
     speed: 7
     power: 9
@@ -278,7 +278,7 @@ MonoBehaviour:
   param:
     name: "\u30EB\u30AC\u30FCP08"
     shotSound: {fileID: 8300000, guid: 7859a29f2a04c764d9f84132b39eed1b, type: 3}
-    shotDelay: 1
+    shotDelay: 0.1
     lifeTime: 5
     speed: 10
     power: 2

@@ -130,7 +130,18 @@ public class PlayerUIManager : MonoBehaviour
 
                     if (player.shotManager[key].param.shotMode == ShotMode.ChargeShot)
                     {
-                        TopValue = Time.time - player.shotManager[key].chargeBeginTime;
+                        if (player.shotManager[key].chargeBeginTime == 0)
+                        {
+                            TopValue = 0;
+                        }
+                        else if (Time.time - player.shotManager[key].chargeBeginTime < TopMaxValue)
+                        {
+                            TopValue = Time.time - player.shotManager[key].chargeBeginTime;
+                        }
+                        else
+                        {
+                            TopValue = TopMaxValue;
+                        }
                         TopGageImage.fillAmount = TopValue / TopMaxValue;
                         TopGageText.text = ((int)((TopValue / TopMaxValue) * 100)).ToString();
                     }
@@ -147,7 +158,18 @@ public class PlayerUIManager : MonoBehaviour
 
                     if (player.shotManager[key].param.shotMode == ShotMode.ChargeShot)
                     {
-                        LeftValue = Time.time - player.shotManager[key].chargeBeginTime;
+                        if (player.shotManager[key].chargeBeginTime == 0)
+                        {
+                            LeftValue = 0;
+                        }
+                        else if (Time.time - player.shotManager[key].chargeBeginTime < LeftMaxValue)
+                        {
+                            LeftValue = Time.time - player.shotManager[key].chargeBeginTime;
+                        }
+                        else
+                        {
+                            LeftValue = LeftMaxValue;
+                        }
                         LeftGageImage.fillAmount = LeftValue / LeftMaxValue;
                         LeftGageText.text = ((int)((LeftValue / LeftMaxValue) * 100)).ToString();
                     }
@@ -241,11 +263,10 @@ public class PlayerUIManager : MonoBehaviour
                                 i.raycastTarget  = true;
                                 i.type           = Image.Type.Filled;
                                 i.fillMethod     = Image.FillMethod.Horizontal;
-                                i.fillOrigin     = 3;
+                                i.fillOrigin     = 0;
                                 i.fillAmount     = 1.0f;
                                 i.fillClockwise  = true;
                                 i.preserveAspect = false;
-
                                 hitPointImage = i;
                                 break;
 
@@ -375,11 +396,13 @@ public class PlayerUIManager : MonoBehaviour
                                 i.raycastTarget = true;
                                 i.type = Image.Type.Filled;
                                 i.fillMethod = Image.FillMethod.Vertical;
-                                i.fillOrigin = 3;
+                                i.fillOrigin = 1;
                                 i.fillAmount = 1.0f;
                                 i.fillClockwise = true;
                                 i.preserveAspect = false;
 
+                                Debug.Log(i.fillMethod);
+                                Debug.Log(i.fillOrigin);
                                 LeftGageImage = i;
                                 break;
 
