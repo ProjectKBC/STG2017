@@ -11,7 +11,7 @@ public enum PlayerSlot
 public abstract class Player : Ship
 {
     // プレイヤー番号
-    public PlayerSlot playerSlot { get; set; }
+    public PlayerSlot playerSlot;
 
     // ShotManagerを確保するリスト
     public Dictionary<string, ShotManager> shotManager = new Dictionary<string, ShotManager>();
@@ -27,6 +27,12 @@ public abstract class Player : Ship
         ShotManager[] tmp = GetComponents<ShotManager>();
         foreach (ShotManager x in tmp)
         {
+            if (x.param.shotMode == ShotMode.SimpleShot)
+            {
+                x.param.gage.barType = GageBarType.None;
+                x.param.gage.effectType = GageEffectType.None;
+                x.param.gage.countType = GageCountType.None;
+            }
             shotManager.Add(x.param.name, x);
         }
 

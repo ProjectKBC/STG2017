@@ -204,6 +204,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHitPoint: 10
   speed: 5
+  playerSlot: 0
   skill: {fileID: 0}
 --- !u!114 &114543301112965642
 MonoBehaviour:
@@ -220,17 +221,22 @@ MonoBehaviour:
   param:
     name: "\u30CE\u30D6\u30EC\u30B9CC"
     shotSound: {fileID: 8300000, guid: 7859a29f2a04c764d9f84132b39eed1b, type: 3}
-    shotDelay: 0
-    lifeTime: 0.3
-    speed: 0
+    shotDelay: 1
+    lifeTime: 1
+    speed: 1
     power: 3
     isPenetrate: 0
-    isCharge: 0
+    shotMode: 1
+    initialPosition: {x: 0, y: 0, z: 0}
+    gage:
+      maxGage: 0
+      value: 0
+      barType: 0
+      effectType: 0
+      countType: 0
     chargeTime: 2
-    isBulletLimit: 0
     bulletMaxNum: 0
     reloadTime: 0
-    initialPosition: {x: 0, y: 0, z: 0}
   keyCode: 120
 --- !u!114 &114679377063774258
 MonoBehaviour:
@@ -247,17 +253,22 @@ MonoBehaviour:
   param:
     name: "\u30A2\u30D7\u30C1\u30C6\u30E5\u30FC\u30C9CC"
     shotSound: {fileID: 8300000, guid: 7859a29f2a04c764d9f84132b39eed1b, type: 3}
-    shotDelay: 0.25
+    shotDelay: 1
     lifeTime: 1
     speed: 5
     power: 1
     isPenetrate: 0
-    isCharge: 0
+    shotMode: 0
+    initialPosition: {x: 0, y: 0, z: 0}
+    gage:
+      maxGage: 0
+      value: 0
+      barType: 0
+      effectType: 0
+      countType: 0
     chargeTime: 0
-    isBulletLimit: 0
     bulletMaxNum: 0
     reloadTime: 0
-    initialPosition: {x: 0, y: 0, z: 0}
   keyCode: 122
 --- !u!114 &114682147385227150
 MonoBehaviour:

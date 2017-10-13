@@ -2,28 +2,36 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum ShotMode
+{
+    SimpleShot,
+    ChargeShot,
+    LimitShot,
+}
+
 [System.Serializable]
 public class BulletParam
 {
     public string name;         // ショットの名前
     public AudioClip shotSound; // ショット音
 
-    public float shotDelay;  // ショット間隔
-    public float lifeTime;   // 生存時間
-    public float speed;      // 弾丸速度
-    public float power;      // 攻撃力
+    // 共通パラメータ
+    public float shotDelay;   // ショット間隔
+    public float lifeTime;    // 生存時間
+    public float speed;       // 弾丸速度
+    public float power;       // 攻撃力
+    public bool isPenetrate;  // 貫通性の有無
+    public ShotMode shotMode; // ショットの種類
+    public Vector3 initialPosition; // 自機を起点とした初期位置
+    public Gage gage; // ゲージに関する設定項目
 
-    public bool isPenetrate; // 貫通性の有無
-
-    public bool  isCharge;   // チャージ有無
+    // ChargeShot系パラメータ
     public float chargeTime; // チャージ時間
     
-    public bool  isBulletLimit; // 弾数制限の有無
-	public int   bulletMaxNum;  // 弾数制限
+    // LimitShot系パラメータ
+	public int   bulletMaxNum; // 弾数制限
 	public float reloadTime;   // リロード時間
 
-    public Vector3 initialPosition;    // 自機を起点とした初期位置
-    //public Quaternion initialRotation; // 自機を起点とした初期角度？
 }
 
 public abstract class Bullet : MonoBehaviour

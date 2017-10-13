@@ -10,12 +10,13 @@ public abstract class ShotManager : MonoBehaviour
 
     private string PlayerState;
     private AudioSource audioSource;
+    [System.NonSerialized] public bool Started = false;
 
     public virtual void Init()
 	{
 		bulletNum = param.bulletMaxNum;
 		audioSource = gameObject.GetComponent<AudioSource>();
-	}
+    }
 
     IEnumerator Start()
     {
@@ -31,34 +32,20 @@ public abstract class ShotManager : MonoBehaviour
     private float lastShotTime = 0;
     public void Shot()
     {
-        if (param.isBulletLimit && param.isCharge)
+        switch (param.shotMode)
         {
-            Debug.Log("弾数制限とチャージショットは両立できません");
-            return;
-        }
+            case ShotMode.SimpleShot: SimpleShot(); return;
 
-        if (param.isBulletLimit)
-        {
-            ReloadShot();
-            Debug.Log(bulletNum);
-            return;
-        }
+            case ShotMode.ChargeShot: ChargeShot(); return;
 
-        if (param.isCharge)
-        {
-            ChargeShot();
-            return;
+            case ShotMode.LimitShot:  LimitShot();  return;
         }
-
-        SimpleShot();
     }
 
     private float lastReloadTime = 0;
-    private int   bulletNum = 0;
-    private bool ReloadShot()
+    public int   bulletNum = 0;
+    private bool LimitShot()
     {
-        if (param.isBulletLimit == false) { return false; }
-
         // 残弾がなく、リロードタイムを過ぎた場合 -> リロードする
         if (Time.time - lastReloadTime >= param.reloadTime && bulletNum <= 0)
         {
@@ -84,12 +71,10 @@ public abstract class ShotManager : MonoBehaviour
         return true;
     }
     
-    private float chargeBeginTime = 0;
+    public float chargeBeginTime = 0;
     private bool  canChargeShot = false;
     private bool ChargeShot()
     {
-        if (param.isCharge == false) { return false; }
-
         // チャージ開始判定
         if (chargeBeginTime == 0)
         {

@@ -215,6 +215,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHitPoint: 10
   speed: 5
+  playerSlot: 0
   skill: {fileID: 0}
 --- !u!114 &114316843415147412
 MonoBehaviour:
@@ -231,18 +232,25 @@ MonoBehaviour:
   param:
     name: "\u30D4\u30FC\u30B9\u30E1\u30FC\u30AB\u30FC"
     shotSound: {fileID: 8300000, guid: 7859a29f2a04c764d9f84132b39eed1b, type: 3}
-    shotDelay: 0.3
+    shotDelay: 1
     lifeTime: 5
     speed: 7
     power: 9
     isPenetrate: 0
-    isCharge: 0
+    shotMode: 2
+    initialPosition: {x: 0, y: 0, z: 0}
+    gage:
+      maxValue: 0
+      value: 0
+      barType: 2
+      effectType: 0
+      countType: 0
     chargeTime: 0
-    isBulletLimit: 1
     bulletMaxNum: 10
     reloadTime: 5
-    initialPosition: {x: 0, y: 0, z: 0}
   keyCode: 120
+  bulletNum: 0
+  chargeBeginTime: 0
 --- !u!114 &114393386980461782
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -270,18 +278,25 @@ MonoBehaviour:
   param:
     name: "\u30EB\u30AC\u30FCP08"
     shotSound: {fileID: 8300000, guid: 7859a29f2a04c764d9f84132b39eed1b, type: 3}
-    shotDelay: 0.1
+    shotDelay: 1
     lifeTime: 5
     speed: 10
     power: 2
     isPenetrate: 0
-    isCharge: 0
+    shotMode: 0
+    initialPosition: {x: 0, y: 0, z: 0}
+    gage:
+      maxValue: 0
+      value: 0
+      barType: 0
+      effectType: 0
+      countType: 0
     chargeTime: 0
-    isBulletLimit: 0
     bulletMaxNum: 0
     reloadTime: 0
-    initialPosition: {x: 0, y: 0, z: 0}
   keyCode: 122
+  bulletNum: 0
+  chargeBeginTime: 0
 --- !u!212 &212623411782706376
 SpriteRenderer:
   m_ObjectHideFlags: 1
