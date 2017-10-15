@@ -229,7 +229,7 @@ MonoBehaviour:
     shotMode: 1
     initialPosition: {x: 0, y: 0, z: 0}
     gage:
-      maxGage: 0
+      maxValue: 0
       value: 0
       barType: 0
       effectType: 0
@@ -238,6 +238,8 @@ MonoBehaviour:
     bulletMaxNum: 0
     reloadTime: 0
   keyCode: 120
+  bulletNum: 0
+  chargeBeginTime: 0
 --- !u!114 &114679377063774258
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -261,7 +263,7 @@ MonoBehaviour:
     shotMode: 0
     initialPosition: {x: 0, y: 0, z: 0}
     gage:
-      maxGage: 0
+      maxValue: 0
       value: 0
       barType: 0
       effectType: 0
@@ -270,6 +272,8 @@ MonoBehaviour:
     bulletMaxNum: 0
     reloadTime: 0
   keyCode: 122
+  bulletNum: 0
+  chargeBeginTime: 0
 --- !u!114 &114682147385227150
 MonoBehaviour:
   m_ObjectHideFlags: 1

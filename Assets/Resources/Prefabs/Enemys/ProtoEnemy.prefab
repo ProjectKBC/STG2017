@@ -93,11 +93,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bullet: {fileID: 0}
-  shotDelay: 0
-  lifeTime: 0
-  speed: 0
-  power: 0
-  chargeTime: 0
+  param:
+    name: 
+    shotSound: {fileID: 0}
+    shotDelay: 0
+    lifeTime: 0
+    speed: 0
+    power: 0
+    isPenetrate: 0
+    shotMode: 0
+    initialPosition: {x: 0, y: 0, z: 0}
+    gage:
+      maxValue: 0
+      value: 0
+      barType: 0
+      effectType: 0
+      countType: 0
+    chargeTime: 0
+    bulletMaxNum: 0
+    reloadTime: 0
 --- !u!114 &114751904338930652
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -109,8 +123,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: edf3985aa729af243abb11ba12367d15, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hitPoint: 0
+  maxHitPoint: 0
   speed: 3
+  movePattern: 1
 --- !u!212 &212549029109392836
 SpriteRenderer:
   m_ObjectHideFlags: 1

@@ -2,9 +2,26 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum MovePattern
+{
+	Straight,
+	Circle,
+	Chase,
+}
+	
+public enum Spin
+{
+	Clockwise12,
+	AntiClockwise12,
+	Clockwise6,
+	AntiClockwise6
+}
+
 [RequireComponent(typeof(EnemyShotManager))]
 public abstract class Enemy : Ship
 {
+	public MovePattern movePattern;
+	public Spin spin;
     /*
      * パターン化したい
      * 動き
@@ -37,7 +54,45 @@ public abstract class Enemy : Ship
     // 移動軌跡などを書き込む関数
     public virtual void move()
     {
+		Vector2 direction;
+		Vector2 pos;
+		switch (movePattern)
+		{
 
+		case MovePattern.Straight:
+			direction = new Vector2(0, -1).normalized;
+			pos = transform.position;
+			pos += direction * speed * Time.deltaTime;
+
+			transform.position = pos;
+			break;
+
+		case MovePattern.Circle:
+			direction = new Vector2();
+			switch (spin)
+			{
+				case Spin.Clockwise12:
+					direction = new Vector2(Mathf.Cos(Time.time * speed), -Mathf.Sin(Time.time * speed)).normalized;
+					break;
+				case Spin.AntiClockwise12:
+					direction = new Vector2(-Mathf.Cos(Time.time * speed), -Mathf.Sin(Time.time * speed)).normalized;
+					break;
+				case Spin.Clockwise6:
+					direction = new Vector2(-Mathf.Cos(Time.time * speed), Mathf.Sin(Time.time * speed)).normalized;
+					break;
+				case Spin.AntiClockwise6:
+					direction = new Vector2(Mathf.Cos(Time.time * speed), Mathf.Sin(Time.time * speed)).normalized;
+					break;
+			}
+			pos = transform.position;
+			pos += direction * speed * Time.deltaTime;
+
+			transform.position = pos;
+			break;
+
+		case MovePattern.Chase:
+			break;
+		}
     }
 
     // ショットする条件やショットそのものの処理
