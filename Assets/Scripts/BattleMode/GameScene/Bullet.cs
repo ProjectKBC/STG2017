@@ -56,11 +56,6 @@ public abstract class Bullet : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
-
-        if (transform.position.y > 10)
-        {
-            Destroy(this.gameObject);
-        }
     }
 
     // 初期設定関数

@@ -103,7 +103,7 @@ public abstract class ShotManager : MonoBehaviour
         return false;
     }
 
-    public float lastReloadTime = 0;
+    private float lastReloadTime = 0;
     public int bulletNum = 0;
     private bool LimitShot()
     {

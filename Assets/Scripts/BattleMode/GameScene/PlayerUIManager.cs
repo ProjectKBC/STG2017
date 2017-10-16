@@ -43,10 +43,8 @@ public class PlayerUIManager : MonoBehaviour
     [System.NonSerialized] public Image hitPointImage;
     [System.NonSerialized] public Text  hitPointText;
     [System.NonSerialized] public Image TopGageImage;
-    [System.NonSerialized] public Image TopSubGageImage;
     [System.NonSerialized] public Text  TopGageText;
     [System.NonSerialized] public Image LeftGageImage;
-    [System.NonSerialized] public Image LeftSubGageImage;
     [System.NonSerialized] public Text  LeftGageText;
     [System.NonSerialized] public Image iconImage;
     [System.NonSerialized] public Text iconText;
@@ -59,13 +57,9 @@ public class PlayerUIManager : MonoBehaviour
 
     private float TopValue;
     private float TopMaxValue;
-    private float TopSubValue;
-    private float TopSubMaxValue;
-
+    
     private float LeftValue;
     private float LeftMaxValue;
-    private float LeftSubValue;
-    private float LeftSubMaxValue;
 
     private const float width  = 780;
     private const float height = 1020;
@@ -87,17 +81,14 @@ public class PlayerUIManager : MonoBehaviour
 
                     isBarTypeTop = true;
 
-                    // トップ＆チャージショット
                     if (player.shotManager[key].param.shotMode == ShotMode.ChargeShot)
                     {
                         TopMaxValue = player.shotManager[key].param.chargeTime;
                     }
 
-                    // トップ＆リミットショット
                     if (player.shotManager[key].param.shotMode == ShotMode.LimitShot)
                     {
                         TopMaxValue = player.shotManager[key].param.bulletMaxNum;
-                        TopSubMaxValue = player.shotManager[key].param.reloadTime;
                     }
                     break;
 
@@ -106,17 +97,14 @@ public class PlayerUIManager : MonoBehaviour
 
                     isBarTypeLeft = true;
 
-                    // レフト＆チャージショット
                     if (player.shotManager[key].param.shotMode == ShotMode.ChargeShot)
                     {
                         LeftMaxValue = player.shotManager[key].param.chargeTime;
                     }
 
-                    // レフト＆リミットショット
                     if (player.shotManager[key].param.shotMode == ShotMode.LimitShot)
                     {
                         LeftMaxValue = player.shotManager[key].param.bulletMaxNum;
-                        LeftSubMaxValue = player.shotManager[key].param.reloadTime;
                     }
                     break;
             }
@@ -140,7 +128,6 @@ public class PlayerUIManager : MonoBehaviour
             {
                 case GageBarType.Top:
 
-                    // トップ＆チャージショット
                     if (player.shotManager[key].param.shotMode == ShotMode.ChargeShot)
                     {
                         if (player.shotManager[key].chargeBeginTime == 0)
@@ -159,28 +146,16 @@ public class PlayerUIManager : MonoBehaviour
                         TopGageText.text = ((int)((TopValue / TopMaxValue) * 100)).ToString();
                     }
 
-                    // トップ＆リミットショット
                     if (player.shotManager[key].param.shotMode == ShotMode.LimitShot)
                     {
-                        if (player.shotManager[key].bulletNum == 0)
-                        {
-                            TopSubValue = Time.time - player.shotManager[key].lastReloadTime;
-                        }
-                        else
-                        {
-                            TopSubValue = 0;
-                        }
-
                         TopValue = player.shotManager[key].bulletNum;
                         TopGageImage.fillAmount = TopValue / TopMaxValue;
-                        TopSubGageImage.fillAmount = TopSubValue / TopSubMaxValue;
                         TopGageText.text = TopValue.ToString();
                     }
                     break;
 
                 case GageBarType.Left:
 
-                    // レフト＆チャージショット
                     if (player.shotManager[key].param.shotMode == ShotMode.ChargeShot)
                     {
                         if (player.shotManager[key].chargeBeginTime == 0)
@@ -198,22 +173,10 @@ public class PlayerUIManager : MonoBehaviour
                         LeftGageImage.fillAmount = LeftValue / LeftMaxValue;
                         LeftGageText.text = ((int)((LeftValue / LeftMaxValue) * 100)).ToString();
                     }
-
-                    // レフト＆リミットショット
                     if (player.shotManager[key].param.shotMode == ShotMode.LimitShot)
                     {
-                        if (player.shotManager[key].bulletNum == 0)
-                        {
-                            LeftSubValue = Time.time - player.shotManager[key].lastReloadTime;
-                        }
-                        else
-                        {
-                            LeftSubValue = 0;
-                        }
-
                         LeftValue    = player.shotManager[key].bulletNum;
                         LeftGageImage.fillAmount = LeftValue / LeftMaxValue;
-                        LeftSubGageImage.fillAmount = LeftSubValue / LeftSubMaxValue;
                         LeftGageText.text = LeftValue.ToString();
                     }
                     break;
@@ -352,51 +315,26 @@ public class PlayerUIManager : MonoBehaviour
                             case "Bar":
                                 rt = c_child.gameObject.GetComponent<RectTransform>();
                                 rt.anchoredPosition = new Vector3(0, 0, 0);
-                                rt.sizeDelta = new Vector2(672, 36);
-                                rt.anchorMin = new Vector2(0, 1);
-                                rt.anchorMax = new Vector2(0, 1);
-                                rt.pivot = new Vector2(0, 1);
-                                rt.rotation = new Quaternion(0, 0, 0, 0);
-                                rt.localScale = new Vector3(1, 1, 1);
+                                rt.sizeDelta        = new Vector2(672, 36);
+                                rt.anchorMin        = new Vector2(0, 1);
+                                rt.anchorMax        = new Vector2(0, 1);
+                                rt.pivot            = new Vector2(0, 1);
+                                rt.rotation         = new Quaternion(0, 0, 0, 0);
+                                rt.localScale       = new Vector3(1, 1, 1);
 
                                 i = c_child.gameObject.GetComponent<Image>();
-                                i.sprite = Resources.Load<Sprite>("Sprites/UI/GageBar");
-                                i.color = new Color(1, 1, 1, 1);
-                                i.material = null;
-                                i.raycastTarget = true;
-                                i.type = Image.Type.Filled;
-                                i.fillMethod = Image.FillMethod.Horizontal;
-                                i.fillOrigin = 0;
-                                i.fillAmount = 1.0f;
-                                i.fillClockwise = true;
+                                i.sprite         = Resources.Load<Sprite>("Sprites/UI/GageBar");
+                                i.color          = new Color(1, 1, 1, 1);
+                                i.material       = null;
+                                i.raycastTarget  = true;
+                                i.type           = Image.Type.Filled;
+                                i.fillMethod     = Image.FillMethod.Horizontal;
+                                i.fillOrigin     = 0;
+                                i.fillAmount     = 1.0f;
+                                i.fillClockwise  = true;
                                 i.preserveAspect = false;
 
                                 TopGageImage = i;
-                                break;
-
-                            case "Bar_sb":
-                                rt = c_child.gameObject.GetComponent<RectTransform>();
-                                rt.anchoredPosition = new Vector3(0, 0, 0);
-                                rt.sizeDelta = new Vector2(672, 36);
-                                rt.anchorMin = new Vector2(0, 1);
-                                rt.anchorMax = new Vector2(0, 1);
-                                rt.pivot = new Vector2(0, 1);
-                                rt.rotation = new Quaternion(0, 0, 0, 0);
-                                rt.localScale = new Vector3(1, 1, 1);
-
-                                i = c_child.gameObject.GetComponent<Image>();
-                                i.sprite = Resources.Load<Sprite>("Sprites/UI/GageBar");
-                                i.color = new Color(1, 0, 0, 0.25f);
-                                i.material = null;
-                                i.raycastTarget = true;
-                                i.type = Image.Type.Filled;
-                                i.fillMethod = Image.FillMethod.Horizontal;
-                                i.fillOrigin = 0;
-                                i.fillAmount = 0.0f;
-                                i.fillClockwise = true;
-                                i.preserveAspect = false;
-
-                                TopSubGageImage = i;
                                 break;
 
 
@@ -444,51 +382,26 @@ public class PlayerUIManager : MonoBehaviour
                             case "Bar":
                                 rt = c_child.gameObject.GetComponent<RectTransform>();
                                 rt.anchoredPosition = new Vector3(0, 0, 0);
-                                rt.sizeDelta = new Vector2(72, 432);
-                                rt.anchorMin = new Vector2(0, 1);
-                                rt.anchorMax = new Vector2(0, 1);
-                                rt.pivot = new Vector2(0, 1);
-                                rt.rotation = new Quaternion(0, 0, 0, 0);
-                                rt.localScale = new Vector3(1, 1, 1);
+                                rt.sizeDelta        = new Vector2(72, 432);
+                                rt.anchorMin        = new Vector2(0, 1);
+                                rt.anchorMax        = new Vector2(0, 1);
+                                rt.pivot            = new Vector2(0, 1);
+                                rt.rotation         = new Quaternion(0, 0, 0, 0);
+                                rt.localScale       = new Vector3(1, 1, 1);
 
                                 i = c_child.gameObject.GetComponent<Image>();
-                                i.sprite = Resources.Load<Sprite>("Sprites/UI/GageBar");
-                                i.color = new Color(1, 1, 1, 1);
-                                i.material = null;
-                                i.raycastTarget = true;
-                                i.type = Image.Type.Filled;
-                                i.fillMethod = Image.FillMethod.Vertical;
-                                i.fillOrigin = 1;
-                                i.fillAmount = 1.0f;
-                                i.fillClockwise = true;
+                                i.sprite         = Resources.Load<Sprite>("Sprites/UI/GageBar");
+                                i.color          = new Color(1, 1, 1, 1);
+                                i.material       = null;
+                                i.raycastTarget  = true;
+                                i.type           = Image.Type.Filled;
+                                i.fillMethod     = Image.FillMethod.Vertical;
+                                i.fillOrigin     = 1;
+                                i.fillAmount     = 1.0f;
+                                i.fillClockwise  = true;
                                 i.preserveAspect = false;
-
+                                
                                 LeftGageImage = i;
-                                break;
-
-                            case "Bar_sb":
-                                rt = c_child.gameObject.GetComponent<RectTransform>();
-                                rt.anchoredPosition = new Vector3(0, 0, 0);
-                                rt.sizeDelta = new Vector2(72, 432);
-                                rt.anchorMin = new Vector2(0, 1);
-                                rt.anchorMax = new Vector2(0, 1);
-                                rt.pivot = new Vector2(0, 1);
-                                rt.rotation = new Quaternion(0, 0, 0, 0);
-                                rt.localScale = new Vector3(1, 1, 1);
-
-                                i = c_child.gameObject.GetComponent<Image>();
-                                i.sprite = Resources.Load<Sprite>("Sprites/UI/GageBar");
-                                i.color = new Color(1, 0, 0, 0.25f);
-                                i.material = null;
-                                i.raycastTarget = true;
-                                i.type = Image.Type.Filled;
-                                i.fillMethod = Image.FillMethod.Vertical;
-                                i.fillOrigin = 1;
-                                i.fillAmount = 0.0f;
-                                i.fillClockwise = true;
-                                i.preserveAspect = false;
-
-                                LeftSubGageImage = i;
                                 break;
 
 
