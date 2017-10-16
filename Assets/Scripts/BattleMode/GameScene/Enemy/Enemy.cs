@@ -8,20 +8,13 @@ public enum MovePattern
 	Circle,
 	Chase,
 }
-	
-public enum Spin
-{
-	Clockwise12,
-	AntiClockwise12,
-	Clockwise6,
-	AntiClockwise6
-}
 
 [RequireComponent(typeof(EnemyShotManager))]
 public abstract class Enemy : Ship
 {
 	public MovePattern movePattern;
-	public Spin spin;
+	public bool xAxisReverse; // x軸の反転の有無
+	public bool yAxisReverse; // y軸の反転の有無
     /*
      * パターン化したい
      * 動き
@@ -56,9 +49,15 @@ public abstract class Enemy : Ship
     {
 		Vector2 direction;
 		Vector2 pos;
+		int xAxis = 1;
+		int yAxis = 1;
+		if (xAxisReverse) xAxis = -1;
+		if (yAxisReverse) yAxis = -1;
+
 		switch (movePattern)
 		{
 
+		// 直進
 		case MovePattern.Straight:
 			direction = new Vector2(0, -1).normalized;
 			pos = transform.position;
@@ -67,30 +66,22 @@ public abstract class Enemy : Ship
 			transform.position = pos;
 			break;
 
+		// 円状に移動
 		case MovePattern.Circle:
-			direction = new Vector2();
-			switch (spin)
-			{
-				case Spin.Clockwise12:
-					direction = new Vector2(Mathf.Cos(Time.time * speed), -Mathf.Sin(Time.time * speed)).normalized;
-					break;
-				case Spin.AntiClockwise12:
-					direction = new Vector2(-Mathf.Cos(Time.time * speed), -Mathf.Sin(Time.time * speed)).normalized;
-					break;
-				case Spin.Clockwise6:
-					direction = new Vector2(-Mathf.Cos(Time.time * speed), Mathf.Sin(Time.time * speed)).normalized;
-					break;
-				case Spin.AntiClockwise6:
-					direction = new Vector2(Mathf.Cos(Time.time * speed), Mathf.Sin(Time.time * speed)).normalized;
-					break;
-			}
+			direction = new Vector2(yAxis * Mathf.Cos(Time.time * speed), xAxis * Mathf.Sin(Time.time * speed)).normalized;
 			pos = transform.position;
 			pos += direction * speed * Time.deltaTime;
 
 			transform.position = pos;
 			break;
 
+		// プレイヤーを追尾
 		case MovePattern.Chase:
+			GameObject player1 = GameObject.FindGameObjectWithTag("PC1");
+			GameObject player2 = GameObject.FindGameObjectWithTag("PC2");
+
+			if (transform.position.x < -1) transform.position = Vector2.Lerp(transform.position, player1.transform.position, speed * Time.deltaTime);
+			else if (transform.position.x > 1) transform.position = Vector2.Lerp(transform.position, player2.transform.position, speed * Time.deltaTime);
 			break;
 		}
     }
