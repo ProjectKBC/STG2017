@@ -223,20 +223,21 @@ MonoBehaviour:
     speed: 3
     power: 3
     isPenetrate: 0
-    shotMode: 1
+    shotMode: 2
     initialPosition: {x: 0, y: 0, z: 0}
     gage:
       maxValue: 0
       value: 0
       barType: 1
-      effectType: 1
+      effectType: 0
       countType: 0
     chargeTime: 2
     bulletMaxNum: 1
     reloadTime: 10
-  keyCode: 120
-  bulletNum: 0
+  buttonCode: 1
   chargeBeginTime: 0
+  lastReloadTime: 0
+  bulletNum: 0
 --- !u!114 &114406571477051180
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -268,9 +269,10 @@ MonoBehaviour:
     chargeTime: 0
     bulletMaxNum: 0
     reloadTime: 0
-  keyCode: 122
-  bulletNum: 0
+  buttonCode: 0
   chargeBeginTime: 0
+  lastReloadTime: 0
+  bulletNum: 0
 --- !u!114 &114573852889598108
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -306,6 +308,7 @@ SpriteRenderer:
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
@@ -321,6 +324,7 @@ SpriteRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 0
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
