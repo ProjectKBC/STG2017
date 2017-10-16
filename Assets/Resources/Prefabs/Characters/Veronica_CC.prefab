@@ -29,6 +29,7 @@ GameObject:
   - component: {fileID: 114543301112965642}
   - component: {fileID: 114962089204125980}
   - component: {fileID: 114682147385227150}
+  - component: {fileID: 114569173449597240}
   m_Layer: 8
   m_Name: Veronica_CC
   m_TagString: Untagged
@@ -231,15 +232,27 @@ MonoBehaviour:
     gage:
       maxValue: 0
       value: 0
-      barType: 0
+      barType: 1
       effectType: 0
       countType: 0
     chargeTime: 2
     bulletMaxNum: 0
     reloadTime: 0
   buttonCode: 1
-  bulletNum: 0
   chargeBeginTime: 0
+  lastReloadTime: 0
+  bulletNum: 0
+--- !u!114 &114569173449597240
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1789292116525934}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0476998b38c8a5d4ca3ce195fd361345, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114679377063774258
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -272,8 +285,9 @@ MonoBehaviour:
     bulletMaxNum: 0
     reloadTime: 0
   buttonCode: 0
-  bulletNum: 0
   chargeBeginTime: 0
+  lastReloadTime: 0
+  bulletNum: 0
 --- !u!114 &114682147385227150
 MonoBehaviour:
   m_ObjectHideFlags: 1

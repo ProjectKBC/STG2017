@@ -453,7 +453,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _pc1Name: Held
-  _pc2Name: Veronica
+  _pc2Name: Veronica_CC
 --- !u!4 &651790030
 Transform:
   m_ObjectHideFlags: 0

@@ -29,6 +29,7 @@ GameObject:
   - component: {fileID: 114316843415147412}
   - component: {fileID: 114393386980461782}
   - component: {fileID: 114019318560172038}
+  - component: {fileID: 114034027563255118}
   m_Layer: 8
   m_Name: Held
   m_TagString: Untagged
@@ -202,6 +203,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff63c36de3b522240a06e60965005537, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114034027563255118
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1543513657766142}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0476998b38c8a5d4ca3ce195fd361345, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114043267055487582
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -249,8 +261,9 @@ MonoBehaviour:
     bulletMaxNum: 10
     reloadTime: 5
   buttonCode: 1
-  bulletNum: 0
   chargeBeginTime: 0
+  lastReloadTime: 0
+  bulletNum: 0
 --- !u!114 &114393386980461782
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -295,8 +308,9 @@ MonoBehaviour:
     bulletMaxNum: 0
     reloadTime: 0
   buttonCode: 0
-  bulletNum: 0
   chargeBeginTime: 0
+  lastReloadTime: 0
+  bulletNum: 0
 --- !u!212 &212623411782706376
 SpriteRenderer:
   m_ObjectHideFlags: 1

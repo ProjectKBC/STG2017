@@ -20,14 +20,15 @@ public abstract class ShotManager : MonoBehaviour
     public BulletParam param;     // パラメータクラス
     public ButtonCode buttonCode; // 発射ボタン
 
-    private string PlayerState;
+    private Player player;
     private AudioSource audioSource;
     [System.NonSerialized] public bool Started = false;
 
     public virtual void Init()
-	{
-		bulletNum = param.bulletMaxNum;
-		audioSource = gameObject.GetComponent<AudioSource>();
+    {
+        player = gameObject.GetComponent<Player>();
+        audioSource = gameObject.GetComponent<AudioSource>();
+        bulletNum = param.bulletMaxNum;
     }
 
     IEnumerator Start()
@@ -54,13 +55,13 @@ public abstract class ShotManager : MonoBehaviour
 
     // ショット判定と弾の生成を行う関数
     private float lastShotTime = 0;
-    public void Shot(string _playerState)
+    public void Shot()
     {
         switch (param.shotMode)
         {
             case ShotMode.SimpleShot: SimpleShot(); return;
 
-            case ShotMode.ChargeShot: ChargeShot(_playerState); return;
+            case ShotMode.ChargeShot: ChargeShot(); return;
 
             case ShotMode.LimitShot:  LimitShot();  return;
         }
@@ -76,7 +77,7 @@ public abstract class ShotManager : MonoBehaviour
 
     public float chargeBeginTime = 0;
     private bool  canChargeShot = false;
-    private bool ChargeShot(string _playerState)
+    private bool ChargeShot()
     {
         // チャージ開始判定
         if (chargeBeginTime == 0)
@@ -92,7 +93,7 @@ public abstract class ShotManager : MonoBehaviour
         }
 
         // チャージ発射判定
-        if (_playerState == param.name + "(KeyUp)" && canChargeShot)
+        if (player.state == param.name + "(KeyUp)" && canChargeShot)
         {
             InstBullet();
             chargeBeginTime = 0;
@@ -103,7 +104,7 @@ public abstract class ShotManager : MonoBehaviour
         return false;
     }
 
-    private float lastReloadTime = 0;
+    public float lastReloadTime = 0;
     public int bulletNum = 0;
     private bool LimitShot()
     {

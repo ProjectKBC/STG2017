@@ -19,7 +19,7 @@ public abstract class Player : Ship
 
     [System.NonSerialized] public float hitPoint;
     [System.NonSerialized] public bool Started = false;
-    private string state = "None";
+    [System.NonSerialized] public string state = "None";
 
     private void Init()
     {
@@ -47,6 +47,7 @@ public abstract class Player : Ship
         while (true)
         {
             InputManager();
+            if(state.Contains("(KeyUp)")) Debug.Log("p:"+Time.time);
 
             /* debug */ if (Input.GetKeyDown(KeyCode.Q)) { --hitPoint; }
 
@@ -61,7 +62,7 @@ public abstract class Player : Ship
                 if (state == key || state == key + "(KeyUp)")
                 {
                     if (state == key + "(KeyUp)") { Debug.Log(key + "(KeyUp)"); }
-                    shotManager[key].Shot(state);
+                    shotManager[key].Shot();
                     continue;
                 }
                 else
@@ -96,6 +97,10 @@ public abstract class Player : Ship
         {
             return Input.GetButtonDown(ConvertPlayerSlotToButtonCode() + ButtonCode.Skill.ToString());
         }
+        if (_key == "Slow")
+        {
+            return Input.GetButtonDown(ConvertPlayerSlotToButtonCode() + ButtonCode.Slow.ToString());
+        }
         return Input.GetButtonDown(ConvertPlayerSlotToButtonCode() + shotManager[_key].GetButtonCode());
     }
 
@@ -106,6 +111,10 @@ public abstract class Player : Ship
         {
             return Input.GetButton(ConvertPlayerSlotToButtonCode() + ButtonCode.Skill.ToString());
         }
+        if (_key == "Slow")
+        {
+            return Input.GetButton(ConvertPlayerSlotToButtonCode() + ButtonCode.Slow.ToString());
+        }
         return Input.GetButton(ConvertPlayerSlotToButtonCode() + shotManager[_key].GetButtonCode());
     }
 
@@ -115,6 +124,10 @@ public abstract class Player : Ship
         if (_key == "Skill")
         {
             return Input.GetButtonUp(ConvertPlayerSlotToButtonCode() + ButtonCode.Skill.ToString());
+        }
+        if (_key == "Slow")
+        {
+            return Input.GetButtonUp(ConvertPlayerSlotToButtonCode() + ButtonCode.Slow.ToString());
         }
         return Input.GetButtonUp(ConvertPlayerSlotToButtonCode() + shotManager[_key].GetButtonCode());
     }
@@ -168,7 +181,7 @@ public abstract class Player : Ship
         Vector2 pos = transform.position;
 
         // Shiftで低速移動
-        if (Input.GetKey(KeyCode.LeftShift))
+        if (GetButton("Slow"))
         {
             pos += direction * speed/2 * Time.deltaTime;
         }
