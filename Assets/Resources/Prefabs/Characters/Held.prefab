@@ -249,8 +249,8 @@ MonoBehaviour:
     bulletMaxNum: 10
     reloadTime: 5
   buttonCode: 1
-  bulletNum: 0
   chargeBeginTime: 0
+  bulletNum: 0
 --- !u!114 &114393386980461782
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -295,8 +295,8 @@ MonoBehaviour:
     bulletMaxNum: 0
     reloadTime: 0
   buttonCode: 0
-  bulletNum: 0
   chargeBeginTime: 0
+  bulletNum: 0
 --- !u!212 &212623411782706376
 SpriteRenderer:
   m_ObjectHideFlags: 1

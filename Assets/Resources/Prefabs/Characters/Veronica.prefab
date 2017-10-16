@@ -223,20 +223,21 @@ MonoBehaviour:
     speed: 3
     power: 3
     isPenetrate: 0
-    shotMode: 1
+    shotMode: 2
     initialPosition: {x: 0, y: 0, z: 0}
     gage:
       maxValue: 0
       value: 0
       barType: 1
-      effectType: 1
+      effectType: 0
       countType: 0
     chargeTime: 2
     bulletMaxNum: 1
     reloadTime: 10
   buttonCode: 1
-  bulletNum: 0
   chargeBeginTime: 0
+  lastReloadTime: 0
+  bulletNum: 0
 --- !u!114 &114406571477051180
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -269,8 +270,9 @@ MonoBehaviour:
     bulletMaxNum: 0
     reloadTime: 0
   buttonCode: 0
-  bulletNum: 0
   chargeBeginTime: 0
+  lastReloadTime: 0
+  bulletNum: 0
 --- !u!114 &114573852889598108
 MonoBehaviour:
   m_ObjectHideFlags: 1
