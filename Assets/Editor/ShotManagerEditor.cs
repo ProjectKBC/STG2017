@@ -36,9 +36,9 @@ public class ShotManagerEditor : Editor
 
         EditorGUILayout.Space();
 
-        shotManager.keyCode = (KeyCode)EditorGUILayout.EnumPopup("入力キー", shotManager.keyCode);
-        shotManager.bullet  = EditorGUILayout.ObjectField("Bulletクラス", shotManager.bullet, typeof(Bullet), true) as Bullet;
-        param.shotSound     = EditorGUILayout.ObjectField("ショット音", param.shotSound, typeof(AudioClip), true) as AudioClip;
+        shotManager.buttonCode = (ButtonCode)EditorGUILayout.EnumPopup("入力キー", shotManager.buttonCode);
+        shotManager.bullet     = EditorGUILayout.ObjectField("Bulletクラス", shotManager.bullet, typeof(Bullet), true) as Bullet;
+        param.shotSound        = EditorGUILayout.ObjectField("ショット音", param.shotSound, typeof(AudioClip), true) as AudioClip;
 
         EditorGUILayout.Space();
 

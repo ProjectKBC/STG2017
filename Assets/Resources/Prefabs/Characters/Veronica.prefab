@@ -234,7 +234,7 @@ MonoBehaviour:
     chargeTime: 2
     bulletMaxNum: 1
     reloadTime: 10
-  keyCode: 120
+  buttonCode: 1
   bulletNum: 0
   chargeBeginTime: 0
 --- !u!114 &114406571477051180
@@ -268,7 +268,7 @@ MonoBehaviour:
     chargeTime: 0
     bulletMaxNum: 0
     reloadTime: 0
-  keyCode: 122
+  buttonCode: 0
   bulletNum: 0
   chargeBeginTime: 0
 --- !u!114 &114573852889598108

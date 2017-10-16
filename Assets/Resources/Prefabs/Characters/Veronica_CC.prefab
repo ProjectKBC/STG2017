@@ -237,7 +237,7 @@ MonoBehaviour:
     chargeTime: 2
     bulletMaxNum: 0
     reloadTime: 0
-  keyCode: 120
+  buttonCode: 1
   bulletNum: 0
   chargeBeginTime: 0
 --- !u!114 &114679377063774258
@@ -271,7 +271,7 @@ MonoBehaviour:
     chargeTime: 0
     bulletMaxNum: 0
     reloadTime: 0
-  keyCode: 122
+  buttonCode: 0
   bulletNum: 0
   chargeBeginTime: 0
 --- !u!114 &114682147385227150
@@ -306,6 +306,7 @@ SpriteRenderer:
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
@@ -321,6 +322,7 @@ SpriteRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 0
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5

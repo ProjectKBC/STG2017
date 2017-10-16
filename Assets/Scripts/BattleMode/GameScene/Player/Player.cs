@@ -61,12 +61,12 @@ public abstract class Player : Ship
                 if (state == key || state == key + "(KeyUp)")
                 {
                     if (state == key + "(KeyUp)") { Debug.Log(key + "(KeyUp)"); }
-                    shotManager[key].Shot();
+                    shotManager[key].Shot(state);
                     continue;
                 }
                 else
                 {
-                    shotManager[key].Maintenance();
+                    shotManager[key].Maintenance(state);
                 }
             }
 
@@ -79,7 +79,48 @@ public abstract class Player : Ship
         Move();
 	}
 
-    void InputManager()
+    private string ConvertPlayerSlotToButtonCode()
+    {
+        switch (playerSlot)
+        {
+            case PlayerSlot.PC1: return "pl1_";
+            case PlayerSlot.PC2: return "pl2_";
+            default: return null;
+        }
+    }
+
+    // _keyにショット名を渡すと対応したShotのボタンについてGetButtonDownできる
+    private bool GetButtonDown(string _key)
+    {
+        if (_key == "Skill")
+        {
+            return Input.GetButtonDown(ConvertPlayerSlotToButtonCode() + ButtonCode.Skill.ToString());
+        }
+        return Input.GetButtonDown(ConvertPlayerSlotToButtonCode() + shotManager[_key].GetButtonCode());
+    }
+
+    // _keyにショット名を渡すと対応したShotのボタンについてGetButtonできる
+    private bool GetButton(string _key)
+    {
+        if (_key == "Skill")
+        {
+            return Input.GetButton(ConvertPlayerSlotToButtonCode() + ButtonCode.Skill.ToString());
+        }
+        return Input.GetButton(ConvertPlayerSlotToButtonCode() + shotManager[_key].GetButtonCode());
+    }
+
+    // _keyにショット名を渡すと対応したShotのボタンについてGetButtonUpできる
+    private bool GetButtonUp(string _key)
+    {
+        if (_key == "Skill")
+        {
+            return Input.GetButtonUp(ConvertPlayerSlotToButtonCode() + ButtonCode.Skill.ToString());
+        }
+        return Input.GetButtonUp(ConvertPlayerSlotToButtonCode() + shotManager[_key].GetButtonCode());
+    }
+
+    // 上手いことキーの重なりとか調整してくれる関数
+    private void InputManager()
     {
         foreach (string key in shotManager.Keys)
         {
@@ -88,24 +129,24 @@ public abstract class Player : Ship
                 state = "None";
             }
 
-            if (Input.GetKeyDown(shotManager[key].keyCode) && state != "Skill")
+            if (GetButtonDown(key) && state != "Skill")
             {
                 state = key;
             }
         }
-        if (Input.GetKeyDown(skill.keyCode))
+        if (GetButtonDown("Skill"))
         {
             state = "Skill";
         }
 
         foreach (string key in shotManager.Keys)
         {
-            if (Input.GetKeyUp(shotManager[key].keyCode) && state == key)
+            if (GetButtonUp(key) && state == key)
             {
                 state = key + "(KeyUp)";
             }
         }
-        if (Input.GetKeyUp(skill.keyCode) && state == "Skill")
+        if (GetButtonUp("Skill") && state == "Skill")
         {
             state = "Skill(KeyUp)";
         }
@@ -115,8 +156,9 @@ public abstract class Player : Ship
     // 移動処理
     void Move()
     {
-        float x = Input.GetAxisRaw("Horizontal");
-        float y = Input.GetAxisRaw("Vertical");
+        
+        float x = Input.GetAxis(ConvertPlayerSlotToButtonCode() + "Horizontal");
+        float y = Input.GetAxis(ConvertPlayerSlotToButtonCode() + "Vertical");
 
         Vector2 direction = new Vector2(x, y).normalized;
 
