@@ -24,21 +24,18 @@ public abstract class ShotManager : MonoBehaviour
     private AudioSource audioSource;
     [System.NonSerialized] public bool Started = false;
 
+    private float lastShotTime = 0;
+
     public virtual void Init()
     {
-        player = gameObject.GetComponent<Player>();
-        audioSource = gameObject.GetComponent<AudioSource>();
+        player = GetComponent<Player>();
+        audioSource = GetComponent<AudioSource>();
         bulletNum = param.bulletMaxNum;
     }
 
-    IEnumerator Start()
+    private void Start()
     {
         Init();
-        while (true)
-        {
-
-            yield return new WaitForSeconds(0.01f);
-        }
     }
     
     public string GetButtonCode()
@@ -54,7 +51,6 @@ public abstract class ShotManager : MonoBehaviour
     }
 
     // ショット判定と弾の生成を行う関数
-    private float lastShotTime = 0;
     public void Shot()
     {
         switch (param.shotMode)
@@ -137,7 +133,7 @@ public abstract class ShotManager : MonoBehaviour
     {
         lastShotTime = Time.time;
         audioSource.PlayOneShot(param.shotSound);
-        Bullet.Instantiate(bullet, param, transform.position, transform.rotation);
+        Bullet b = Bullet.Instantiate(bullet, param, transform);
     }
 
     public void Maintenance(string _playerState)

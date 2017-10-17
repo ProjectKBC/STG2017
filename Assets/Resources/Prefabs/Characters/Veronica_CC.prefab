@@ -203,9 +203,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21ff26f6d4da1344380ff61c8710fc75, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerSlot: 0
   maxHitPoint: 10
   speed: 5
-  playerSlot: 0
   skill: {fileID: 0}
 --- !u!114 &114543301112965642
 MonoBehaviour:

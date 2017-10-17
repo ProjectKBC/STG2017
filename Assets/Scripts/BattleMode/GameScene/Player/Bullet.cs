@@ -16,14 +16,14 @@ public class BulletParam
     public AudioClip shotSound; // ショット音
 
     // 共通パラメータ
-    public float shotDelay;   // ショット間隔
-    public float lifeTime;    // 生存時間
-    public float speed;       // 弾丸速度
-    public float power;       // 攻撃力
-    public bool isPenetrate;  // 貫通性の有無
-    public ShotMode shotMode; // ショットの種類
+    public float shotDelay;         // ショット間隔
+    public float lifeTime;          // 生存時間
+    public float speed;             // 弾丸速度
+    public float power;             // 攻撃力
+    public bool isPenetrate;        // 貫通性の有無
+    public ShotMode shotMode;       // ショットの種類
     public Vector3 initialPosition; // 自機を起点とした初期位置
-    public Gage gage; // ゲージに関する設定項目
+    public Gage gage;               // ゲージに関する設定項目
 
     // ChargeShot系パラメータ
     public float chargeTime; // チャージ時間
@@ -37,13 +37,13 @@ public class BulletParam
 public abstract class Bullet : MonoBehaviour
 {
     // パラメータ
-    [System.NonSerialized]
-    public BulletParam param;
+    [System.NonSerialized] public BulletParam param;
+    private Player player;
 
     private void Start()
     {
-        init();
-        move();
+        Init();
+        Move();
 
         // lifeTime秒後に削除
         Destroy(gameObject, param.lifeTime);
@@ -64,22 +64,27 @@ public abstract class Bullet : MonoBehaviour
     }
 
     // 初期設定関数
-    public virtual void init()
+    public virtual void Init()
     {
-
     }
 
     // move関数：弾の動きはここに書く 
-    public virtual void move()
+    public virtual void Move()
     {
 
     }
 
     // 気にしなくていい（弾生成時にパラメータを渡すための関数）
-    public static Bullet Instantiate(Bullet _bullet, BulletParam _param, Vector3 _position, Quaternion _rotation)
+    public static Bullet Instantiate(Bullet _bullet, BulletParam _param, Transform _transform)
     {
-        Bullet obj = Instantiate(_bullet, _position + _param.initialPosition, _rotation) as Bullet;
+        Bullet obj = Instantiate(_bullet, _transform.position + _param.initialPosition, _transform.rotation) as Bullet;
         obj.param = _param;
+        obj.player = _transform.GetComponent<Player>();
+        obj.gameObject.layer = LayerName.Default;
+        foreach (Transform childTF in obj.transform)
+        {
+            childTF.gameObject.layer = LayerName.BulletPlayer;
+        }
         return obj;
     }
 }

@@ -9,10 +9,14 @@ public enum MovePattern
 	Chase,
 }
 
-[RequireComponent(typeof(EnemyShotManager))]
-public abstract class Enemy : Ship
+[RequireComponent(typeof(Rigidbody2D))]
+public abstract class Enemy : MonoBehaviour
 {
-	public MovePattern movePattern;
+    public PlayerSlot playerSlot;
+    public float maxHitPoint;
+    public float speed;
+
+    public MovePattern movePattern;
 	public bool xAxisReverse; // x軸の反転の有無
 	public bool yAxisReverse; // y軸の反転の有無
     /*
@@ -22,30 +26,41 @@ public abstract class Enemy : Ship
     */
 
     // ShotManagerを確保するリスト
-    private Dictionary<string, ShotManager> shotManager = new Dictionary<string, ShotManager>();
+    private Dictionary<string, EnemyShotManager> shotManager = new Dictionary<string, EnemyShotManager>();
     private float hitPoint;
 
     private void Init()
     {
-        hitPoint = base.maxHitPoint;
+        // レイヤー分類
+        gameObject.layer = LayerName.Enemy;
+
+        // ShotManagerの読み込み
+        EnemyShotManager[] tmp = GetComponents<EnemyShotManager>();
+        foreach (EnemyShotManager x in tmp)
+        {
+            shotManager.Add(x.param.name, x);
+        }
+
+        hitPoint = maxHitPoint;
     }
 
     IEnumerator Start ()
     {
+        Init();
         while(true)
         {
-            shot();
+            Shot();
             yield return new WaitForSeconds(0.01f);
         }
 	}
 	
 	void Update ()
     {
-        move();
+        Move();
     }
 
     // 移動軌跡などを書き込む関数
-    public virtual void move()
+    public virtual void Move()
     {
 		Vector2 direction;
 		Vector2 pos;
@@ -87,38 +102,35 @@ public abstract class Enemy : Ship
     }
 
     // ショットする条件やショットそのものの処理
-    public virtual void shot()
+    public virtual void Shot()
     {
-
+        shotManager["0"].Shot();
     }
 
     // 当たり判定
     private void OnTriggerEnter2D(Collider2D c)
     {
-        string layerName = LayerMask.LayerToName(c.gameObject.layer);
-
-        switch (layerName)
+        switch (c.gameObject.layer)
         {
-            case "Bullet (Player)":
-
-                // todo: c.gameObjectからパラメータを抽出する(powerが欲しい)
-                damage(0.0f); // 自分のダメージ処理
+            case LayerName.BulletPlayer:
+                Bullet b = c.transform.parent.GetComponent<Bullet>();
+                Damage(b.param.power);
                 Destroy(c.gameObject); // 弾の削除
-
                 break;
         }
     }
 
-    private void damage(float _damage)
+    private void Damage(float _damage)
     {
-        this.hitPoint -= _damage;
+        hitPoint -= _damage;
+        Debug.Log(hitPoint);
         if (hitPoint < 0)
         {
-            dead();
+            Dead();
         }
     }
 
-    private void dead()
+    private void Dead()
     {
         // todo: スコア処理
         Destroy(this.gameObject);

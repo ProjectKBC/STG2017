@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class ProtoEnemy : Enemy
 {
-	public override void move()
+	public override void Move()
     {
-		base.move();
+		base.Move();
     }
-
-    public override void shot()
+    
+    public override void Shot()
     {
-        
+        base.Shot();
     }
 }

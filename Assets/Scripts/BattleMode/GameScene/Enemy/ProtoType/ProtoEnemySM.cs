@@ -4,5 +4,8 @@ using UnityEngine;
 
 public class ProtoEnemySM : EnemyShotManager
 {
-
+    public override void Init()
+    {
+        base.Init();
+    }
 }

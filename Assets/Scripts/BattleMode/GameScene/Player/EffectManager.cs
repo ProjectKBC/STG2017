@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public class PlayerEffectManager : MonoBehaviour
+public class EffectManager : MonoBehaviour
 {
     private enum EffectType
     {

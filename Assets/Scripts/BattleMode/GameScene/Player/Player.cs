@@ -7,11 +7,14 @@ public enum PlayerSlot
     PC1, PC2
 }
 
-[RequireComponent(typeof(Skill))]
-public abstract class Player : Ship
+[RequireComponent(typeof(Rigidbody2D))]
+public abstract class Player : MonoBehaviour
 {
     // プレイヤー番号
     public PlayerSlot playerSlot;
+
+    public float maxHitPoint;
+    public float speed;
 
     // ShotManagerを確保するリスト
     public Dictionary<string, ShotManager> shotManager = new Dictionary<string, ShotManager>();
@@ -23,6 +26,9 @@ public abstract class Player : Ship
 
     private void Init()
     {
+        // レイヤー分類
+        gameObject.layer = LayerName.Player;
+
         // ShotManagerの読み込み
         ShotManager[] tmp = GetComponents<ShotManager>();
         foreach (ShotManager x in tmp)
@@ -34,7 +40,7 @@ public abstract class Player : Ship
         skill = GetComponent<Skill>();
 
         // HPの初期化
-        hitPoint = base.maxHitPoint;
+        hitPoint = maxHitPoint;
 
         Debug.Log("3");
         Started = true;
@@ -199,38 +205,32 @@ public abstract class Player : Ship
     // 当たり判定
     void OnTriggerEnter2D(Collider2D c)
     {
-        string layerName = LayerMask.LayerToName(c.gameObject.layer);
-        
-        switch (layerName)
+        switch (c.gameObject.layer)
         {
-            case "Bullet (Enemy)":
-
-                // todo: c.gameObjectからパラメータを抽出する(powerが欲しい)
-
-                damage(0.0f);   // 自分のダメージ処理
+            case LayerName.BulletEnemy:
+                Debug.Log(hitPoint);
+                EnemyBullet b = c.transform.parent.GetComponent<EnemyBullet>();
+                Damage(b.param.power);
                 Destroy(c.gameObject); // 弾の削除
-
                 break;
 
-            case "Enemy":
+            case LayerName.Enemy:
                 
-                // todo: c.gameObjectからパラメータを抽出する(powerが欲しい)
-
-                damage(0.0f); // 自分のダメージ処理
+                Damage(0.0f); // 自分のダメージ処理
                 break;
         }
     }
 
-    void damage(float _damage)
+    void Damage(float _damage)
     {
         hitPoint -= _damage;
         if (hitPoint < 0)
         {
-            dead();
+            Dead();
         }
     }
 
-    void dead()
+    void Dead()
     {
         Destroy(this.gameObject);
         //FindObjectOfType<GameManager>().gameSet();
