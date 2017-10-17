@@ -9,7 +9,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{9EC0FD5D-242D-A4AA-17D7-580D99629499}</ProjectGuid>
+    <ProjectGuid>{D7897B2A-7ACC-C6A1-87BE-8A662EDC58C5}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp</AssemblyName>
@@ -51,12 +51,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\hpBarManeger.cs" />
-     <Compile Include="Assets\SelectCharacterSelectModes.cs" />
-     <Compile Include="Assets\SelectSelectModes.cs" />
-     <Compile Include="Assets\SelectSelectScene.cs" />
-     <Compile Include="Assets\SelectStartScene.cs" />
-     <Compile Include="Assets\TitleSelectModes.cs" />
+     <Compile Include="Assets\Script\hpBarManeger.cs" />
+     <Compile Include="Assets\Script\SelectCharacterSelectModes.cs" />
+     <Compile Include="Assets\Script\SelectSelectModes.cs" />
+     <Compile Include="Assets\Script\SelectSelectScene.cs" />
+     <Compile Include="Assets\Script\SelectStartScene.cs" />
+     <Compile Include="Assets\Script\TitleSelectModes.cs" />
+     <Compile Include="Assets\viewName.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
