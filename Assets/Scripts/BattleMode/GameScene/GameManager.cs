@@ -9,12 +9,16 @@ public enum V4Enum { x, y, z, w }
 public sealed class GameManager : MonoBehaviour
 {
     // 各プレイヤーの行動可能範囲
-    public static readonly Vector4 pc1Area = new Vector4(-8.0f, -4.8f, -0.9f, 4.8f);
-    public static readonly Vector4 pc2Area = new Vector4(0.9f,  -4.8f,  8.0f, 4.8f);
+    public readonly Vector4 pc1Area = new Vector4(-8.0f, -4.8f, -0.9f, 4.8f);
+    public readonly Vector4 pc2Area = new Vector4(0.9f,  -4.8f,  8.0f, 4.8f);
 
     // 選択されたキャラクターの名前
     public readonly string pc1Name;
     public readonly string pc2Name;
+
+    // 各プレイヤーのスコア
+    public float Pc1Score { get; private set; }
+    public float Pc2Score { get; private set; }
 
     private static GameManager inst;
     private GameManager()
@@ -43,6 +47,7 @@ public sealed class GameManager : MonoBehaviour
         CreatePlayer(pc1Name, pc2Name);
     }
 
+    /* Area系 ------------------------------------------------------------------------- */
     public Vector2 GetAreaMin(PlayerSlot _playerSlot)
     {
         switch (_playerSlot)
@@ -103,6 +108,18 @@ public sealed class GameManager : MonoBehaviour
         return -1;
     }
 
+    /* Score系 ------------------------------------------------------------------------- */
+
+    public void AddScore(float _score, PlayerSlot _ps)
+    {
+        switch(_ps)
+        {
+            case PlayerSlot.PC1: Pc1Score += _score; break;
+            case PlayerSlot.PC2: Pc2Score += _score; break;
+        }
+    }
+    
+    /* --------------------------------------------------------------------------------- */
     public void GameSet()
     {
 

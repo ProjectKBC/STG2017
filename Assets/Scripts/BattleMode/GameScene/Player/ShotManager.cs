@@ -55,11 +55,11 @@ public abstract class ShotManager : MonoBehaviour
     {
         switch (param.shotMode)
         {
-            case ShotMode.SimpleShot: SimpleShot(); return;
+            case ShotMode.SimpleShot: SimpleShot(); break;
 
-            case ShotMode.ChargeShot: ChargeShot(); return;
+            case ShotMode.ChargeShot: ChargeShot(); break;
 
-            case ShotMode.LimitShot:  LimitShot();  return;
+            case ShotMode.LimitShot:  LimitShot(); break;
         }
     }
 
@@ -134,6 +134,7 @@ public abstract class ShotManager : MonoBehaviour
         lastShotTime = Time.time;
         audioSource.PlayOneShot(param.shotSound);
         Bullet b = Bullet.Instantiate(bullet, param, transform);
+        ManageScroll.Log(param.name, player.playerSlot);
     }
 
     public void Maintenance(string _playerState)

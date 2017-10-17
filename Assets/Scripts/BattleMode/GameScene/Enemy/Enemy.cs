@@ -15,6 +15,7 @@ public abstract class Enemy : MonoBehaviour
     public PlayerSlot playerSlot;
     public float maxHitPoint;
     public float speed;
+    public float score;
 
     public MovePattern movePattern;
 	public bool xAxisReverse; // x軸の反転の有無

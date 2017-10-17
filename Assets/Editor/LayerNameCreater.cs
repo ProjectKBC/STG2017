@@ -1,4 +1,4 @@
-﻿// powered by baba_s
+﻿// by baba_s
 // http://baba-s.hatenablog.com/entry/2014/02/26/000000
 
 using System;

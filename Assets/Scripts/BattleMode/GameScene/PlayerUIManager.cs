@@ -38,7 +38,7 @@ public class Gage
 public class PlayerUIManager : MonoBehaviour
 {
     private Player player;
-    
+
     [System.NonSerialized] public GameObject mainCanvas;
     [System.NonSerialized] public Image hitPointImage;
     [System.NonSerialized] public Text  hitPointText;
@@ -73,7 +73,6 @@ public class PlayerUIManager : MonoBehaviour
     private void Start()
     {
         player = GetComponent<Player>();
-        
         while (true) { if (player.Started) { break; } }
 
         foreach (string key in player.shotManager.Keys)
@@ -231,6 +230,7 @@ public class PlayerUIManager : MonoBehaviour
                         Resources.Load("Prefabs/UI/PC1Canvas"),
                         GameObject.Find("Canvas").transform
                     ) as GameObject;
+                mainCanvas.AddComponent<PlayerUI>().playerSlot = PlayerSlot.PC1;
                 break;
 
             case PlayerSlot.PC2:
@@ -239,6 +239,7 @@ public class PlayerUIManager : MonoBehaviour
                         Resources.Load("Prefabs/UI/PC2Canvas"),
                         GameObject.Find("Canvas").transform
                     ) as GameObject;
+                mainCanvas.AddComponent<PlayerUI>().playerSlot = PlayerSlot.PC2;
                 break;
         }
     }

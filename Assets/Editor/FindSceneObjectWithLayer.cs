@@ -1,4 +1,4 @@
-﻿// powered by yano_123
+﻿// by yano_123
 // https://qiita.com/yano_123/items/bd27606c2e3a3275f6ee
 
 using System.Collections;
