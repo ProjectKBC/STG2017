@@ -148,23 +148,27 @@ public abstract class Player : MonoBehaviour
                 state = "None";
             }
 
-            if (GetButtonDown(key) && state != "Skill")
+            if (GetButtonDown(key))
             {
                 state = key;
             }
-        }
-        if (GetButtonDown("Skill"))
-        {
-            state = "Skill";
-        }
 
-        foreach (string key in shotManager.Keys)
-        {
             if (GetButtonUp(key) && state == key)
             {
                 state = key + "(KeyUp)";
             }
         }
+
+        if (state == "Skill" + "(KeyUp)")
+        {
+            state = "None";
+        }
+
+        if (GetButtonDown("Skill"))
+        {
+            state = "Skill";
+        }
+        
         if (GetButtonUp("Skill") && state == "Skill")
         {
             state = "Skill(KeyUp)";
