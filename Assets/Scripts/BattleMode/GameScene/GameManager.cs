@@ -16,6 +16,12 @@ public sealed class GameManager : MonoBehaviour
     public readonly string pc1Name;
     public readonly string pc2Name;
 
+    // 各プレイヤーのオブジェクトとPlayerクラス
+    public GameObject Pc1GameObject { get; private set; }
+    public GameObject Pc2GameObject { get; private set; }
+    public Player Pc1Player { get; private set; }
+    public Player Pc2Player { get; private set; }
+
     // 各プレイヤーのスコア
     public float Pc1Score { get; private set; }
     public float Pc2Score { get; private set; }
@@ -127,28 +133,25 @@ public sealed class GameManager : MonoBehaviour
 
     private void CreatePlayer(string _pc1Name, string _pc2Name)
     {
-        Player tmp;
-
-        GameObject pc1 = Instantiate
+        Pc1GameObject = Instantiate
         (
             PlayerManager.Inst.GetCharacterPrefab(_pc1Name),
             new Vector3(-4.5f, -2.5f),
             new Quaternion()
         ) as GameObject;
 
-        pc1.name = PlayerManager.Inst.GetCharacterPrefab(_pc1Name).name; Debug.Log("1");
-        tmp = pc1.GetComponent<Player>();
-        tmp.playerSlot = PlayerSlot.PC1;
+        Pc1GameObject.name = PlayerManager.Inst.GetCharacterPrefab(_pc1Name).name; Debug.Log("1");
+        Pc1Player = Pc1GameObject.GetComponent<Player>();
+        Pc1Player.playerSlot = PlayerSlot.PC1;
 
-        GameObject pc2 = Instantiate
+        Pc2GameObject = Instantiate
         (
             PlayerManager.Inst.GetCharacterPrefab(_pc2Name),
             new Vector3(4.5f, -2.5f),
             new Quaternion()
-        );
-
-        pc2.name = PlayerManager.Inst.GetCharacterPrefab(_pc2Name).name; Debug.Log("2");
-        tmp = pc2.GetComponent<Player>();
-        tmp.playerSlot = PlayerSlot.PC2;
+        ) as GameObject;
+        Pc2GameObject.name = PlayerManager.Inst.GetCharacterPrefab(_pc2Name).name; Debug.Log("2");
+        Pc2Player = Pc2GameObject.GetComponent<Player>();
+        Pc2Player.playerSlot = PlayerSlot.PC2;
     }
 }

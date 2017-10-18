@@ -93,11 +93,17 @@ public abstract class Enemy : MonoBehaviour
 
 		// プレイヤーを追尾
 		case MovePattern.Chase:
-			GameObject player1 = GameObject.FindGameObjectWithTag("PC1");
-			GameObject player2 = GameObject.FindGameObjectWithTag("PC2");
-
-			if (transform.position.x < -1) transform.position = Vector2.Lerp(transform.position, player1.transform.position, speed * Time.deltaTime);
-			else if (transform.position.x > 1) transform.position = Vector2.Lerp(transform.position, player2.transform.position, speed * Time.deltaTime);
+			GameObject player1 = GameManager.Inst.Pc1GameObject;
+			GameObject player2 = GameManager.Inst.Pc2GameObject;
+            
+            if (transform.position.x < -1)
+            {
+                transform.position = Vector2.Lerp(transform.position, player1.transform.position, speed * Time.deltaTime);
+            }
+            else if (transform.position.x > 1)
+            {
+                transform.position = Vector2.Lerp(transform.position, player2.transform.position, speed * Time.deltaTime);
+            }
 			break;
 		}
     }

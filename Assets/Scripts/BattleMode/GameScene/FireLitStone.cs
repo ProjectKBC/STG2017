@@ -15,7 +15,6 @@ public class FireLitStone : MonoBehaviour
 
         Debug.Log(PlayerManager.Inst.name);
         Debug.Log(GameManager.Inst.name);
-
         Destroy(this.gameObject);
 	}
 }
