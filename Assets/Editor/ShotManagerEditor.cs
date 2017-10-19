@@ -42,9 +42,11 @@ public class ShotManagerEditor : Editor
 
         EditorGUILayout.Space();
 
+        var speed = serializedObject.FindProperty("param.speed");
+
         param.shotDelay   = EditorGUILayout.FloatField("ショット間隔",   param.shotDelay);
         param.lifeTime    = EditorGUILayout.FloatField("弾丸の生存時間", param.lifeTime);
-        param.speed       = EditorGUILayout.FloatField("弾丸の速度",     param.speed);
+        speed.floatValue  = EditorGUILayout.FloatField("弾丸の速度",     speed.floatValue);
         param.power       = EditorGUILayout.FloatField("攻撃力",         param.power);
         param.isPenetrate = EditorGUILayout.Toggle("貫通性", param.isPenetrate);
         param.initialPosition = EditorGUILayout.Vector3Field("ローカル初期位置", param.initialPosition);

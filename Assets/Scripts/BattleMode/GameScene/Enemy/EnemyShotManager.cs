@@ -43,5 +43,6 @@ public abstract class EnemyShotManager : MonoBehaviour
         lastShotTime = Time.time;
         audioSource.PlayOneShot(param.shotSound);
         EnemyBullet b = EnemyBullet.Instantiate(bullet, param, transform);
+        ManageScroll.Log(gameObject, b.param.playerSlot);
     }
 }

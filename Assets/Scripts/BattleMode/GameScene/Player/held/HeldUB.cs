@@ -15,7 +15,7 @@ namespace Held
 		override public void Move()
 		{
 			// 真っすぐ進む
-			GetComponent<Rigidbody2D>().velocity = transform.up.normalized * param.speed;
+			GetComponent<Rigidbody2D>().velocity = transform.up.normalized * param.Speed;
 		}
 	}
 }

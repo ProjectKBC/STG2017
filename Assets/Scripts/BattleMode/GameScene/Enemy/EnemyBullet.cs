@@ -11,12 +11,22 @@ public class EnemyBulletParam
     // 共通パラメータ
     public float shotDelay;         // ショット間隔
     public float lifeTime;          // 生存時間
-    public float speed;             // 弾丸速度
+    
+    // 弾丸速度
+    [SerializeField]
+    private float speed;
+    public float Speed
+    {
+        get { return speed * 100; }
+        set { speed = value; }
+    }             
+
     public float power;             // 攻撃力
     public bool isPenetrate;        // 貫通性の有無
 
     public Vector3 initialPosition; // 自機を起点とした初期位置
 
+    [System.NonSerialized] public PlayerSlot playerSlot;
 }
 
 public class EnemyBullet : MonoBehaviour
@@ -42,7 +52,7 @@ public class EnemyBullet : MonoBehaviour
         }
 
         // デストロイですの
-        if (transform.position.y < -10)
+        if (transform.position.y < GameManager.Inst.destroyArea.w)
         {
             Destroy(this.gameObject);
         }
@@ -59,7 +69,7 @@ public class EnemyBullet : MonoBehaviour
     public virtual void Move()
     {
         // 真っすぐ進む
-        GetComponent<Rigidbody2D>().velocity = transform.up.normalized * param.speed * -1;
+        GetComponent<Rigidbody2D>().velocity = transform.up.normalized * param.Speed * -1;
     }
 
     // 弾生成時にパラメータを渡せるInstantiate関数

@@ -18,7 +18,15 @@ public class BulletParam
     // 共通パラメータ
     public float shotDelay;         // ショット間隔
     public float lifeTime;          // 生存時間
-    public float speed;             // 弾丸速度
+
+    [SerializeField]
+    private float speed;
+    public float Speed
+    {
+        get { return speed * 100; }
+        set { speed = value; }
+    }
+
     public float power;             // 攻撃力
     public bool isPenetrate;        // 貫通性の有無
     public ShotMode shotMode;       // ショットの種類
@@ -32,6 +40,7 @@ public class BulletParam
 	public int   bulletMaxNum; // 弾数制限
 	public float reloadTime;   // リロード時間
 
+    [System.NonSerialized] public PlayerSlot playerSlot;
 }
 
 public abstract class Bullet : MonoBehaviour
@@ -57,7 +66,7 @@ public abstract class Bullet : MonoBehaviour
             Destroy(this.gameObject);
         }
 
-        if (transform.position.y > 10)
+        if (transform.position.y > GameManager.Inst.destroyArea.y)
         {
             Destroy(this.gameObject);
         }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public class EffectManager : MonoBehaviour
+public class PlayerEffectManager : MonoBehaviour
 {
     private enum EffectType
     {
@@ -11,19 +11,20 @@ public class EffectManager : MonoBehaviour
     }
 
     private Player player;
-
+    
     // チャージエフェクト
     private ParticleSystem chargeEffect;
     private GameObject changeEffectObj;
+
 
     private void Init()
     {
         player = GetComponent<Player>();
         
+        // チャージエフェクト
         changeEffectObj = (GameObject)Instantiate(Resources.Load("Prefabs/Effects/ChargeEffect"), transform.position, Quaternion.identity);
         changeEffectObj.transform.parent = transform;
         chargeEffect = changeEffectObj.GetComponent<ParticleSystem>();
-
         Stop(EffectType.ChargeEffect);
     }
 

@@ -14,7 +14,14 @@ public abstract class Player : MonoBehaviour
     public PlayerSlot playerSlot;
 
     public float maxHitPoint;
-    public float speed;
+
+    [SerializeField]
+    public float _speed;
+    private float Speed
+    {
+        get { return _speed * 100; }
+        set { _speed = value; }
+    }
 
     // ShotManagerを確保するリスト
     public Dictionary<string, ShotManager> shotManager = new Dictionary<string, ShotManager>();
@@ -33,6 +40,7 @@ public abstract class Player : MonoBehaviour
         ShotManager[] tmp = GetComponents<ShotManager>();
         foreach (ShotManager x in tmp)
         {
+            x.param.playerSlot = playerSlot;
             shotManager.Add(x.param.name, x);
         }
 
@@ -54,8 +62,6 @@ public abstract class Player : MonoBehaviour
         {
             InputManager();
             if(state.Contains("(KeyUp)")) Debug.Log("p:"+Time.time);
-
-            /* debug */ if (Input.GetKeyDown(KeyCode.Q)) { --hitPoint; }
 
             if (state == "Skill" || state == "Skill(KeyUp)")
             {
@@ -193,11 +199,11 @@ public abstract class Player : MonoBehaviour
         // Shiftで低速移動
         if (GetButton("Slow"))
         {
-            pos += direction * speed/2 * Time.deltaTime;
+            pos += direction * Speed/2 * Time.deltaTime;
         }
         else
         {
-            pos += direction * speed * Time.deltaTime;
+            pos += direction * Speed * Time.deltaTime;
         }
 
         pos.x = Mathf.Clamp(pos.x, min.x, max.x);

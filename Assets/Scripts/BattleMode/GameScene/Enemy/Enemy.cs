@@ -14,7 +14,13 @@ public abstract class Enemy : MonoBehaviour
 {
     public PlayerSlot playerSlot;
     public float maxHitPoint;
-    public float speed;
+    [SerializeField]
+    private float _speed;
+    public float Speed
+    {
+        get { return _speed * 100; }
+        set { _speed = value; }
+    }
     public float score;
 
     public MovePattern movePattern;
@@ -39,6 +45,7 @@ public abstract class Enemy : MonoBehaviour
         EnemyShotManager[] tmp = GetComponents<EnemyShotManager>();
         foreach (EnemyShotManager x in tmp)
         {
+            x.param.playerSlot = playerSlot;
             shotManager.Add(x.param.name, x);
         }
 
@@ -77,16 +84,16 @@ public abstract class Enemy : MonoBehaviour
 		case MovePattern.Straight:
 			direction = new Vector2(0, -1).normalized;
 			pos = transform.position;
-			pos += direction * speed * Time.deltaTime;
+			pos += direction * Speed * Time.deltaTime;
 
 			transform.position = pos;
 			break;
 
-		// 円状に移動
+                // 円状に移動
 		case MovePattern.Circle:
-			direction = new Vector2(yAxis * Mathf.Cos(Time.time * speed), xAxis * Mathf.Sin(Time.time * speed)).normalized;
+			direction = new Vector2(yAxis * Mathf.Cos(Time.time * Speed), xAxis * Mathf.Sin(Time.time * Speed)).normalized;
 			pos = transform.position;
-			pos += direction * speed * Time.deltaTime;
+			pos += direction * Speed * Time.deltaTime;
 
 			transform.position = pos;
 			break;
@@ -98,11 +105,11 @@ public abstract class Enemy : MonoBehaviour
             
             if (transform.position.x < -1)
             {
-                transform.position = Vector2.Lerp(transform.position, player1.transform.position, speed * Time.deltaTime);
+                transform.position = Vector2.Lerp(transform.position, player1.transform.position, Speed * Time.deltaTime);
             }
             else if (transform.position.x > 1)
             {
-                transform.position = Vector2.Lerp(transform.position, player2.transform.position, speed * Time.deltaTime);
+                transform.position = Vector2.Lerp(transform.position, player2.transform.position, Speed * Time.deltaTime);
             }
 			break;
 		}
