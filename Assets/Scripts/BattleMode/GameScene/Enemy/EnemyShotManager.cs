@@ -36,7 +36,7 @@ public abstract class EnemyShotManager : MonoBehaviour
         if (Time.time - lastShotTime < param.shotDelay) { return; }
 
         InstBullet();
-        ManageScroll.Log("shot " + gameObject.name, enemy.playerSlot);
+        NoaConsole.Log("shot " + gameObject.name, enemy.playerSlot);
     }
 
     protected void InstBullet()
@@ -44,6 +44,6 @@ public abstract class EnemyShotManager : MonoBehaviour
         lastShotTime = Time.time;
         audioSource.PlayOneShot(param.shotSound);
         EnemyBullet b = EnemyBullet.Instantiate(bullet, param, transform);
-        ManageScroll.Log(gameObject, b.param.playerSlot);
+        NoaConsole.Log(gameObject, b.param.playerSlot);
     }
 }

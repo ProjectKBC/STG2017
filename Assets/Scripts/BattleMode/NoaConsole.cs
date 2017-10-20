@@ -8,7 +8,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 [System.Serializable]
-public class ManageScrollHeader
+public class NoaConsoleHeader
 {
     public PlayerUI UI;
 
@@ -17,20 +17,25 @@ public class ManageScrollHeader
     public Text textLog;
 }
 
-public class ManageScroll : MonoBehaviour
+public class NoaConsole : MonoBehaviour
 {
     // ScrollViewに表示するログ
     public static Dictionary<PlayerSlot ,string> Logs = new Dictionary<PlayerSlot, string>();
-    public ManageScrollHeader msh;
+    public static List<NoaConsole> consoles = new List<NoaConsole>();
+    public NoaConsoleHeader msh;
+    public bool Started = false;
 
     // Start時に各オブジェクトを取得
     void Start()
     {
+        consoles.Add(this);
+
         msh.UI = transform.parent.gameObject.GetComponent<PlayerUI>();
         Logs.Add(msh.UI.playerSlot, null);
 
         msh.scrollRect = gameObject.GetComponent<ScrollRect>();
         msh.textLog    = msh.scrollRect.content.GetComponentInChildren<Text>();
+        Started = true;
     }
 
     void Update()

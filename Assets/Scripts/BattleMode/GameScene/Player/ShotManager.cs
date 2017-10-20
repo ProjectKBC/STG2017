@@ -134,7 +134,7 @@ public abstract class ShotManager : MonoBehaviour
         lastShotTime = Time.time;
         audioSource.PlayOneShot(param.shotSound);
         Bullet b = Bullet.Instantiate(bullet, param, transform);
-        ManageScroll.Log(param.name, player.playerSlot);
+        NoaConsole.Log(param.name, player.playerSlot);
     }
 
     public void Maintenance(string _playerState)

@@ -34,10 +34,11 @@ public abstract class Enemy : MonoBehaviour
 
     // ShotManagerを確保するリスト
     public Dictionary<string, EnemyShotManager> shotManager = new Dictionary<string, EnemyShotManager>();
+    public bool Started = false;
     protected float hitPoint;
 
     protected void Init()
-    {
+    {        
         // レイヤー分類
         gameObject.layer = LayerName.Enemy;
 
@@ -50,13 +51,30 @@ public abstract class Enemy : MonoBehaviour
         }
 
         hitPoint = maxHitPoint;
+        Started = true;
     }
 
     IEnumerator Start ()
     {
-        Init();
-        while(true)
+        if (Started == false)
         {
+            while (true)
+            {
+                if (PlayerUIManager.Started)
+                {
+                    break;
+                }
+                else
+                {
+                    yield return null;
+                }
+            }
+        }
+        
+        Init();
+
+        while(true)
+        {                         
             Shot();
             yield return new WaitForSeconds(0.01f);
         }
@@ -121,7 +139,7 @@ public abstract class Enemy : MonoBehaviour
         foreach (string key in shotManager.Keys)
         {
             shotManager[key].Shot();
-            ManageScroll.Log(key, playerSlot);
+            NoaConsole.Log(key, playerSlot);
         }
     }
 
