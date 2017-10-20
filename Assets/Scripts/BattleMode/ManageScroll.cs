@@ -22,7 +22,7 @@ public class ManageScroll : MonoBehaviour
     // ScrollViewに表示するログ
     public static Dictionary<PlayerSlot ,string> Logs = new Dictionary<PlayerSlot, string>();
     public ManageScrollHeader msh;
-    
+
     // Start時に各オブジェクトを取得
     void Start()
     {

@@ -14,7 +14,7 @@ public class EnemyBulletParam
     
     // 弾丸速度
     [SerializeField]
-    private float speed;
+    protected float speed;
     public float Speed
     {
         get { return speed * 100; }
@@ -29,12 +29,12 @@ public class EnemyBulletParam
     [System.NonSerialized] public PlayerSlot playerSlot;
 }
 
-public class EnemyBullet : MonoBehaviour
+public abstract class EnemyBullet : MonoBehaviour
 {
     [System.NonSerialized] public EnemyBulletParam param;
-    private Enemy enemy;
+    protected Enemy enemy;
 
-    private void Start()
+    protected void Start()
     {
         Init();
         Move();
@@ -43,7 +43,7 @@ public class EnemyBullet : MonoBehaviour
         Destroy(gameObject, param.lifeTime);
     }
 
-    private void Update()
+    protected void Update()
     {
         // 子要素（弾）がすべてなくなったら削除
         if (transform.childCount == 0)
@@ -68,8 +68,6 @@ public class EnemyBullet : MonoBehaviour
     // move関数：弾の動きはここに書く 
     public virtual void Move()
     {
-        // 真っすぐ進む
-        GetComponent<Rigidbody2D>().velocity = transform.up.normalized * param.Speed * -1;
     }
 
     // 弾生成時にパラメータを渡せるInstantiate関数

@@ -349,6 +349,11 @@ Prefab:
       propertyPath: m_IsTrigger
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114271196960228366, guid: a566a0e4bb035394588a675e9d68d496,
+        type: 2}
+      propertyPath: param.name
+      value: bullet
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a566a0e4bb035394588a675e9d68d496, type: 2}
   m_IsPrefabParent: 0
@@ -609,6 +614,17 @@ Prefab:
       propertyPath: movePattern
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114271196960228366, guid: a566a0e4bb035394588a675e9d68d496,
+        type: 2}
+      propertyPath: param.name
+      value: bullet
+      objectReference: {fileID: 0}
+    - target: {fileID: 114271196960228366, guid: a566a0e4bb035394588a675e9d68d496,
+        type: 2}
+      propertyPath: bullet
+      value: 
+      objectReference: {fileID: 114129057209960936, guid: 1fd8d1e31b4a3db49a4d2d7acfe95546,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a566a0e4bb035394588a675e9d68d496, type: 2}
   m_IsPrefabParent: 0
@@ -793,6 +809,21 @@ Prefab:
     - target: {fileID: 4836096212983934, guid: a566a0e4bb035394588a675e9d68d496, type: 2}
       propertyPath: m_RootOrder
       value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 114271196960228366, guid: a566a0e4bb035394588a675e9d68d496,
+        type: 2}
+      propertyPath: param.name
+      value: bullet
+      objectReference: {fileID: 0}
+    - target: {fileID: 114271196960228366, guid: a566a0e4bb035394588a675e9d68d496,
+        type: 2}
+      propertyPath: bullet
+      value: 
+      objectReference: {fileID: 114129057209960936, guid: 1fd8d1e31b4a3db49a4d2d7acfe95546,
+        type: 2}
+    - target: {fileID: 1087224783398204, guid: a566a0e4bb035394588a675e9d68d496, type: 2}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a566a0e4bb035394588a675e9d68d496, type: 2}

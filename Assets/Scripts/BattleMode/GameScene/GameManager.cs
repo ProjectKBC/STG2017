@@ -8,46 +8,6 @@ public enum V4Enum { x, y, z, w }
 // シングルトン
 public sealed class GameManager : MonoBehaviour
 {
-    // 画面サイズ
-    private const float WIDTH  = 1920;
-    private const float HEIGHT = 1080;
-
-    // 画面に関する点座標
-    private const float TOP    =  HEIGHT / 2;
-    private const float BOTTOM = -HEIGHT / 2;
-    private const float LEFT   = -WIDTH / 2;
-    private const float RIGHT  =  WIDTH / 2;
-    private const float CENTER_X = 0;
-    private const float CENTER_Y = 0;
-
-    // 各プレイヤーの行動可能範囲
-    private const float FRAME_W = 90f;
-    private const float FRAME_H = 20f;
-    public readonly Vector4 pc1Area = new Vector4(LEFT     + FRAME_W, TOP    - FRAME_H,
-                                                  CENTER_X - FRAME_W, BOTTOM + FRAME_H);
-
-    public readonly Vector4 pc2Area = new Vector4(CENTER_X + FRAME_W, TOP    - FRAME_H,
-                                                  RIGHT    - FRAME_W, BOTTOM + FRAME_H);
-
-    // 
-    private const float D_MARGIN = 20;
-    public readonly Vector4 destroyArea = 
-        new Vector4(LEFT - D_MARGIN, TOP + D_MARGIN, RIGHT + D_MARGIN,  BOTTOM - D_MARGIN);
-
-    // 選択されたキャラクターの名前
-    public readonly string pc1Name;
-    public readonly string pc2Name;
-
-    // 各プレイヤーのオブジェクトとPlayerクラス
-    public GameObject Pc1GameObject { get; private set; }
-    public GameObject Pc2GameObject { get; private set; }
-    public Player Pc1Player { get; private set; }
-    public Player Pc2Player { get; private set; }
-
-    // 各プレイヤーのスコア
-    public float Pc1Score { get; private set; }
-    public float Pc2Score { get; private set; }
-
     private static GameManager inst;
     private GameManager()
     {
@@ -69,10 +29,53 @@ public sealed class GameManager : MonoBehaviour
         }
     }
 
+    public static bool Started = false;
+
+    // 画面サイズ
+    private const float WIDTH = 1920;
+    private const float HEIGHT = 1080;
+
+    // 画面に関する点座標
+    private const float TOP = HEIGHT / 2;
+    private const float BOTTOM = -HEIGHT / 2;
+    private const float LEFT = -WIDTH / 2;
+    private const float RIGHT = WIDTH / 2;
+    private const float CENTER_X = 0;
+    private const float CENTER_Y = 0;
+
+    // 各プレイヤーの行動可能範囲
+    private const float FRAME_W = 90f;
+    private const float FRAME_H = 20f;
+    public readonly Vector4 pc1Area = new Vector4(LEFT + FRAME_W, TOP - FRAME_H,
+                                                  CENTER_X - FRAME_W, BOTTOM + FRAME_H);
+
+    public readonly Vector4 pc2Area = new Vector4(CENTER_X + FRAME_W, TOP - FRAME_H,
+                                                  RIGHT - FRAME_W, BOTTOM + FRAME_H);
+
+    // 
+    private const float D_MARGIN = 20;
+    public readonly Vector4 destroyArea =
+        new Vector4(LEFT - D_MARGIN, TOP + D_MARGIN, RIGHT + D_MARGIN, BOTTOM - D_MARGIN);
+
+    // 選択されたキャラクターの名前
+    public readonly string pc1Name;
+    public readonly string pc2Name;
+
+    // 各プレイヤーのオブジェクトとPlayerクラス
+    public GameObject Pc1GameObject { get; private set; }
+    public GameObject Pc2GameObject { get; private set; }
+    public Player Pc1Player { get; private set; }
+    public Player Pc2Player { get; private set; }
+
+    // 各プレイヤーのスコア
+    public float Pc1Score { get; private set; }
+    public float Pc2Score { get; private set; }
+
     private void Start()
     {
         Debug.Log("game_manager start");
         CreatePlayer(pc1Name, pc2Name);
+        Started = true;
     }
 
     /* Area系 ------------------------------------------------------------------------- */

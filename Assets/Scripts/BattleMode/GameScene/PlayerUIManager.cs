@@ -35,242 +35,275 @@ public class Gage
     public GageCountType  countType;
 }
 
-public class PlayerUIManager : MonoBehaviour
+public class PCCanvas
 {
-    private Player player;
+    public GameObject mainCanvas;
+    public Player player;
 
-    [System.NonSerialized] public GameObject mainCanvas;
-    [System.NonSerialized] public Image hitPointImage;
-    [System.NonSerialized] public Text  hitPointText;
-    [System.NonSerialized] public Image TopGageImage;
-    [System.NonSerialized] public Image TopSubGageImage;
-    [System.NonSerialized] public Text  TopGageText;
-    [System.NonSerialized] public Image LeftGageImage;
-    [System.NonSerialized] public Image LeftSubGageImage;
-    [System.NonSerialized] public Text  LeftGageText;
-    [System.NonSerialized] public Image iconImage;
-    [System.NonSerialized] public Text iconText;
+    public Image hitPointImage;
+    public Text hitPointText;
+    public Image TopGageImage;
+    public Image TopSubGageImage;
+    public Text TopGageText;
+    public Image LeftGageImage;
+    public Image LeftSubGageImage;
+    public Text LeftGageText;
+    public Image iconImage;
+    public Text iconText;
 
-    [System.NonSerialized] public Dictionary<string, Gage> gages = new Dictionary<string, Gage>();
+    public bool isBarTypeTop    = false;
+    public bool isBarTypeLeft   = false;
+    public bool isBarTypeCircle = false;
 
-    private bool isBarTypeTop = false;
-    private bool isBarTypeLeft = false;
-    private bool isBarTypeCircle = false;
+    public float TopValue;
+    public float TopMaxValue;
+    public float TopSubValue;
+    public float TopSubMaxValue;
 
-    private float TopValue;
-    private float TopMaxValue;
-    private float TopSubValue;
-    private float TopSubMaxValue;
+    public float LeftValue;
+    public float LeftMaxValue;
+    public float LeftSubValue;
+    public float LeftSubMaxValue;
 
-    private float LeftValue;
-    private float LeftMaxValue;
-    private float LeftSubValue;
-    private float LeftSubMaxValue;
+    public Dictionary<string, Gage> gages = new Dictionary<string, Gage>();
+}
+
+public sealed class PlayerUIManager : MonoBehaviour
+{
+    private static PlayerUIManager inst;
+    private PlayerUIManager()
+    {
+        Debug.Log("PlayerUIManager created");
+    }
+    public static PlayerUIManager Inst
+    {
+        get
+        {
+            if (inst == null)
+            {
+                GameObject go = new GameObject("PlayerUIManager");
+                inst = go.AddComponent<PlayerUIManager>();
+            }
+
+            return inst;
+        }
+    }
+
+    public static bool Started = false;
+    public PCCanvas pc1Canvas = new PCCanvas();
+    public PCCanvas pc2Canvas = new PCCanvas();
 
     private const float width  = 780;
     private const float height = 1020;
 
-    private void Start()
+    private IEnumerator Start()
     {
-        player = GetComponent<Player>();
-        while (true) { if (player.Started) { break; } }
-
-        foreach (string key in player.shotManager.Keys)
-        {
-            if (player.shotManager[key].param.shotMode == ShotMode.SimpleShot) { continue; }
-
-            switch (player.shotManager[key].param.gage.barType)
-            {
-                case GageBarType.Top:
-                    if (isBarTypeTop) { Debug.Log("BarTypeが重複しています。"); return; }
-
-                    isBarTypeTop = true;
-
-                    // トップ＆チャージショット
-                    if (player.shotManager[key].param.shotMode == ShotMode.ChargeShot)
-                    {
-                        TopMaxValue = player.shotManager[key].param.chargeTime;
-                    }
-
-                    // トップ＆リミットショット
-                    if (player.shotManager[key].param.shotMode == ShotMode.LimitShot)
-                    {
-                        TopMaxValue = player.shotManager[key].param.bulletMaxNum;
-                        TopSubMaxValue = player.shotManager[key].param.reloadTime;
-                    }
-                    break;
-
-                case GageBarType.Left:
-                    if (isBarTypeLeft) { Debug.Log("BarTypeが重複しています。"); return; }
-
-                    isBarTypeLeft = true;
-
-                    // レフト＆チャージショット
-                    if (player.shotManager[key].param.shotMode == ShotMode.ChargeShot)
-                    {
-                        LeftMaxValue = player.shotManager[key].param.chargeTime;
-                    }
-
-                    // レフト＆リミットショット
-                    if (player.shotManager[key].param.shotMode == ShotMode.LimitShot)
-                    {
-                        LeftMaxValue = player.shotManager[key].param.bulletMaxNum;
-                        LeftSubMaxValue = player.shotManager[key].param.reloadTime;
-                    }
-                    break;
-            }
-                
-        }
+        Debug.Log("PlayerUIManager start");
 
         CreateUI();
-        SettingUI();
+
+        while(true)
+        {
+            if (GameManager.Started)
+            {
+                break;
+            }
+            else
+            {
+                yield return null;
+            }
+        }
+
+        pc1Canvas.player = GameManager.Inst.Pc1Player; Debug.Log("puim: " + pc1Canvas.player);
+        pc2Canvas.player = GameManager.Inst.Pc2Player; Debug.Log("puim: " + pc2Canvas.player);
+
+        while (true)
+        {
+            if (pc1Canvas.player.Started && pc2Canvas.player)
+            {
+                break;
+            }
+            else
+            {
+                yield return null;
+            }
+        }
+
+        CheckStatus(pc1Canvas);
+        CheckStatus(pc2Canvas);
+
+        SettingUI(pc1Canvas);
+        SettingUI(pc2Canvas);
+
+        Started = true;
     }
 
     private void Update()
     {
-        hitPointImage.fillAmount = player.hitPoint / player.maxHitPoint;
-        hitPointText.text        = ((float)player.hitPoint).ToString();
+        if(Started == false) { return; }
+        UpdateUI(pc1Canvas);
+        UpdateUI(pc2Canvas);
+    }
+    
+    private void UpdateUI(PCCanvas _c)
+    {
+        _c.hitPointImage.fillAmount = _c.player.hitPoint / _c.player.maxHitPoint;
+        _c.hitPointText.text        = ((float)_c.player.hitPoint).ToString();
 
-        foreach (string key in player.shotManager.Keys)
+        foreach (string key in _c.player.shotManager.Keys)
         {
-            if (player.shotManager[key].param.shotMode == ShotMode.SimpleShot) { continue; }
+            if (_c.player.shotManager[key].param.shotMode == ShotMode.SimpleShot) { continue; }
 
-            switch (player.shotManager[key].param.gage.barType)
+            switch (_c.player.shotManager[key].param.gage.barType)
             {
                 case GageBarType.Top:
-
                     // トップ＆チャージショット
-                    if (player.shotManager[key].param.shotMode == ShotMode.ChargeShot)
+                    if (_c.player.shotManager[key].param.shotMode == ShotMode.ChargeShot)
                     {
-                        if (player.shotManager[key].chargeBeginTime == 0)
+                        if (_c.player.shotManager[key].chargeBeginTime == 0)
                         {
-                            TopValue = 0;
+                            _c.TopValue = 0;
                         }
-                        else if (Time.time - player.shotManager[key].chargeBeginTime < TopMaxValue)
+                        else if (Time.time - _c.player.shotManager[key].chargeBeginTime < _c.TopMaxValue)
                         {
-                            TopValue = Time.time - player.shotManager[key].chargeBeginTime;
+                            _c.TopValue = Time.time - _c.player.shotManager[key].chargeBeginTime;
                         }
                         else
                         {
-                            TopValue = TopMaxValue;
+                            _c.TopValue = _c.TopMaxValue;
                         }
-                        TopGageImage.fillAmount = TopValue / TopMaxValue;
-                        TopGageText.text = ((int)((TopValue / TopMaxValue) * 100)).ToString();
+                        _c.TopGageImage.fillAmount = _c.TopValue / _c.TopMaxValue;
+                        _c.TopGageText.text        = ((int)((_c.TopValue / _c.TopMaxValue) * 100)).ToString();
                     }
 
                     // トップ＆リミットショット
-                    if (player.shotManager[key].param.shotMode == ShotMode.LimitShot)
+                    if (_c.player.shotManager[key].param.shotMode == ShotMode.LimitShot)
                     {
-                        if (player.shotManager[key].bulletNum == 0)
+                        if (_c.player.shotManager[key].bulletNum == 0)
                         {
-                            TopSubValue = Time.time - player.shotManager[key].lastReloadTime;
+                            _c.TopSubValue = Time.time - _c.player.shotManager[key].lastReloadTime;
                         }
                         else
                         {
-                            TopSubValue = 0;
+                            _c.TopSubValue = 0;
                         }
 
-                        TopValue = player.shotManager[key].bulletNum;
-                        TopGageImage.fillAmount = TopValue / TopMaxValue;
-                        TopSubGageImage.fillAmount = TopSubValue / TopSubMaxValue;
-                        TopGageText.text = TopValue.ToString();
+                        _c.TopValue = _c.player.shotManager[key].bulletNum;
+                        _c.TopGageImage.fillAmount    = _c.TopValue / _c.TopMaxValue;
+                        _c.TopSubGageImage.fillAmount = _c.TopSubValue / _c.TopSubMaxValue;
+                        _c.TopGageText.text           = _c.TopValue.ToString();
                     }
                     break;
 
                 case GageBarType.Left:
 
                     // レフト＆チャージショット
-                    if (player.shotManager[key].param.shotMode == ShotMode.ChargeShot)
+                    if (_c.player.shotManager[key].param.shotMode == ShotMode.ChargeShot)
                     {
-                        if (player.shotManager[key].chargeBeginTime == 0)
+                        if (_c.player.shotManager[key].chargeBeginTime == 0)
                         {
-                            LeftValue = 0;
+                            _c.LeftValue = 0;
                         }
-                        else if (Time.time - player.shotManager[key].chargeBeginTime < LeftMaxValue)
+                        else if (Time.time - _c.player.shotManager[key].chargeBeginTime < _c.LeftMaxValue)
                         {
-                            LeftValue = Time.time - player.shotManager[key].chargeBeginTime;
+                            _c.LeftValue = Time.time - _c.player.shotManager[key].chargeBeginTime;
                         }
                         else
                         {
-                            LeftValue = LeftMaxValue;
+                            _c.LeftValue = _c.LeftMaxValue;
                         }
-                        LeftGageImage.fillAmount = LeftValue / LeftMaxValue;
-                        LeftGageText.text = ((int)((LeftValue / LeftMaxValue) * 100)).ToString();
+                        _c.LeftGageImage.fillAmount = _c.LeftValue / _c.LeftMaxValue;
+                        _c.LeftGageText.text        = ((int)((_c.LeftValue / _c.LeftMaxValue) * 100)).ToString();
                     }
 
                     // レフト＆リミットショット
-                    if (player.shotManager[key].param.shotMode == ShotMode.LimitShot)
+                    if (_c.player.shotManager[key].param.shotMode == ShotMode.LimitShot)
                     {
-                        if (player.shotManager[key].bulletNum == 0)
+                        if (_c.player.shotManager[key].bulletNum == 0)
                         {
-                            LeftSubValue = Time.time - player.shotManager[key].lastReloadTime;
+                            _c.LeftSubValue = Time.time - _c.player.shotManager[key].lastReloadTime;
                         }
                         else
                         {
-                            LeftSubValue = 0;
+                            _c.LeftSubValue = 0;
                         }
 
-                        LeftValue    = player.shotManager[key].bulletNum;
-                        LeftGageImage.fillAmount = LeftValue / LeftMaxValue;
-                        LeftSubGageImage.fillAmount = LeftSubValue / LeftSubMaxValue;
-                        LeftGageText.text = LeftValue.ToString();
+                        _c.LeftValue = _c.player.shotManager[key].bulletNum;
+                        _c.LeftGageImage.fillAmount    = _c.LeftValue / _c.LeftMaxValue;
+                        _c.LeftSubGageImage.fillAmount = _c.LeftSubValue / _c.LeftSubMaxValue;
+                        _c.LeftGageText.text           = _c.LeftValue.ToString();
                     }
                     break;
             }
         }
     }
-    
-    private void CreateUI()
-    {
-        switch (player.playerSlot)
-        {
-            case PlayerSlot.PC1:
-                mainCanvas = Instantiate
-                    (
-                        Resources.Load("Prefabs/UI/PC1Canvas"),
-                        GameObject.Find("Canvas").transform
-                    ) as GameObject;
-                mainCanvas.AddComponent<PlayerUI>().playerSlot = PlayerSlot.PC1;
-                break;
 
-            case PlayerSlot.PC2:
-                mainCanvas = Instantiate
-                    (
-                        Resources.Load("Prefabs/UI/PC2Canvas"),
-                        GameObject.Find("Canvas").transform
-                    ) as GameObject;
-                mainCanvas.AddComponent<PlayerUI>().playerSlot = PlayerSlot.PC2;
-                break;
-        }
-    }
-
-    private void SettingUI()
+    private void CheckStatus(PCCanvas _c)
     {
-        foreach (string key in gages.Keys)
+        foreach (string key in _c.player.shotManager.Keys)
         {
-            switch (gages[key].barType)
+            Debug.Log(_c.player.shotManager[key]);
+            if (_c.player.shotManager[key].param.shotMode == ShotMode.SimpleShot) { continue; }
+
+            switch (_c.player.shotManager[key].param.gage.barType)
             {
                 case GageBarType.Top:
+                    if (_c.isBarTypeTop) { Debug.Log("BarTypeが重複しています。"); return; }
+
+                    _c.isBarTypeTop = true;
+
+                    // トップ＆チャージショット
+                    if (_c.player.shotManager[key].param.shotMode == ShotMode.ChargeShot)
+                    {
+                        _c.TopMaxValue = _c.player.shotManager[key].param.chargeTime;
+                    }
+
+                    // トップ＆リミットショット
+                    if (_c.player.shotManager[key].param.shotMode == ShotMode.LimitShot)
+                    {
+                        _c.TopMaxValue = _c.player.shotManager[key].param.bulletMaxNum;
+                        _c.TopSubMaxValue = _c.player.shotManager[key].param.reloadTime;
+                    }
                     break;
 
                 case GageBarType.Left:
-                    if (isBarTypeLeft) { Debug.Log("BarTypeが重複しています。"); return; }
+                    if (_c.isBarTypeLeft) { Debug.Log("BarTypeが重複しています。"); return; }
 
-                    Debug.Log("アタッチ Left");
-                    isBarTypeLeft = true;
-                    break;
+                    _c.isBarTypeLeft = true;
 
-                case GageBarType.Circle:
-                    if (isBarTypeCircle) { Debug.Log("BarTypeが重複しています。"); return; }
+                    // レフト＆チャージショット
+                    if (_c.player.shotManager[key].param.shotMode == ShotMode.ChargeShot)
+                    {
+                        _c.LeftMaxValue = _c.player.shotManager[key].param.chargeTime;
+                    }
 
-                    isBarTypeCircle = true;
-                    Debug.Log(this+": "+ "GageBarType.Circleは未対応です。" );
+                    // レフト＆リミットショット
+                    if (_c.player.shotManager[key].param.shotMode == ShotMode.LimitShot)
+                    {
+                        _c.LeftMaxValue = _c.player.shotManager[key].param.bulletMaxNum;
+                        _c.LeftSubMaxValue = _c.player.shotManager[key].param.reloadTime;
+                    }
                     break;
             }
-        }
 
+        }
+    }
+
+    private void CreateUI()
+    {
+        pc1Canvas.mainCanvas = 
+            Instantiate(Resources.Load("Prefabs/UI/PC1Canvas"), GameObject.Find("Canvas").transform) as GameObject;
+        pc1Canvas.mainCanvas.AddComponent<PlayerUI>().playerSlot = PlayerSlot.PC1;
+
+        pc2Canvas.mainCanvas = 
+            Instantiate(Resources.Load("Prefabs/UI/PC2Canvas"), GameObject.Find("Canvas").transform) as GameObject;
+        pc2Canvas.mainCanvas.AddComponent<PlayerUI>().playerSlot = PlayerSlot.PC2;
+    }
+
+    private void SettingUI(PCCanvas _c)
+    {
         Canvas target = null;
-        foreach (Transform child in mainCanvas.GetComponentsInChildren<Transform>())
+        foreach (Transform child in _c.mainCanvas.GetComponentsInChildren<Transform>())
         {
             switch (child.name)
             {
@@ -305,7 +338,7 @@ public class PlayerUIManager : MonoBehaviour
                                 i.fillAmount     = 1.0f;
                                 i.fillClockwise  = true;
                                 i.preserveAspect = false;
-                                hitPointImage = i;
+                                _c.hitPointImage = i;
                                 break;
 
 
@@ -320,7 +353,7 @@ public class PlayerUIManager : MonoBehaviour
                                 rt.localScale       = new Vector3(1, 1, 1);
 
                                 t = c_child.gameObject.GetComponent<Text>();
-                                t.text                 = ((float)player.hitPoint).ToString();
+                                t.text                 = ((float)_c.player.hitPoint).ToString();
                                 t.font                 = Resources.GetBuiltinResource(typeof(Font), "Arial.ttf") as Font;
                                 t.fontStyle            = FontStyle.Normal;
                                 t.fontSize             = 36;
@@ -334,7 +367,7 @@ public class PlayerUIManager : MonoBehaviour
                                 t.material             = null;
                                 t.raycastTarget        = true;
 
-                                hitPointText = t;
+                                _c.hitPointText = t;
                                 break;
 
                         }
@@ -344,7 +377,7 @@ public class PlayerUIManager : MonoBehaviour
                 case "TopGageCanvas":
                     target = child.gameObject.GetComponent<Canvas>();
 
-                    if (isBarTypeTop == false) { Destroy(target.gameObject); Debug.Log("top"); break; }
+                    if (_c.isBarTypeTop == false) { Destroy(target.gameObject); Debug.Log("top"); break; }
 
                     foreach (Transform c_child in target.transform)
                     {
@@ -372,7 +405,7 @@ public class PlayerUIManager : MonoBehaviour
                                 i.fillClockwise = true;
                                 i.preserveAspect = false;
 
-                                TopGageImage = i;
+                                _c.TopGageImage = i;
                                 break;
 
                             case "Bar_sb":
@@ -397,7 +430,7 @@ public class PlayerUIManager : MonoBehaviour
                                 i.fillClockwise = true;
                                 i.preserveAspect = false;
 
-                                TopSubGageImage = i;
+                                _c.TopSubGageImage = i;
                                 break;
 
 
@@ -426,7 +459,7 @@ public class PlayerUIManager : MonoBehaviour
                                 t.material             = null;
                                 t.raycastTarget        = true;
 
-                                TopGageText = t;
+                                _c.TopGageText = t;
                                 break;
 
                         }
@@ -436,7 +469,7 @@ public class PlayerUIManager : MonoBehaviour
                 case "LeftGageCanvas":
                     target = child.gameObject.GetComponent<Canvas>();
 
-                    if (isBarTypeLeft == false) { Destroy(target.gameObject); Debug.Log("left"); break; }
+                    if (_c.isBarTypeLeft == false) { Destroy(target.gameObject); Debug.Log("left"); break; }
 
                     foreach (Transform c_child in target.transform)
                     {
@@ -464,7 +497,7 @@ public class PlayerUIManager : MonoBehaviour
                                 i.fillClockwise = true;
                                 i.preserveAspect = false;
 
-                                LeftGageImage = i;
+                                _c.LeftGageImage = i;
                                 break;
 
                             case "Bar_sb":
@@ -489,7 +522,7 @@ public class PlayerUIManager : MonoBehaviour
                                 i.fillClockwise = true;
                                 i.preserveAspect = false;
 
-                                LeftSubGageImage = i;
+                                _c.LeftSubGageImage = i;
                                 break;
 
 
@@ -518,7 +551,7 @@ public class PlayerUIManager : MonoBehaviour
                                 t.material             = null;
                                 t.raycastTarget        = true;
 
-                                LeftGageText = t;
+                                _c.LeftGageText = t;
                                 break;
 
                         }
@@ -547,7 +580,7 @@ public class PlayerUIManager : MonoBehaviour
                                 i.material      = null;
                                 i.raycastTarget = true;
 
-                                iconImage = i;
+                                _c.iconImage = i;
                                 break;
 
 
@@ -562,7 +595,7 @@ public class PlayerUIManager : MonoBehaviour
                                 rt.localScale       = new Vector3(1, 1, 1);
 
                                 t = c_child.gameObject.GetComponent<Text>();
-                                t.text                 = player.name; Debug.Log("4 " + t.text);
+                                t.text                 = _c.player.name; Debug.Log("4 " + t.text);
                                 t.font                 = Resources.GetBuiltinResource(typeof(Font), "Arial.ttf") as Font;
                                 t.fontStyle            = FontStyle.Normal;
                                 t.fontSize             = 18;
@@ -576,7 +609,7 @@ public class PlayerUIManager : MonoBehaviour
                                 t.material             = null;
                                 t.raycastTarget        = true;
 
-                                iconText = t;
+                                _c.iconText = t;
                                 break;
 
                         }

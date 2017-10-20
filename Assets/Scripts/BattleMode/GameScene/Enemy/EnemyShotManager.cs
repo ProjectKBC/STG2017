@@ -9,10 +9,10 @@ public abstract class EnemyShotManager : MonoBehaviour
 
     [System.NonSerialized] public bool Started = false;
 
-    private Enemy enemy;
-    private AudioSource audioSource;
+    protected Enemy enemy;
+    protected AudioSource audioSource;
 
-    private float lastShotTime = 0;
+    protected float lastShotTime = 0;
 
     public virtual void Init()
     {
@@ -21,7 +21,7 @@ public abstract class EnemyShotManager : MonoBehaviour
         Started = true;
     }
 
-    private IEnumerator Start()
+    protected IEnumerator Start()
     {
         Init();
         while (true)
@@ -36,9 +36,10 @@ public abstract class EnemyShotManager : MonoBehaviour
         if (Time.time - lastShotTime < param.shotDelay) { return; }
 
         InstBullet();
+        ManageScroll.Log("shot " + gameObject.name, enemy.playerSlot);
     }
 
-    private void InstBullet()
+    protected void InstBullet()
     {
         lastShotTime = Time.time;
         audioSource.PlayOneShot(param.shotSound);

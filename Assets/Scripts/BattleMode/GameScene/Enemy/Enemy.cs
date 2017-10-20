@@ -15,7 +15,7 @@ public abstract class Enemy : MonoBehaviour
     public PlayerSlot playerSlot;
     public float maxHitPoint;
     [SerializeField]
-    private float _speed;
+    protected float _speed;
     public float Speed
     {
         get { return _speed * 100; }
@@ -33,10 +33,10 @@ public abstract class Enemy : MonoBehaviour
     */
 
     // ShotManagerを確保するリスト
-    private Dictionary<string, EnemyShotManager> shotManager = new Dictionary<string, EnemyShotManager>();
-    private float hitPoint;
+    public Dictionary<string, EnemyShotManager> shotManager = new Dictionary<string, EnemyShotManager>();
+    protected float hitPoint;
 
-    private void Init()
+    protected void Init()
     {
         // レイヤー分類
         gameObject.layer = LayerName.Enemy;
@@ -61,8 +61,8 @@ public abstract class Enemy : MonoBehaviour
             yield return new WaitForSeconds(0.01f);
         }
 	}
-	
-	void Update ()
+
+    protected void Update ()
     {
         Move();
     }
@@ -118,11 +118,15 @@ public abstract class Enemy : MonoBehaviour
     // ショットする条件やショットそのものの処理
     public virtual void Shot()
     {
-        shotManager["0"].Shot();
+        foreach (string key in shotManager.Keys)
+        {
+            shotManager[key].Shot();
+            ManageScroll.Log(key, playerSlot);
+        }
     }
 
     // 当たり判定
-    private void OnTriggerEnter2D(Collider2D c)
+    protected void OnTriggerEnter2D(Collider2D c)
     {
         switch (c.gameObject.layer)
         {
@@ -134,7 +138,7 @@ public abstract class Enemy : MonoBehaviour
         }
     }
 
-    private void Damage(float _damage)
+    protected void Damage(float _damage)
     {
         hitPoint -= _damage;
         Debug.Log(hitPoint);
@@ -144,7 +148,7 @@ public abstract class Enemy : MonoBehaviour
         }
     }
 
-    private void Dead()
+    protected void Dead()
     {
         // todo: スコア処理
         Destroy(this.gameObject);

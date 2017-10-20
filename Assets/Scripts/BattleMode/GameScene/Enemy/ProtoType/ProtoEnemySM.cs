@@ -8,4 +8,9 @@ public class ProtoEnemySM : EnemyShotManager
     {
         base.Init();
     }
+
+    public override void Shot()
+    {
+        base.Shot();
+    }
 }
