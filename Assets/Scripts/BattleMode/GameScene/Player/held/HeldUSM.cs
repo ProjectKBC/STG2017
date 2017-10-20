@@ -9,10 +9,6 @@ namespace Held
 		override public void Init()
 		{
 			base.Init();
-			/*
-             * 自動生成化したい
-            bullet = new GameObject().AddComponent<HeldUB>();
-            */
 		}
 	}
 }
