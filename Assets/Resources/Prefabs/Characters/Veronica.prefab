@@ -228,7 +228,7 @@ MonoBehaviour:
     gage:
       maxValue: 0
       value: 0
-      barType: 1
+      barType: 2
       effectType: 1
       countType: 0
     chargeTime: 2
@@ -255,11 +255,11 @@ MonoBehaviour:
     shotSound: {fileID: 8300000, guid: 7859a29f2a04c764d9f84132b39eed1b, type: 3}
     shotDelay: 1
     lifeTime: 1
-    speed: 2
-    power: 1
-    isPenetrate: 0
-    shotMode: 0
-    initialPosition: {x: 0, y: 0, z: 0}
+    speed: 0
+    power: 3
+    isPenetrate: 1
+    shotMode: 2
+    initialPosition: {x: 0, y: 300, z: 0}
     gage:
       maxValue: 0
       value: 0
@@ -267,8 +267,8 @@ MonoBehaviour:
       effectType: 0
       countType: 0
     chargeTime: 0
-    bulletMaxNum: 0
-    reloadTime: 0
+    bulletMaxNum: 1
+    reloadTime: 1
   buttonCode: 0
   chargeBeginTime: 0
   lastReloadTime: 0
