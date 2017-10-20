@@ -20,7 +20,7 @@ public class BulletParam
     public float lifeTime;          // 生存時間
 
     [SerializeField]
-    private float speed;
+    protected float speed;
     public float Speed
     {
         get { return speed * 100; }
@@ -47,19 +47,20 @@ public abstract class Bullet : MonoBehaviour
 {
     // パラメータ
     [System.NonSerialized] public BulletParam param;
-    private Player player;
+    protected Player player;
 
-    private void Start()
+    protected void Start()
     {
         Init();
-        Move();
 
         // lifeTime秒後に削除
         Destroy(gameObject, param.lifeTime);
     }
 
-    private void Update()
+    protected void Update()
     {
+        Move();
+
         // 子要素（弾）がなくなったら削除
         if (transform.childCount == 0)
         {
@@ -73,15 +74,10 @@ public abstract class Bullet : MonoBehaviour
     }
 
     // 初期設定関数
-    public virtual void Init()
-    {
-    }
+    protected virtual void Init() { }
 
     // move関数：弾の動きはここに書く 
-    public virtual void Move()
-    {
-
-    }
+    protected virtual void Move() { }
 
     // 気にしなくていい（弾生成時にパラメータを渡すための関数）
     public static Bullet Instantiate(Bullet _bullet, BulletParam _param, Transform _transform)
@@ -95,5 +91,10 @@ public abstract class Bullet : MonoBehaviour
             childTF.gameObject.layer = LayerName.BulletPlayer;
         }
         return obj;
+    }
+
+    protected virtual void OnDestroy()
+    {
+        
     }
 }

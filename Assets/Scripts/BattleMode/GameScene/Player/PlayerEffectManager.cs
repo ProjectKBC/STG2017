@@ -13,7 +13,7 @@ public class PlayerEffectManager : MonoBehaviour
     private Player player;
     
     // チャージエフェクト
-    private ParticleSystem chargeEffect;
+    private List<ParticleSystem> chargeEffect;
     private GameObject changeEffectObj;
 
 
@@ -24,7 +24,7 @@ public class PlayerEffectManager : MonoBehaviour
         // チャージエフェクト
         changeEffectObj = (GameObject)Instantiate(Resources.Load("Prefabs/Effects/ChargeEffect"), transform.position, Quaternion.identity);
         changeEffectObj.transform.parent = transform;
-        chargeEffect = changeEffectObj.GetComponent<ParticleSystem>();
+        chargeEffect = new List<ParticleSystem>(changeEffectObj.GetComponentsInChildren<ParticleSystem>());
         Stop(EffectType.ChargeEffect);
     }
 
@@ -48,10 +48,15 @@ public class PlayerEffectManager : MonoBehaviour
                     {
                         Stop(EffectType.ChargeEffect); break;
                     }
-                    if (player.state == key && chargeEffect.isStopped)
+                    if (player.state == key)
                     {
+                        foreach (ParticleSystem x in chargeEffect)
+                        {
+                            if (x.isStopped == false) { goto BREAK; }
+                        }
                         Play(EffectType.ChargeEffect);
                     }
+                    BREAK: ;
                     break;
 
                 case ShotMode.LimitShot:
@@ -67,7 +72,7 @@ public class PlayerEffectManager : MonoBehaviour
         switch (_type)
         {
             case EffectType.ChargeEffect:
-                chargeEffect.Play();
+                foreach(ParticleSystem x in chargeEffect) { x.Play(); }
                 changeEffectObj.gameObject.SetActive(true);
                 break;
         }
@@ -79,7 +84,7 @@ public class PlayerEffectManager : MonoBehaviour
         {
             case EffectType.ChargeEffect:
                 changeEffectObj.gameObject.SetActive(false);
-                chargeEffect.Stop();
+                foreach (ParticleSystem x in chargeEffect) { x.Stop(); }
                 break;
         }
     }
@@ -90,7 +95,7 @@ public class PlayerEffectManager : MonoBehaviour
         {
             case EffectType.ChargeEffect:
                 changeEffectObj.gameObject.SetActive(false);
-                chargeEffect.Pause();
+                foreach (ParticleSystem x in chargeEffect) { x.Pause(); }
                 break;
         }
     }

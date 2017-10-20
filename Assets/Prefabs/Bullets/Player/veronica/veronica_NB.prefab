@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4970576751003668}
   - component: {fileID: 212838532089820202}
   - component: {fileID: 60157385562625276}
-  m_Layer: 10
+  m_Layer: 9
   m_Name: bullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -38,7 +38,7 @@ GameObject:
   - component: {fileID: 4292934894704398}
   - component: {fileID: 212869146528962084}
   - component: {fileID: 60311291043556432}
-  m_Layer: 10
+  m_Layer: 9
   m_Name: bullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -55,7 +55,7 @@ GameObject:
   - component: {fileID: 4883542460384020}
   - component: {fileID: 50332392410693730}
   - component: {fileID: 114396921439157842}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: veronica_NB
   m_TagString: Untagged
   m_Icon: {fileID: 0}

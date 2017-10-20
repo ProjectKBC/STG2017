@@ -12,10 +12,10 @@ public class FireLitStone : MonoBehaviour
     void Start ()
     {
         fls = gameObject.GetComponent<FireLitStone>();
-
-        Debug.Log(PlayerManager.Inst.name);
-        Debug.Log(GameManager.Inst.name);
-        Debug.Log(PlayerUIManager.Inst.name);
+        string tmp;
+        tmp = PlayerManager.Inst.name;
+        tmp = GameManager.Inst.name;
+        tmp = PlayerUIManager.Inst.name;
         Destroy(this.gameObject);
 	}
 }

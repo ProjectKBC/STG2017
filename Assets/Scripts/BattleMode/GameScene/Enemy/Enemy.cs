@@ -34,7 +34,7 @@ public abstract class Enemy : MonoBehaviour
 
     // ShotManagerを確保するリスト
     public Dictionary<string, EnemyShotManager> shotManager = new Dictionary<string, EnemyShotManager>();
-    public bool Started = false;
+    public Starter starter = new Starter();
     protected float hitPoint;
 
     protected void Init()
@@ -51,29 +51,18 @@ public abstract class Enemy : MonoBehaviour
         }
 
         hitPoint = maxHitPoint;
-        Started = true;
     }
 
-    IEnumerator Start ()
+    protected IEnumerator Start ()
     {
-        if (Started == false)
-        {
-            while (true)
-            {
-                if (PlayerUIManager.Started)
-                {
-                    break;
-                }
-                else
-                {
-                    yield return null;
-                }
-            }
-        }
-        
+        yield return starter.StayStarted(PlayerUIManager.starter);
         Init();
+        starter.started = true;
+        starter.Log(this, 5);
 
-        while(true)
+        yield return starter.StayStarted(GameManager.readier);
+
+        while (true)
         {                         
             Shot();
             yield return new WaitForSeconds(0.01f);
@@ -82,6 +71,8 @@ public abstract class Enemy : MonoBehaviour
 
     protected void Update ()
     {
+        if (GameManager.readier.started == false) { return; }
+
         Move();
     }
 
@@ -139,7 +130,6 @@ public abstract class Enemy : MonoBehaviour
         foreach (string key in shotManager.Keys)
         {
             shotManager[key].Shot();
-            NoaConsole.Log(key, playerSlot);
         }
     }
 
@@ -151,7 +141,14 @@ public abstract class Enemy : MonoBehaviour
             case LayerName.BulletPlayer:
                 Bullet b = c.transform.parent.GetComponent<Bullet>();
                 Damage(b.param.power);
-                Destroy(c.gameObject); // 弾の削除
+                if (b.param.isPenetrate)
+                {
+
+                }
+                else
+                {
+                    Destroy(c.gameObject); // 弾の削除
+                }
                 break;
         }
     }

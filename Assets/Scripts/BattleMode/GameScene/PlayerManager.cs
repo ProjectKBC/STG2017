@@ -8,6 +8,7 @@ public sealed class PlayerManager : MonoBehaviour
 {
     // キャラクターのprefabを格納する連想配列
     private Dictionary<string, GameObject> CharacterPrefabs = new Dictionary<string, GameObject>();
+    public static Starter starter = new Starter();
 
     private static PlayerManager inst;
     private PlayerManager() { Debug.Log("player_manager created"); }
@@ -27,7 +28,6 @@ public sealed class PlayerManager : MonoBehaviour
 
     private void Start()
     {
-        Debug.Log("player_manager start");
         Object[] tmp = Resources.LoadAll("Prefabs/Characters");
 
         for (int i = 0; i < tmp.Length; ++i)
@@ -47,7 +47,9 @@ public sealed class PlayerManager : MonoBehaviour
 
             CharacterPrefabs.Add(x.name, x);
         }
-        
+
+        starter.started = true;
+        starter.Log(this, 1);
     }
     
     public GameObject GetCharacterPrefab(string _name)

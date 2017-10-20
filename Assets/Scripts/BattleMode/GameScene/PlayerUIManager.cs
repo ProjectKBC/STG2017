@@ -89,7 +89,7 @@ public sealed class PlayerUIManager : MonoBehaviour
         }
     }
 
-    public static bool Started = false;
+    public static Starter starter = new Starter();
     public PCCanvas pc1Canvas = new PCCanvas();
     public PCCanvas pc2Canvas = new PCCanvas();
 
@@ -98,36 +98,15 @@ public sealed class PlayerUIManager : MonoBehaviour
 
     private IEnumerator Start()
     {
-        Debug.Log("PlayerUIManager start");
-
         CreateUI();
 
-        while(true)
-        {
-            if (GameManager.Started)
-            {
-                break;
-            }
-            else
-            {
-                yield return null;
-            }
-        }
+        yield return starter.StayStarted(GameManager.starter);
 
         pc1Canvas.player = GameManager.Inst.Pc1Player; Debug.Log("puim: " + pc1Canvas.player);
         pc2Canvas.player = GameManager.Inst.Pc2Player; Debug.Log("puim: " + pc2Canvas.player);
 
-        while (true)
-        {
-            if (pc1Canvas.player.Started && pc2Canvas.player)
-            {
-                break;
-            }
-            else
-            {
-                yield return null;
-            }
-        }
+        yield return starter.StayStarted(pc1Canvas.player.starter);
+        yield return starter.StayStarted(pc2Canvas.player.starter);
 
         CheckStatus(pc1Canvas);
         CheckStatus(pc2Canvas);
@@ -135,12 +114,14 @@ public sealed class PlayerUIManager : MonoBehaviour
         SettingUI(pc1Canvas);
         SettingUI(pc2Canvas);
 
-        Started = true;
+        starter.started = true;
+        starter.Log(this, 4);
     }
 
     private void Update()
     {
-        if(Started == false) { return; }
+        if(GameManager.readier.started == false) { return; }
+
         UpdateUI(pc1Canvas);
         UpdateUI(pc2Canvas);
     }

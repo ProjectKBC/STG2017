@@ -219,7 +219,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88df80c8db2a55e46be4e331c62d73fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ScrollSpeed: 1
+  ScrollSpeed: 0.25
 --- !u!23 &221872974
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -353,6 +353,10 @@ Prefab:
         type: 2}
       propertyPath: param.name
       value: bullet
+      objectReference: {fileID: 0}
+    - target: {fileID: 1087224783398204, guid: a566a0e4bb035394588a675e9d68d496, type: 2}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a566a0e4bb035394588a675e9d68d496, type: 2}
@@ -655,7 +659,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9ff6b4fcdc7fa141b033b4a5ad4bfc3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pc1Name: Held
+  pc1Name: Veronica
   pc2Name: Veronica_CC
 --- !u!4 &651790030
 Transform:
@@ -924,7 +928,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88df80c8db2a55e46be4e331c62d73fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ScrollSpeed: 0.5
+  ScrollSpeed: 0.25
 --- !u!1 &2118676163
 GameObject:
   m_ObjectHideFlags: 0

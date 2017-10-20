@@ -24,6 +24,7 @@ public abstract class EnemyShotManager : MonoBehaviour
     protected IEnumerator Start()
     {
         Init();
+        
         while (true)
         {
             Shot();
@@ -36,14 +37,12 @@ public abstract class EnemyShotManager : MonoBehaviour
         if (Time.time - lastShotTime < param.shotDelay) { return; }
 
         InstBullet();
-        NoaConsole.Log("shot " + gameObject.name, enemy.playerSlot);
-    }
+     }
 
     protected void InstBullet()
     {
         lastShotTime = Time.time;
         audioSource.PlayOneShot(param.shotSound);
         EnemyBullet b = EnemyBullet.Instantiate(bullet, param, transform);
-        NoaConsole.Log(gameObject, b.param.playerSlot);
     }
 }

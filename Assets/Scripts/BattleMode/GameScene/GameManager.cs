@@ -5,6 +5,50 @@ using UnityEngine.UI;
 
 public enum V4Enum { x, y, z, w }
 
+public class Starter
+{
+    public bool started = false;
+
+    public IEnumerator StayStarted()
+    {
+        while (true)
+        {
+            if (started) { break; }
+            yield return null;
+        }
+    }
+
+    public IEnumerator StayStarted(Starter _starter)
+    {
+        if (started == false)
+        {
+            while (true)
+            {
+                if (_starter.started) { break; }
+                yield return null;
+            }
+        }
+    }
+
+    public void Log(Object _this)
+    {
+        if(started) { Debug.Log(_this + " started"); }
+        else { Debug.Log(_this + " NOT started"); }
+    }
+
+    public void Log(Object _this, int _num)
+    {
+        if (started) { Debug.Log(_num + ": " + _this + " started"); }
+        else { Debug.Log(_num + ": " + _this + " NOT started"); }
+    }
+
+    public void Log(Object _this, string _str)
+    {
+        if (started) { Debug.Log(_this + _str); }
+        else { Debug.Log( _this + "NOT " + _str); }
+    }
+}
+
 // シングルトン
 public sealed class GameManager : MonoBehaviour
 {
@@ -29,7 +73,8 @@ public sealed class GameManager : MonoBehaviour
         }
     }
 
-    public static bool Started = false;
+    public static Starter starter = new Starter();
+    public static Starter readier = new Starter();
 
     // 画面サイズ
     private const float WIDTH = 1920;
@@ -71,11 +116,21 @@ public sealed class GameManager : MonoBehaviour
     public float Pc1Score { get; private set; }
     public float Pc2Score { get; private set; }
 
-    private void Start()
+    private IEnumerator Start()
     {
-        Debug.Log("game_manager start");
+        yield return starter.StayStarted(PlayerManager.starter);
+
         CreatePlayer(pc1Name, pc2Name);
-        Started = true;
+
+        starter.started = true;
+        starter.Log(this, 2);
+
+        yield return starter.StayStarted(PlayerUIManager.starter);
+        yield return starter.StayStarted(Pc1Player.starter);
+        yield return starter.StayStarted(Pc2Player.starter);
+
+        readier.started = true;
+        readier.Log(this, "ready");
     }
 
     /* Area系 ------------------------------------------------------------------------- */
@@ -170,7 +225,7 @@ public sealed class GameManager : MonoBehaviour
         Pc1Player = Pc1GameObject.GetComponent<Player>();
         Pc1Player.playerSlot = PlayerSlot.PC1;
 
-        Debug.Log("1:created " + Pc1GameObject);
+        Debug.Log("created " + Pc1GameObject);
 
 
         Pc2GameObject = Instantiate
@@ -184,6 +239,6 @@ public sealed class GameManager : MonoBehaviour
         Pc2Player = Pc2GameObject.GetComponent<Player>();
         Pc2Player.playerSlot = PlayerSlot.PC2;
 
-        Debug.Log("2:created " + Pc2GameObject);
+        Debug.Log("created " + Pc2GameObject);
     }
 }

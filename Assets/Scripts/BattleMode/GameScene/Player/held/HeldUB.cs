@@ -6,16 +6,22 @@ namespace Held
 {
 	public sealed class HeldUB : Bullet
 	{
-		
-		override public void Init()
-		{
+        override protected void Init()
+        {
             base.Init();
-		}
 
-		override public void Move()
-		{
-			// 真っすぐ進む
-			GetComponent<Rigidbody2D>().velocity = transform.up.normalized * param.Speed;
-		}
-	}
+            // 真っすぐ進む
+            GetComponent<Rigidbody2D>().velocity = transform.up.normalized * param.Speed;
+        }
+
+        override protected void Move()
+        {
+            base.Move();
+        }
+
+        protected override void OnDestroy()
+        {
+            base.OnDestroy();
+        }
+    }
 }

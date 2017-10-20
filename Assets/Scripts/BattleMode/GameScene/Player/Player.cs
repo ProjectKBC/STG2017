@@ -15,9 +15,9 @@ public abstract class Player : MonoBehaviour
 
     public float maxHitPoint;
 
-    [SerializeField]
-    public float _speed;
-    private float Speed
+
+    [SerializeField] public float _speed;
+    public float Speed
     {
         get { return _speed * 100; }
         set { _speed = value; }
@@ -28,10 +28,11 @@ public abstract class Player : MonoBehaviour
     public Skill skill; // スキル
 
     [System.NonSerialized] public float hitPoint;
-    [System.NonSerialized] public bool Started = false;
+    [System.NonSerialized] public Starter starter = new Starter();
     [System.NonSerialized] public string state = "None";
+    [System.NonSerialized] public bool isStan = false;
 
-    private void Init()
+    protected void Init()
     {
         // レイヤー分類
         gameObject.layer = LayerName.Player;
@@ -49,14 +50,16 @@ public abstract class Player : MonoBehaviour
 
         // HPの初期化
         hitPoint = maxHitPoint;
-
-        Debug.Log("3");
-        Started = true;
     }
 
     IEnumerator Start ()
     {
+        starter.StayStarted(PlayerManager.starter);
         Init();
+        starter.started = true;
+        starter.Log(this, 3);
+
+        yield return starter.StayStarted(GameManager.readier);
 
         while (true)
         {
@@ -89,10 +92,12 @@ public abstract class Player : MonoBehaviour
 	
 	void Update ()
     {
+        if (GameManager.readier.started == false) { return; }
+
         Move();
 	}
 
-    private string ConvertPlayerSlotToButtonCode()
+    protected string ConvertPlayerSlotToButtonCode()
     {
         switch (playerSlot)
         {
@@ -103,7 +108,7 @@ public abstract class Player : MonoBehaviour
     }
 
     // _keyにショット名を渡すと対応したShotのボタンについてGetButtonDownできる
-    private bool GetButtonDown(string _key)
+    protected bool GetButtonDown(string _key)
     {
         if (_key == "Skill")
         {
@@ -117,7 +122,7 @@ public abstract class Player : MonoBehaviour
     }
 
     // _keyにショット名を渡すと対応したShotのボタンについてGetButtonできる
-    private bool GetButton(string _key)
+    protected bool GetButton(string _key)
     {
         if (_key == "Skill")
         {
@@ -131,7 +136,7 @@ public abstract class Player : MonoBehaviour
     }
 
     // _keyにショット名を渡すと対応したShotのボタンについてGetButtonUpできる
-    private bool GetButtonUp(string _key)
+    protected bool GetButtonUp(string _key)
     {
         if (_key == "Skill")
         {
@@ -145,7 +150,7 @@ public abstract class Player : MonoBehaviour
     }
 
     // 上手いことキーの重なりとか調整してくれる関数
-    private void InputManager()
+    protected void InputManager()
     {
         foreach (string key in shotManager.Keys)
         {
@@ -185,6 +190,7 @@ public abstract class Player : MonoBehaviour
     // 移動処理
     void Move()
     {
+        if (isStan) { return; }
         
         float x = Input.GetAxis(ConvertPlayerSlotToButtonCode() + "Horizontal");
         float y = Input.GetAxis(ConvertPlayerSlotToButtonCode() + "Vertical");

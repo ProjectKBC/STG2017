@@ -20,11 +20,11 @@ public abstract class ShotManager : MonoBehaviour
     public BulletParam param;     // パラメータクラス
     public ButtonCode buttonCode; // 発射ボタン
 
-    private Player player;
-    private AudioSource audioSource;
+    protected Player player;
+    protected AudioSource audioSource;
     [System.NonSerialized] public bool Started = false;
 
-    private float lastShotTime = 0;
+    protected float lastShotTime = 0;
 
     public virtual void Init()
     {
@@ -33,7 +33,7 @@ public abstract class ShotManager : MonoBehaviour
         bulletNum = param.bulletMaxNum;
     }
 
-    private void Start()
+    protected void Start()
     {
         Init();
     }
@@ -63,7 +63,7 @@ public abstract class ShotManager : MonoBehaviour
         }
     }
 
-    private bool SimpleShot()
+    protected bool SimpleShot()
     {
         if (Time.time - lastShotTime < param.shotDelay) { return false; }
 
@@ -72,8 +72,8 @@ public abstract class ShotManager : MonoBehaviour
     }
 
     public float chargeBeginTime = 0;
-    private bool  canChargeShot = false;
-    private bool ChargeShot()
+    protected bool  canChargeShot = false;
+    protected bool ChargeShot()
     {
         // チャージ開始判定
         if (chargeBeginTime == 0)
@@ -102,7 +102,7 @@ public abstract class ShotManager : MonoBehaviour
 
     public float lastReloadTime = 0;
     public int bulletNum = 0;
-    private bool LimitShot()
+    protected bool LimitShot()
     {
         // 残弾がなく、リロードタイムを過ぎた場合 -> リロードする
         if (Time.time - lastReloadTime >= param.reloadTime && bulletNum <= 0)
@@ -129,13 +129,14 @@ public abstract class ShotManager : MonoBehaviour
         return true;
     }
 
-    private void InstBullet()
+    protected void InstBullet()
     {
         lastShotTime = Time.time;
         audioSource.PlayOneShot(param.shotSound);
         Bullet b = Bullet.Instantiate(bullet, param, transform);
-        NoaConsole.Log(param.name, player.playerSlot);
+        //NoaConsole.Log(param.name, player.playerSlot);
     }
+
 
     public void Maintenance(string _playerState)
     {
@@ -149,17 +150,17 @@ public abstract class ShotManager : MonoBehaviour
         }
     }
 
-    private void SimpleMaintenance()
+    protected void SimpleMaintenance()
     {
     }
 
-    private void ChargeMaintenance()
+    protected void ChargeMaintenance()
     {
         chargeBeginTime = 0;
         canChargeShot = false;
     }
 
-    private void LimitMaintenance()
+    protected void LimitMaintenance()
     {
         // 残弾がなく、リロードタイムを過ぎた場合 -> リロードする
         if (Time.time - lastReloadTime >= param.reloadTime && bulletNum <= 0)

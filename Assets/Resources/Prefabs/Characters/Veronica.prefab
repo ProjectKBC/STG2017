@@ -221,8 +221,8 @@ MonoBehaviour:
     shotDelay: 0
     lifeTime: 1
     speed: 3
-    power: 3
-    isPenetrate: 0
+    power: 10
+    isPenetrate: 1
     shotMode: 1
     initialPosition: {x: 0, y: 0, z: 0}
     gage:

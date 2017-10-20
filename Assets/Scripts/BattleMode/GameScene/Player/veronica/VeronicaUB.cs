@@ -7,15 +7,22 @@ namespace Veronica
     public sealed class VeronicaUB : Bullet
     {
 
-        override public void Init()
+        override protected void Init()
         {
             base.Init();
+            player.isStan = true;
         }
 
-        override public void Move()
+        override protected void Move()
         {
-            // 真っすぐ進む
-            GetComponent<Rigidbody2D>().velocity = transform.up.normalized * param.Speed;
+            base.Move();
+            transform.position = player.transform.position;
+        }
+
+        override protected void OnDestroy()
+        {
+            base.OnDestroy();
+            player.isStan = false;
         }
     }
 }
