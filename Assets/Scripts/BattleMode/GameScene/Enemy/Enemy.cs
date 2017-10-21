@@ -7,6 +7,7 @@ public enum MovePattern
 	Straight,
 	Circle,
 	Chase,
+    Snake,
 }
 
 [RequireComponent(typeof(Rigidbody2D))]
@@ -26,7 +27,9 @@ public abstract class Enemy : MonoBehaviour
     public MovePattern movePattern;
 	public bool xAxisReverse; // x軸の反転の有無
 	public bool yAxisReverse; // y軸の反転の有無
+    public bool xTurn = true;     public bool yTurn = true;     Vector2 pos = new Vector2(); 
     /*
+     * 
      * パターン化したい
      * 動き
      * ショット
@@ -76,11 +79,13 @@ public abstract class Enemy : MonoBehaviour
         Move();
     }
 
+    void Turn()     {         if (xTurn) xAxisReverse = !xAxisReverse;         if (yTurn) yAxisReverse = !yAxisReverse;         if (-920 < pos.x && pos.x <= -830) pos.x = -829;         else if (-130 <= pos.x && pos.x < 0) pos.x = -131;         else if (0 < pos.x && pos.x <= 130) pos.x = 131;         else if (830 <= pos.x && pos.x < 920) pos.x = 829;         transform.position = pos;         CancelInvoke();     }
+
     // 移動軌跡などを書き込む関数
     public virtual void Move()
     {
 		Vector2 direction;
-		Vector2 pos;
+        pos = transform.position;
 		int xAxis = 1;
 		int yAxis = 1;
 		if (xAxisReverse) xAxis = -1;
@@ -92,19 +97,13 @@ public abstract class Enemy : MonoBehaviour
 		// 直進
 		case MovePattern.Straight:
 			direction = new Vector2(0, -1).normalized;
-			pos = transform.position;
 			pos += direction * Speed * Time.deltaTime;
-
-			transform.position = pos;
 			break;
 
                 // 円状に移動
 		case MovePattern.Circle:
-			direction = new Vector2(yAxis * Mathf.Cos(Time.time * Speed), xAxis * Mathf.Sin(Time.time * Speed)).normalized;
-			pos = transform.position;
+			direction = new Vector2(yAxis * Mathf.Cos(Time.time * _speed), xAxis * Mathf.Sin(Time.time * _speed)).normalized;
 			pos += direction * Speed * Time.deltaTime;
-
-			transform.position = pos;
 			break;
 
 		// プレイヤーを追尾
@@ -114,14 +113,19 @@ public abstract class Enemy : MonoBehaviour
             
             if (transform.position.x < -1)
             {
-                transform.position = Vector2.Lerp(transform.position, player1.transform.position, Speed * Time.deltaTime);
+                pos = Vector2.Lerp(transform.position, player1.transform.position, Speed * Time.deltaTime);
             }
             else if (transform.position.x > 1)
             {
-                transform.position = Vector2.Lerp(transform.position, player2.transform.position, Speed * Time.deltaTime);
+                pos = Vector2.Lerp(transform.position, player2.transform.position, Speed * Time.deltaTime);
             }
 			break;
+
+         // 壁に沿って蛇行
+        case MovePattern.Snake:             if ((-830 < pos.x && pos.x < -130) || (130 < pos.x && pos.x < 830))             {
+                direction = new Vector2(yAxis * -1, 0).normalized;                 pos += direction * Speed * Time.deltaTime;             }             else             {                 direction = new Vector2(0, -1).normalized;                 pos += direction * Speed * Time.deltaTime;                 Invoke("Turn", 1 / _speed);             }             break;
 		}
+        transform.position = pos;
     }
 
     // ショットする条件やショットそのものの処理
