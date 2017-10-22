@@ -15,10 +15,10 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
-  - 
-  - 
+  - Player
+  - Bullet(Player)
+  - Enemy
+  - Bullet(Enemy)
   - 
   - 
   - 
@@ -43,12 +43,21 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: Bullet
-    uniqueID: 1210533875
+  - name: Bullet(Player)
+    uniqueID: 1833890295
+    locked: 0
+  - name: Effect(Player)
+    uniqueID: 358025645
     locked: 0
   - name: Player
     uniqueID: 379377875
     locked: 0
-  - name: Charge
+  - name: Bullet(Enemy)
+    uniqueID: 1210533875
+    locked: 0
+  - name: Enemy
+    uniqueID: 1194911151
+    locked: 0
+  - name: UI
     uniqueID: 2383432069
     locked: 0

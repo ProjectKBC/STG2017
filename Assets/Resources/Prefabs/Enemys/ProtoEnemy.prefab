@@ -24,7 +24,8 @@ GameObject:
   - component: {fileID: 50651301561791738}
   - component: {fileID: 114751904338930652}
   - component: {fileID: 114271196960228366}
-  m_Layer: 0
+  - component: {fileID: 60270403814664556}
+  m_Layer: 10
   m_Name: ProtoEnemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -38,8 +39,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1087224783398204}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.42, y: 2.8, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -480, y: 270, z: 0}
+  m_LocalScale: {x: 3, y: 3, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -64,6 +65,37 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!60 &60270403814664556
+PolygonCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1087224783398204}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 48, y: 48}
+    newSize: {x: 0.96, y: 0.96}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 7, y: 19}
+      - {x: -14, y: 19}
+      - {x: -14, y: -15}
+      - {x: 8, y: -15}
+      - {x: 14, y: -9}
+      - {x: 14, y: 17}
+      - {x: 11, y: 18}
 --- !u!95 &95555325233437384
 Animator:
   serializedVersion: 3
@@ -92,26 +124,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2968f07e780733845836b48230e8b310, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bullet: {fileID: 0}
+  bullet: {fileID: 114129057209960936, guid: 1fd8d1e31b4a3db49a4d2d7acfe95546, type: 2}
   param:
-    name: 
+    name: 0
     shotSound: {fileID: 0}
-    shotDelay: 0
-    lifeTime: 0
-    speed: 0
-    power: 0
+    shotDelay: 1
+    lifeTime: 10
+    speed: 1
+    power: 1
     isPenetrate: 0
-    shotMode: 0
     initialPosition: {x: 0, y: 0, z: 0}
-    gage:
-      maxValue: 0
-      value: 0
-      barType: 0
-      effectType: 0
-      countType: 0
-    chargeTime: 0
-    bulletMaxNum: 0
-    reloadTime: 0
 --- !u!114 &114751904338930652
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -123,9 +145,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: edf3985aa729af243abb11ba12367d15, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHitPoint: 0
-  speed: 3
+  playerSlot: 0
+  maxHitPoint: 10
+  _speed: 0.1
+  score: 100
   movePattern: 1
+  xAxisReverse: 0
+  yAxisReverse: 0
 --- !u!212 &212549029109392836
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -155,8 +181,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1194911151
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300008, guid: 4cefbb540c1f08d4bb559ec327cca03a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

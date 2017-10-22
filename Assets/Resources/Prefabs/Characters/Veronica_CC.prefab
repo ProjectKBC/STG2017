@@ -28,7 +28,7 @@ GameObject:
   - component: {fileID: 114679377063774258}
   - component: {fileID: 114543301112965642}
   - component: {fileID: 114962089204125980}
-  - component: {fileID: 114682147385227150}
+  - component: {fileID: 114569173449597240}
   m_Layer: 8
   m_Name: Veronica_CC
   m_TagString: Untagged
@@ -43,7 +43,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1789292116525934}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -2.5, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -85,14 +85,14 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.96, y: 0.96}
+    oldSize: {x: 96, y: 96}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.02, y: 0.02}
+  m_Size: {x: 10, y: 10}
   m_EdgeRadius: 0
 --- !u!82 &82062899887727898
 AudioSource:
@@ -202,9 +202,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21ff26f6d4da1344380ff61c8710fc75, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHitPoint: 10
-  speed: 5
   playerSlot: 0
+  maxHitPoint: 10
+  _speed: 5
   skill: {fileID: 0}
 --- !u!114 &114543301112965642
 MonoBehaviour:
@@ -231,15 +231,27 @@ MonoBehaviour:
     gage:
       maxValue: 0
       value: 0
-      barType: 0
+      barType: 1
       effectType: 0
       countType: 0
     chargeTime: 2
     bulletMaxNum: 0
     reloadTime: 0
-  keyCode: 120
-  bulletNum: 0
+  buttonCode: 1
   chargeBeginTime: 0
+  lastReloadTime: 0
+  bulletNum: 0
+--- !u!114 &114569173449597240
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1789292116525934}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0476998b38c8a5d4ca3ce195fd361345, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114679377063774258
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -271,20 +283,10 @@ MonoBehaviour:
     chargeTime: 0
     bulletMaxNum: 0
     reloadTime: 0
-  keyCode: 122
-  bulletNum: 0
+  buttonCode: 0
   chargeBeginTime: 0
---- !u!114 &114682147385227150
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1789292116525934}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ff63c36de3b522240a06e60965005537, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  lastReloadTime: 0
+  bulletNum: 0
 --- !u!114 &114962089204125980
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -327,7 +329,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 379377875
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: f0966411e92d6604ea848058fd30d75d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
