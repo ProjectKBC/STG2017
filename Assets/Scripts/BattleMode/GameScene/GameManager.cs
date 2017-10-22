@@ -97,14 +97,9 @@ public sealed class GameManager : MonoBehaviour
     private const float FRAME_H = 20f;
 
     public static readonly Vector4 pc1Area =
-        new Vector4(LEFT - FRAME_W, TOP - FRAME_H, CENTER_X - FRAME_W, BOTTOM + FRAME_H);
+        new Vector4(LEFT + FRAME_W, TOP - FRAME_H, CENTER_X - FRAME_W, BOTTOM + FRAME_H);
     public static readonly Vector4 pc2Area =
         new Vector4(CENTER_X + FRAME_W, TOP - FRAME_H, RIGHT - FRAME_W, BOTTOM + FRAME_H);
-
-    // 
-    private const float D_MARGIN = 20;
-    public static readonly Vector4 destroyArea =
-        new Vector4(L_LEFT - D_MARGIN, L_TOP + D_MARGIN, L_RIGHT + D_MARGIN, L_BOTTOM - D_MARGIN);
 
     // 選択されたキャラクターの名前
     public static string Pc1Name { get; private set; }
@@ -148,26 +143,6 @@ public sealed class GameManager : MonoBehaviour
     }
 
     /* Area系 ------------------------------------------------------------------------- */
-    public static Vector2 GetAreaMin(PlayerSlot _playerSlot)
-    {
-        switch (_playerSlot)
-        {
-            case PlayerSlot.PC1: return new Vector2(pc1Area.x, pc1Area.w);
-            case PlayerSlot.PC2: return new Vector2(pc2Area.x, pc2Area.w);
-            default: return new Vector2(-1, -1);
-        }
-    }
-
-    public static Vector2 GetAreaMax(PlayerSlot _playerSlot)
-    {
-        switch (_playerSlot)
-        {
-            case PlayerSlot.PC1: return new Vector2(pc1Area.z, pc1Area.y);
-            case PlayerSlot.PC2: return new Vector2(pc2Area.z, pc2Area.y);
-            default: return new Vector2(-1, -1);
-        }
-    }
-
     public static float GetAreaPoint(PlayerSlot _playerSlot, V4Enum _v4)
     {
         switch (_v4)
@@ -205,7 +180,26 @@ public sealed class GameManager : MonoBehaviour
                 break;
         }
 
-        return -1;
+        return 0;
+    }
+
+    public static Vector2 GetAreaMin(PlayerSlot _playerSlot)
+    {
+        return new Vector4(GetAreaPoint(_playerSlot, V4Enum.x), GetAreaPoint(_playerSlot, V4Enum.w));
+    }
+
+    public static Vector2 GetAreaMax(PlayerSlot _playerSlot)
+    {
+        return new Vector4(GetAreaPoint(_playerSlot, V4Enum.z), GetAreaPoint(_playerSlot, V4Enum.y));
+    }
+
+    public static bool OutOfArea(Vector2 _position, PlayerSlot _playerSlot)
+    {
+        Vector2 min = GetAreaMin(_playerSlot);
+        Vector2 max = GetAreaMax(_playerSlot);
+        Vector2 margin = new Vector2(50, 50);
+        return (_position.x < min.x - margin.x || _position.x > max.x + margin.x ||
+                _position.y < min.y - margin.y || _position.y > max.y + margin.y);
     }
 
     public static void SetArea(GameObject _go, PlayerSlot _playerSlot)

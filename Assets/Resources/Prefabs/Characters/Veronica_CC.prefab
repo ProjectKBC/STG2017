@@ -219,24 +219,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bullet: {fileID: 114254312219786380, guid: 4e7fd2cc1cfd48f4b9eb10dabda949ba, type: 2}
   param:
-    name: "\u30CE\u30D6\u30EC\u30B9CC"
+    name: "\u30CE\u30D6\u30EC\u30B9"
     shotSound: {fileID: 8300000, guid: 7859a29f2a04c764d9f84132b39eed1b, type: 3}
-    shotDelay: 1
+    shotDelay: 0
     lifeTime: 1
-    speed: 1
-    power: 3
-    isPenetrate: 0
+    speed: 3
+    power: 10
+    isPenetrate: 1
     shotMode: 1
     initialPosition: {x: 0, y: 0, z: 0}
     gage:
       maxValue: 0
       value: 0
-      barType: 1
-      effectType: 0
+      barType: 2
+      effectType: 1
       countType: 0
     chargeTime: 2
-    bulletMaxNum: 0
-    reloadTime: 0
+    bulletMaxNum: 1
+    reloadTime: 10
   buttonCode: 1
   chargeBeginTime: 0
   lastReloadTime: 0
@@ -265,24 +265,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bullet: {fileID: 114396921439157842, guid: 7d8d10a3874e2e846ba749cb6e72652e, type: 2}
   param:
-    name: "\u30A2\u30D7\u30C1\u30C6\u30E5\u30FC\u30C9CC"
+    name: "\u30A2\u30D7\u30C1\u30C6\u30E5\u30FC\u30C9"
     shotSound: {fileID: 8300000, guid: 7859a29f2a04c764d9f84132b39eed1b, type: 3}
     shotDelay: 1
     lifeTime: 1
-    speed: 5
-    power: 1
-    isPenetrate: 0
-    shotMode: 0
-    initialPosition: {x: 0, y: 0, z: 0}
+    speed: 0
+    power: 3
+    isPenetrate: 1
+    shotMode: 2
+    initialPosition: {x: 0, y: 300, z: 0}
     gage:
       maxValue: 0
       value: 0
-      barType: 0
+      barType: 1
       effectType: 0
       countType: 0
     chargeTime: 0
-    bulletMaxNum: 0
-    reloadTime: 0
+    bulletMaxNum: 1
+    reloadTime: 1
   buttonCode: 0
   chargeBeginTime: 0
   lastReloadTime: 0

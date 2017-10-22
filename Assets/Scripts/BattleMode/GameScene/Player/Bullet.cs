@@ -61,13 +61,15 @@ public abstract class Bullet : MonoBehaviour
     {
         Move();
 
+        foreach (Transform x in GetComponentInChildren<Transform>())
+        {
+            if (GameManager.OutOfArea(x.position, player.playerSlot))
+            {
+                Destroy(x.gameObject);
+            }
+        }
         // 子要素（弾）がなくなったら削除
         if (transform.childCount == 0)
-        {
-            Destroy(this.gameObject);
-        }
-
-        if (transform.position.y > GameManager.destroyArea.y)
         {
             Destroy(this.gameObject);
         }

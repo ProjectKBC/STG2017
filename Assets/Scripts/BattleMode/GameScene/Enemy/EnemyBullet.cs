@@ -45,19 +45,19 @@ public abstract class EnemyBullet : MonoBehaviour
 
     protected void Update()
     {
+        foreach (Transform x in GetComponentInChildren<Transform>())
+        {
+            if (GameManager.OutOfArea(x.position, enemy.playerSlot))
+            {
+                Destroy(x.gameObject);
+            }
+        }
+        
         // 子要素（弾）がすべてなくなったら削除
         if (transform.childCount == 0)
         {
             Destroy(this.gameObject);
         }
-
-        // デストロイですの
-        if (transform.position.y < GameManager.destroyArea.w)
-        {
-            Destroy(this.gameObject);
-        }
-
-        // 
     }
 
     // 初期設定関数
