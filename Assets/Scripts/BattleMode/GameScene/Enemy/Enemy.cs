@@ -105,16 +105,14 @@ public abstract class Enemy : MonoBehaviour
 
                 // 円状に移動
 		case MovePattern.Circle:
-<<<<<<< HEAD
 			direction = new Vector2(yAxis * Mathf.Cos(Time.time * _speed) * radius, xAxis * Mathf.Sin(Time.time * _speed) * radius).normalized;
 			pos = transform.position;
             pos += direction * Speed * Time.deltaTime;
 
 			transform.position = pos;
-=======
+            
 			direction = new Vector2(yAxis * Mathf.Cos(Time.time * _speed), xAxis * Mathf.Sin(Time.time * _speed)).normalized;
 			pos += direction * Speed * Time.deltaTime;
->>>>>>> b9f41b390a17475d1a2e7d912b9c9d80dc20ad7f
 			break;
 
 		// プレイヤーを追尾
