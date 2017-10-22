@@ -90,6 +90,7 @@ public abstract class Bullet : MonoBehaviour
         {
             childTF.gameObject.layer = LayerName.BulletPlayer;
         }
+        GameManager.SetArea(obj.gameObject, obj.player.playerSlot);
         return obj;
     }
 

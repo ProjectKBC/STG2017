@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public sealed class PlayerManager : MonoBehaviour
 {
     // キャラクターのprefabを格納する連想配列
-    private Dictionary<string, GameObject> CharacterPrefabs = new Dictionary<string, GameObject>();
+    private static Dictionary<string, GameObject> CharacterPrefabs = new Dictionary<string, GameObject>();
     public static Starter starter = new Starter();
 
     private static PlayerManager inst;
@@ -26,10 +26,8 @@ public sealed class PlayerManager : MonoBehaviour
         }
     }
 
-    private IEnumerator Start()
+    private void Start()
     {
-        yield return starter.StayStarted(GameStarter.starter);
-
         Object[] tmp = Resources.LoadAll("Prefabs/Characters");
 
         for (int i = 0; i < tmp.Length; ++i)
@@ -51,10 +49,10 @@ public sealed class PlayerManager : MonoBehaviour
         }
 
         starter.started = true;
-        starter.Log(this, 1);
+        starter.Log(this, 0);
     }
     
-    public GameObject GetCharacterPrefab(string _name)
+    public static GameObject GetCharacterPrefab(string _name)
     {
         if (CharacterPrefabs.ContainsKey(_name) == false) { return null; }
 

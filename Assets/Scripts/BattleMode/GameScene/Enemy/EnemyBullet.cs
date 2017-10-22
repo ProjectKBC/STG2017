@@ -81,8 +81,7 @@ public abstract class EnemyBullet : MonoBehaviour
         {
             childTF.gameObject.layer = LayerName.BulletEnemy;
         }
-        GameManager.SetArea(obj.gameObject, PlayerSlot.PC1);
-        //obj.gameObject.transform.parent = GameObject.Find(CanvasName.PC1AREA).transform;
+        GameManager.SetArea(obj.gameObject, obj.enemy.playerSlot);
         return obj;
     }
 }

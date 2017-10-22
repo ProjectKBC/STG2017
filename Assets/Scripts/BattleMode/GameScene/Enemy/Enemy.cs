@@ -79,7 +79,7 @@ public abstract class Enemy : MonoBehaviour
         if (GameManager.readier.started == false) { return; }
 
         Move();
-        NoaConsole.Log(Speed, PlayerSlot.PC2);
+        //NoaConsole.Log(Speed, PlayerSlot.PC2);
     }
 
     void Turn()     {         if (xTurn) xAxisReverse = !xAxisReverse;         if (yTurn) yAxisReverse = !yAxisReverse;         if (-920 < pos.x && pos.x <= -830) pos.x = -829;         else if (-130 <= pos.x && pos.x < 0) pos.x = -131;         else if (0 < pos.x && pos.x <= 130) pos.x = 131;         else if (830 <= pos.x && pos.x < 920) pos.x = 829;         transform.position = pos;         CancelInvoke();     }

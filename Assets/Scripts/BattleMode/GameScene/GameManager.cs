@@ -97,7 +97,7 @@ public sealed class GameManager : MonoBehaviour
     private const float FRAME_H = 20f;
 
     public static readonly Vector4 pc1Area =
-        new Vector4(L_LEFT, L_TOP, L_RIGHT, L_BOTTOM);
+        new Vector4(LEFT - FRAME_W, TOP - FRAME_H, CENTER_X - FRAME_W, BOTTOM + FRAME_H);
     public static readonly Vector4 pc2Area =
         new Vector4(CENTER_X + FRAME_W, TOP - FRAME_H, RIGHT - FRAME_W, BOTTOM + FRAME_H);
 
@@ -239,28 +239,30 @@ public sealed class GameManager : MonoBehaviour
     {
         Pc1GameObject = Player.Instantiate
         (
-            PlayerManager.Inst.GetCharacterPrefab(_pc1Name),
-            new Vector3(L_CENTER_X, L_CENTER_Y),
+            PlayerManager.GetCharacterPrefab(_pc1Name),
+            new Vector3(LEFT / 2, BOTTOM / 2),
             new Quaternion()
         ) as GameObject;
 
-        Pc1GameObject.name = PlayerManager.Inst.GetCharacterPrefab(_pc1Name).name;
+        Pc1GameObject.name = PlayerManager.GetCharacterPrefab(_pc1Name).name;
         Pc1Player = Pc1GameObject.GetComponent<Player>();
         Pc1Player.playerSlot = PlayerSlot.PC1;
+        SetArea(Pc1GameObject, Pc1Player.playerSlot);
 
         Debug.Log("created " + Pc1GameObject);
 
 
         Pc2GameObject = Player.Instantiate
         (
-            PlayerManager.Inst.GetCharacterPrefab(_pc2Name),
-            new Vector3(L_CENTER_X, L_CENTER_Y),
+            PlayerManager.GetCharacterPrefab(_pc2Name),
+            new Vector3(RIGHT / 2, BOTTOM / 2),
             new Quaternion()
         ) as GameObject;
 
-        Pc2GameObject.name = PlayerManager.Inst.GetCharacterPrefab(_pc2Name).name;
+        Pc2GameObject.name = PlayerManager.GetCharacterPrefab(_pc2Name).name;
         Pc2Player = Pc2GameObject.GetComponent<Player>();
         Pc2Player.playerSlot = PlayerSlot.PC2;
+        SetArea(Pc2GameObject, Pc2Player.playerSlot);
 
         Debug.Log("created " + Pc2GameObject);
     }

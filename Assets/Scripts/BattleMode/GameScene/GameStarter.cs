@@ -23,6 +23,6 @@ public class GameStarter : MonoBehaviour
         GameManager.SetPCName(PC1Name, PlayerSlot.PC1);
         GameManager.SetPCName(PC2Name, PlayerSlot.PC2);
         starter.started = true;
-        starter.Log(this, 0);
+        starter.Log(this, 1);
 	}
 }

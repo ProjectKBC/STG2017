@@ -447,7 +447,7 @@ public sealed class PlayerUIManager : MonoBehaviour
                 case "LeftGageCanvas":
                     target = child.gameObject.GetComponent<Canvas>();
 
-                    if (_c.isBarTypeLeft == false) { Destroy(target.gameObject); Debug.Log("left"); break; }
+                    if (_c.isBarTypeLeft == false) { Destroy(target.gameObject); break; }
 
                     foreach (Transform c_child in target.transform)
                     {
@@ -573,7 +573,7 @@ public sealed class PlayerUIManager : MonoBehaviour
                                 rt.localScale       = new Vector3(1, 1, 1);
 
                                 t = c_child.gameObject.GetComponent<Text>();
-                                t.text                 = _c.player.name; Debug.Log("4 " + t.text);
+                                t.text                 = _c.player.name;
                                 t.font                 = Resources.GetBuiltinResource(typeof(Font), "Arial.ttf") as Font;
                                 t.fontStyle            = FontStyle.Normal;
                                 t.fontSize             = 18;

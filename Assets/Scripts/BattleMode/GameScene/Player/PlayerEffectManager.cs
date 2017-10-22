@@ -44,10 +44,6 @@ public class PlayerEffectManager : MonoBehaviour
                     break;
 
                 case ShotMode.ChargeShot:
-                    if (player.state == key + "(KeyUp)")
-                    {
-                        Stop(EffectType.ChargeEffect); break;
-                    }
                     if (player.state == key)
                     {
                         foreach (ParticleSystem x in chargeEffect)
@@ -55,6 +51,10 @@ public class PlayerEffectManager : MonoBehaviour
                             if (x.isStopped == false) { goto BREAK; }
                         }
                         Play(EffectType.ChargeEffect);
+                    }
+                    else
+                    {
+                        Stop(EffectType.ChargeEffect); break;
                     }
                     BREAK: ;
                     break;
