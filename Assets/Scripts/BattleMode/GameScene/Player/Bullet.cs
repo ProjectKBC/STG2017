@@ -67,7 +67,7 @@ public abstract class Bullet : MonoBehaviour
             Destroy(this.gameObject);
         }
 
-        if (transform.position.y > GameManager.Inst.destroyArea.y)
+        if (transform.position.y > GameManager.destroyArea.y)
         {
             Destroy(this.gameObject);
         }

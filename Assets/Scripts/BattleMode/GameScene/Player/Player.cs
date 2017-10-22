@@ -15,7 +15,6 @@ public abstract class Player : MonoBehaviour
 
     public float maxHitPoint;
 
-
     [SerializeField] public float _speed;
     public float Speed
     {
@@ -197,8 +196,8 @@ public abstract class Player : MonoBehaviour
 
         Vector2 direction = new Vector2(x, y).normalized;
 
-        Vector2 min = GameManager.Inst.GetAreaMin(playerSlot);
-        Vector2 max = GameManager.Inst.GetAreaMax(playerSlot);
+        Vector2 min = GameManager.GetAreaMin(playerSlot);
+        Vector2 max = GameManager.GetAreaMax(playerSlot);
         
         Vector2 pos = transform.position;
 
@@ -257,6 +256,7 @@ public abstract class Player : MonoBehaviour
     {
         Player obj = Instantiate(_player, _position, _rotation) as Player;
         obj.playerSlot = _slot;
+        GameManager.SetArea(obj.gameObject, obj.playerSlot);
         return obj;
     }
 }

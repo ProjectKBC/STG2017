@@ -11,7 +11,7 @@ public sealed class PlayerManager : MonoBehaviour
     public static Starter starter = new Starter();
 
     private static PlayerManager inst;
-    private PlayerManager() { Debug.Log("player_manager created"); }
+    private PlayerManager() { }
     public static PlayerManager Inst
     {
         get
@@ -26,8 +26,10 @@ public sealed class PlayerManager : MonoBehaviour
         }
     }
 
-    private void Start()
+    private IEnumerator Start()
     {
+        yield return starter.StayStarted(GameStarter.starter);
+
         Object[] tmp = Resources.LoadAll("Prefabs/Characters");
 
         for (int i = 0; i < tmp.Length; ++i)

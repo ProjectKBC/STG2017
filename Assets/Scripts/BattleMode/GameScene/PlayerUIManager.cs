@@ -71,10 +71,7 @@ public class PCCanvas
 public sealed class PlayerUIManager : MonoBehaviour
 {
     private static PlayerUIManager inst;
-    private PlayerUIManager()
-    {
-        Debug.Log("PlayerUIManager created");
-    }
+    private PlayerUIManager() { }
     public static PlayerUIManager Inst
     {
         get
@@ -102,8 +99,8 @@ public sealed class PlayerUIManager : MonoBehaviour
 
         yield return starter.StayStarted(GameManager.starter);
 
-        pc1Canvas.player = GameManager.Inst.Pc1Player; Debug.Log("puim: " + pc1Canvas.player);
-        pc2Canvas.player = GameManager.Inst.Pc2Player; Debug.Log("puim: " + pc2Canvas.player);
+        pc1Canvas.player = GameManager.Pc1Player; Debug.Log("puim: " + pc1Canvas.player);
+        pc2Canvas.player = GameManager.Pc2Player; Debug.Log("puim: " + pc2Canvas.player);
 
         yield return starter.StayStarted(pc1Canvas.player.starter);
         yield return starter.StayStarted(pc2Canvas.player.starter);
@@ -273,11 +270,11 @@ public sealed class PlayerUIManager : MonoBehaviour
     private void CreateUI()
     {
         pc1Canvas.mainCanvas = 
-            Instantiate(Resources.Load("Prefabs/UI/PC1Canvas"), GameObject.Find("Canvas").transform) as GameObject;
+            Instantiate(Resources.Load(ResourcesPath.Ui("PC1Canvas")), GameObject.Find(CanvasName.UI).transform) as GameObject;
         pc1Canvas.mainCanvas.AddComponent<PlayerUI>().playerSlot = PlayerSlot.PC1;
 
         pc2Canvas.mainCanvas = 
-            Instantiate(Resources.Load("Prefabs/UI/PC2Canvas"), GameObject.Find("Canvas").transform) as GameObject;
+            Instantiate(Resources.Load(ResourcesPath.Ui("PC2Canvas")), GameObject.Find(CanvasName.UI).transform) as GameObject;
         pc2Canvas.mainCanvas.AddComponent<PlayerUI>().playerSlot = PlayerSlot.PC2;
     }
 

@@ -21,6 +21,8 @@ public abstract class Enemy : MonoBehaviour
         get { return _speed * 100; }
         set { _speed = value; }
     }
+
+    public float radius;
     public float score;
 
     public MovePattern movePattern;
@@ -63,7 +65,7 @@ public abstract class Enemy : MonoBehaviour
         yield return starter.StayStarted(GameManager.readier);
 
         while (true)
-        {                         
+        {
             Shot();
             yield return new WaitForSeconds(0.01f);
         }
@@ -74,6 +76,7 @@ public abstract class Enemy : MonoBehaviour
         if (GameManager.readier.started == false) { return; }
 
         Move();
+        NoaConsole.Log(Speed, PlayerSlot.PC2);
     }
 
     // 移動軌跡などを書き込む関数
@@ -100,17 +103,17 @@ public abstract class Enemy : MonoBehaviour
 
                 // 円状に移動
 		case MovePattern.Circle:
-			direction = new Vector2(yAxis * Mathf.Cos(Time.time * Speed), xAxis * Mathf.Sin(Time.time * Speed)).normalized;
+			direction = new Vector2(yAxis * Mathf.Cos(Time.time * _speed) * radius, xAxis * Mathf.Sin(Time.time * _speed) * radius).normalized;
 			pos = transform.position;
-			pos += direction * Speed * Time.deltaTime;
+            pos += direction * Speed * Time.deltaTime;
 
 			transform.position = pos;
 			break;
 
 		// プレイヤーを追尾
 		case MovePattern.Chase:
-			GameObject player1 = GameManager.Inst.Pc1GameObject;
-			GameObject player2 = GameManager.Inst.Pc2GameObject;
+			GameObject player1 = GameManager.Pc1GameObject;
+			GameObject player2 = GameManager.Pc2GameObject;
             
             if (transform.position.x < -1)
             {
