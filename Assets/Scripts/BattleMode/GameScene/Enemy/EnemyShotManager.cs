@@ -7,7 +7,7 @@ public abstract class EnemyShotManager : MonoBehaviour
     public EnemyBullet bullet;
     [SerializeField] public EnemyBulletParam param;
 
-    [System.NonSerialized] public bool Started = false;
+    public Starter starter = new Starter();
 
     protected Enemy enemy;
     protected AudioSource audioSource;
@@ -18,13 +18,15 @@ public abstract class EnemyShotManager : MonoBehaviour
     {
         enemy = GetComponent<Enemy>();
         audioSource = GetComponent<AudioSource>();
-        Started = true;
     }
 
     protected IEnumerator Start()
     {
         Init();
-        
+        starter.started = true;
+
+        yield return starter.StayStarted(enemy.starter);
+
         while (true)
         {
             Shot();
