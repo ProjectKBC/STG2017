@@ -1,14 +1,14 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 // シングルトン
-public sealed class PlayerManager : MonoBehaviour
+public sealed class PlayerManager : NoaBehaviour
 {
     // キャラクターのprefabを格納する連想配列
     private static Dictionary<string, GameObject> CharacterPrefabs = new Dictionary<string, GameObject>();
-    public static Starter starter = new Starter();
 
     private static PlayerManager inst;
     private PlayerManager() { }
@@ -25,10 +25,10 @@ public sealed class PlayerManager : MonoBehaviour
             return inst;
         }
     }
-
-    private void Start()
+    
+    protected override IEnumerator Start()
     {
-        Object[] tmp = Resources.LoadAll("Prefabs/Characters");
+        System.Object[] tmp = Resources.LoadAll("Prefabs/Characters");
 
         for (int i = 0; i < tmp.Length; ++i)
         {
@@ -48,8 +48,10 @@ public sealed class PlayerManager : MonoBehaviour
             CharacterPrefabs.Add(x.name, x);
         }
 
-        starter.started = true;
-        starter.Log(this, 0);
+        MyProc.started = true;
+        MyProc.Log(this, 0);
+
+        yield return NoaProcesser.StayBoss();
     }
     
     public static GameObject GetCharacterPrefab(string _name)

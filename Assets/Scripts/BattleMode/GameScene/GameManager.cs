@@ -1,56 +1,16 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+// f:Vector4用の列挙体
 public enum V4Enum { x, y, z, w }
 
-public class Starter
-{
-    public bool started = false;
-
-    public IEnumerator StayStarted()
-    {
-        while (true)
-        {
-            if (started) { break; }
-            yield return null;
-        }
-    }
-
-    public IEnumerator StayStarted(Starter _starter)
-    {
-        if (started == false)
-        {
-            while (true)
-            {
-                if (_starter.started) { break; }
-                yield return null;
-            }
-        }
-    }
-
-    public void Log(Object _this)
-    {
-        if(started) { Debug.Log(_this + " started"); }
-        else { Debug.Log(_this + " NOT started"); }
-    }
-
-    public void Log(Object _this, int _num)
-    {
-        if (started) { Debug.Log(_num + ": " + _this + " started"); }
-        else { Debug.Log(_num + ": " + _this + " NOT started"); }
-    }
-
-    public void Log(Object _this, string _str)
-    {
-        if (started) { Debug.Log(_this + _str); }
-        else { Debug.Log( _this + "NOT " + _str); }
-    }
-}
-
-// シングルトン
-public sealed class GameManager : MonoBehaviour
+// f:シングルトン
+// f:ゲーム中の座標関係やオブジェクト、スコアを管理するクラス
+// f:基本的にstatic
+public sealed class GameManager : NoaBehaviour
 {
     private static GameManager inst;
     private GameManager() {}
@@ -60,7 +20,7 @@ public sealed class GameManager : MonoBehaviour
         {
             if (inst == null)
             {
-                GameObject go = GameObject.Find("GameManager");
+                GameObject go = new GameObject("GameManager");
                 inst = go.AddComponent<GameManager>();
             }
 
@@ -68,31 +28,31 @@ public sealed class GameManager : MonoBehaviour
         }
     }
 
-    public static Starter starter = new Starter();
-    public static Starter readier = new Starter();
-
-    // 画面サイズ
+    // f:画面サイズ
     private const float WIDTH = 1920;
     private const float HEIGHT = 1080;
 
-    // World座標
-    private const float TOP = HEIGHT / 2;
-    private const float BOTTOM = -HEIGHT / 2;
-    private const float LEFT = -WIDTH / 2;
-    private const float RIGHT = WIDTH / 2;
+    // f:World座標
+    private const float TOP      = HEIGHT / 2;
+    private const float BOTTOM   = -HEIGHT / 2;
+    private const float LEFT     = -WIDTH / 2;
+    private const float RIGHT    = WIDTH / 2;
     private const float CENTER_X = 0;
     private const float CENTER_Y = 0;
 
-    // Local座標
+    public static readonly Vector4 RECT = new Vector4(LEFT, TOP, RIGHT, BOTTOM);
+
+    // f:Local座標
     private const float L_TOP      = 0;
     private const float L_BOTTOM   = -1040;
     private const float L_LEFT     = 0;
     private const float L_RIGHT    = 780;
-    public static readonly Vector4 L_RECT = new Vector4(L_LEFT, L_TOP, L_RIGHT, L_BOTTOM);
     private const float L_CENTER_X = L_BOTTOM / 2;
     private const float L_CENTER_Y = L_RIGHT / 2;
 
-    // 各プレイヤーの行動可能範囲
+    public static readonly Vector4 L_RECT = new Vector4(L_LEFT, L_TOP, L_RIGHT, L_BOTTOM);
+
+    // f:各プレイヤーの行動可能範囲
     private const float FRAME_W = 90f;
     private const float FRAME_H = 20f;
 
@@ -101,35 +61,34 @@ public sealed class GameManager : MonoBehaviour
     public static readonly Vector4 pc2Area =
         new Vector4(CENTER_X + FRAME_W, TOP - FRAME_H, RIGHT - FRAME_W, BOTTOM + FRAME_H);
 
-    // 選択されたキャラクターの名前
+    // f:選択されたキャラクターの名前
     public static string Pc1Name { get; private set; }
     public static string Pc2Name { get; private set; }
 
-    // 各プレイヤーのオブジェクトとPlayerクラス
-    public static GameObject Pc1GameObject { get; private set; }
-    public static GameObject Pc2GameObject { get; private set; }
+    // f:各プレイヤーのオブジェクトとPlayerクラス
     public static Player Pc1Player { get; private set; }
     public static Player Pc2Player { get; private set; }
 
-    // 各プレイヤーのスコア
+    // f:各プレイヤーのスコア
     public static float Pc1Score { get; private set; }
     public static float Pc2Score { get; private set; }
-
-    private IEnumerator Start()
+    
+    protected override IEnumerator Start()
     {
-        yield return starter.StayStarted(PlayerManager.starter);
+        yield return PlayerManager.Inst.MyProc.Stay();
+        yield return GameStarter.MyProc.Stay();
 
         CreatePlayer(Pc1Name, Pc2Name);
 
-        starter.started = true;
-        starter.Log(this, 2);
+        MyProc.started = true;
+        MyProc.Log(this, 2);
 
-        yield return starter.StayStarted(PlayerUIManager.starter);
-        yield return starter.StayStarted(Pc1Player.starter);
-        yield return starter.StayStarted(Pc2Player.starter);
+        yield return PlayerUIManager.Inst.MyProc.Stay();
+        yield return Pc1Player.MyProc.Stay();
+        yield return Pc2Player.MyProc.Stay();
 
-        readier.started = true;
-        readier.Log(this, "ready");
+        NoaProcesser.BossProc = MyProc;
+        Debug.Log("GameProc started!!");
     }
 
     /**/
@@ -142,7 +101,7 @@ public sealed class GameManager : MonoBehaviour
         }
     }
 
-    /* Area系 ------------------------------------------------------------------------- */
+    /* f:Area系 ------------------------------------------------------------------------- */
     public static float GetAreaPoint(PlayerSlot _playerSlot, V4Enum _v4)
     {
         switch (_v4)
@@ -204,14 +163,12 @@ public sealed class GameManager : MonoBehaviour
 
     public static void SetArea(GameObject _go, PlayerSlot _playerSlot)
     {
-        switch(_playerSlot)
-        {
-            case PlayerSlot.PC1: _go.transform.parent = GameObject.Find(CanvasName.PC1AREA).transform; break;
-            case PlayerSlot.PC2: _go.transform.parent = GameObject.Find(CanvasName.PC2AREA).transform; break;
-        }
+        _go.transform.parent = (_playerSlot == PlayerSlot.PC1)
+                ? GameObject.Find(CanvasName.PC1AREA).transform
+                : GameObject.Find(CanvasName.PC2AREA).transform;
     }
 
-    /* Score系 ------------------------------------------------------------------------- */
+    /* f:Score系 ------------------------------------------------------------------------- */
 
     public static void AddScore(float _score, PlayerSlot _ps)
     {
@@ -222,42 +179,19 @@ public sealed class GameManager : MonoBehaviour
         }
     }
     
-    /* Game系 --------------------------------------------------------------------------- */
-    public static void GameSet()
+    /* f:Game系 --------------------------------------------------------------------------- */
+    public static void GameSet(Player _loser)
     {
-
+        NoaProcesser.BossProc.ended = true;
     }
 
-    /* Player系 ------------------------------------------------------------------------- */
+    /* f:Player系 ------------------------------------------------------------------------- */
     private static void CreatePlayer(string _pc1Name, string _pc2Name)
     {
-        Pc1GameObject = Player.Instantiate
-        (
-            PlayerManager.GetCharacterPrefab(_pc1Name),
-            new Vector3(LEFT / 2, BOTTOM / 2),
-            new Quaternion()
-        ) as GameObject;
+        Pc1Player = Player.Instantiate(PlayerManager.GetCharacterPrefab(_pc1Name), PlayerSlot.PC1);
+        Debug.Log("created " + Pc1Player);
 
-        Pc1GameObject.name = PlayerManager.GetCharacterPrefab(_pc1Name).name;
-        Pc1Player = Pc1GameObject.GetComponent<Player>();
-        Pc1Player.playerSlot = PlayerSlot.PC1;
-        SetArea(Pc1GameObject, Pc1Player.playerSlot);
-
-        Debug.Log("created " + Pc1GameObject);
-
-
-        Pc2GameObject = Player.Instantiate
-        (
-            PlayerManager.GetCharacterPrefab(_pc2Name),
-            new Vector3(RIGHT / 2, BOTTOM / 2),
-            new Quaternion()
-        ) as GameObject;
-
-        Pc2GameObject.name = PlayerManager.GetCharacterPrefab(_pc2Name).name;
-        Pc2Player = Pc2GameObject.GetComponent<Player>();
-        Pc2Player.playerSlot = PlayerSlot.PC2;
-        SetArea(Pc2GameObject, Pc2Player.playerSlot);
-
-        Debug.Log("created " + Pc2GameObject);
+        Pc2Player = Player.Instantiate(PlayerManager.GetCharacterPrefab(_pc2Name), PlayerSlot.PC2);
+        Debug.Log("created " + Pc2Player);
     }
 }

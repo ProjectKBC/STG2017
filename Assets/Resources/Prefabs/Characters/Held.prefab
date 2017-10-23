@@ -239,6 +239,7 @@ MonoBehaviour:
     isPenetrate: 0
     shotMode: 2
     initialPosition: {x: 0, y: 0, z: 0}
+    initialRotation: {x: 0, y: 0, z: 0, w: 0}
     gage:
       maxValue: 0
       value: 0
@@ -246,6 +247,7 @@ MonoBehaviour:
       effectType: 0
       countType: 0
     chargeTime: 0
+    rechargeTime: 0
     bulletMaxNum: 10
     reloadTime: 5
   buttonCode: 1
@@ -286,6 +288,7 @@ MonoBehaviour:
     isPenetrate: 0
     shotMode: 0
     initialPosition: {x: 0, y: 0, z: 0}
+    initialRotation: {x: 0, y: 0, z: 0, w: 1}
     gage:
       maxValue: 0
       value: 0
@@ -293,6 +296,7 @@ MonoBehaviour:
       effectType: 0
       countType: 0
     chargeTime: 0
+    rechargeTime: 0
     bulletMaxNum: 0
     reloadTime: 0
   buttonCode: 0

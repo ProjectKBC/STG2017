@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -68,7 +69,7 @@ public class PCCanvas
     public Dictionary<string, Gage> gages = new Dictionary<string, Gage>();
 }
 
-public sealed class PlayerUIManager : MonoBehaviour
+public sealed class PlayerUIManager : NoaBehaviour
 {
     private static PlayerUIManager inst;
     private PlayerUIManager() { }
@@ -85,25 +86,25 @@ public sealed class PlayerUIManager : MonoBehaviour
             return inst;
         }
     }
-
-    public static Starter starter = new Starter();
+    
     public PCCanvas pc1Canvas = new PCCanvas();
     public PCCanvas pc2Canvas = new PCCanvas();
 
     private const float width  = 780;
     private const float height = 1020;
-
-    private IEnumerator Start()
+    
+    protected override IEnumerator Start()
     {
         CreateUI();
 
-        yield return starter.StayStarted(GameManager.starter);
+        yield return PlayerManager.Inst.MyProc.Stay();
+        yield return GameManager.Inst.MyProc.Stay();
 
         pc1Canvas.player = GameManager.Pc1Player; Debug.Log("puim: " + pc1Canvas.player);
         pc2Canvas.player = GameManager.Pc2Player; Debug.Log("puim: " + pc2Canvas.player);
 
-        yield return starter.StayStarted(pc1Canvas.player.starter);
-        yield return starter.StayStarted(pc2Canvas.player.starter);
+        yield return pc1Canvas.player.MyProc.Stay();
+        yield return pc2Canvas.player.MyProc.Stay();
 
         CheckStatus(pc1Canvas);
         CheckStatus(pc2Canvas);
@@ -111,16 +112,20 @@ public sealed class PlayerUIManager : MonoBehaviour
         SettingUI(pc1Canvas);
         SettingUI(pc2Canvas);
 
-        starter.started = true;
-        starter.Log(this, 4);
+        MyProc.started = true;
+        MyProc.Log(this, 4);
+
+        yield return NoaProcesser.StayBoss();
     }
 
-    private void Update()
+    protected override void Update()
     {
-        if(GameManager.readier.started == false) { return; }
+        if (MyProc.IsStay()) { return; }
 
         UpdateUI(pc1Canvas);
         UpdateUI(pc2Canvas);
+
+        if (NoaProcesser.IsStayBoss()) { return; }
     }
     
     private void UpdateUI(PCCanvas _c)

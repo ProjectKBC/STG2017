@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -11,7 +12,7 @@ public enum MovePattern
 }
 
 [RequireComponent(typeof(Rigidbody2D))]
-public abstract class Enemy : MonoBehaviour
+public abstract class Enemy : NoaBehaviour
 {
     public PlayerSlot playerSlot;
     public float maxHitPoint;
@@ -39,14 +40,10 @@ public abstract class Enemy : MonoBehaviour
 
     // ShotManagerを確保するリスト
     public Dictionary<string, EnemyShotManager> shotManager = new Dictionary<string, EnemyShotManager>();
-    public Starter starter = new Starter();
     protected float hitPoint;
 
     protected void Init()
     {        
-        // レイヤー分類
-        gameObject.layer = LayerName.Enemy;
-
         // ShotManagerの読み込み
         EnemyShotManager[] tmp = GetComponents<EnemyShotManager>();
         foreach (EnemyShotManager x in tmp)
@@ -58,28 +55,27 @@ public abstract class Enemy : MonoBehaviour
         hitPoint = maxHitPoint;
     }
 
-    protected IEnumerator Start ()
+    protected override IEnumerator Start ()
     {
-        yield return starter.StayStarted(PlayerUIManager.starter);
         Init();
-        starter.started = true;
-        starter.Log(this, 5);
+        MyProc.started = true;
 
-        yield return starter.StayStarted(GameManager.readier);
+        yield return NoaProcesser.StayBoss();
 
         while (true)
         {
+            yield return NoaProcesser.StayBoss();
+
             Shot();
             yield return new WaitForSeconds(0.01f);
         }
 	}
 
-    protected void Update ()
+    protected override void Update ()
     {
-        if (GameManager.readier.started == false) { return; }
+        if (MyProc.IsStay() || NoaProcesser.IsStayBoss()) { return; }
 
         Move();
-        //NoaConsole.Log(Speed, PlayerSlot.PC2);
     }
 
     void Turn()     {         if (xTurn) xAxisReverse = !xAxisReverse;         if (yTurn) yAxisReverse = !yAxisReverse;         if (-920 < pos.x && pos.x <= -830) pos.x = -829;         else if (-130 <= pos.x && pos.x < 0) pos.x = -131;         else if (0 < pos.x && pos.x <= 130) pos.x = 131;         else if (830 <= pos.x && pos.x < 920) pos.x = 829;         transform.position = pos;         CancelInvoke();     }
@@ -117,8 +113,8 @@ public abstract class Enemy : MonoBehaviour
 
 		// プレイヤーを追尾
 		case MovePattern.Chase:
-			GameObject player1 = GameManager.Pc1GameObject;
-			GameObject player2 = GameManager.Pc2GameObject;
+			Player player1 = GameManager.Pc1Player;
+            Player player2 = GameManager.Pc2Player;
             
             if (transform.position.x < -1)
             {
@@ -140,6 +136,8 @@ public abstract class Enemy : MonoBehaviour
     // ショットする条件やショットそのものの処理
     public virtual void Shot()
     {
+        if (NoaProcesser.BossProc.IsStay()) { return; }
+
         foreach (string key in shotManager.Keys)
         {
             shotManager[key].Shot();
