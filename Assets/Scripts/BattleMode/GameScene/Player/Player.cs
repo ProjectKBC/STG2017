@@ -48,7 +48,7 @@ public abstract class Player : NoaBehaviour
         hitPoint = maxHitPoint;
     }
 
-    protected override IEnumerator Start ()
+    protected override IEnumerator Start()
     {
         yield return PlayerManager.Inst.MyProc.Stay();
 
@@ -89,7 +89,7 @@ public abstract class Player : NoaBehaviour
         }
     }
 	
-	protected override void Update ()
+	protected void Update ()
     {
         if (MyProc.IsStay() || NoaProcesser.IsStayBoss()) { return; }
 

@@ -34,10 +34,10 @@ public abstract class EnemyBullet : NoaBehaviour
 {
     [System.NonSerialized] public EnemyBulletParam param;
     protected Enemy enemy;
-    
+
     protected override IEnumerator Start()
     {
-        yield return enemy.MyProc;
+        yield return enemy.MyProc.Stay();
 
         Init();
         MyProc.started = true;
@@ -48,7 +48,7 @@ public abstract class EnemyBullet : NoaBehaviour
         Destroy(gameObject, param.lifeTime);
     }
 
-    protected override void Update()
+    protected void Update()
     {
         if (MyProc.IsStay() || NoaProcesser.IsStayBoss()) { return; }
 

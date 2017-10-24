@@ -35,7 +35,6 @@ public abstract class ShotManager : NoaBehaviour
 
     protected override IEnumerator Start()
     {
-
         Init();
         MyProc.started = true;
 

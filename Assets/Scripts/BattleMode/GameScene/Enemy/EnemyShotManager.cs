@@ -18,7 +18,7 @@ public abstract class EnemyShotManager : NoaBehaviour
         enemy = GetComponent<Enemy>();
         audioSource = GetComponent<AudioSource>();
     }
-    
+
     protected override IEnumerator Start()
     {
 

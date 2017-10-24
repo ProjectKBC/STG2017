@@ -38,7 +38,7 @@ public class PlayerEffectManager : NoaBehaviour
         yield return NoaProcesser.StayBoss();
     }
 
-    protected override void Update ()
+    protected void Update ()
     {
         if (MyProc.IsStay() || NoaProcesser.IsStayBoss()) { return; }
 

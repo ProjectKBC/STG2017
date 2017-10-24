@@ -14,7 +14,7 @@ public abstract class Skill : NoaBehaviour
         MyProc.started = true;
     }
 
-    protected override void Update()
+    protected void Update()
     {
         if (MyProc.IsStay() || NoaProcesser.IsStayBoss()) { return; }
     }

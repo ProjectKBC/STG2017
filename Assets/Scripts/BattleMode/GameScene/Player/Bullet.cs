@@ -50,7 +50,7 @@ public abstract class Bullet : NoaBehaviour
 {
     [System.NonSerialized] public BulletParam param;
     protected Player player;
-    
+
     protected override IEnumerator Start()
     {
         yield return player.MyProc.Stay();
@@ -64,7 +64,7 @@ public abstract class Bullet : NoaBehaviour
         Destroy(gameObject, param.lifeTime);
     }
 
-    protected override void Update()
+    protected void Update()
     {
         if (MyProc.IsStay() || NoaProcesser.IsStayBoss()) { return; }
 

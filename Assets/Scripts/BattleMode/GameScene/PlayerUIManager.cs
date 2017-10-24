@@ -92,7 +92,7 @@ public sealed class PlayerUIManager : NoaBehaviour
 
     private const float width  = 780;
     private const float height = 1020;
-    
+
     protected override IEnumerator Start()
     {
         CreateUI();
@@ -118,7 +118,7 @@ public sealed class PlayerUIManager : NoaBehaviour
         yield return NoaProcesser.StayBoss();
     }
 
-    protected override void Update()
+    private void Update()
     {
         if (MyProc.IsStay()) { return; }
 

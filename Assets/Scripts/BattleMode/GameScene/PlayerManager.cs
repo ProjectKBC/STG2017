@@ -25,7 +25,7 @@ public sealed class PlayerManager : NoaBehaviour
             return inst;
         }
     }
-    
+
     protected override IEnumerator Start()
     {
         System.Object[] tmp = Resources.LoadAll("Prefabs/Characters");

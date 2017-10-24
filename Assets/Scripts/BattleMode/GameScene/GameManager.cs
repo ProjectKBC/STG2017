@@ -72,7 +72,7 @@ public sealed class GameManager : NoaBehaviour
     // f:各プレイヤーのスコア
     public static float Pc1Score { get; private set; }
     public static float Pc2Score { get; private set; }
-    
+
     protected override IEnumerator Start()
     {
         yield return PlayerManager.Inst.MyProc.Stay();
@@ -87,7 +87,7 @@ public sealed class GameManager : NoaBehaviour
         yield return Pc1Player.MyProc.Stay();
         yield return Pc2Player.MyProc.Stay();
 
-        NoaProcesser.BossProc = MyProc;
+        NoaProcesser.BossProc.started = true;
         Debug.Log("GameProc started!!");
     }
 
@@ -183,6 +183,9 @@ public sealed class GameManager : NoaBehaviour
     public static void GameSet(Player _loser)
     {
         NoaProcesser.BossProc.ended = true;
+
+        GameObject.Find(CanvasName.UI + "/PC1Shutter").GetComponent<Image>().color = new Color(255 / 255f, 0 / 255f, 0 / 255f, 100 / 255f);
+        GameObject.Find(CanvasName.UI + "/PC2Shutter").GetComponent<Image>().color = new Color(255 / 255f, 0 / 255f, 0 / 255f, 100 / 255f);
     }
 
     /* f:Player系 ------------------------------------------------------------------------- */

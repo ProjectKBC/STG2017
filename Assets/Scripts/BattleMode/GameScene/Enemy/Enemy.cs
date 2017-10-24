@@ -55,7 +55,7 @@ public abstract class Enemy : NoaBehaviour
         hitPoint = maxHitPoint;
     }
 
-    protected override IEnumerator Start ()
+    protected override IEnumerator Start()
     {
         Init();
         MyProc.started = true;
@@ -64,14 +64,14 @@ public abstract class Enemy : NoaBehaviour
 
         while (true)
         {
-            yield return NoaProcesser.StayBoss();
+            NoaProcesser.StayBoss();
 
             Shot();
             yield return new WaitForSeconds(0.01f);
         }
 	}
 
-    protected override void Update ()
+    protected void Update ()
     {
         if (MyProc.IsStay() || NoaProcesser.IsStayBoss()) { return; }
 

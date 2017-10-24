@@ -19,7 +19,7 @@ public class BackGround : NoaBehaviour
         yield return NoaProcesser.StayBoss();
     }
 
-    protected override void Update()
+    private void Update()
     {
         if (MyProc.IsStay() || NoaProcesser.IsStayBoss()) { return; }
 

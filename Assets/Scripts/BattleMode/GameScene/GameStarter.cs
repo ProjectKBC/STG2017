@@ -19,7 +19,7 @@ public class GameStarter : NoaBehaviour
         PlayerUIManager puim = PlayerUIManager.Inst;
     }
 
-    protected override IEnumerator Start ()
+    protected override IEnumerator Start()
     {
         Init();
 

@@ -11,7 +11,7 @@ public class NoaProcesser
 
     public static IEnumerator StayBoss()
     {
-        if (!BossProc.started || BossProc.pausing || BossProc.ended) { yield return null; }
+        yield return new WaitWhile( () => IsStayBoss());
     }
     public static bool IsStayBoss()
     {
@@ -20,7 +20,7 @@ public class NoaProcesser
 
     public IEnumerator Stay()
     {
-        if (!started || pausing || ended) { yield return null; }
+        yield return new WaitWhile(() => IsStay());
     }
     public bool IsStay()
     {
@@ -54,6 +54,4 @@ public abstract class NoaBehaviour : MonoBehaviour
     public NoaProcesser MyProc = new NoaProcesser();
 
     protected abstract IEnumerator Start();
-
-    protected virtual void Update() { }
 }
