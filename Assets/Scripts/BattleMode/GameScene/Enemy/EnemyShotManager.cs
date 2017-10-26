@@ -30,7 +30,7 @@ public abstract class EnemyShotManager : NoaBehaviour
 
         while (true)
         {
-            yield return NoaProcesser.StayBoss();
+            if (NoaProcesser.IsStayBoss()) { yield return null; }
             
             yield return new WaitForSeconds(0.01f);
         }

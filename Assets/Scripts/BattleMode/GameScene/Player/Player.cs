@@ -60,7 +60,7 @@ public abstract class Player : NoaBehaviour
 
         while (true)
         {
-            yield return NoaProcesser.StayBoss();
+            if (NoaProcesser.IsStayBoss()) { yield return null; }
 
             InputManager();
             if(state.Contains("(KeyUp)")) Debug.Log("p:"+Time.time);
