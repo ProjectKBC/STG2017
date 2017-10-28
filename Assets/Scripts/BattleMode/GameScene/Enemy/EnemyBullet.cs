@@ -3,15 +3,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum ShotMovepattern
+{
+    Straight,
+    EveryDirection,
+}
+
 [System.Serializable]
 public class EnemyBulletParam
 {
-    public string name;         // ショットの名前
+    public ShotMovepattern shotMovepattern;
     public AudioClip shotSound; // ショット音
 
     // 共通パラメータ
     public float shotDelay;         // ショット間隔
     public float lifeTime;          // 生存時間
+    public float angleInterval;     // 弾幕の角度の間隔
     
     // 弾丸速度
     [SerializeField]
@@ -34,6 +41,7 @@ public abstract class EnemyBullet : NoaBehaviour
 {
     [System.NonSerialized] public EnemyBulletParam param;
     protected Enemy enemy;
+    Vector2 pos = new Vector2();
 
     protected override IEnumerator Start()
     {
@@ -76,7 +84,26 @@ public abstract class EnemyBullet : NoaBehaviour
     public virtual void Init() { }
 
     // f: 
-    public virtual void Move() { }
+    public virtual void Move()
+    {
+        Vector2 direction;
+        pos = transform.position;
+        switch(param.shotMovepattern)
+        {
+            // 直進
+            case ShotMovepattern.Straight:
+                direction = new Vector2(0, -1).normalized;
+                pos += direction * param.Speed * Time.deltaTime;
+                break;
+
+                // 全方位
+            case ShotMovepattern.EveryDirection:
+                direction = new Vector2(transform.rotation.x, transform.rotation.y).normalized;
+                pos += direction * param.Speed * Time.deltaTime;
+                break;
+        }
+        transform.position = pos;
+    }
 
     // f:弾生成時にパラメータを渡せるInstantiate関数
     public static EnemyBullet Instantiate(EnemyBullet _bullet, EnemyBulletParam _param, Transform _transform)

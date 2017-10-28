@@ -38,9 +38,20 @@ public abstract class EnemyShotManager : NoaBehaviour
         
     public virtual void Shot()
     {
+        
         if (Time.time - lastShotTime < param.shotDelay) { return; }
-
-        InstBullet();
+        switch(param.shotMovepattern)
+        {
+            case ShotMovepattern.EveryDirection:
+                for(float rad = 0; rad < 360; rad += param.angleInterval)
+                {
+                    InstBullet(rad);
+                }
+                break;
+            default:
+                InstBullet();
+                break;
+        }
      }
 
     protected void InstBullet()
@@ -48,5 +59,13 @@ public abstract class EnemyShotManager : NoaBehaviour
         lastShotTime = Time.time;
         if (param.shotSound != null) { audioSource.PlayOneShot(param.shotSound); }
         EnemyBullet b = EnemyBullet.Instantiate(bullet, param, transform);
+    }
+
+    protected void InstBullet(float _rad)
+    {
+        lastShotTime = Time.time;
+        if (param.shotSound != null) { audioSource.PlayOneShot(param.shotSound); }
+        EnemyBullet b = EnemyBullet.Instantiate(bullet, param, transform);
+        b.transform.Rotate(new Vector2(Mathf.Cos(Mathf.PI / 180 * _rad), Mathf.Sin(Mathf.PI / 180 * _rad)));
     }
 }
