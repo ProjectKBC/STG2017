@@ -6,13 +6,9 @@ using UnityEngine;
 public class EnemyWaveManager : MonoBehaviour
 {
     private static EnemyWaveManager inst;
-<<<<<<< HEAD
 
     private EnemyWaveManager() { Debug.Log("EnemyWaveManager created"); }
 
-=======
-    private EnemyWaveManager() { Debug.Log("EnemyWaveManager created"); }
->>>>>>> test
     public static EnemyWaveManager Inst
     {
         get
@@ -26,7 +22,6 @@ public class EnemyWaveManager : MonoBehaviour
             return inst;
         }
     }
-<<<<<<< HEAD
 
 	public GameObject[] waves;
 	private int currentWave;
@@ -51,6 +46,4 @@ public class EnemyWaveManager : MonoBehaviour
 			}
 		}
 	}
-=======
->>>>>>> test
 }
