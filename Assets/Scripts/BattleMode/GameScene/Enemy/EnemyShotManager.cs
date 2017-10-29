@@ -12,7 +12,6 @@ public abstract class EnemyShotManager : NoaBehaviour
     protected AudioSource audioSource;
 
     protected float lastShotTime = 0;
-    PlayerSlot playerSlot;
 
     public virtual void Init()
     {
@@ -68,8 +67,23 @@ public abstract class EnemyShotManager : NoaBehaviour
 
                 // 自機狙い
             case ShotMovePattern.PlayerAim:
-                float vx = GameManager.Pc1Player.transform.position.x - transform.position.x;
-                float vy = GameManager.Pc1Player.transform.position.y - transform.position.y;
+                float vx = 0;
+                float vy = 0;
+                Player player1 = GameManager.Pc1Player;
+                Player player2 = GameManager.Pc2Player;
+
+                switch(enemy.playerSlot)
+                {
+                    case PlayerSlot.PC1:
+                        vx = player1.transform.position.x - transform.position.x;
+                        vy = player1.transform.position.y - transform.position.y;
+                        break;
+
+                    case PlayerSlot.PC2:
+                        vx = player2.transform.position.x - transform.position.x;
+                        vy = player2.transform.position.y - transform.position.y;
+                        break;
+                }
                 InstBullet(vx, vy);
                 break;
         }

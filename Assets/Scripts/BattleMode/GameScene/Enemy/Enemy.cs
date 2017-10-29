@@ -123,14 +123,16 @@ public abstract class Enemy : NoaBehaviour
     		case MovePattern.Chase:
     			Player player1 = GameManager.Pc1Player;
                 Player player2 = GameManager.Pc2Player;
-                
-                if (transform.position.x < -1)
+
+                switch(playerSlot)
                 {
-                    pos = Vector2.Lerp(transform.position, player1.transform.position, Speed * Time.deltaTime);
-                }
-                else if (transform.position.x > 1)
-                {
-                    pos = Vector2.Lerp(transform.position, player2.transform.position, Speed * Time.deltaTime);
+                    case PlayerSlot.PC1:
+                        pos = Vector2.Lerp(transform.position, player1.transform.position, Speed * Time.deltaTime);
+                        break;
+
+                    case PlayerSlot.PC2:
+                        pos = Vector2.Lerp(transform.position, player2.transform.position, Speed * Time.deltaTime);
+                        break;
                 }
     			break;
 

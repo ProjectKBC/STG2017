@@ -47,7 +47,6 @@ public abstract class EnemyBullet : NoaBehaviour
     Vector2 pos = new Vector2();
     Vector2 direction = new Vector2();
     Quaternion angle = new Quaternion();
-    int reverse = 1;
 
 
     protected override IEnumerator Start()
