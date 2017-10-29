@@ -26,7 +26,7 @@ GameObject:
   - component: {fileID: 114921712911035632}
   - component: {fileID: 60349727161632370}
   m_Layer: 10
-  m_Name: ProtoEnemy (4)
+  m_Name: ProtoEnemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -86,7 +86,7 @@ GameObject:
   - component: {fileID: 114313043785787148}
   - component: {fileID: 60929633620567264}
   m_Layer: 10
-  m_Name: ProtoEnemy(5)
+  m_Name: ProtoEnemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
