@@ -61,9 +61,6 @@ public abstract class EnemyShotManager : NoaBehaviour
             case ShotMovepattern.Tornado:
                 InstBullet(Time.time * param.spinSpeed);
                 break;
-
-            case ShotMovepattern.PlayerAim:
-                break;
         }
      }
 
