@@ -46,23 +46,24 @@ public abstract class EnemyShotManager : NoaBehaviour
         {
             // 直進
             case ShotMovepattern.Straight:
-                InstBullet(Mathf.PI / 180 * 270);
+                //InstBullet(Mathf.PI / 180 * 270);
+                InstBullet();
                 break;
 
                 // 全方位
             case ShotMovepattern.EveryDirection:
-                for(float rad = 0; rad < 360; rad += param.angleInterval)
+                if(param.angleInterval > 0)
                 {
-                    InstBullet(Mathf.PI / 180 * rad);
+                    for (float rad = 0; rad < 360; rad += param.angleInterval)
+                    {
+                        InstBullet(Mathf.PI / 180 * rad);
+                    }
                 }
                 break;
 
                 // 渦巻き状
             case ShotMovepattern.Tornado:
                 InstBullet(Time.time * param.spinSpeed);
-                break;
-
-            //case ShotMovepattern.PlayerAim:
                 break;
         }
      }
