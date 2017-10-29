@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: 77bf1359ad75fe944943b0291d570a4c
+timeCreated: 1508246850
+licenseType: Free
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: JF Dot M+ 10
+  fontNames:
+  - JF Dot M+ 10
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
