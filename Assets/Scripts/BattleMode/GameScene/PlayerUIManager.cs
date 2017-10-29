@@ -1,4 +1,9 @@
+<<<<<<< HEAD
 ﻿using System.Collections;
+=======
+﻿using System;
+using System.Collections;
+>>>>>>> test
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -68,6 +73,7 @@ public class PCCanvas
     public Dictionary<string, Gage> gages = new Dictionary<string, Gage>();
 }
 
+<<<<<<< HEAD
 public sealed class PlayerUIManager : MonoBehaviour
 {
     private static PlayerUIManager inst;
@@ -75,6 +81,12 @@ public sealed class PlayerUIManager : MonoBehaviour
     {
         Debug.Log("PlayerUIManager created");
     }
+=======
+public sealed class PlayerUIManager : NoaBehaviour
+{
+    private static PlayerUIManager inst;
+    private PlayerUIManager() { }
+>>>>>>> test
     public static PlayerUIManager Inst
     {
         get
@@ -88,14 +100,19 @@ public sealed class PlayerUIManager : MonoBehaviour
             return inst;
         }
     }
+<<<<<<< HEAD
 
     public static Starter starter = new Starter();
+=======
+    
+>>>>>>> test
     public PCCanvas pc1Canvas = new PCCanvas();
     public PCCanvas pc2Canvas = new PCCanvas();
 
     private const float width  = 780;
     private const float height = 1020;
 
+<<<<<<< HEAD
     private IEnumerator Start()
     {
         CreateUI();
@@ -107,6 +124,20 @@ public sealed class PlayerUIManager : MonoBehaviour
 
         yield return starter.StayStarted(pc1Canvas.player.starter);
         yield return starter.StayStarted(pc2Canvas.player.starter);
+=======
+    protected override IEnumerator Start()
+    {
+        CreateUI();
+
+        yield return PlayerManager.Inst.MyProc.Stay();
+        yield return GameManager.Inst.MyProc.Stay();
+
+        pc1Canvas.player = GameManager.Pc1Player; Debug.Log("puim: " + pc1Canvas.player);
+        pc2Canvas.player = GameManager.Pc2Player; Debug.Log("puim: " + pc2Canvas.player);
+
+        yield return pc1Canvas.player.MyProc.Stay();
+        yield return pc2Canvas.player.MyProc.Stay();
+>>>>>>> test
 
         CheckStatus(pc1Canvas);
         CheckStatus(pc2Canvas);
@@ -114,16 +145,32 @@ public sealed class PlayerUIManager : MonoBehaviour
         SettingUI(pc1Canvas);
         SettingUI(pc2Canvas);
 
+<<<<<<< HEAD
         starter.started = true;
         starter.Log(this, 4);
+=======
+        MyProc.started = true;
+        MyProc.Log(this, 4);
+
+        yield return NoaProcesser.StayBoss();
+>>>>>>> test
     }
 
     private void Update()
     {
+<<<<<<< HEAD
         if(GameManager.readier.started == false) { return; }
 
         UpdateUI(pc1Canvas);
         UpdateUI(pc2Canvas);
+=======
+        if (MyProc.IsStay()) { return; }
+
+        UpdateUI(pc1Canvas);
+        UpdateUI(pc2Canvas);
+
+        if (NoaProcesser.IsStayBoss()) { return; }
+>>>>>>> test
     }
     
     private void UpdateUI(PCCanvas _c)
@@ -273,11 +320,19 @@ public sealed class PlayerUIManager : MonoBehaviour
     private void CreateUI()
     {
         pc1Canvas.mainCanvas = 
+<<<<<<< HEAD
             Instantiate(Resources.Load("Prefabs/UI/PC1Canvas"), GameObject.Find("Canvas").transform) as GameObject;
         pc1Canvas.mainCanvas.AddComponent<PlayerUI>().playerSlot = PlayerSlot.PC1;
 
         pc2Canvas.mainCanvas = 
             Instantiate(Resources.Load("Prefabs/UI/PC2Canvas"), GameObject.Find("Canvas").transform) as GameObject;
+=======
+            Instantiate(Resources.Load(ResourcesPath.Ui("PC1Canvas")), GameObject.Find(CanvasName.UI).transform) as GameObject;
+        pc1Canvas.mainCanvas.AddComponent<PlayerUI>().playerSlot = PlayerSlot.PC1;
+
+        pc2Canvas.mainCanvas = 
+            Instantiate(Resources.Load(ResourcesPath.Ui("PC2Canvas")), GameObject.Find(CanvasName.UI).transform) as GameObject;
+>>>>>>> test
         pc2Canvas.mainCanvas.AddComponent<PlayerUI>().playerSlot = PlayerSlot.PC2;
     }
 
@@ -450,7 +505,11 @@ public sealed class PlayerUIManager : MonoBehaviour
                 case "LeftGageCanvas":
                     target = child.gameObject.GetComponent<Canvas>();
 
+<<<<<<< HEAD
                     if (_c.isBarTypeLeft == false) { Destroy(target.gameObject); Debug.Log("left"); break; }
+=======
+                    if (_c.isBarTypeLeft == false) { Destroy(target.gameObject); break; }
+>>>>>>> test
 
                     foreach (Transform c_child in target.transform)
                     {
@@ -576,7 +635,11 @@ public sealed class PlayerUIManager : MonoBehaviour
                                 rt.localScale       = new Vector3(1, 1, 1);
 
                                 t = c_child.gameObject.GetComponent<Text>();
+<<<<<<< HEAD
                                 t.text                 = _c.player.name; Debug.Log("4 " + t.text);
+=======
+                                t.text                 = _c.player.name;
+>>>>>>> test
                                 t.font                 = Resources.GetBuiltinResource(typeof(Font), "Arial.ttf") as Font;
                                 t.fontStyle            = FontStyle.Normal;
                                 t.fontSize             = 18;
