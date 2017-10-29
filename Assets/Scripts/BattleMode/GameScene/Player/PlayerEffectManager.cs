@@ -3,7 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
+<<<<<<< HEAD
+public class PlayerEffectManager : MonoBehaviour
+=======
 public class PlayerEffectManager : NoaBehaviour
+>>>>>>> test
 {
     private enum EffectType
     {
@@ -28,6 +32,15 @@ public class PlayerEffectManager : NoaBehaviour
         Stop(EffectType.ChargeEffect);
     }
 
+<<<<<<< HEAD
+    private void Start()
+    {
+        Init();
+    }
+
+    private void Update ()
+    {
+=======
     protected override IEnumerator Start()
     {
         yield return PlayerManager.Inst.MyProc.Stay();
@@ -42,6 +55,7 @@ public class PlayerEffectManager : NoaBehaviour
     {
         if (MyProc.IsStay() || NoaProcesser.IsStayBoss()) { return; }
 
+>>>>>>> test
         foreach (string key in player.shotManager.Keys)
         {
             switch (player.shotManager[key].param.shotMode)
@@ -51,6 +65,13 @@ public class PlayerEffectManager : NoaBehaviour
                     break;
 
                 case ShotMode.ChargeShot:
+<<<<<<< HEAD
+                    if (player.state == key + "(KeyUp)")
+                    {
+                        Stop(EffectType.ChargeEffect); break;
+                    }
+=======
+>>>>>>> test
                     if (player.state == key)
                     {
                         foreach (ParticleSystem x in chargeEffect)
@@ -59,10 +80,13 @@ public class PlayerEffectManager : NoaBehaviour
                         }
                         Play(EffectType.ChargeEffect);
                     }
+<<<<<<< HEAD
+=======
                     else
                     {
                         Stop(EffectType.ChargeEffect); break;
                     }
+>>>>>>> test
                     BREAK: ;
                     break;
 
