@@ -98,7 +98,7 @@ public abstract class Enemy : NoaBehaviour
 
     		// 直進
     		case MovePattern.Straight:
-                direction = new Vector2(0, yAxis * -1).normalized;
+                direction = new Vector2(0, xAxis * -1).normalized;
     			pos += direction * Speed * Time.deltaTime;
     			break;
 
