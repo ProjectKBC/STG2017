@@ -12,6 +12,7 @@ public abstract class EnemyShotManager : NoaBehaviour
     protected AudioSource audioSource;
 
     protected float lastShotTime = 0;
+    PlayerSlot playerSlot;
 
     public virtual void Init()
     {
@@ -40,9 +41,15 @@ public abstract class EnemyShotManager : NoaBehaviour
     {
         
         if (Time.time - lastShotTime < param.shotDelay) { return; }
+
         switch(param.shotMovepattern)
         {
-            // 全方位
+            // 直進
+            case ShotMovepattern.Straight:
+                InstBullet(Mathf.PI / 180 * 270);
+                break;
+
+                // 全方位
             case ShotMovepattern.EveryDirection:
                 for(float rad = 0; rad < 360; rad += param.angleInterval)
                 {
@@ -55,8 +62,7 @@ public abstract class EnemyShotManager : NoaBehaviour
                 InstBullet(Time.time * param.spinSpeed);
                 break;
 
-            default:
-                InstBullet();
+            case ShotMovepattern.PlayerAim:
                 break;
         }
      }

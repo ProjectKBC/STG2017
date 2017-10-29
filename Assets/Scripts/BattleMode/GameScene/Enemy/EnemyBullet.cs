@@ -92,26 +92,9 @@ public abstract class EnemyBullet : NoaBehaviour
         Vector2 direction;
         pos = transform.position;
         angle = transform.rotation;
-        switch(param.shotMovepattern)
-        {
-            // 直進
-            case ShotMovepattern.Straight:
-                direction = new Vector2(0, -1).normalized;
-                pos += direction * param.Speed * Time.deltaTime;
-                break;
 
-                // 全方位
-            case ShotMovepattern.EveryDirection:
-                direction = new Vector2(angle.x, angle.y).normalized;
-                pos += direction * param.Speed * Time.deltaTime;
-                break;
-
-                // 渦巻き状
-            case ShotMovepattern.Tornado:
-                direction = new Vector2(angle.x, angle.y).normalized;
-                pos += direction * param.Speed * Time.deltaTime;
-                break;
-        }
+        direction = new Vector2(angle.x, angle.y).normalized;
+        pos += direction * param.Speed * Time.deltaTime;
         transform.position = pos;
     }
 
