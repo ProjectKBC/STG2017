@@ -102,6 +102,7 @@ public abstract class Enemy : NoaBehaviour
     			pos += direction * Speed * Time.deltaTime;
     			break;
 
+                // 斜め移動
             case MovePattern.Slanting:
                 direction = new Vector2(yAxis * 1, xAxis * -1).normalized;
                 pos += direction * Speed * Time.deltaTime;

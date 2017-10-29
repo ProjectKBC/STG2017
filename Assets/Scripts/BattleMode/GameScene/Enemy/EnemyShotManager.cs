@@ -12,6 +12,8 @@ public abstract class EnemyShotManager : NoaBehaviour
     protected AudioSource audioSource;
 
     protected float lastShotTime = 0;
+    int count = 0;
+    bool delaySwitch = false;
 
     public virtual void Init()
     {
@@ -38,14 +40,16 @@ public abstract class EnemyShotManager : NoaBehaviour
         
     public virtual void Shot()
     {
-        
-        if (Time.time - lastShotTime < param.shotDelay) { return; }
+        if(delaySwitch)
+        {
+            if (Time.time - lastShotTime < param.shotDelay2) { return; }
+        }
+        else if (Time.time - lastShotTime < param.shotDelay) { return; }
 
         switch(param.shotMovePattern)
         {
             // 直進
             case ShotMovePattern.Straight:
-                //InstBullet(Mathf.PI / 180 * 270);
                 InstBullet();
                 break;
 
@@ -87,6 +91,15 @@ public abstract class EnemyShotManager : NoaBehaviour
                 InstBullet(vx, vy);
                 break;
         }
+
+        count++;
+        delaySwitch = false;
+        if (count == param.delayShotCount)
+        {
+            count = 0;
+            delaySwitch = true;
+        }
+
      }
 
     protected void InstBullet()
