@@ -591,7 +591,7 @@ Prefab:
     - target: {fileID: 114751904338930652, guid: a566a0e4bb035394588a675e9d68d496,
         type: 2}
       propertyPath: xTurn
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 114271196960228366, guid: a566a0e4bb035394588a675e9d68d496,
         type: 2}
@@ -611,6 +611,31 @@ Prefab:
         type: 2}
       propertyPath: param.shotMovePattern
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 50651301561791738, guid: a566a0e4bb035394588a675e9d68d496,
+        type: 2}
+      propertyPath: m_UseAutoMass
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114271196960228366, guid: a566a0e4bb035394588a675e9d68d496,
+        type: 2}
+      propertyPath: param.DelayShotCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114751904338930652, guid: a566a0e4bb035394588a675e9d68d496,
+        type: 2}
+      propertyPath: _speed
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114271196960228366, guid: a566a0e4bb035394588a675e9d68d496,
+        type: 2}
+      propertyPath: param.shotDelay2
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114271196960228366, guid: a566a0e4bb035394588a675e9d68d496,
+        type: 2}
+      propertyPath: param.spinSpeed
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a566a0e4bb035394588a675e9d68d496, type: 2}
@@ -1056,7 +1081,7 @@ Prefab:
     - target: {fileID: 114751904338930652, guid: a566a0e4bb035394588a675e9d68d496,
         type: 2}
       propertyPath: _speed
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 114751904338930652, guid: a566a0e4bb035394588a675e9d68d496,
         type: 2}
@@ -1091,7 +1116,7 @@ Prefab:
     - target: {fileID: 114271196960228366, guid: a566a0e4bb035394588a675e9d68d496,
         type: 2}
       propertyPath: param.speed
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 114271196960228366, guid: a566a0e4bb035394588a675e9d68d496,
         type: 2}
@@ -1132,6 +1157,11 @@ Prefab:
         type: 2}
       propertyPath: param.shotMovePattern
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114271196960228366, guid: a566a0e4bb035394588a675e9d68d496,
+        type: 2}
+      propertyPath: param.spinSpeed
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a566a0e4bb035394588a675e9d68d496, type: 2}
@@ -2199,7 +2229,7 @@ Prefab:
     - target: {fileID: 114271196960228366, guid: a566a0e4bb035394588a675e9d68d496,
         type: 2}
       propertyPath: param.lifeTime
-      value: 10
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 114271196960228366, guid: a566a0e4bb035394588a675e9d68d496,
         type: 2}
@@ -2209,7 +2239,7 @@ Prefab:
     - target: {fileID: 114271196960228366, guid: a566a0e4bb035394588a675e9d68d496,
         type: 2}
       propertyPath: param.speed
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 114271196960228366, guid: a566a0e4bb035394588a675e9d68d496,
         type: 2}
@@ -2245,6 +2275,11 @@ Prefab:
         type: 2}
       propertyPath: param.shotMovePattern
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114271196960228366, guid: a566a0e4bb035394588a675e9d68d496,
+        type: 2}
+      propertyPath: param.DelayShotCount
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a566a0e4bb035394588a675e9d68d496, type: 2}
