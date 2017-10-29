@@ -1,0 +1,10 @@
+PlayerUIManagerが |                 | UIを生成          | 
+PlayerManagerが   |                 | Playersを読み込む | 1: Started
+GameManagerが     |                 | Playerを生成      | 2: Started
+PlayerUIManagerが | GameManagerから | Playerを取得する  | 
+Playerが          |                 | 初期化をする      | 3: Started
+PlayerUIManagerが | Playerの値から  | UIの値を設定する  | 4: Started
+Enemyが           |                 |                   | 5: Started
+GameManagerが     |                 |                   | Ready 
+Playerが          |                 |                   | 実行開始
+Enemyが           |                 |                   | 実行開始
