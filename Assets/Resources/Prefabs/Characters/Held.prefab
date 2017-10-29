@@ -231,7 +231,7 @@ MonoBehaviour:
   bullet: {fileID: 114677074514332742, guid: ceab7694d9201424c94304467558334b, type: 2}
   param:
     name: "\u30D4\u30FC\u30B9\u30E1\u30FC\u30AB\u30FC"
-    shotSound: {fileID: 8300000, guid: 7859a29f2a04c764d9f84132b39eed1b, type: 3}
+    shotSound: {fileID: 8300000, guid: 18076460ab3764f41822e5ad442240f8, type: 3}
     shotDelay: 0.25
     lifeTime: 5
     speed: 7
@@ -280,7 +280,7 @@ MonoBehaviour:
   bullet: {fileID: 114751600185772326, guid: 95e41c2dbc2ef4a24a5adf4559efe5d7, type: 2}
   param:
     name: "\u30EB\u30AC\u30FCP08"
-    shotSound: {fileID: 8300000, guid: 7859a29f2a04c764d9f84132b39eed1b, type: 3}
+    shotSound: {fileID: 8300000, guid: 638ac965938294c89bbf763b8be44474, type: 3}
     shotDelay: 0.1
     lifeTime: 5
     speed: 10
