@@ -50,7 +50,6 @@ public class ShotManagerEditor : Editor
         param.power       = EditorGUILayout.FloatField("攻撃力",         param.power);
         param.isPenetrate = EditorGUILayout.Toggle("貫通性", param.isPenetrate);
         param.initialPosition = EditorGUILayout.Vector3Field("ローカル初期位置", param.initialPosition);
-        param.initialRotation = Quaternion.Euler(EditorGUILayout.Vector3Field("ローカル初期角度", param.initialRotation.eulerAngles));
 
         EditorGUI.indentLevel--;
         EditorGUILayout.Space();
@@ -65,8 +64,7 @@ public class ShotManagerEditor : Editor
                 break;
 
             case ShotMode.ChargeShot:
-                param.chargeTime   = EditorGUILayout.FloatField("チャージ時間", param.chargeTime);
-                param.rechargeTime = EditorGUILayout.FloatField("リチャージ時間", param.rechargeTime);
+                param.chargeTime = EditorGUILayout.FloatField("チャージ時間", param.chargeTime);
 
                 EditorGUI.indentLevel--;
                 EditorGUILayout.Space();

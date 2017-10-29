@@ -1,12 +1,13 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class EnemyShotManager : NoaBehaviour
+public abstract class EnemyShotManager : MonoBehaviour
 {
     public EnemyBullet bullet;
     [SerializeField] public EnemyBulletParam param;
+
+    [System.NonSerialized] public bool Started = false;
 
     protected Enemy enemy;
     protected AudioSource audioSource;
@@ -17,21 +18,16 @@ public abstract class EnemyShotManager : NoaBehaviour
     {
         enemy = GetComponent<Enemy>();
         audioSource = GetComponent<AudioSource>();
+        Started = true;
     }
 
-    protected override IEnumerator Start()
+    protected IEnumerator Start()
     {
-
         Init();
-        MyProc.started = true;
-
-        yield return enemy.MyProc.Stay();
-        yield return NoaProcesser.StayBoss();
-
+        
         while (true)
         {
-            if (NoaProcesser.IsStayBoss()) { yield return null; }
-            
+            Shot();
             yield return new WaitForSeconds(0.01f);
         }
     }
@@ -46,7 +42,7 @@ public abstract class EnemyShotManager : NoaBehaviour
     protected void InstBullet()
     {
         lastShotTime = Time.time;
-        if (param.shotSound != null) { audioSource.PlayOneShot(param.shotSound); }
+        audioSource.PlayOneShot(param.shotSound);
         EnemyBullet b = EnemyBullet.Instantiate(bullet, param, transform);
     }
 }
