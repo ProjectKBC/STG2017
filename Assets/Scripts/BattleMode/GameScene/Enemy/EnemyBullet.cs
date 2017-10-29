@@ -3,17 +3,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum ShotMovepattern
+public enum ShotMovePattern
 {
     Straight,
     EveryDirection,
     Tornado,
+    PlayerAim,
 }
 
 [System.Serializable]
 public class EnemyBulletParam
 {
-    public ShotMovepattern shotMovepattern;
+    public ShotMovePattern shotMovePattern;
     public AudioClip shotSound; // ショット音
 
     // 共通パラメータ
@@ -86,13 +87,6 @@ public abstract class EnemyBullet : NoaBehaviour
         }
     }
 
-    void LagSpin()
-    {
-        direction = new Vector2(reverse * Mathf.Cos(Time.time * param.Speed), reverse * Mathf.Sin(Time.time * param.Speed)).normalized;
-        reverse = -reverse;
-        CancelInvoke();
-    }
-
     // f:初期設定関数
     public virtual void Init() { }
 
@@ -102,22 +96,19 @@ public abstract class EnemyBullet : NoaBehaviour
         pos = transform.position;
         angle = transform.rotation;
 
-        switch(param.shotMovepattern)
+        switch(param.shotMovePattern)
         {
             // 直進
-            case ShotMovepattern.Straight:
+            case ShotMovePattern.Straight:
                 direction = new Vector2(0, -1).normalized;
                 break;
 
-                // 全方位
-            case ShotMovepattern.EveryDirection:
+            case ShotMovePattern.EveryDirection: // 全方位
+            case ShotMovePattern.Tornado: // 渦巻き状
+            case ShotMovePattern.PlayerAim: // 自機狙い
                 direction = new Vector2(angle.x, angle.y).normalized;
                 break;
 
-                // 渦巻き状
-            case ShotMovepattern.Tornado:
-                direction = new Vector2(angle.x, angle.y).normalized;
-                break;
         }
         pos += direction * param.Speed * Time.deltaTime;
         transform.position = pos;
