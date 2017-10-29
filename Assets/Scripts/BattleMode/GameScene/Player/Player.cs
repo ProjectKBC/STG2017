@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,13 +9,12 @@ public enum PlayerSlot
 }
 
 [RequireComponent(typeof(Rigidbody2D))]
-public abstract class Player : MonoBehaviour
+public abstract class Player : NoaBehaviour
 {
     // プレイヤー番号
     public PlayerSlot playerSlot;
 
     public float maxHitPoint;
-
 
     [SerializeField] public float _speed;
     public float Speed
@@ -28,15 +28,11 @@ public abstract class Player : MonoBehaviour
     public Skill skill; // スキル
 
     [System.NonSerialized] public float hitPoint;
-    [System.NonSerialized] public Starter starter = new Starter();
     [System.NonSerialized] public string state = "None";
     [System.NonSerialized] public bool isStan = false;
 
     protected void Init()
     {
-        // レイヤー分類
-        gameObject.layer = LayerName.Player;
-
         // ShotManagerの読み込み
         ShotManager[] tmp = GetComponents<ShotManager>();
         foreach (ShotManager x in tmp)
@@ -52,17 +48,20 @@ public abstract class Player : MonoBehaviour
         hitPoint = maxHitPoint;
     }
 
-    IEnumerator Start ()
+    protected override IEnumerator Start()
     {
-        starter.StayStarted(PlayerManager.starter);
-        Init();
-        starter.started = true;
-        starter.Log(this, 3);
+        yield return PlayerManager.Inst.MyProc.Stay();
 
-        yield return starter.StayStarted(GameManager.readier);
+        Init();
+        MyProc.started = true;
+        MyProc.Log(this, 3);
+
+        yield return NoaProcesser.StayBoss();
 
         while (true)
         {
+            if (NoaProcesser.IsStayBoss()) { yield return null; }
+
             InputManager();
             if(state.Contains("(KeyUp)")) Debug.Log("p:"+Time.time);
 
@@ -90,9 +89,9 @@ public abstract class Player : MonoBehaviour
         }
     }
 	
-	void Update ()
+	protected void Update ()
     {
-        if (GameManager.readier.started == false) { return; }
+        if (MyProc.IsStay() || NoaProcesser.IsStayBoss()) { return; }
 
         Move();
 	}
@@ -197,8 +196,8 @@ public abstract class Player : MonoBehaviour
 
         Vector2 direction = new Vector2(x, y).normalized;
 
-        Vector2 min = GameManager.Inst.GetAreaMin(playerSlot);
-        Vector2 max = GameManager.Inst.GetAreaMax(playerSlot);
+        Vector2 min = GameManager.GetAreaMin(playerSlot);
+        Vector2 max = GameManager.GetAreaMax(playerSlot);
         
         Vector2 pos = transform.position;
 
@@ -224,7 +223,6 @@ public abstract class Player : MonoBehaviour
         switch (c.gameObject.layer)
         {
             case LayerName.BulletEnemy:
-                Debug.Log(hitPoint);
                 EnemyBullet b = c.transform.parent.GetComponent<EnemyBullet>();
                 Damage(b.param.power);
                 Destroy(c.gameObject); // 弾の削除
@@ -240,7 +238,7 @@ public abstract class Player : MonoBehaviour
     void Damage(float _damage)
     {
         hitPoint -= _damage;
-        if (hitPoint < 0)
+        if (hitPoint <= 0)
         {
             Dead();
         }
@@ -248,15 +246,58 @@ public abstract class Player : MonoBehaviour
 
     void Dead()
     {
+        GameManager.GameSet(this);
         Destroy(this.gameObject);
-        //FindObjectOfType<GameManager>().gameSet();
     }
 
-    // 気にしなくていい（生成時にパラメータを渡すための関数）
-    public static Player Instantiate(Player _player, PlayerSlot _slot, Vector3 _position, Quaternion _rotation)
+    // f:生成時にパラメータを渡すことができるInstantiate関数
+    public static Player Instantiate(Player _player, PlayerSlot _slot)
     {
-        Player obj = Instantiate(_player, _position, _rotation) as Player;
-        obj.playerSlot = _slot;
-        return obj;
+        Vector3 position = (_slot == PlayerSlot.PC1)
+                             ? new Vector3(GameManager.RECT.x / 2, GameManager.RECT.w / 2)
+                             : new Vector3(GameManager.RECT.z / 2, GameManager.RECT.w / 2);
+        Quaternion rotation = Quaternion.Euler(0, 0, 0);
+        Player player = Instantiate(_player, position, rotation) as Player;
+
+        SetupPlayer(player, _slot);
+
+        return player;
+    }
+
+    protected static void SetupPlayer(Player _player, PlayerSlot _slot)
+    {
+        // f:名前の設定
+        _player.name = _player.name.Replace("(Clone)", "");
+
+        // f:スロットの設定
+        _player.playerSlot = _slot;
+
+        // f:レイヤー設定
+        _player.gameObject.layer = LayerName.Player;
+
+        // f:タグ設定
+        //_player.gameObject.tag = TagName;
+
+        // f:エリア設定
+        GameManager.SetArea(_player.gameObject, _player.playerSlot);
+    }
+
+    public static Player Instantiate(GameObject _obj, PlayerSlot _slot)
+    {
+        Vector3 position = (_slot == PlayerSlot.PC1)
+                             ? new Vector3(GameManager.RECT.x / 2, GameManager.RECT.w / 2)
+                             : new Vector3(GameManager.RECT.z / 2, GameManager.RECT.w / 2);
+        Quaternion rotation = Quaternion.Euler(0, 0, 0);
+        GameObject obj = Instantiate(_obj, position, rotation);
+
+        return SetupPlayer(obj, _slot);
+    }
+
+    protected static Player SetupPlayer(GameObject _obj, PlayerSlot _slot)
+    {
+        Player player = _obj.GetComponent<Player>();
+
+        SetupPlayer(player, _slot);
+        return player;       
     }
 }

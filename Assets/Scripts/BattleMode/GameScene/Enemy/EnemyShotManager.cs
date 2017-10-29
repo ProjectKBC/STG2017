@@ -1,42 +1,47 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class EnemyShotManager : MonoBehaviour
+public abstract class EnemyShotManager : NoaBehaviour
 {
     public EnemyBullet bullet;
     [SerializeField] public EnemyBulletParam param;
-
-    [System.NonSerialized] public bool Started = false;
 
     protected Enemy enemy;
     protected AudioSource audioSource;
 
     protected float lastShotTime = 0;
+    PlayerSlot playerSlot;
 
     public virtual void Init()
     {
         enemy = GetComponent<Enemy>();
         audioSource = GetComponent<AudioSource>();
-        Started = true;
     }
 
-    protected IEnumerator Start()
+    protected override IEnumerator Start()
     {
+
         Init();
-        
+        MyProc.started = true;
+
+        yield return enemy.MyProc.Stay();
+        yield return NoaProcesser.StayBoss();
+
         while (true)
         {
-            Shot();
+            if (NoaProcesser.IsStayBoss()) { yield return null; }
+            
             yield return new WaitForSeconds(0.01f);
         }
     }
         
     public virtual void Shot()
     {
+        
         if (Time.time - lastShotTime < param.shotDelay) { return; }
 
-<<<<<<< HEAD
         switch(param.shotMovepattern)
         {
             // 直進
@@ -57,15 +62,20 @@ public abstract class EnemyShotManager : MonoBehaviour
                 InstBullet(Time.time * param.spinSpeed);
                 break;
         }
-=======
-        InstBullet();
->>>>>>> test
      }
 
     protected void InstBullet()
     {
         lastShotTime = Time.time;
-        audioSource.PlayOneShot(param.shotSound);
+        if (param.shotSound != null) { audioSource.PlayOneShot(param.shotSound); }
         EnemyBullet b = EnemyBullet.Instantiate(bullet, param, transform);
+    }
+
+    protected void InstBullet(float _rad)
+    {
+        lastShotTime = Time.time;
+        if (param.shotSound != null) { audioSource.PlayOneShot(param.shotSound); }
+        EnemyBullet b = EnemyBullet.Instantiate(bullet, param, transform);
+        b.transform.Rotate(new Vector2(Mathf.Cos(_rad), Mathf.Sin(_rad)));
     }
 }
