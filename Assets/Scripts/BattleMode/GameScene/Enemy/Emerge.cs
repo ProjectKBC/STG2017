@@ -4,17 +4,22 @@ using UnityEngine;
 
 public class Emerge : MonoBehaviour {
 
+	Vector2 v;
 
 	void Start () {
-		
+		v = transform.position;
 	}
 	
 	void Update () {
-		Vector2 v = new Vector2 (transform.position.x, transform.position.y);
-		while (v.y > 200)
+		if (transform.position.y > -400)
 		{
-			v = new Vector2 (transform.position.x, transform.position.y - 5);
-			transform.position = v;
+			Move ();
 		}
+	}
+
+	void Move()
+	{
+		v.y -= transform.position.y * 1 * Time.deltaTime;
+		transform.position = v;
 	}
 }

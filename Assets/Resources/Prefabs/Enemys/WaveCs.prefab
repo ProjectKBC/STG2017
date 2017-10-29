@@ -25,7 +25,6 @@ GameObject:
   - component: {fileID: 114929759937748252}
   - component: {fileID: 114921712911035632}
   - component: {fileID: 60349727161632370}
-  - component: {fileID: 114101657148519906}
   m_Layer: 10
   m_Name: ProtoEnemy (4)
   m_TagString: Untagged
@@ -42,6 +41,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4850529785678474}
   - component: {fileID: 50621013252016150}
+  - component: {fileID: 114248469162562348}
   m_Layer: 0
   m_Name: WaveCs
   m_TagString: Untagged
@@ -63,7 +63,6 @@ GameObject:
   - component: {fileID: 114281353853864740}
   - component: {fileID: 114596897517007880}
   - component: {fileID: 60611647012384158}
-  - component: {fileID: 114262175783274452}
   m_Layer: 10
   m_Name: ProtoEnemy
   m_TagString: Untagged
@@ -138,7 +137,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1460412929068880}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -480, y: 400, z: 0}
+  m_LocalPosition: {x: -480, y: 1600, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4004019165951084}
@@ -201,7 +200,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -371,12 +370,12 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
---- !u!114 &114101657148519906
+--- !u!114 &114248469162562348
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1272272213746518}
+  m_GameObject: {fileID: 1460412929068880}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1b3e7d531e19b45b2bd63c218588ca83, type: 3}
@@ -402,17 +401,6 @@ MonoBehaviour:
   yAxisReverse: 0
   xTurn: 1
   yTurn: 1
---- !u!114 &114262175783274452
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1575073036466076}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1b3e7d531e19b45b2bd63c218588ca83, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &114281353853864740
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -429,7 +417,7 @@ MonoBehaviour:
   _speed: 1
   score: 100
   movePattern: 1
-  xAxisReverse: 0
+  xAxisReverse: 1
   yAxisReverse: 0
   xTurn: 1
   yTurn: 1
@@ -451,7 +439,7 @@ MonoBehaviour:
     shotDelay: 1
     lifeTime: 10
     speed: 1
-    power: 1
+    power: 0
     isPenetrate: 0
     initialPosition: {x: 0, y: 0, z: 0}
 --- !u!114 &114596897517007880
@@ -472,7 +460,7 @@ MonoBehaviour:
     shotDelay: 1
     lifeTime: 10
     speed: 1
-    power: 1
+    power: 0
     isPenetrate: 0
     initialPosition: {x: 0, y: 0, z: 0}
 --- !u!114 &114921712911035632
@@ -493,7 +481,7 @@ MonoBehaviour:
     shotDelay: 1
     lifeTime: 10
     speed: 1
-    power: 1
+    power: 0
     isPenetrate: 0
     initialPosition: {x: 0, y: 0, z: 0}
 --- !u!114 &114929759937748252
@@ -548,7 +536,7 @@ SpriteRenderer:
   m_SortingLayerID: 1194911151
   m_SortingLayer: 5
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300008, guid: 4cefbb540c1f08d4bb559ec327cca03a, type: 3}
+  m_Sprite: {fileID: 21300014, guid: 4cefbb540c1f08d4bb559ec327cca03a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -590,7 +578,7 @@ SpriteRenderer:
   m_SortingLayerID: 1194911151
   m_SortingLayer: 5
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300008, guid: 4cefbb540c1f08d4bb559ec327cca03a, type: 3}
+  m_Sprite: {fileID: 21300014, guid: 4cefbb540c1f08d4bb559ec327cca03a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -632,7 +620,7 @@ SpriteRenderer:
   m_SortingLayerID: 1194911151
   m_SortingLayer: 5
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300008, guid: 4cefbb540c1f08d4bb559ec327cca03a, type: 3}
+  m_Sprite: {fileID: 21300014, guid: 4cefbb540c1f08d4bb559ec327cca03a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

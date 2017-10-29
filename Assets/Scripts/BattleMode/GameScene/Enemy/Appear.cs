@@ -2,9 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(Rigidbody2D))]
-
-
 public class Appear : MonoBehaviour {
 	public int small; //雑魚敵の出現回数
 	public int medium; //中ボスの出現回数
