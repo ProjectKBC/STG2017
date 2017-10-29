@@ -12,5 +12,6 @@ public class ProtoEnemyB : EnemyBullet
     override public void Move()
     {
         base.Move();
+        GetComponent<Rigidbody2D>().velocity = transform.up.normalized * param.Speed * -1;
     }
 }
