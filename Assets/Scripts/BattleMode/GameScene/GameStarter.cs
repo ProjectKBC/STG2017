@@ -23,9 +23,13 @@ public class GameStarter : NoaBehaviour
     {
         Init();
 
-        yield return PlayerManager.Inst.MyProc.Stay();
-        GameManager.SetPCName(PC1Name, PlayerSlot.PC1);
-        GameManager.SetPCName(PC2Name, PlayerSlot.PC2);
+        if (PlayerManager.Inst.MyProc.IsStay()) yield return null;
+
+        if (GameManager.Pc1Name == null || GameManager.Pc2Name == null)
+        {
+            GameManager.SetPCName(PC1Name, PlayerSlot.PC1);
+            GameManager.SetPCName(PC2Name, PlayerSlot.PC2);
+        }
 
         MyProc.started = true;
         MyProc.Log(this, 1);
