@@ -1,13 +1,3 @@
-<<<<<<< HEAD
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-[System.Serializable]
-public class EnemyBulletParam
-{
-    public string name;         // ショットの名前
-=======
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -24,17 +14,13 @@ public enum ShotMovepattern
 public class EnemyBulletParam
 {
     public ShotMovepattern shotMovepattern;
->>>>>>> test
     public AudioClip shotSound; // ショット音
 
     // 共通パラメータ
     public float shotDelay;         // ショット間隔
     public float lifeTime;          // 生存時間
-<<<<<<< HEAD
-=======
     public float angleInterval;     // 弾幕の角度の間隔
     public float spinSpeed;         // 回転の速度
->>>>>>> test
     
     // 弾丸速度
     [SerializeField]
@@ -53,17 +39,6 @@ public class EnemyBulletParam
     [System.NonSerialized] public PlayerSlot playerSlot;
 }
 
-<<<<<<< HEAD
-public abstract class EnemyBullet : MonoBehaviour
-{
-    [System.NonSerialized] public EnemyBulletParam param;
-    protected Enemy enemy;
-
-    protected void Start()
-    {
-        Init();
-        Move();
-=======
 public abstract class EnemyBullet : NoaBehaviour
 {
     [System.NonSerialized] public EnemyBulletParam param;
@@ -79,7 +54,6 @@ public abstract class EnemyBullet : NoaBehaviour
         MyProc.started = true;
 
         yield return NoaProcesser.StayBoss();
->>>>>>> test
 
         // lifeTime秒後に削除
         Destroy(gameObject, param.lifeTime);
@@ -87,45 +61,6 @@ public abstract class EnemyBullet : NoaBehaviour
 
     protected void Update()
     {
-<<<<<<< HEAD
-        // 子要素（弾）がすべてなくなったら削除
-        if (transform.childCount == 0)
-        {
-            Destroy(this.gameObject);
-        }
-
-        // デストロイですの
-        if (transform.position.y < GameManager.Inst.destroyArea.w)
-        {
-            Destroy(this.gameObject);
-        }
-
-        // 
-    }
-
-    // 初期設定関数
-    public virtual void Init()
-    {
-    }
-
-    // move関数：弾の動きはここに書く 
-    public virtual void Move()
-    {
-    }
-
-    // 弾生成時にパラメータを渡せるInstantiate関数
-    public static EnemyBullet Instantiate(EnemyBullet _bullet, EnemyBulletParam _param, Transform _transform)
-    {
-        EnemyBullet obj = Instantiate(_bullet, _transform.position + _param.initialPosition, _transform.rotation) as EnemyBullet;
-        obj.param = _param;
-        obj.enemy = _transform.GetComponent<Enemy>();
-        obj.gameObject.layer = LayerName.Default;
-        foreach (Transform childTF in obj.transform)
-        {
-            childTF.gameObject.layer = LayerName.BulletEnemy;
-        }
-        return obj;
-=======
         if (MyProc.IsStay() || NoaProcesser.IsStayBoss()) { return; }
 
         if (enemy.MyProc.started == false) { return; }
@@ -188,6 +123,5 @@ public abstract class EnemyBullet : NoaBehaviour
 
         // f:エリア設定
         GameManager.SetArea(_bullet.gameObject, _bullet.enemy.playerSlot);
->>>>>>> test
     }
 }

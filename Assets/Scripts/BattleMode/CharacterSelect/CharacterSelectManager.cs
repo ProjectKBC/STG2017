@@ -11,19 +11,6 @@ public class CharacterSelectManager : MonoBehaviour {
 
 	// Use this for initialization
 
-<<<<<<< HEAD
-	public void SelectChara1 () {
-		player1Character = "";
-		SceneManager.LoadScene ("GameUI");
-	}	
-
-	public void SelectChara2(){
-		SceneManager.LoadScene ("GameUI");
-	}
-
-	public void SelectChara3(){
-		SceneManager.LoadScene ("GameUI");
-=======
 	public void SelectChara1() {
 		GameManager.SetPCName("Veronica", PlayerSlot.PC1);
         GameManager.SetPCName("Veronica_CC", PlayerSlot.PC2);
@@ -40,7 +27,6 @@ public class CharacterSelectManager : MonoBehaviour {
         GameManager.SetPCName("Held", PlayerSlot.PC1);
         GameManager.SetPCName("Veronica_CC", PlayerSlot.PC2);
         SceneManager.LoadScene ("BattleMode");
->>>>>>> test
 	}
 	
 	// Update is called once per frame

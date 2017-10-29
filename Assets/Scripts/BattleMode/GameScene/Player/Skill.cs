@@ -1,13 +1,3 @@
-<<<<<<< HEAD
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public abstract class Skill : MonoBehaviour
-{
-    public KeyCode keyCode;
-
-=======
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -29,7 +19,6 @@ public abstract class Skill : NoaBehaviour
         if (MyProc.IsStay() || NoaProcesser.IsStayBoss()) { return; }
     }
 
->>>>>>> test
     public void shot()
     {
 

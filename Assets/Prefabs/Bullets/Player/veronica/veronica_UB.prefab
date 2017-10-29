@@ -21,10 +21,7 @@ GameObject:
   - component: {fileID: 4115478601793978}
   - component: {fileID: 50464439920807718}
   - component: {fileID: 114254312219786380}
-<<<<<<< HEAD
-=======
   - component: {fileID: 331058427932241806}
->>>>>>> test
   m_Layer: 0
   m_Name: veronica_UB
   m_TagString: Untagged
@@ -32,28 +29,17 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
-<<<<<<< HEAD
---- !u!1 &1353152315698056
-=======
 --- !u!1 &1312587747512518
->>>>>>> test
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
   m_Component:
-<<<<<<< HEAD
-  - component: {fileID: 4873503093834058}
-  - component: {fileID: 199881614438625566}
-  - component: {fileID: 198728048989297804}
-  - component: {fileID: 70073937685224876}
-=======
   - component: {fileID: 4802691726536418}
   - component: {fileID: 199155138829363722}
   - component: {fileID: 198178958133994578}
   - component: {fileID: 70759679338126606}
->>>>>>> test
   m_Layer: 9
   m_Name: LaserEffect
   m_TagString: Untagged
@@ -61,28 +47,17 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
-<<<<<<< HEAD
---- !u!1 &1404056281881148
-=======
 --- !u!1 &1353152315698056
->>>>>>> test
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
   m_Component:
-<<<<<<< HEAD
-  - component: {fileID: 4843743787182342}
-  - component: {fileID: 199081114130803468}
-  - component: {fileID: 198656971191069316}
-  - component: {fileID: 70454418889986792}
-=======
   - component: {fileID: 4873503093834058}
   - component: {fileID: 199881614438625566}
   - component: {fileID: 198728048989297804}
   - component: {fileID: 70073937685224876}
->>>>>>> test
   m_Layer: 9
   m_Name: LaserEffect
   m_TagString: Untagged
@@ -118,15 +93,9 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-<<<<<<< HEAD
-  - {fileID: 4843743787182342}
-  - {fileID: 4147287726866502}
-  - {fileID: 4873503093834058}
-=======
   - {fileID: 4873503093834058}
   - {fileID: 4802691726536418}
   - {fileID: 4147287726866502}
->>>>>>> test
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -136,43 +105,25 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1668161512148256}
-<<<<<<< HEAD
-  m_LocalRotation: {x: 0, y: 0, z: -0.21643952, w: 0.97629607}
-=======
   m_LocalRotation: {x: -0, y: -0, z: -0.21643952, w: 0.97629607}
->>>>>>> test
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4115478601793978}
-<<<<<<< HEAD
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -25}
---- !u!4 &4843743787182342
-=======
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -25}
 --- !u!4 &4802691726536418
->>>>>>> test
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-<<<<<<< HEAD
-  m_GameObject: {fileID: 1404056281881148}
-=======
   m_GameObject: {fileID: 1312587747512518}
->>>>>>> test
   m_LocalRotation: {x: 0, y: 0, z: 0.2164396, w: 0.97629607}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4115478601793978}
-<<<<<<< HEAD
-  m_RootOrder: 0
-=======
   m_RootOrder: 1
->>>>>>> test
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 25}
 --- !u!4 &4873503093834058
 Transform:
@@ -185,11 +136,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4115478601793978}
-<<<<<<< HEAD
-  m_RootOrder: 2
-=======
   m_RootOrder: 0
->>>>>>> test
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!50 &50464439920807718
 Rigidbody2D:
@@ -226,20 +173,12 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 800}
   m_Size: {x: 60, y: 1600}
   m_Direction: 0
-<<<<<<< HEAD
---- !u!70 &70454418889986792
-=======
 --- !u!70 &70759679338126606
->>>>>>> test
 CapsuleCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-<<<<<<< HEAD
-  m_GameObject: {fileID: 1404056281881148}
-=======
   m_GameObject: {fileID: 1312587747512518}
->>>>>>> test
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
@@ -275,27 +214,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9cbfd8f43927d3d42b86e473e489e924, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-<<<<<<< HEAD
---- !u!198 &198652739944864496
-=======
 --- !u!198 &198178958133994578
->>>>>>> test
 ParticleSystem:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-<<<<<<< HEAD
-  m_GameObject: {fileID: 1668161512148256}
-  serializedVersion: 5
-  lengthInSec: 3
-  simulationSpeed: 1
-=======
   m_GameObject: {fileID: 1312587747512518}
   serializedVersion: 5
   lengthInSec: 3
   simulationSpeed: 1
   stopAction: 0
->>>>>>> test
   looping: 1
   prewarm: 1
   playOnAwake: 1
@@ -346,11 +274,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-<<<<<<< HEAD
-  randomSeed: 1272232785
-=======
   randomSeed: 179057992
->>>>>>> test
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -1872,9 +1796,6 @@ ParticleSystem:
         m_RotationOrder: 4
     separateAxis: 0
     inWorldSpace: 0
-<<<<<<< HEAD
-    dampen: 1
-=======
     multiplyDragByParticleSize: 1
     multiplyDragByParticleVelocity: 1
     dampen: 1
@@ -1919,7 +1840,6 @@ ParticleSystem:
         m_PreInfinity: 2
         m_PostInfinity: 2
         m_RotationOrder: 4
->>>>>>> test
   NoiseModule:
     enabled: 0
     strength:
@@ -2827,12 +2747,8 @@ ParticleSystem:
     serializedVersion: 2
     enabled: 0
     subEmitters:
-<<<<<<< HEAD
-    - emitter: {fileID: 0}
-=======
     - serializedVersion: 2
       emitter: {fileID: 0}
->>>>>>> test
       type: 0
       properties: 0
   LightsModule:
@@ -3212,10 +3128,7 @@ ParticleSystem:
         m_Mode: 0
         m_NumColorKeys: 2
         m_NumAlphaKeys: 2
-<<<<<<< HEAD
-=======
     colorLabel0: Color
->>>>>>> test
     vector0_0:
       serializedVersion: 2
       minMaxState: 0
@@ -3257,10 +3170,7 @@ ParticleSystem:
         m_PreInfinity: 2
         m_PostInfinity: 2
         m_RotationOrder: 4
-<<<<<<< HEAD
-=======
     vectorLabel0_0: X
->>>>>>> test
     vector0_1:
       serializedVersion: 2
       minMaxState: 0
@@ -3302,10 +3212,7 @@ ParticleSystem:
         m_PreInfinity: 2
         m_PostInfinity: 2
         m_RotationOrder: 4
-<<<<<<< HEAD
-=======
     vectorLabel0_1: Y
->>>>>>> test
     vector0_2:
       serializedVersion: 2
       minMaxState: 0
@@ -3347,10 +3254,7 @@ ParticleSystem:
         m_PreInfinity: 2
         m_PostInfinity: 2
         m_RotationOrder: 4
-<<<<<<< HEAD
-=======
     vectorLabel0_2: Z
->>>>>>> test
     vector0_3:
       serializedVersion: 2
       minMaxState: 0
@@ -3392,10 +3296,7 @@ ParticleSystem:
         m_PreInfinity: 2
         m_PostInfinity: 2
         m_RotationOrder: 4
-<<<<<<< HEAD
-=======
     vectorLabel0_3: W
->>>>>>> test
     mode1: 0
     vectorComponentCount1: 4
     color1:
@@ -3461,10 +3362,7 @@ ParticleSystem:
         m_Mode: 0
         m_NumColorKeys: 2
         m_NumAlphaKeys: 2
-<<<<<<< HEAD
-=======
     colorLabel1: Color
->>>>>>> test
     vector1_0:
       serializedVersion: 2
       minMaxState: 0
@@ -3506,10 +3404,7 @@ ParticleSystem:
         m_PreInfinity: 2
         m_PostInfinity: 2
         m_RotationOrder: 4
-<<<<<<< HEAD
-=======
     vectorLabel1_0: X
->>>>>>> test
     vector1_1:
       serializedVersion: 2
       minMaxState: 0
@@ -3551,10 +3446,7 @@ ParticleSystem:
         m_PreInfinity: 2
         m_PostInfinity: 2
         m_RotationOrder: 4
-<<<<<<< HEAD
-=======
     vectorLabel1_1: Y
->>>>>>> test
     vector1_2:
       serializedVersion: 2
       minMaxState: 0
@@ -3596,10 +3488,7 @@ ParticleSystem:
         m_PreInfinity: 2
         m_PostInfinity: 2
         m_RotationOrder: 4
-<<<<<<< HEAD
-=======
     vectorLabel1_2: Z
->>>>>>> test
     vector1_3:
       serializedVersion: 2
       minMaxState: 0
@@ -3641,28 +3530,17 @@ ParticleSystem:
         m_PreInfinity: 2
         m_PostInfinity: 2
         m_RotationOrder: 4
-<<<<<<< HEAD
---- !u!198 &198656971191069316
-=======
     vectorLabel1_3: W
 --- !u!198 &198652739944864496
->>>>>>> test
 ParticleSystem:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-<<<<<<< HEAD
-  m_GameObject: {fileID: 1404056281881148}
-  serializedVersion: 5
-  lengthInSec: 3
-  simulationSpeed: 1
-=======
   m_GameObject: {fileID: 1668161512148256}
   serializedVersion: 5
   lengthInSec: 3
   simulationSpeed: 1
   stopAction: 0
->>>>>>> test
   looping: 1
   prewarm: 1
   playOnAwake: 1
@@ -3713,11 +3591,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-<<<<<<< HEAD
-  randomSeed: -2055371164
-=======
   randomSeed: -2029140382
->>>>>>> test
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -5239,9 +5113,6 @@ ParticleSystem:
         m_RotationOrder: 4
     separateAxis: 0
     inWorldSpace: 0
-<<<<<<< HEAD
-    dampen: 1
-=======
     multiplyDragByParticleSize: 1
     multiplyDragByParticleVelocity: 1
     dampen: 1
@@ -5286,7 +5157,6 @@ ParticleSystem:
         m_PreInfinity: 2
         m_PostInfinity: 2
         m_RotationOrder: 4
->>>>>>> test
   NoiseModule:
     enabled: 0
     strength:
@@ -6194,12 +6064,8 @@ ParticleSystem:
     serializedVersion: 2
     enabled: 0
     subEmitters:
-<<<<<<< HEAD
-    - emitter: {fileID: 0}
-=======
     - serializedVersion: 2
       emitter: {fileID: 0}
->>>>>>> test
       type: 0
       properties: 0
   LightsModule:
@@ -6579,10 +6445,7 @@ ParticleSystem:
         m_Mode: 0
         m_NumColorKeys: 2
         m_NumAlphaKeys: 2
-<<<<<<< HEAD
-=======
     colorLabel0: Color
->>>>>>> test
     vector0_0:
       serializedVersion: 2
       minMaxState: 0
@@ -6624,10 +6487,7 @@ ParticleSystem:
         m_PreInfinity: 2
         m_PostInfinity: 2
         m_RotationOrder: 4
-<<<<<<< HEAD
-=======
     vectorLabel0_0: X
->>>>>>> test
     vector0_1:
       serializedVersion: 2
       minMaxState: 0
@@ -6669,10 +6529,7 @@ ParticleSystem:
         m_PreInfinity: 2
         m_PostInfinity: 2
         m_RotationOrder: 4
-<<<<<<< HEAD
-=======
     vectorLabel0_1: Y
->>>>>>> test
     vector0_2:
       serializedVersion: 2
       minMaxState: 0
@@ -6714,10 +6571,7 @@ ParticleSystem:
         m_PreInfinity: 2
         m_PostInfinity: 2
         m_RotationOrder: 4
-<<<<<<< HEAD
-=======
     vectorLabel0_2: Z
->>>>>>> test
     vector0_3:
       serializedVersion: 2
       minMaxState: 0
@@ -6759,10 +6613,7 @@ ParticleSystem:
         m_PreInfinity: 2
         m_PostInfinity: 2
         m_RotationOrder: 4
-<<<<<<< HEAD
-=======
     vectorLabel0_3: W
->>>>>>> test
     mode1: 0
     vectorComponentCount1: 4
     color1:
@@ -6828,10 +6679,7 @@ ParticleSystem:
         m_Mode: 0
         m_NumColorKeys: 2
         m_NumAlphaKeys: 2
-<<<<<<< HEAD
-=======
     colorLabel1: Color
->>>>>>> test
     vector1_0:
       serializedVersion: 2
       minMaxState: 0
@@ -6873,10 +6721,7 @@ ParticleSystem:
         m_PreInfinity: 2
         m_PostInfinity: 2
         m_RotationOrder: 4
-<<<<<<< HEAD
-=======
     vectorLabel1_0: X
->>>>>>> test
     vector1_1:
       serializedVersion: 2
       minMaxState: 0
@@ -6918,10 +6763,7 @@ ParticleSystem:
         m_PreInfinity: 2
         m_PostInfinity: 2
         m_RotationOrder: 4
-<<<<<<< HEAD
-=======
     vectorLabel1_1: Y
->>>>>>> test
     vector1_2:
       serializedVersion: 2
       minMaxState: 0
@@ -6963,10 +6805,7 @@ ParticleSystem:
         m_PreInfinity: 2
         m_PostInfinity: 2
         m_RotationOrder: 4
-<<<<<<< HEAD
-=======
     vectorLabel1_2: Z
->>>>>>> test
     vector1_3:
       serializedVersion: 2
       minMaxState: 0
@@ -7008,10 +6847,7 @@ ParticleSystem:
         m_PreInfinity: 2
         m_PostInfinity: 2
         m_RotationOrder: 4
-<<<<<<< HEAD
-=======
     vectorLabel1_3: W
->>>>>>> test
 --- !u!198 &198728048989297804
 ParticleSystem:
   m_ObjectHideFlags: 1
@@ -7021,10 +6857,7 @@ ParticleSystem:
   serializedVersion: 5
   lengthInSec: 3
   simulationSpeed: 1
-<<<<<<< HEAD
-=======
   stopAction: 0
->>>>>>> test
   looping: 1
   prewarm: 1
   playOnAwake: 1
@@ -7075,11 +6908,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-<<<<<<< HEAD
-  randomSeed: -1000660590
-=======
   randomSeed: -171489479
->>>>>>> test
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -8601,9 +8430,6 @@ ParticleSystem:
         m_RotationOrder: 4
     separateAxis: 0
     inWorldSpace: 0
-<<<<<<< HEAD
-    dampen: 1
-=======
     multiplyDragByParticleSize: 1
     multiplyDragByParticleVelocity: 1
     dampen: 1
@@ -8648,7 +8474,6 @@ ParticleSystem:
         m_PreInfinity: 2
         m_PostInfinity: 2
         m_RotationOrder: 4
->>>>>>> test
   NoiseModule:
     enabled: 0
     strength:
@@ -9556,12 +9381,8 @@ ParticleSystem:
     serializedVersion: 2
     enabled: 0
     subEmitters:
-<<<<<<< HEAD
-    - emitter: {fileID: 0}
-=======
     - serializedVersion: 2
       emitter: {fileID: 0}
->>>>>>> test
       type: 0
       properties: 0
   LightsModule:
@@ -9941,10 +9762,7 @@ ParticleSystem:
         m_Mode: 0
         m_NumColorKeys: 2
         m_NumAlphaKeys: 2
-<<<<<<< HEAD
-=======
     colorLabel0: Color
->>>>>>> test
     vector0_0:
       serializedVersion: 2
       minMaxState: 0
@@ -9986,10 +9804,7 @@ ParticleSystem:
         m_PreInfinity: 2
         m_PostInfinity: 2
         m_RotationOrder: 4
-<<<<<<< HEAD
-=======
     vectorLabel0_0: X
->>>>>>> test
     vector0_1:
       serializedVersion: 2
       minMaxState: 0
@@ -10031,10 +9846,7 @@ ParticleSystem:
         m_PreInfinity: 2
         m_PostInfinity: 2
         m_RotationOrder: 4
-<<<<<<< HEAD
-=======
     vectorLabel0_1: Y
->>>>>>> test
     vector0_2:
       serializedVersion: 2
       minMaxState: 0
@@ -10076,10 +9888,7 @@ ParticleSystem:
         m_PreInfinity: 2
         m_PostInfinity: 2
         m_RotationOrder: 4
-<<<<<<< HEAD
-=======
     vectorLabel0_2: Z
->>>>>>> test
     vector0_3:
       serializedVersion: 2
       minMaxState: 0
@@ -10121,10 +9930,7 @@ ParticleSystem:
         m_PreInfinity: 2
         m_PostInfinity: 2
         m_RotationOrder: 4
-<<<<<<< HEAD
-=======
     vectorLabel0_3: W
->>>>>>> test
     mode1: 0
     vectorComponentCount1: 4
     color1:
@@ -10190,10 +9996,7 @@ ParticleSystem:
         m_Mode: 0
         m_NumColorKeys: 2
         m_NumAlphaKeys: 2
-<<<<<<< HEAD
-=======
     colorLabel1: Color
->>>>>>> test
     vector1_0:
       serializedVersion: 2
       minMaxState: 0
@@ -10235,10 +10038,7 @@ ParticleSystem:
         m_PreInfinity: 2
         m_PostInfinity: 2
         m_RotationOrder: 4
-<<<<<<< HEAD
-=======
     vectorLabel1_0: X
->>>>>>> test
     vector1_1:
       serializedVersion: 2
       minMaxState: 0
@@ -10280,10 +10080,7 @@ ParticleSystem:
         m_PreInfinity: 2
         m_PostInfinity: 2
         m_RotationOrder: 4
-<<<<<<< HEAD
-=======
     vectorLabel1_1: Y
->>>>>>> test
     vector1_2:
       serializedVersion: 2
       minMaxState: 0
@@ -10325,10 +10122,7 @@ ParticleSystem:
         m_PreInfinity: 2
         m_PostInfinity: 2
         m_RotationOrder: 4
-<<<<<<< HEAD
-=======
     vectorLabel1_2: Z
->>>>>>> test
     vector1_3:
       serializedVersion: 2
       minMaxState: 0
@@ -10370,29 +10164,18 @@ ParticleSystem:
         m_PreInfinity: 2
         m_PostInfinity: 2
         m_RotationOrder: 4
-<<<<<<< HEAD
---- !u!199 &199081114130803468
-=======
     vectorLabel1_3: W
 --- !u!199 &199155138829363722
->>>>>>> test
 ParticleSystemRenderer:
   serializedVersion: 4
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-<<<<<<< HEAD
-  m_GameObject: {fileID: 1404056281881148}
-  m_Enabled: 1
-  m_CastShadows: 0
-  m_ReceiveShadows: 0
-=======
   m_GameObject: {fileID: 1312587747512518}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
->>>>>>> test
   m_MotionVectors: 1
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
@@ -10409,10 +10192,7 @@ ParticleSystemRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-<<<<<<< HEAD
-=======
   m_StitchLightmapSeams: 0
->>>>>>> test
   m_SelectedEditorRenderState: 0
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -10438,11 +10218,7 @@ ParticleSystemRenderer:
   m_Mesh1: {fileID: 0}
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
-<<<<<<< HEAD
-  m_MaskInteraction: 0
-=======
   m_MaskInteraction: 1
->>>>>>> test
 --- !u!199 &199881614438625566
 ParticleSystemRenderer:
   serializedVersion: 4
@@ -10453,10 +10229,7 @@ ParticleSystemRenderer:
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
-<<<<<<< HEAD
-=======
   m_DynamicOccludee: 1
->>>>>>> test
   m_MotionVectors: 1
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
@@ -10473,10 +10246,7 @@ ParticleSystemRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-<<<<<<< HEAD
-=======
   m_StitchLightmapSeams: 0
->>>>>>> test
   m_SelectedEditorRenderState: 0
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -10502,11 +10272,7 @@ ParticleSystemRenderer:
   m_Mesh1: {fileID: 0}
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
-<<<<<<< HEAD
-  m_MaskInteraction: 0
-=======
   m_MaskInteraction: 1
->>>>>>> test
 --- !u!199 &199886486839166596
 ParticleSystemRenderer:
   serializedVersion: 4
@@ -10517,10 +10283,7 @@ ParticleSystemRenderer:
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
-<<<<<<< HEAD
-=======
   m_DynamicOccludee: 1
->>>>>>> test
   m_MotionVectors: 1
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
@@ -10537,10 +10300,7 @@ ParticleSystemRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-<<<<<<< HEAD
-=======
   m_StitchLightmapSeams: 0
->>>>>>> test
   m_SelectedEditorRenderState: 0
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -10566,9 +10326,6 @@ ParticleSystemRenderer:
   m_Mesh1: {fileID: 0}
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
-<<<<<<< HEAD
-  m_MaskInteraction: 0
-=======
   m_MaskInteraction: 1
 --- !u!331 &331058427932241806
 SpriteMask:
@@ -10613,4 +10370,3 @@ SpriteMask:
   m_FrontSortingOrder: 0
   m_BackSortingOrder: 0
   m_IsCustomRangeActive: 0
->>>>>>> test
