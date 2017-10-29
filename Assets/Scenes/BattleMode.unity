@@ -597,6 +597,11 @@ Prefab:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114271196960228366, guid: a566a0e4bb035394588a675e9d68d496,
+        type: 2}
+      propertyPath: param.shotMovePattern
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a566a0e4bb035394588a675e9d68d496, type: 2}
   m_IsPrefabParent: 0
@@ -1007,7 +1012,7 @@ Prefab:
     - target: {fileID: 114751904338930652, guid: a566a0e4bb035394588a675e9d68d496,
         type: 2}
       propertyPath: movePattern
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 114271196960228366, guid: a566a0e4bb035394588a675e9d68d496,
         type: 2}
@@ -1061,7 +1066,7 @@ Prefab:
     - target: {fileID: 114271196960228366, guid: a566a0e4bb035394588a675e9d68d496,
         type: 2}
       propertyPath: param.shotDelay
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 114271196960228366, guid: a566a0e4bb035394588a675e9d68d496,
         type: 2}
@@ -1091,7 +1096,7 @@ Prefab:
     - target: {fileID: 114271196960228366, guid: a566a0e4bb035394588a675e9d68d496,
         type: 2}
       propertyPath: param.shotMovepattern
-      value: 0
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 114751904338930652, guid: a566a0e4bb035394588a675e9d68d496,
         type: 2}
@@ -1106,11 +1111,16 @@ Prefab:
     - target: {fileID: 114271196960228366, guid: a566a0e4bb035394588a675e9d68d496,
         type: 2}
       propertyPath: param.angleInterval
-      value: 25
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 114751904338930652, guid: a566a0e4bb035394588a675e9d68d496,
         type: 2}
       propertyPath: xAxisReverse
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114271196960228366, guid: a566a0e4bb035394588a675e9d68d496,
+        type: 2}
+      propertyPath: param.shotMovePattern
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -1207,7 +1217,7 @@ Prefab:
     - target: {fileID: 114751904338930652, guid: a566a0e4bb035394588a675e9d68d496,
         type: 2}
       propertyPath: movePattern
-      value: 3
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 114271196960228366, guid: a566a0e4bb035394588a675e9d68d496,
         type: 2}
@@ -2205,6 +2215,16 @@ Prefab:
         type: 2}
       propertyPath: param.spinSpeed
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114271196960228366, guid: a566a0e4bb035394588a675e9d68d496,
+        type: 2}
+      propertyPath: param.angleInterval
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114271196960228366, guid: a566a0e4bb035394588a675e9d68d496,
+        type: 2}
+      propertyPath: param.shotMovePattern
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a566a0e4bb035394588a675e9d68d496, type: 2}

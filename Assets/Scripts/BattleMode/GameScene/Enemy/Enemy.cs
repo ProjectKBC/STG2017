@@ -15,8 +15,8 @@ public enum MovePattern
 [RequireComponent(typeof(Rigidbody2D))]
 public abstract class Enemy : NoaBehaviour
 {
-    Dictionary<ShotMovepattern, EnemyShotManager> enemyShotManager = new Dictionary<ShotMovepattern, EnemyShotManager>();
-    public ShotMovepattern currentShotPattern; // 弾の動き
+    Dictionary<ShotMovePattern, EnemyShotManager> enemyShotManager = new Dictionary<ShotMovePattern, EnemyShotManager>();
+    public ShotMovePattern currentShotPattern; // 弾の動き
     public PlayerSlot playerSlot;
     public float maxHitPoint;
     [SerializeField]
@@ -51,7 +51,7 @@ public abstract class Enemy : NoaBehaviour
         foreach (EnemyShotManager x in tmp)
         {
             x.param.playerSlot = playerSlot;
-            enemyShotManager.Add(x.param.shotMovepattern, x);
+            enemyShotManager.Add(x.param.shotMovePattern, x);
         }
 
         hitPoint = maxHitPoint;
