@@ -15,6 +15,10 @@ TagManager:
   - UI
   - 
   - 
+<<<<<<< HEAD
+  - GameArea
+=======
+>>>>>>> test
   - Player
   - Bullet(Player)
   - Enemy
@@ -38,11 +42,20 @@ TagManager:
   - 
   - 
   - 
+<<<<<<< HEAD
+=======
   - 
+>>>>>>> test
   m_SortingLayers:
   - name: Default
     uniqueID: 0
     locked: 0
+<<<<<<< HEAD
+  - name: GameArea
+    uniqueID: 895334273
+    locked: 0
+=======
+>>>>>>> test
   - name: Bullet(Player)
     uniqueID: 1833890295
     locked: 0

@@ -1,13 +1,14 @@
 fileFormatVersion: 2
-guid: 373dc456b36c7f84096ac88b0617f002
-timeCreated: 1506097078
+guid: 290fa0e7d2a983e41a8e4c32b9286f18
+timeCreated: 1509267504
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: veronica_0
-    21300002: veronica_1
-    21300004: veronica_2
-    21300006: veronica_3
+    21300000: held_0
+    21300002: held_1
+    21300004: held_2
+    21300006: held_3
+  externalObjects: {}
   serializedVersion: 4
   mipmaps:
     mipMapMode: 0
@@ -61,6 +62,7 @@ TextureImporter:
   platformSettings:
   - buildTarget: DefaultTexturePlatform
     maxTextureSize: 2048
+    resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
     compressionQuality: 50
@@ -69,6 +71,7 @@ TextureImporter:
     overridden: 0
   - buildTarget: Standalone
     maxTextureSize: 2048
+    resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
     compressionQuality: 50
@@ -77,6 +80,7 @@ TextureImporter:
     overridden: 0
   - buildTarget: WebGL
     maxTextureSize: 2048
+    resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
     compressionQuality: 50
@@ -87,7 +91,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: veronica_0
+      name: held_0
       rect:
         serializedVersion: 2
         x: 0
@@ -101,7 +105,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: veronica_1
+      name: held_1
       rect:
         serializedVersion: 2
         x: 96
@@ -115,7 +119,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: veronica_2
+      name: held_2
       rect:
         serializedVersion: 2
         x: 192
@@ -129,7 +133,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: veronica_3
+      name: held_3
       rect:
         serializedVersion: 2
         x: 288

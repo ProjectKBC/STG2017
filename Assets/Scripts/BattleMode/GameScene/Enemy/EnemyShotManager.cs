@@ -36,7 +36,30 @@ public abstract class EnemyShotManager : MonoBehaviour
     {
         if (Time.time - lastShotTime < param.shotDelay) { return; }
 
+<<<<<<< HEAD
+        switch(param.shotMovepattern)
+        {
+            // 直進
+            case ShotMovepattern.Straight:
+                InstBullet(Mathf.PI / 180 * 270);
+                break;
+
+                // 全方位
+            case ShotMovepattern.EveryDirection:
+                for(float rad = 0; rad < 360; rad += param.angleInterval)
+                {
+                    InstBullet(Mathf.PI / 180 * rad);
+                }
+                break;
+
+                // 渦巻き状
+            case ShotMovepattern.Tornado:
+                InstBullet(Time.time * param.spinSpeed);
+                break;
+        }
+=======
         InstBullet();
+>>>>>>> test
      }
 
     protected void InstBullet()
