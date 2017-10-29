@@ -62,7 +62,7 @@ public abstract class EnemyShotManager : NoaBehaviour
                 InstBullet(Time.time * param.spinSpeed);
                 break;
 
-            case ShotMovepattern.PlayerAim:
+            //case ShotMovepattern.PlayerAim:
                 break;
         }
      }
