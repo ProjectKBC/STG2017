@@ -14,11 +14,7 @@ public enum ButtonCode
     Cancel,
 }
 
-<<<<<<< HEAD
 public abstract class ShotManager : MonoBehaviour
-=======
-public abstract class ShotManager : NoaBehaviour
->>>>>>> test
 {
     public Bullet bullet;         // 弾のPrefab
     public BulletParam param;     // パラメータクラス
@@ -37,19 +33,9 @@ public abstract class ShotManager : NoaBehaviour
         bulletNum = param.bulletMaxNum;
     }
 
-<<<<<<< HEAD
     protected void Start()
     {
         Init();
-=======
-    protected override IEnumerator Start()
-    {
-        Init();
-        MyProc.started = true;
-
-        yield return player.MyProc.Stay();
-        yield return NoaProcesser.StayBoss();
->>>>>>> test
     }
     
     public string GetButtonCode()
@@ -148,10 +134,7 @@ public abstract class ShotManager : NoaBehaviour
         lastShotTime = Time.time;
         audioSource.PlayOneShot(param.shotSound);
         Bullet b = Bullet.Instantiate(bullet, param, transform);
-<<<<<<< HEAD
         //NoaConsole.Log(param.name, player.playerSlot);
-=======
->>>>>>> test
     }
 
 

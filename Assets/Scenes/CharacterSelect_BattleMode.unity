@@ -77,27 +77,15 @@ LightmapSettings:
     m_PVRDirectSampleCount: 32
     m_PVRSampleCount: 500
     m_PVRBounces: 2
-<<<<<<< HEAD
     m_PVRFiltering: 0
-=======
-    m_PVRFilterTypeDirect: 0
-    m_PVRFilterTypeIndirect: 0
-    m_PVRFilterTypeAO: 0
->>>>>>> test
     m_PVRFilteringMode: 1
     m_PVRCulling: 1
     m_PVRFilteringGaussRadiusDirect: 1
     m_PVRFilteringGaussRadiusIndirect: 5
     m_PVRFilteringGaussRadiusAO: 2
-<<<<<<< HEAD
     m_PVRFilteringAtrousColorSigma: 1
     m_PVRFilteringAtrousNormalSigma: 1
     m_PVRFilteringAtrousPositionSigma: 1
-=======
-    m_PVRFilteringAtrousPositionSigmaDirect: 0.5
-    m_PVRFilteringAtrousPositionSigmaIndirect: 2
-    m_PVRFilteringAtrousPositionSigmaAO: 1
->>>>>>> test
   m_LightingDataAsset: {fileID: 0}
   m_UseShadowmask: 1
 --- !u!196 &4
@@ -119,7 +107,6 @@ NavMeshSettings:
     manualTileSize: 0
     tileSize: 256
     accuratePlacement: 0
-<<<<<<< HEAD
   m_NavMeshData: {fileID: 0}
 --- !u!1 &7750365
 GameObject:
@@ -255,11 +242,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 7750365}
-=======
-    debug:
-      m_Flags: 0
-  m_NavMeshData: {fileID: 0}
->>>>>>> test
 --- !u!1 &39526012
 GameObject:
   m_ObjectHideFlags: 0
@@ -271,10 +253,6 @@ GameObject:
   - component: {fileID: 39526016}
   - component: {fileID: 39526015}
   - component: {fileID: 39526014}
-<<<<<<< HEAD
-=======
-  - component: {fileID: 39526017}
->>>>>>> test
   m_Layer: 5
   m_Name: Chara1
   m_TagString: Untagged
@@ -289,11 +267,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 39526012}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-<<<<<<< HEAD
   m_LocalPosition: {x: 0, y: 0, z: 0}
-=======
-  m_LocalPosition: {x: 420, y: 810, z: 0}
->>>>>>> test
   m_LocalScale: {x: 1.00008, y: 1.00008, z: 1.00008}
   m_Children:
   - {fileID: 1035595955}
@@ -343,22 +317,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 39526015}
   m_OnClick:
     m_PersistentCalls:
-<<<<<<< HEAD
       m_Calls: []
-=======
-      m_Calls:
-      - m_Target: {fileID: 39526017}
-        m_MethodName: SelectChara1
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 1
->>>>>>> test
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &39526015
@@ -394,20 +353,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 39526012}
-<<<<<<< HEAD
-=======
---- !u!114 &39526017
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 39526012}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 560850f0afaff6042872e2036f732fbd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
->>>>>>> test
 --- !u!1 &458310145
 GameObject:
   m_ObjectHideFlags: 0
@@ -475,11 +420,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-<<<<<<< HEAD
   m_Text: Chara2
-=======
-  m_Text: Anoma
->>>>>>> test
 --- !u!222 &458310148
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -568,11 +509,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 510633914}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-<<<<<<< HEAD
   m_LocalPosition: {x: 0, y: 0, z: 90}
-=======
-  m_LocalPosition: {x: -960, y: -540, z: 90}
->>>>>>> test
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1475101194}
@@ -651,11 +588,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-<<<<<<< HEAD
   m_Text: Chara3
-=======
-  m_Text: Held
->>>>>>> test
 --- !u!222 &530608415
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -673,10 +606,6 @@ GameObject:
   - component: {fileID: 682376406}
   - component: {fileID: 682376405}
   - component: {fileID: 682376404}
-<<<<<<< HEAD
-=======
-  - component: {fileID: 682376407}
->>>>>>> test
   m_Layer: 5
   m_Name: Chara3
   m_TagString: Untagged
@@ -691,11 +620,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 682376402}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-<<<<<<< HEAD
   m_LocalPosition: {x: 0, y: 0, z: 0}
-=======
-  m_LocalPosition: {x: 1500, y: 810, z: 0}
->>>>>>> test
   m_LocalScale: {x: 1.00008, y: 1.00008, z: 1.00008}
   m_Children:
   - {fileID: 530608413}
@@ -745,22 +670,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 682376405}
   m_OnClick:
     m_PersistentCalls:
-<<<<<<< HEAD
       m_Calls: []
-=======
-      m_Calls:
-      - m_Target: {fileID: 682376407}
-        m_MethodName: SelectChara3
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 1
->>>>>>> test
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &682376405
@@ -796,20 +706,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 682376402}
-<<<<<<< HEAD
-=======
---- !u!114 &682376407
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 682376402}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 560850f0afaff6042872e2036f732fbd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
->>>>>>> test
 --- !u!1 &762606718
 GameObject:
   m_ObjectHideFlags: 0
@@ -892,11 +788,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 762606718}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-<<<<<<< HEAD
   m_LocalPosition: {x: 0, y: 0, z: 90}
-=======
-  m_LocalPosition: {x: -960, y: -540, z: 90}
->>>>>>> test
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 39526013}
@@ -921,10 +813,6 @@ GameObject:
   - component: {fileID: 779470782}
   - component: {fileID: 779470781}
   - component: {fileID: 779470780}
-<<<<<<< HEAD
-=======
-  - component: {fileID: 779470783}
->>>>>>> test
   m_Layer: 5
   m_Name: Chara2
   m_TagString: Untagged
@@ -939,11 +827,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 779470778}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-<<<<<<< HEAD
   m_LocalPosition: {x: 0, y: 0, z: 0}
-=======
-  m_LocalPosition: {x: 960, y: 810, z: 0}
->>>>>>> test
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 458310146}
@@ -993,22 +877,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 779470781}
   m_OnClick:
     m_PersistentCalls:
-<<<<<<< HEAD
       m_Calls: []
-=======
-      m_Calls:
-      - m_Target: {fileID: 779470783}
-        m_MethodName: SelectChara2
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 1
->>>>>>> test
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &779470781
@@ -1044,20 +913,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 779470778}
-<<<<<<< HEAD
-=======
---- !u!114 &779470783
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 779470778}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 560850f0afaff6042872e2036f732fbd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
->>>>>>> test
 --- !u!1 &1035595954
 GameObject:
   m_ObjectHideFlags: 0
@@ -1125,11 +980,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-<<<<<<< HEAD
   m_Text: Chara1
-=======
-  m_Text: Veronica
->>>>>>> test
 --- !u!222 &1035595957
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1201,11 +1052,7 @@ MonoBehaviour:
   m_Script: {fileID: -619905303, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-<<<<<<< HEAD
   m_FirstSelected: {fileID: 7750365}
-=======
-  m_FirstSelected: {fileID: 0}
->>>>>>> test
   m_sendNavigationEvents: 1
   m_DragThreshold: 5
 --- !u!4 &1161347469
@@ -1289,10 +1136,7 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
-<<<<<<< HEAD
   m_StereoMirrorMode: 0
-=======
->>>>>>> test
 --- !u!4 &1288740824
 Transform:
   m_ObjectHideFlags: 0
@@ -1341,11 +1185,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1475101193}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-<<<<<<< HEAD
   m_LocalPosition: {x: 0, y: 0, z: 0}
-=======
-  m_LocalPosition: {x: 540, y: 960, z: 0}
->>>>>>> test
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 510633918}
@@ -1397,7 +1237,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1475101193}
-<<<<<<< HEAD
 --- !u!1 &1684857321
 GameObject:
   m_ObjectHideFlags: 0
@@ -1566,8 +1405,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1835065562}
-=======
->>>>>>> test
 --- !u!1 &1839276663
 GameObject:
   m_ObjectHideFlags: 0
@@ -1650,20 +1487,12 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1839276663}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-<<<<<<< HEAD
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 510633918}
   - {fileID: 762606722}
   - {fileID: 1684857325}
-=======
-  m_LocalPosition: {x: 0, y: 0, z: 90}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 510633918}
-  - {fileID: 762606722}
->>>>>>> test
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
