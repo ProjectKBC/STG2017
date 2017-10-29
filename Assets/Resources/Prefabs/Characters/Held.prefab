@@ -183,7 +183,7 @@ Animator:
   m_GameObject: {fileID: 1543513657766142}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 9a106bccb7d5fba41905f25076eace9a, type: 2}
+  m_Controller: {fileID: 9100000, guid: 94e320f22b3be0e43af0b5cff63ef636, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -239,7 +239,7 @@ MonoBehaviour:
     isPenetrate: 0
     shotMode: 2
     initialPosition: {x: 0, y: 0, z: 0}
-    initialRotation: {x: 0, y: 0, z: 0, w: 0}
+    initialRotation: {x: 0, y: 0, z: 0, w: 1}
     gage:
       maxValue: 0
       value: 0
@@ -337,7 +337,7 @@ SpriteRenderer:
   m_SortingLayerID: 379377875
   m_SortingLayer: 4
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 373dc456b36c7f84096ac88b0617f002, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 290fa0e7d2a983e41a8e4c32b9286f18, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
