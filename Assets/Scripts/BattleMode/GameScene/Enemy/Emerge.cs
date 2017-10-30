@@ -11,7 +11,7 @@ public class Emerge : MonoBehaviour {
 	}
 	
 	void Update () {
-		if (transform.position.y > 200)
+		if (transform.position.y > -400)
 		{
 			Move ();
 		}
