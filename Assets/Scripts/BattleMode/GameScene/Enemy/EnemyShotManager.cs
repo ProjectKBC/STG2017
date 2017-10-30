@@ -12,8 +12,7 @@ public abstract class EnemyShotManager : NoaBehaviour
     protected AudioSource audioSource;
 
     protected float lastShotTime = 0;
-    int count = 0;
-    bool delaySwitch = false;
+    PlayerSlot playerSlot;
 
     public virtual void Init()
     {
@@ -40,21 +39,19 @@ public abstract class EnemyShotManager : NoaBehaviour
         
     public virtual void Shot()
     {
-        if(delaySwitch)
-        {
-            if (Time.time - lastShotTime < param.shotDelay2) { return; }
-        }
-        else if (Time.time - lastShotTime < param.shotDelay) { return; }
+        
+        if (Time.time - lastShotTime < param.shotDelay) { return; }
 
-        switch(param.shotMovePattern)
+        switch(param.shotMovepattern)
         {
             // 直進
-            case ShotMovePattern.Straight:
+            case ShotMovepattern.Straight:
+                //InstBullet(Mathf.PI / 180 * 270);
                 InstBullet();
                 break;
 
                 // 全方位
-            case ShotMovePattern.EveryDirection:
+            case ShotMovepattern.EveryDirection:
                 if(param.angleInterval > 0)
                 {
                     for (float rad = 0; rad < 360; rad += param.angleInterval)
@@ -65,41 +62,10 @@ public abstract class EnemyShotManager : NoaBehaviour
                 break;
 
                 // 渦巻き状
-            case ShotMovePattern.Tornado:
+            case ShotMovepattern.Tornado:
                 InstBullet(Time.time * param.spinSpeed);
                 break;
-
-                // 自機狙い
-            case ShotMovePattern.PlayerAim:
-                float vx = 0;
-                float vy = 0;
-                Player player1 = GameManager.Pc1Player;
-                Player player2 = GameManager.Pc2Player;
-
-                switch(enemy.playerSlot)
-                {
-                    case PlayerSlot.PC1:
-                        vx = player1.transform.position.x - transform.position.x;
-                        vy = player1.transform.position.y - transform.position.y;
-                        break;
-
-                    case PlayerSlot.PC2:
-                        vx = player2.transform.position.x - transform.position.x;
-                        vy = player2.transform.position.y - transform.position.y;
-                        break;
-                }
-                InstBullet(vx, vy);
-                break;
         }
-
-        count++;
-        delaySwitch = false;
-        if (count == param.delayShotCount)
-        {
-            count = 0;
-            delaySwitch = true;
-        }
-
      }
 
     protected void InstBullet()
@@ -109,21 +75,11 @@ public abstract class EnemyShotManager : NoaBehaviour
         EnemyBullet b = EnemyBullet.Instantiate(bullet, param, transform);
     }
 
-    // 主に角度を渡す
     protected void InstBullet(float _rad)
     {
         lastShotTime = Time.time;
         if (param.shotSound != null) { audioSource.PlayOneShot(param.shotSound); }
         EnemyBullet b = EnemyBullet.Instantiate(bullet, param, transform);
         b.transform.Rotate(new Vector2(Mathf.Cos(_rad), Mathf.Sin(_rad)));
-    }
-
-    // 主に座標を渡す
-    protected void InstBullet(float _x, float _y)
-    {
-        lastShotTime = Time.time;
-        if (param.shotSound != null) { audioSource.PlayOneShot(param.shotSound); }
-        EnemyBullet b = EnemyBullet.Instantiate(bullet, param, transform);
-        b.transform.Rotate(new Vector2(_x, _y).normalized);
     }
 }
