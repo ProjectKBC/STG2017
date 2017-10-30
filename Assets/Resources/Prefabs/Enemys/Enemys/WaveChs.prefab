@@ -97,7 +97,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1923783554978398}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -140, z: 0}
+  m_LocalPosition: {x: 240, y: -140, z: 0}
   m_LocalScale: {x: 3, y: 3, z: 1}
   m_Children: []
   m_Father: {fileID: 4791042680391362}
@@ -123,7 +123,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1303495426830908}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -480, y: 270, z: 0}
+  m_LocalPosition: {x: -480, y: 1600, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4199167476647132}
@@ -139,7 +139,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1913370012957118}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -140, z: 0}
+  m_LocalPosition: {x: -240, y: -140, z: 0}
   m_LocalScale: {x: 3, y: 3, z: 1}
   m_Children: []
   m_Father: {fileID: 4791042680391362}
@@ -369,7 +369,7 @@ MonoBehaviour:
     angleInterval: 0
     spinSpeed: 0
     speed: 1
-    power: 0
+    power: 1
     isPenetrate: 0
     initialPosition: {x: 0, y: 0, z: 0}
 --- !u!114 &114338189820663690
@@ -392,7 +392,7 @@ MonoBehaviour:
     angleInterval: 0
     spinSpeed: 0
     speed: 1
-    power: 0
+    power: 1
     isPenetrate: 0
     initialPosition: {x: 0, y: 0, z: 0}
 --- !u!114 &114405144436673024
@@ -409,7 +409,7 @@ MonoBehaviour:
   currentShotPattern: 0
   playerSlot: 0
   maxHitPoint: 10
-  _speed: 0.1
+  _speed: 0.001
   radius: 0
   score: 100
   movePattern: 2
@@ -437,7 +437,7 @@ MonoBehaviour:
     angleInterval: 0
     spinSpeed: 0
     speed: 1
-    power: 0
+    power: 1
     isPenetrate: 0
     initialPosition: {x: 0, y: 0, z: 0}
 --- !u!114 &114720187967677466
@@ -454,7 +454,7 @@ MonoBehaviour:
   currentShotPattern: 0
   playerSlot: 0
   maxHitPoint: 10
-  _speed: 0.1
+  _speed: 0.001
   radius: 0
   score: 100
   movePattern: 2
@@ -476,7 +476,7 @@ MonoBehaviour:
   currentShotPattern: 0
   playerSlot: 0
   maxHitPoint: 10
-  _speed: 0.1
+  _speed: 0.001
   radius: 0
   score: 100
   movePattern: 2
@@ -504,7 +504,6 @@ SpriteRenderer:
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
-  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -520,7 +519,6 @@ SpriteRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 0
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -548,7 +546,6 @@ SpriteRenderer:
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
-  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -564,7 +561,6 @@ SpriteRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 0
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -592,7 +588,6 @@ SpriteRenderer:
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
-  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -608,7 +603,6 @@ SpriteRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 0
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
