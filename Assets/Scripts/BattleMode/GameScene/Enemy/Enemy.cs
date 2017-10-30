@@ -3,6 +3,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum EnemyType
+{
+    small,
+    medium,
+    large
+}
+
 public enum MovePattern
 {
 	Straight,
@@ -17,6 +24,10 @@ public abstract class Enemy : NoaBehaviour
 {
     Dictionary<ShotMovepattern, EnemyShotManager> enemyShotManager = new Dictionary<ShotMovepattern, EnemyShotManager>();
     public ShotMovepattern currentShotPattern; // 弾の動き
+
+    public EnemyType enemyType; // f:小ザコとは中ザコとかの区別。スコアや撃破数の区別に使う。
+    public int score;
+
     public PlayerSlot playerSlot;
     public float maxHitPoint;
     [SerializeField]
@@ -28,7 +39,6 @@ public abstract class Enemy : NoaBehaviour
     }
 
     public float radius;
-    public float score;
 
     public MovePattern movePattern;
 	public bool xAxisReverse; // x軸の反転の有無
@@ -55,6 +65,7 @@ public abstract class Enemy : NoaBehaviour
         }
 
         hitPoint = maxHitPoint;
+        score = GameManager.GetScoreValue(enemyType);
     }
 
     protected override IEnumerator Start()
@@ -151,6 +162,8 @@ public abstract class Enemy : NoaBehaviour
     // 当たり判定
     protected void OnTriggerEnter2D(Collider2D c)
     {
+        if (NoaProcesser.BossProc.IsStay()) { return; }
+
         switch (c.gameObject.layer)
         {
             case LayerName.BulletPlayer:
@@ -172,7 +185,7 @@ public abstract class Enemy : NoaBehaviour
     {
         hitPoint -= _damage;
         Debug.Log(hitPoint);
-        if (hitPoint < 0)
+        if (hitPoint <= 0)
         {
             Dead();
         }
@@ -181,6 +194,7 @@ public abstract class Enemy : NoaBehaviour
     protected void Dead()
     {
         // todo: スコア処理
+        GameManager.SetParam(this);
         Destroy(this.gameObject);
     }
 }
