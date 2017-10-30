@@ -2,16 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum EmergePattern
+{
+	Down,
+	Suddenly,
+}
+
 [System.Serializable]
 public class EnemyData
 {
-	public enum EmergePattern
-	{
-		Down,
-		Suddenly,
-	}
-
-	public GameObject wave; 
+	public EmergePattern emergePattern;
+	public GameObject wave;
 }
 
 public class Emitter : MonoBehaviour
