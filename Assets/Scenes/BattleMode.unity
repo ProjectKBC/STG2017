@@ -1000,11 +1000,11 @@ Prefab:
         type: 2}
       propertyPath: bullet
       value: 
-      objectReference: {fileID: 114129057209960936, guid: 1fd8d1e31b4a3db49a4d2d7acfe95546,
+      objectReference: {fileID: 114871393681399078, guid: 2c004ec302f254e4c9d52117f9611e07,
         type: 2}
     - target: {fileID: 1087224783398204, guid: a566a0e4bb035394588a675e9d68d496, type: 2}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 114751904338930652, guid: a566a0e4bb035394588a675e9d68d496,
         type: 2}
@@ -1043,7 +1043,7 @@ Prefab:
     - target: {fileID: 114751904338930652, guid: a566a0e4bb035394588a675e9d68d496,
         type: 2}
       propertyPath: movePattern
-      value: 3
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 114271196960228366, guid: a566a0e4bb035394588a675e9d68d496,
         type: 2}
