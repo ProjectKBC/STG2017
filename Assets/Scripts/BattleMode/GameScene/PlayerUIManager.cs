@@ -41,8 +41,6 @@ public class PCCanvas
     public GameObject mainCanvas;
     public Player player;
 
-    public Text ScoreText;
-
     public Image hitPointImage;
     public Text hitPointText;
     public Image TopGageImage;
@@ -221,10 +219,6 @@ public sealed class PlayerUIManager : NoaBehaviour
                     break;
             }
         }
-
-        _c.ScoreText.text = _c.player.playerSlot == PlayerSlot.PC1
-            ? GameManager.Pc1Score.ToString()
-            : GameManager.Pc2Score.ToString();
     }
 
     private void CheckStatus(PCCanvas _c)
@@ -309,7 +303,7 @@ public sealed class PlayerUIManager : NoaBehaviour
                             case "Bar":
                                 rt = c_child.gameObject.GetComponent<RectTransform>();
                                 rt.anchoredPosition = new Vector3(0, 0, 0);
-                                rt.sizeDelta        = new Vector2(336, 72);
+                                rt.sizeDelta        = new Vector2(672, 72);
                                 rt.anchorMin        = new Vector2(0, 1);
                                 rt.anchorMax        = new Vector2(0, 1);
                                 rt.pivot            = new Vector2(0, 1);
@@ -375,7 +369,7 @@ public sealed class PlayerUIManager : NoaBehaviour
                             case "Bar":
                                 rt = c_child.gameObject.GetComponent<RectTransform>();
                                 rt.anchoredPosition = new Vector3(0, 0, 0);
-                                rt.sizeDelta = new Vector2(336, 36);
+                                rt.sizeDelta = new Vector2(672, 36);
                                 rt.anchorMin = new Vector2(0, 1);
                                 rt.anchorMax = new Vector2(0, 1);
                                 rt.pivot = new Vector2(0, 1);
@@ -400,7 +394,7 @@ public sealed class PlayerUIManager : NoaBehaviour
                             case "Bar_sb":
                                 rt = c_child.gameObject.GetComponent<RectTransform>();
                                 rt.anchoredPosition = new Vector3(0, 0, 0);
-                                rt.sizeDelta = new Vector2(336, 36);
+                                rt.sizeDelta = new Vector2(672, 36);
                                 rt.anchorMin = new Vector2(0, 1);
                                 rt.anchorMax = new Vector2(0, 1);
                                 rt.pivot = new Vector2(0, 1);
@@ -467,7 +461,7 @@ public sealed class PlayerUIManager : NoaBehaviour
                             case "Bar":
                                 rt = c_child.gameObject.GetComponent<RectTransform>();
                                 rt.anchoredPosition = new Vector3(0, 0, 0);
-                                rt.sizeDelta = new Vector2(72, 336);
+                                rt.sizeDelta = new Vector2(72, 432);
                                 rt.anchorMin = new Vector2(0, 1);
                                 rt.anchorMax = new Vector2(0, 1);
                                 rt.pivot = new Vector2(0, 1);
@@ -492,7 +486,7 @@ public sealed class PlayerUIManager : NoaBehaviour
                             case "Bar_sb":
                                 rt = c_child.gameObject.GetComponent<RectTransform>();
                                 rt.anchoredPosition = new Vector3(0, 0, 0);
-                                rt.sizeDelta = new Vector2(72, 336);
+                                rt.sizeDelta = new Vector2(72, 432);
                                 rt.anchorMin = new Vector2(0, 1);
                                 rt.anchorMax = new Vector2(0, 1);
                                 rt.pivot = new Vector2(0, 1);
@@ -601,45 +595,6 @@ public sealed class PlayerUIManager : NoaBehaviour
                                 _c.iconText = t;
                                 break;
 
-                        }
-                    }
-                    break;
-
-                case "ScoreCanvas":
-                    target = child.gameObject.GetComponent<Canvas>();
-                    foreach (Transform c_child in target.transform)
-                    {
-                        switch (c_child.name)
-                        {
-                            case "Text":
-                                /*
-                                rt = c_child.gameObject.GetComponent<RectTransform>();
-                                rt.anchoredPosition = new Vector3(0, 0, 0);
-                                rt.sizeDelta = new Vector2(108, 108);
-                                rt.anchorMin = new Vector2(0, 1);
-                                rt.anchorMax = new Vector2(0, 1);
-                                rt.pivot = new Vector2(0, 1);
-                                rt.rotation = new Quaternion(0, 0, 0, 0);
-                                rt.localScale = new Vector3(1, 1, 1);
-                                */
-                                t = c_child.gameObject.GetComponent<Text>();
-                                /*
-                                t.text = "0";
-                                t.font = Resources.GetBuiltinResource(typeof(Font), "Arial.ttf") as Font;
-                                t.fontStyle = FontStyle.Normal;
-                                t.fontSize = 18;
-                                t.supportRichText = true;
-                                t.alignment = TextAnchor.LowerLeft;
-                                t.alignByGeometry = false;
-                                t.horizontalOverflow = HorizontalWrapMode.Wrap;
-                                t.verticalOverflow = VerticalWrapMode.Truncate;
-                                t.resizeTextForBestFit = false;
-                                t.color = new Color(0.196f, 0.196f, 0.196f, 1.0f);
-                                t.material = null;
-                                t.raycastTarget = true;
-                                */
-                                _c.ScoreText = t;
-                                break;
                         }
                     }
                     break;

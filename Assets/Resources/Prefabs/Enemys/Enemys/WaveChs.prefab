@@ -42,7 +42,7 @@ GameObject:
   - component: {fileID: 114094511340938310}
   - component: {fileID: 60790137830553052}
   m_Layer: 10
-  m_Name: ProtoEnemy
+  m_Name: ProtoEnemy (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -63,7 +63,7 @@ GameObject:
   - component: {fileID: 114689688731091164}
   - component: {fileID: 60725593674573656}
   m_Layer: 10
-  m_Name: ProtoEnemy
+  m_Name: ProtoEnemy (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -84,7 +84,7 @@ GameObject:
   - component: {fileID: 114338189820663690}
   - component: {fileID: 60606676103756600}
   m_Layer: 10
-  m_Name: ProtoEnemy
+  m_Name: ProtoEnemy (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

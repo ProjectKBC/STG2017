@@ -73,27 +73,8 @@ public sealed class GameManager : NoaBehaviour
     public static float Pc1Score { get; private set; }
     public static float Pc2Score { get; private set; }
 
-    // f:撃破数を格納する連想配列
-    public static Dictionary<EnemyType, int> PC1Kills = new Dictionary<EnemyType, int>();
-    public static Dictionary<EnemyType, int> PC2Kills = new Dictionary<EnemyType, int>();
-
-    // f:リザルト
-    // 残りHP
-    // 倒した敵機の数（種類別）
-    // totalスコア
-    // 勝ち負け
-
-    public static bool IsGameSet = false;
-
     protected override IEnumerator Start()
     {
-        // f:Killsの初期セットアップ
-        foreach (EnemyType enemyType in Enum.GetValues(typeof(EnemyType)))
-        {
-            PC1Kills.Add(enemyType, 0);
-            PC2Kills.Add(enemyType, 0);
-        }
-
         yield return PlayerManager.Inst.MyProc.Stay();
         yield return GameStarter.MyProc.Stay();
 
@@ -189,43 +170,22 @@ public sealed class GameManager : NoaBehaviour
 
     /* f:Score系 ------------------------------------------------------------------------- */
 
-    public static int GetScoreValue(EnemyType _enemyType)
+    public static void AddScore(float _score, PlayerSlot _ps)
     {
-        switch(_enemyType)
+        switch(_ps)
         {
-            case EnemyType.small:  return 100;
-            case EnemyType.medium: return 500;
-            case EnemyType.large:  return 3000;
-
-            default: return 0;
-        }
-    }
-
-    public static void SetParam(Enemy _deadEnemy)
-    {
-        switch(_deadEnemy.playerSlot)
-        {
-            case PlayerSlot.PC1:
-                ++PC1Kills[_deadEnemy.enemyType];
-                Pc1Score += _deadEnemy.score;
-                break;
-            case PlayerSlot.PC2:
-                ++PC2Kills[_deadEnemy.enemyType];
-                Pc2Score += _deadEnemy.score;
-                break;
+            case PlayerSlot.PC1: Pc1Score += _score; break;
+            case PlayerSlot.PC2: Pc2Score += _score; break;
         }
     }
     
     /* f:Game系 --------------------------------------------------------------------------- */
     public static void GameSet(Player _loser)
     {
-        IsGameSet = true;
         NoaProcesser.BossProc.ended = true;
-        
+
         GameObject.Find(CanvasName.UI + "/PC1Shutter").GetComponent<Image>().color = new Color(255 / 255f, 0 / 255f, 0 / 255f, 100 / 255f);
         GameObject.Find(CanvasName.UI + "/PC2Shutter").GetComponent<Image>().color = new Color(255 / 255f, 0 / 255f, 0 / 255f, 100 / 255f);
-        Instantiate(Resources.Load("Prefabs/UI/PC1Score"), GameObject.Find(CanvasName.UI).transform);
-        Instantiate(Resources.Load("Prefabs/UI/PC2Score"), GameObject.Find(CanvasName.UI).transform);
     }
 
     /* f:Player系 ------------------------------------------------------------------------- */
@@ -237,5 +197,4 @@ public sealed class GameManager : NoaBehaviour
         Pc2Player = Player.Instantiate(PlayerManager.GetCharacterPrefab(_pc2Name), PlayerSlot.PC2);
         Debug.Log("created " + Pc2Player);
     }
-    
 }
