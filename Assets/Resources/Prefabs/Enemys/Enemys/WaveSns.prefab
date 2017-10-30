@@ -257,6 +257,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ce96c508544e934f9fd6315a8fd4e34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Ypos: 200
 --- !u!114 &114510704259711846
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -272,7 +273,7 @@ MonoBehaviour:
   param:
     shotMovepattern: 0
     shotSound: {fileID: 0}
-    shotDelay: 1
+    shotDelay: 0.8
     lifeTime: 10
     angleInterval: 0
     spinSpeed: 0
@@ -339,7 +340,7 @@ MonoBehaviour:
   param:
     shotMovepattern: 0
     shotSound: {fileID: 0}
-    shotDelay: 1
+    shotDelay: 0.8
     lifeTime: 10
     angleInterval: 0
     spinSpeed: 0

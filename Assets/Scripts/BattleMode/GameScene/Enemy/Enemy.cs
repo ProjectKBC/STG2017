@@ -9,6 +9,7 @@ public enum MovePattern
 	Circle,
 	Chase,
     Snake,
+	Side,
 }
 
 [RequireComponent(typeof(Rigidbody2D))]
@@ -32,7 +33,10 @@ public abstract class Enemy : NoaBehaviour
     public MovePattern movePattern;
 	public bool xAxisReverse; // x軸の反転の有無
 	public bool yAxisReverse; // y軸の反転の有無
-    public bool xTurn = true;     public bool yTurn = true;     Vector2 pos = new Vector2(); 
+    public bool xTurn = true;
+    public bool yTurn = true;
+    Vector2 pos = new Vector2();
+
     /*
      * 
      * パターン化したい
@@ -80,7 +84,17 @@ public abstract class Enemy : NoaBehaviour
         Shot();
     }
 
-    void Turn()     {         if (xTurn) xAxisReverse = !xAxisReverse;         if (yTurn) yAxisReverse = !yAxisReverse;         if (-920 < pos.x && pos.x <= -830) pos.x = -829;         else if (-130 <= pos.x && pos.x < 0) pos.x = -131;         else if (0 < pos.x && pos.x <= 130) pos.x = 131;         else if (830 <= pos.x && pos.x < 920) pos.x = 829;         transform.position = pos;         CancelInvoke();     }
+    void Turn()
+    {
+        if (xTurn) xAxisReverse = !xAxisReverse;
+        if (yTurn) yAxisReverse = !yAxisReverse;
+        if (-920 < pos.x && pos.x <= -830) pos.x = -829;
+        else if (-130 <= pos.x && pos.x < 0) pos.x = -131;
+        else if (0 < pos.x && pos.x <= 130) pos.x = 131;
+        else if (830 <= pos.x && pos.x < 920) pos.x = 829;
+        transform.position = pos;
+        CancelInvoke();
+    }
 
     // 移動軌跡などを書き込む関数
     public virtual void Move()
@@ -129,8 +143,30 @@ public abstract class Enemy : NoaBehaviour
     			break;
 
                 // 壁に沿って蛇行
-            case MovePattern.Snake:                 if ((-830 < pos.x && pos.x < -130) || (130 < pos.x && pos.x < 830))                 {
-                    direction = new Vector2(yAxis * -1, 0).normalized;                     pos += direction * Speed * Time.deltaTime;                 }                 else                 {                     direction = new Vector2(0, -1).normalized;                     pos += direction * Speed * Time.deltaTime;                     Invoke("Turn", 1 / _speed);                 }                 break;
+            case MovePattern.Snake:
+                if ((-830 < pos.x && pos.x < -130) || (130 < pos.x && pos.x < 830))
+                {
+                    direction = new Vector2(yAxis * -1, 0).normalized;
+                    pos += direction * Speed * Time.deltaTime;
+                }
+                else
+                {
+                    direction = new Vector2(0, -1).normalized;
+                    pos += direction * Speed * Time.deltaTime;
+                    Invoke("Turn", 1 / _speed);
+                }
+                break;
+
+			case MovePattern.Side:
+				if ((-830 < pos.x && pos.x < -130) || (130 < pos.x && pos.x < 830))
+				{
+					direction = new Vector2 (yAxis * -1, 0).normalized;
+					pos += direction * Speed * Time.deltaTime;
+				} else {
+					Turn ();
+				}
+					break;
+			
 		}
         transform.position = pos;
     }

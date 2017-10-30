@@ -225,6 +225,7 @@ MonoBehaviour:
     isPenetrate: 1
     shotMode: 1
     initialPosition: {x: 0, y: 0, z: 0}
+    initialRotation: {x: 0, y: 0, z: 0, w: 1}
     gage:
       maxValue: 0
       value: 0
@@ -232,6 +233,7 @@ MonoBehaviour:
       effectType: 1
       countType: 0
     chargeTime: 2
+    rechargeTime: 0
     bulletMaxNum: 1
     reloadTime: 10
   buttonCode: 1
@@ -260,6 +262,7 @@ MonoBehaviour:
     isPenetrate: 1
     shotMode: 2
     initialPosition: {x: 0, y: 300, z: 0}
+    initialRotation: {x: 0, y: 0, z: 0, w: 1}
     gage:
       maxValue: 0
       value: 0
@@ -267,6 +270,7 @@ MonoBehaviour:
       effectType: 0
       countType: 0
     chargeTime: 0
+    rechargeTime: 0
     bulletMaxNum: 1
     reloadTime: 1
   buttonCode: 0
@@ -308,7 +312,6 @@ SpriteRenderer:
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
-  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
@@ -324,7 +327,6 @@ SpriteRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 0
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5

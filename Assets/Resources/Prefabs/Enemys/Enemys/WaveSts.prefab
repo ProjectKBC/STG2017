@@ -82,7 +82,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4060179207917728}
-  - component: {fileID: 50286157720820460}
   - component: {fileID: 114418600285703808}
   m_Layer: 0
   m_Name: WaveSts
@@ -153,26 +152,6 @@ Rigidbody2D:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1069629093681986}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 0
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
---- !u!50 &50286157720820460
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1789732844706114}
   m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
@@ -385,7 +364,7 @@ MonoBehaviour:
   param:
     shotMovepattern: 0
     shotSound: {fileID: 0}
-    shotDelay: 2.5
+    shotDelay: 2
     lifeTime: 10
     angleInterval: 0
     spinSpeed: 0
@@ -407,7 +386,7 @@ MonoBehaviour:
   currentShotPattern: 0
   playerSlot: 0
   maxHitPoint: 10
-  _speed: 0.5
+  _speed: 0.7
   radius: 0
   score: 100
   movePattern: 0
@@ -429,10 +408,10 @@ MonoBehaviour:
   currentShotPattern: 0
   playerSlot: 0
   maxHitPoint: 10
-  _speed: 0.5
+  _speed: 0.7
   radius: 0
   score: 100
-  movePattern: 0
+  movePattern: 4
   xAxisReverse: 0
   yAxisReverse: 0
   xTurn: 1
@@ -451,7 +430,7 @@ MonoBehaviour:
   currentShotPattern: 0
   playerSlot: 0
   maxHitPoint: 10
-  _speed: 0.5
+  _speed: 0.7
   radius: 0
   score: 100
   movePattern: 0
@@ -474,7 +453,7 @@ MonoBehaviour:
   param:
     shotMovepattern: 0
     shotSound: {fileID: 0}
-    shotDelay: 2.5
+    shotDelay: 2
     lifeTime: 10
     angleInterval: 0
     spinSpeed: 0
@@ -493,6 +472,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ce96c508544e934f9fd6315a8fd4e34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Ypos: 200
 --- !u!114 &114902719641569098
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -508,7 +488,7 @@ MonoBehaviour:
   param:
     shotMovepattern: 0
     shotSound: {fileID: 0}
-    shotDelay: 2.5
+    shotDelay: 2
     lifeTime: 10
     angleInterval: 0
     spinSpeed: 0
