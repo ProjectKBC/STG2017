@@ -22,12 +22,17 @@ public enum MovePattern
 [RequireComponent(typeof(Rigidbody2D))]
 public abstract class Enemy : NoaBehaviour
 {
+<<<<<<< HEAD
     Dictionary<ShotMovepattern, EnemyShotManager> enemyShotManager = new Dictionary<ShotMovepattern, EnemyShotManager>();
     public ShotMovepattern currentShotPattern; // 弾の動き
 
     public EnemyType enemyType; // f:小ザコとは中ザコとかの区別。スコアや撃破数の区別に使う。
     public int score;
 
+=======
+    Dictionary<ShotMovePattern, EnemyShotManager> enemyShotManager = new Dictionary<ShotMovePattern, EnemyShotManager>();
+    public ShotMovePattern currentShotPattern; // 弾の動き
+>>>>>>> master
     public PlayerSlot playerSlot;
     public float maxHitPoint;
     [SerializeField]
@@ -61,7 +66,7 @@ public abstract class Enemy : NoaBehaviour
         foreach (EnemyShotManager x in tmp)
         {
             x.param.playerSlot = playerSlot;
-            enemyShotManager.Add(x.param.shotMovepattern, x);
+            enemyShotManager.Add(x.param.shotMovePattern, x);
         }
 
         hitPoint = maxHitPoint;
@@ -109,10 +114,11 @@ public abstract class Enemy : NoaBehaviour
 
     		// 直進
     		case MovePattern.Straight:
-                direction = new Vector2(0, yAxis * -1).normalized;
+                direction = new Vector2(0, xAxis * -1).normalized;
     			pos += direction * Speed * Time.deltaTime;
     			break;
 
+                // 斜め移動
             case MovePattern.Slanting:
                 direction = new Vector2(yAxis * 1, xAxis * -1).normalized;
                 pos += direction * Speed * Time.deltaTime;
@@ -134,14 +140,16 @@ public abstract class Enemy : NoaBehaviour
     		case MovePattern.Chase:
     			Player player1 = GameManager.Pc1Player;
                 Player player2 = GameManager.Pc2Player;
-                
-                if (transform.position.x < -1)
+
+                switch(playerSlot)
                 {
-                    pos = Vector2.Lerp(transform.position, player1.transform.position, Speed * Time.deltaTime);
-                }
-                else if (transform.position.x > 1)
-                {
-                    pos = Vector2.Lerp(transform.position, player2.transform.position, Speed * Time.deltaTime);
+                    case PlayerSlot.PC1:
+                        pos = Vector2.Lerp(transform.position, player1.transform.position, Speed * Time.deltaTime);
+                        break;
+
+                    case PlayerSlot.PC2:
+                        pos = Vector2.Lerp(transform.position, player2.transform.position, Speed * Time.deltaTime);
+                        break;
                 }
     			break;
 

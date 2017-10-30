@@ -217,7 +217,7 @@ MonoBehaviour:
   bullet: {fileID: 114254312219786380, guid: 4e7fd2cc1cfd48f4b9eb10dabda949ba, type: 2}
   param:
     name: "\u30CE\u30D6\u30EC\u30B9"
-    shotSound: {fileID: 8300000, guid: 7859a29f2a04c764d9f84132b39eed1b, type: 3}
+    shotSound: {fileID: 8300000, guid: ebc59a65e6c5345e2b3bc4206407c9ce, type: 3}
     shotDelay: 0
     lifeTime: 1
     speed: 3
@@ -225,6 +225,7 @@ MonoBehaviour:
     isPenetrate: 1
     shotMode: 1
     initialPosition: {x: 0, y: 0, z: 0}
+    initialRotation: {x: 0, y: 0, z: 0, w: 1}
     gage:
       maxValue: 0
       value: 0
@@ -232,6 +233,7 @@ MonoBehaviour:
       effectType: 1
       countType: 0
     chargeTime: 2
+    rechargeTime: 0
     bulletMaxNum: 1
     reloadTime: 10
   buttonCode: 1
@@ -252,7 +254,7 @@ MonoBehaviour:
   bullet: {fileID: 114396921439157842, guid: 7d8d10a3874e2e846ba749cb6e72652e, type: 2}
   param:
     name: "\u30A2\u30D7\u30C1\u30C6\u30E5\u30FC\u30C9"
-    shotSound: {fileID: 8300000, guid: 7859a29f2a04c764d9f84132b39eed1b, type: 3}
+    shotSound: {fileID: 8300000, guid: ee3b95fdb14344791ae03ebebeb93f03, type: 3}
     shotDelay: 1
     lifeTime: 1
     speed: 0
@@ -260,6 +262,7 @@ MonoBehaviour:
     isPenetrate: 1
     shotMode: 2
     initialPosition: {x: 0, y: 300, z: 0}
+    initialRotation: {x: 0, y: 0, z: 0, w: 1}
     gage:
       maxValue: 0
       value: 0
@@ -267,6 +270,7 @@ MonoBehaviour:
       effectType: 0
       countType: 0
     chargeTime: 0
+    rechargeTime: 0
     bulletMaxNum: 1
     reloadTime: 1
   buttonCode: 0
