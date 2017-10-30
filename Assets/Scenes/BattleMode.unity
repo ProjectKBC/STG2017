@@ -312,7 +312,7 @@ Prefab:
     - target: {fileID: 114751904338930652, guid: a566a0e4bb035394588a675e9d68d496,
         type: 2}
       propertyPath: movePattern
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 114271196960228366, guid: a566a0e4bb035394588a675e9d68d496,
         type: 2}
@@ -381,7 +381,7 @@ Prefab:
     - target: {fileID: 114751904338930652, guid: a566a0e4bb035394588a675e9d68d496,
         type: 2}
       propertyPath: yAxisReverse
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 114271196960228366, guid: a566a0e4bb035394588a675e9d68d496,
         type: 2}
@@ -397,16 +397,6 @@ Prefab:
         type: 2}
       propertyPath: param.power
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114751904338930652, guid: a566a0e4bb035394588a675e9d68d496,
-        type: 2}
-      propertyPath: currentShotPattern
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114271196960228366, guid: a566a0e4bb035394588a675e9d68d496,
-        type: 2}
-      propertyPath: param.shotMovePattern
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a566a0e4bb035394588a675e9d68d496, type: 2}
@@ -554,98 +544,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
-<<<<<<< HEAD
-=======
-    - target: {fileID: 114271196960228366, guid: a566a0e4bb035394588a675e9d68d496,
-        type: 2}
-      propertyPath: param.name
-      value: "\u96D1\u9B5A\u30B7\u30E7\u30C3\u30C8"
-      objectReference: {fileID: 0}
-    - target: {fileID: 114271196960228366, guid: a566a0e4bb035394588a675e9d68d496,
-        type: 2}
-      propertyPath: param.shotDelay
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114271196960228366, guid: a566a0e4bb035394588a675e9d68d496,
-        type: 2}
-      propertyPath: param.lifeTime
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 114271196960228366, guid: a566a0e4bb035394588a675e9d68d496,
-        type: 2}
-      propertyPath: param.shotSound
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 114271196960228366, guid: a566a0e4bb035394588a675e9d68d496,
-        type: 2}
-      propertyPath: param.speed
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 114271196960228366, guid: a566a0e4bb035394588a675e9d68d496,
-        type: 2}
-      propertyPath: param.power
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114271196960228366, guid: a566a0e4bb035394588a675e9d68d496,
-        type: 2}
-      propertyPath: param.shotMovepattern
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114751904338930652, guid: a566a0e4bb035394588a675e9d68d496,
-        type: 2}
-      propertyPath: currentShotPattern
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114751904338930652, guid: a566a0e4bb035394588a675e9d68d496,
-        type: 2}
-      propertyPath: xTurn
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114271196960228366, guid: a566a0e4bb035394588a675e9d68d496,
-        type: 2}
-      propertyPath: param.angleInterval
-      value: 25
-      objectReference: {fileID: 0}
-    - target: {fileID: 114751904338930652, guid: a566a0e4bb035394588a675e9d68d496,
-        type: 2}
-      propertyPath: yTurn
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1087224783398204, guid: a566a0e4bb035394588a675e9d68d496, type: 2}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114271196960228366, guid: a566a0e4bb035394588a675e9d68d496,
-        type: 2}
-      propertyPath: param.shotMovePattern
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 50651301561791738, guid: a566a0e4bb035394588a675e9d68d496,
-        type: 2}
-      propertyPath: m_UseAutoMass
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114271196960228366, guid: a566a0e4bb035394588a675e9d68d496,
-        type: 2}
-      propertyPath: param.DelayShotCount
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114751904338930652, guid: a566a0e4bb035394588a675e9d68d496,
-        type: 2}
-      propertyPath: _speed
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114271196960228366, guid: a566a0e4bb035394588a675e9d68d496,
-        type: 2}
-      propertyPath: param.shotDelay2
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114271196960228366, guid: a566a0e4bb035394588a675e9d68d496,
-        type: 2}
-      propertyPath: param.spinSpeed
-      value: 0
-      objectReference: {fileID: 0}
->>>>>>> master
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3991b417e214164469aacc73a8f4950d, type: 2}
   m_IsPrefabParent: 0
@@ -1051,132 +949,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
-<<<<<<< HEAD
-=======
-    - target: {fileID: 1087224783398204, guid: a566a0e4bb035394588a675e9d68d496, type: 2}
-      propertyPath: m_Name
-      value: ProtoEnemy
-      objectReference: {fileID: 0}
-    - target: {fileID: 114751904338930652, guid: a566a0e4bb035394588a675e9d68d496,
-        type: 2}
-      propertyPath: movePattern
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114271196960228366, guid: a566a0e4bb035394588a675e9d68d496,
-        type: 2}
-      propertyPath: param.name
-      value: "\u96D1\u9B5A\u30B7\u30E7\u30C3\u30C8"
-      objectReference: {fileID: 0}
-    - target: {fileID: 114271196960228366, guid: a566a0e4bb035394588a675e9d68d496,
-        type: 2}
-      propertyPath: bullet
-      value: 
-      objectReference: {fileID: 114129057209960936, guid: 1fd8d1e31b4a3db49a4d2d7acfe95546,
-        type: 2}
-    - target: {fileID: 1087224783398204, guid: a566a0e4bb035394588a675e9d68d496, type: 2}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 212549029109392836, guid: a566a0e4bb035394588a675e9d68d496,
-        type: 2}
-      propertyPath: m_MaskInteraction
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1087224783398204, guid: a566a0e4bb035394588a675e9d68d496, type: 2}
-      propertyPath: m_Layer
-      value: 11
-      objectReference: {fileID: 0}
-    - target: {fileID: 114751904338930652, guid: a566a0e4bb035394588a675e9d68d496,
-        type: 2}
-      propertyPath: maxHitPoint
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114751904338930652, guid: a566a0e4bb035394588a675e9d68d496,
-        type: 2}
-      propertyPath: _speed
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114751904338930652, guid: a566a0e4bb035394588a675e9d68d496,
-        type: 2}
-      propertyPath: score
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 114751904338930652, guid: a566a0e4bb035394588a675e9d68d496,
-        type: 2}
-      propertyPath: xTurn
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114751904338930652, guid: a566a0e4bb035394588a675e9d68d496,
-        type: 2}
-      propertyPath: yTurn
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114271196960228366, guid: a566a0e4bb035394588a675e9d68d496,
-        type: 2}
-      propertyPath: param.shotDelay
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114271196960228366, guid: a566a0e4bb035394588a675e9d68d496,
-        type: 2}
-      propertyPath: param.lifeTime
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 114271196960228366, guid: a566a0e4bb035394588a675e9d68d496,
-        type: 2}
-      propertyPath: param.shotSound
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 114271196960228366, guid: a566a0e4bb035394588a675e9d68d496,
-        type: 2}
-      propertyPath: param.speed
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 114271196960228366, guid: a566a0e4bb035394588a675e9d68d496,
-        type: 2}
-      propertyPath: param.power
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114751904338930652, guid: a566a0e4bb035394588a675e9d68d496,
-        type: 2}
-      propertyPath: currentShotPattern
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114271196960228366, guid: a566a0e4bb035394588a675e9d68d496,
-        type: 2}
-      propertyPath: param.shotMovepattern
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 114751904338930652, guid: a566a0e4bb035394588a675e9d68d496,
-        type: 2}
-      propertyPath: playerSlot
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114751904338930652, guid: a566a0e4bb035394588a675e9d68d496,
-        type: 2}
-      propertyPath: yAxisReverse
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114271196960228366, guid: a566a0e4bb035394588a675e9d68d496,
-        type: 2}
-      propertyPath: param.angleInterval
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114751904338930652, guid: a566a0e4bb035394588a675e9d68d496,
-        type: 2}
-      propertyPath: xAxisReverse
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114271196960228366, guid: a566a0e4bb035394588a675e9d68d496,
-        type: 2}
-      propertyPath: param.shotMovePattern
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114271196960228366, guid: a566a0e4bb035394588a675e9d68d496,
-        type: 2}
-      propertyPath: param.spinSpeed
-      value: 5
-      objectReference: {fileID: 0}
->>>>>>> master
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7217bfeb4c4bb7f43a2e9d1f39d63b94, type: 2}
   m_IsPrefabParent: 0
@@ -1271,7 +1043,7 @@ Prefab:
     - target: {fileID: 114751904338930652, guid: a566a0e4bb035394588a675e9d68d496,
         type: 2}
       propertyPath: movePattern
-      value: 0
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 114271196960228366, guid: a566a0e4bb035394588a675e9d68d496,
         type: 2}
@@ -1307,16 +1079,6 @@ Prefab:
         type: 2}
       propertyPath: param.power
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114751904338930652, guid: a566a0e4bb035394588a675e9d68d496,
-        type: 2}
-      propertyPath: currentShotPattern
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 114271196960228366, guid: a566a0e4bb035394588a675e9d68d496,
-        type: 2}
-      propertyPath: param.shotMovePattern
-      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a566a0e4bb035394588a675e9d68d496, type: 2}
@@ -2185,128 +1947,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
-<<<<<<< HEAD
-=======
-    - target: {fileID: 114271196960228366, guid: a566a0e4bb035394588a675e9d68d496,
-        type: 2}
-      propertyPath: param.name
-      value: "\u96D1\u9B5A\u30B7\u30E7\u30C3\u30C8"
-      objectReference: {fileID: 0}
-    - target: {fileID: 114271196960228366, guid: a566a0e4bb035394588a675e9d68d496,
-        type: 2}
-      propertyPath: bullet
-      value: 
-      objectReference: {fileID: 114129057209960936, guid: 1fd8d1e31b4a3db49a4d2d7acfe95546,
-        type: 2}
-    - target: {fileID: 1087224783398204, guid: a566a0e4bb035394588a675e9d68d496, type: 2}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114751904338930652, guid: a566a0e4bb035394588a675e9d68d496,
-        type: 2}
-      propertyPath: _speed
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114751904338930652, guid: a566a0e4bb035394588a675e9d68d496,
-        type: 2}
-      propertyPath: radius
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 212549029109392836, guid: a566a0e4bb035394588a675e9d68d496,
-        type: 2}
-      propertyPath: m_MaskInteraction
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1087224783398204, guid: a566a0e4bb035394588a675e9d68d496, type: 2}
-      propertyPath: m_Layer
-      value: 11
-      objectReference: {fileID: 0}
-    - target: {fileID: 114751904338930652, guid: a566a0e4bb035394588a675e9d68d496,
-        type: 2}
-      propertyPath: maxHitPoint
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114751904338930652, guid: a566a0e4bb035394588a675e9d68d496,
-        type: 2}
-      propertyPath: score
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 114751904338930652, guid: a566a0e4bb035394588a675e9d68d496,
-        type: 2}
-      propertyPath: movePattern
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114751904338930652, guid: a566a0e4bb035394588a675e9d68d496,
-        type: 2}
-      propertyPath: xTurn
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114751904338930652, guid: a566a0e4bb035394588a675e9d68d496,
-        type: 2}
-      propertyPath: yTurn
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114271196960228366, guid: a566a0e4bb035394588a675e9d68d496,
-        type: 2}
-      propertyPath: param.shotDelay
-      value: 0.02
-      objectReference: {fileID: 0}
-    - target: {fileID: 114271196960228366, guid: a566a0e4bb035394588a675e9d68d496,
-        type: 2}
-      propertyPath: param.lifeTime
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 114271196960228366, guid: a566a0e4bb035394588a675e9d68d496,
-        type: 2}
-      propertyPath: param.shotSound
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 114271196960228366, guid: a566a0e4bb035394588a675e9d68d496,
-        type: 2}
-      propertyPath: param.speed
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114271196960228366, guid: a566a0e4bb035394588a675e9d68d496,
-        type: 2}
-      propertyPath: param.isPenetrate
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114271196960228366, guid: a566a0e4bb035394588a675e9d68d496,
-        type: 2}
-      propertyPath: param.power
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114271196960228366, guid: a566a0e4bb035394588a675e9d68d496,
-        type: 2}
-      propertyPath: param.shotMovepattern
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 114751904338930652, guid: a566a0e4bb035394588a675e9d68d496,
-        type: 2}
-      propertyPath: currentShotPattern
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 114271196960228366, guid: a566a0e4bb035394588a675e9d68d496,
-        type: 2}
-      propertyPath: param.spinSpeed
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 114271196960228366, guid: a566a0e4bb035394588a675e9d68d496,
-        type: 2}
-      propertyPath: param.angleInterval
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114271196960228366, guid: a566a0e4bb035394588a675e9d68d496,
-        type: 2}
-      propertyPath: param.shotMovePattern
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 114271196960228366, guid: a566a0e4bb035394588a675e9d68d496,
-        type: 2}
-      propertyPath: param.DelayShotCount
-      value: 0
-      objectReference: {fileID: 0}
->>>>>>> master
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 90d8fb8a653236546bbe7f92c4c56845, type: 2}
   m_IsPrefabParent: 0
