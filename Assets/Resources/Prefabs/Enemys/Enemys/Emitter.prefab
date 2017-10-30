@@ -20,7 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4391459169805066}
   - component: {fileID: 50429467696662360}
-  - component: {fileID: 114822394975058012}
+  - component: {fileID: 114318152112446454}
   m_Layer: 0
   m_Name: Emitter
   m_TagString: Untagged
@@ -35,7 +35,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1989186948563140}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -480, y: 400, z: 0}
+  m_LocalPosition: {x: -480, y: 800, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -61,7 +61,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &114822394975058012
+--- !u!114 &114318152112446454
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -69,10 +69,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 1989186948563140}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5d796c1bd08f74bb2b98e75eb533e2c0, type: 3}
+  m_Script: {fileID: 11500000, guid: 26a382db7509e114baea1a0ba86e7034, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  small: 0
-  medium: 0
-  large: 0
-  waves: []
+  figs: 050000000200000003000000
+  large: 1
+  SmallWaves:
+  - {fileID: 1789732844706114, guid: 4fd3962fe06664f3d8e9208798e7773b, type: 2}
+  - {fileID: 1460412929068880, guid: 78fefb4ffbfe64157a6f248cf2dd8eea, type: 2}
+  MediumWaves:
+  - {fileID: 1525830262194126, guid: 9488375fb709e4f8399270c8e5c7722d, type: 2}
+  - {fileID: 1525830262194126, guid: 9488375fb709e4f8399270c8e5c7722d, type: 2}
+  LargeWaves:
+  - {fileID: 1303495426830908, guid: abe1b89df3bc64cc5b008da4b2f43297, type: 2}
+  playerSlot: 0
