@@ -25,7 +25,7 @@ public class EnemyBulletParam
     public Vector3 initialPosition; // 自機を起点とした初期位置
     public AudioClip shotSound; // ショット音
 
-    public float shotDelay2;        // 指定弾数撃った後のショット間隔(0の時は機能しない)
+    public float shotDelay2;        // 指定弾数撃った後のショット間隔(0の時は機能しない) 0.08だとワインダーみたいになる
     public int delayShotCount;      // 指定した弾数撃った後に追加Delay(0の時は機能しない)
 
     public float angleInterval;     // 弾幕の角度の間隔(全方位) 適用時は1とかにするとヤバい
