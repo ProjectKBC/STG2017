@@ -231,7 +231,7 @@ MonoBehaviour:
   bullet: {fileID: 114677074514332742, guid: ceab7694d9201424c94304467558334b, type: 2}
   param:
     name: "\u30D4\u30FC\u30B9\u30E1\u30FC\u30AB\u30FC"
-    shotSound: {fileID: 8300000, guid: 7859a29f2a04c764d9f84132b39eed1b, type: 3}
+    shotSound: {fileID: 8300000, guid: 00a87dfe059abdf40aabc0954655172f, type: 3}
     shotDelay: 0.25
     lifeTime: 5
     speed: 20
@@ -280,7 +280,7 @@ MonoBehaviour:
   bullet: {fileID: 114751600185772326, guid: 95e41c2dbc2ef4a24a5adf4559efe5d7, type: 2}
   param:
     name: "\u30EB\u30AC\u30FCP08"
-    shotSound: {fileID: 8300000, guid: 7859a29f2a04c764d9f84132b39eed1b, type: 3}
+    shotSound: {fileID: 8300000, guid: 9bb1680d6ab69b443905cd2c55ac46df, type: 3}
     shotDelay: 0.1
     lifeTime: 5
     speed: 10
@@ -312,6 +312,7 @@ SpriteRenderer:
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
@@ -327,6 +328,7 @@ SpriteRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 0
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
