@@ -76,7 +76,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1525830262194126}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -480, y: 270, z: 0}
+  m_LocalPosition: {x: -480, y: 1600, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4803647870132794}
@@ -257,6 +257,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ce96c508544e934f9fd6315a8fd4e34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Ypos: 200
 --- !u!114 &114510704259711846
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -270,16 +271,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bullet: {fileID: 114129057209960936, guid: 1fd8d1e31b4a3db49a4d2d7acfe95546, type: 2}
   param:
-    shotMovepattern: 0
-    shotSound: {fileID: 0}
-    shotDelay: 1
-    lifeTime: 10
-    angleInterval: 0
-    spinSpeed: 0
+    shotMovePattern: 0
     speed: 1
+    shotDelay: 0.8
     power: 1
+    lifeTime: 10
     isPenetrate: 0
     initialPosition: {x: 0, y: 0, z: 0}
+    shotSound: {fileID: 0}
+    shotDelay2: 0
+    delayShotCount: 0
+    angleInterval: 0
+    spinSpeed: 0
 --- !u!114 &114636581736730478
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -294,9 +297,10 @@ MonoBehaviour:
   currentShotPattern: 0
   playerSlot: 0
   maxHitPoint: 10
-  _speed: 1
+  _speed: 0.01
   radius: 0
   score: 100
+  enemyType: 0
   movePattern: 3
   xAxisReverse: 0
   yAxisReverse: 0
@@ -316,9 +320,10 @@ MonoBehaviour:
   currentShotPattern: 0
   playerSlot: 0
   maxHitPoint: 10
-  _speed: 1
+  _speed: 0.01
   radius: 0
   score: 100
+  enemyType: 0
   movePattern: 3
   xAxisReverse: 0
   yAxisReverse: 0
@@ -337,16 +342,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bullet: {fileID: 114129057209960936, guid: 1fd8d1e31b4a3db49a4d2d7acfe95546, type: 2}
   param:
-    shotMovepattern: 0
-    shotSound: {fileID: 0}
-    shotDelay: 1
-    lifeTime: 10
-    angleInterval: 0
-    spinSpeed: 0
+    shotMovePattern: 0
     speed: 1
+    shotDelay: 0.8
     power: 1
+    lifeTime: 10
     isPenetrate: 0
     initialPosition: {x: 0, y: 0, z: 0}
+    shotSound: {fileID: 0}
+    shotDelay2: 0
+    delayShotCount: 0
+    angleInterval: 0
+    spinSpeed: 0
 --- !u!212 &212573973411788278
 SpriteRenderer:
   m_ObjectHideFlags: 1

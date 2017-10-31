@@ -281,9 +281,9 @@ MonoBehaviour:
   param:
     name: "\u30C4\u30A4\u30F3\u30D0\u30EC\u30C3\u30C8"
     shotSound: {fileID: 8300000, guid: 7859a29f2a04c764d9f84132b39eed1b, type: 3}
-    shotDelay: 0.5
-    lifeTime: 3
-    speed: 8
+    shotDelay: 0.08
+    lifeTime: 0.8
+    speed: 9
     power: 1
     isPenetrate: 0
     shotMode: 0
