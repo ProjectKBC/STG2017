@@ -281,9 +281,9 @@ MonoBehaviour:
   param:
     name: "\u30C4\u30A4\u30F3\u30D0\u30EC\u30C3\u30C8"
     shotSound: {fileID: 8300000, guid: 7859a29f2a04c764d9f84132b39eed1b, type: 3}
-    shotDelay: 0.08
+    shotDelay: 0.14
     lifeTime: 0.8
-    speed: 9
+    speed: 7
     power: 1
     isPenetrate: 0
     shotMode: 0
@@ -312,6 +312,7 @@ SpriteRenderer:
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -327,6 +328,7 @@ SpriteRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 0
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5

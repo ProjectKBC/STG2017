@@ -6,26 +6,28 @@ using UnityEngine.SceneManagement;
 // f:CharacterSelectManager(CharacterSelectModes)
 // f:CharacterSelectScene(Battle)において、シーン遷移を担うクラス
 // f:by flanny 2017/10/16
-public class CharacterSelectManager : MonoBehaviour {
-	public static string player1Character;
+public class CharacterSelectManager : MonoBehaviour
+{
+    public static string PC1Name = null;
+    public static string PC2Name = null;
 
-	// Use this for initialization
+    // Use this for initialization
 
-	public void SelectChara1() {
-		GameManager.SetPCName("Veronica", PlayerSlot.PC1);
-        GameManager.SetPCName("Veronica_CC", PlayerSlot.PC2);
+    public void SelectChara1() {
+        PC1Name = "Veronica";
+        PC2Name = "Veronica_CC";
         SceneManager.LoadScene ("BattleMode");
 	}	
 
 	public void SelectChara2() {
-        GameManager.SetPCName("Anoma", PlayerSlot.PC1);
-        GameManager.SetPCName("Veronica_CC", PlayerSlot.PC2);
+        PC1Name = "Anoma";
+        PC2Name = "Veronica_CC";
         SceneManager.LoadScene ("BattleMode");
 	}
 
 	public void SelectChara3() {
-        GameManager.SetPCName("Held", PlayerSlot.PC1);
-        GameManager.SetPCName("Veronica_CC", PlayerSlot.PC2);
+        PC1Name = "Held";
+        PC2Name = "Veronica_CC";
         SceneManager.LoadScene ("BattleMode");
 	}
 	
