@@ -73,12 +73,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   figs: 05000000020000000300000002000000
-  large: 1
+  large: 0
   SmallWaves:
-  - {fileID: 1789732844706114, guid: 4fd3962fe06664f3d8e9208798e7773b, type: 2}
-  MediumWaves:
-  - {fileID: 1616891705377104, guid: 1119d6253305141dd8c0ab9b121c1dbe, type: 2}
-  - {fileID: 1870330390565648, guid: da97af6a78b8142b29703638d85c7dc3, type: 2}
-  LargeWaves:
-  - {fileID: 1988679875578048, guid: 0ed661d2c71974219a4454c60cd30aca, type: 2}
+  - {fileID: 0}
+  MediumWaves: []
+  LargeWaves: []
   playerSlot: 0

@@ -65,7 +65,7 @@ GameObject:
   - component: {fileID: 4093413648587244}
   - component: {fileID: 114152574349968506}
   m_Layer: 0
-  m_Name: RightWave
+  m_Name: RightDirectionWave
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
