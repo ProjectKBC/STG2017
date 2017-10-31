@@ -56,11 +56,14 @@ public abstract class Player : NoaBehaviour
         MyProc.started = true;
         MyProc.Log(this, 3);
 
-        yield return NoaProcesser.StayBoss();
+        yield return new WaitWhile(() => NoaProcesser.IsStayBoss());
 
         while (true)
         {
-            if (NoaProcesser.IsStayBoss()) { yield return null; }
+            if (NoaProcesser.IsStayBoss())
+            {
+                yield return new WaitWhile(() => NoaProcesser.IsStayBoss());
+            }
 
             InputManager();
             if(state.Contains("(KeyUp)")) Debug.Log("p:"+Time.time);
