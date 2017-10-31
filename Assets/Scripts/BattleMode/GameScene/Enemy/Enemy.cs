@@ -3,6 +3,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum EnemyType
+{
+    small,
+    medium,
+    large
+}
+
 public enum MovePattern
 {
 	Straight,
@@ -29,6 +36,7 @@ public abstract class Enemy : NoaBehaviour
 
     public float radius;
     public float score;
+    public EnemyType enemyType;
 
     public MovePattern movePattern;
 	public bool xAxisReverse; // x軸の反転の有無

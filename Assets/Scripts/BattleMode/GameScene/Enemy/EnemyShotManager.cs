@@ -14,25 +14,28 @@ public abstract class EnemyShotManager : NoaBehaviour
     protected float lastShotTime = 0;
     int count = 0;
     bool delaySwitch = false;
-    float player1posX = GameManager.Pc1Player.transform.position.x;
-    float player1posY = GameManager.Pc1Player.transform.position.y;
-    float player2posX = GameManager.Pc2Player.transform.position.x;
-    float player2posY = GameManager.Pc2Player.transform.position.y;
+    float player1posX;
+    float player1posY;
+    float player2posX;
+    float player2posY;
 
     public virtual void Init()
     {
         enemy = GetComponent<Enemy>();
         audioSource = GetComponent<AudioSource>();
+
+        player1posX = 0;
+        player1posY = 0;
+        player2posX = 0;
+        player2posY = 0;
     }
 
     protected override IEnumerator Start()
     {
+        if (NoaProcesser.BossProc.IsStay()) { yield return null; }
 
         Init();
         MyProc.started = true;
-
-        yield return enemy.MyProc.Stay();
-        yield return NoaProcesser.StayBoss();
 
         while (true)
         {
