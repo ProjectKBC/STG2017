@@ -219,7 +219,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
   reverbZoneMixCustomCurve:
     serializedVersion: 2
     m_Curve:
@@ -291,6 +291,8 @@ MonoBehaviour:
   _speed: 2
   radius: 0
   score: 10
+  moveTime: 0
+  stopTime: 0
   enemyType: 2
   movePattern: 4
   xAxisReverse: 0

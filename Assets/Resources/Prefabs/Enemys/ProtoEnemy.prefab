@@ -207,14 +207,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bullet: {fileID: 114129057209960936, guid: 1fd8d1e31b4a3db49a4d2d7acfe95546, type: 2}
   param:
-    name: "\u96D1\u9B5A\u30B7\u30E7\u30C3\u30C8"
-    shotSound: {fileID: 0}
-    shotDelay: 0
-    lifeTime: 0
+    shotMovePattern: 0
     speed: 2
+    shotDelay: 0
     power: 1
+    lifeTime: 0
     isPenetrate: 0
     initialPosition: {x: 0, y: 0, z: 0}
+    shotSound: {fileID: 0}
+    shotDelay2: 0
+    delayShotCount: 0
+    angleInterval: 0
+    spinSpeed: 0
 --- !u!114 &114751904338930652
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -226,11 +230,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: edf3985aa729af243abb11ba12367d15, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentShotPattern: 0
   playerSlot: 0
   maxHitPoint: 1
   _speed: 1
   radius: 0
   score: 10
+  moveTime: 0
+  stopTime: 0
+  enemyType: 0
   movePattern: 0
   xAxisReverse: 0
   yAxisReverse: 0
@@ -245,7 +253,6 @@ SpriteRenderer:
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
-  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -261,7 +268,6 @@ SpriteRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 0
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5

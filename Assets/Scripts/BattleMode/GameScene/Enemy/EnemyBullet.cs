@@ -14,7 +14,7 @@ public enum ShotMovePattern
 [System.Serializable]
 public class EnemyBulletParam
 {
-    public ShotMovePattern shotMovePattern;
+    public ShotMovePattern shotMovePattern; // currentMovePatternと同じものが弾として発射される
 
     // 共通パラメータ
     [SerializeField] protected float speed; // 弾丸速度
