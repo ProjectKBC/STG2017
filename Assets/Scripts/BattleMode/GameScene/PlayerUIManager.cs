@@ -564,8 +564,9 @@ public sealed class PlayerUIManager : NoaBehaviour
                                 rt.localScale       = new Vector3(1, 1, 1);
 
                                 i = c_child.gameObject.GetComponent<Image>();
-                                i.sprite        = null;
-                                i.color         = new Color(1.0f, 1.0f, 1.0f, 0.5333f);
+                                i.sprite        = Resources.Load<Sprite>("Sprites/UI/" + _c.player.name + "_icon");
+                                i.color         = i.sprite == null ? new Color(1.0f, 1.0f, 1.0f, 0.5333f) 
+                                                                   : new Color(1.0f, 1.0f, 1.0f, 1.0f);
                                 i.material      = null;
                                 i.raycastTarget = true;
 

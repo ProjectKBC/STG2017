@@ -94,17 +94,21 @@ public sealed class GameManager : NoaBehaviour
             PC2Kills.Add(enemyType, 0);
         }
 
-        yield return PlayerManager.Inst.MyProc.Stay();
-        yield return GameStarter.MyProc.Stay();
+        yield return new WaitWhile( () => PlayerManager.Inst.MyProc.IsStay() && GameStarter.MyProc.IsStay());
 
         CreatePlayer(Pc1Name, Pc2Name);
+        
+        yield return new WaitWhile
+            ( () =>
+                PlayerUIManager.Inst.MyProc.IsStay() &&
+                Pc1Player.MyProc.IsStay() &&
+                Pc2Player.MyProc.IsStay()
+            );
 
         MyProc.started = true;
         MyProc.Log(this, 2);
 
-        yield return PlayerUIManager.Inst.MyProc.Stay();
-        yield return Pc1Player.MyProc.Stay();
-        yield return Pc2Player.MyProc.Stay();
+        yield return new WaitUntil( () => Loading.Inst.MyProc.ended);
 
         NoaProcesser.BossProc.started = true;
         Debug.Log("GameProc started!!");
