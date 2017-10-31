@@ -155,6 +155,8 @@ MonoBehaviour:
   _speed: 0.1
   radius: 0
   score: 100
+  moveTime: 0
+  stopTime: 0
   enemyType: 0
   movePattern: 1
   xAxisReverse: 0

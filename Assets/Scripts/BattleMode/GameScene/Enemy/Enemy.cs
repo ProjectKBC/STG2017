@@ -37,14 +37,19 @@ public abstract class Enemy : NoaBehaviour
 
     public float radius;
     public float score;
+    public float moveTime; // 動かしていたい時間(0の時は機能しない)
+    public float stopTime; // 止めておきたい時間(0の時は機能しない)
     public EnemyType enemyType;
 
     public MovePattern movePattern;
+    Vector2 pos = new Vector2();
+
 	public bool xAxisReverse; // x軸の反転の有無
 	public bool yAxisReverse; // y軸の反転の有無
     public bool xTurn = true;
     public bool yTurn = true;
-    Vector2 pos = new Vector2();
+
+    float lastMoveTime = 0; // 最後に動いた時間
 
     /*
      * 
@@ -143,20 +148,13 @@ public abstract class Enemy : NoaBehaviour
     			break;
 
     		    // プレイヤーを追尾
-    		case MovePattern.Chase:
+    		case MovePattern.Chase: // スピードを 1にするとヤバい。0.01ぐらいが程よい
     			Player player1 = GameManager.Pc1Player;
                 Player player2 = GameManager.Pc2Player;
 
-                switch(playerSlot)
-                {
-                    case PlayerSlot.PC1:
-                        pos = Vector2.Lerp(transform.position, player1.transform.position, Speed * Time.deltaTime);
-                        break;
-
-                    case PlayerSlot.PC2:
-                        pos = Vector2.Lerp(transform.position, player2.transform.position, Speed * Time.deltaTime);
-                        break;
-                }
+                pos = playerSlot == PlayerSlot.PC1
+                    ? Vector2.Lerp(transform.position, player1.transform.position, Speed * Time.deltaTime)
+                    : Vector2.Lerp(transform.position, player2.transform.position, Speed * Time.deltaTime);  
     			break;
 
                 // 壁に沿って蛇行
