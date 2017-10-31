@@ -193,5 +193,6 @@ public abstract class Enemy : NoaBehaviour
     {
         // todo: スコア処理
         Destroy(this.gameObject);
+        GameManager.SetParam(this);
     }
 }
