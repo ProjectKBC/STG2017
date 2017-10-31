@@ -14,6 +14,10 @@ public abstract class EnemyShotManager : NoaBehaviour
     protected float lastShotTime = 0;
     int count = 0;
     bool delaySwitch = false;
+    float player1posX = GameManager.Pc1Player.transform.position.x;
+    float player1posY = GameManager.Pc1Player.transform.position.y;
+    float player2posX = GameManager.Pc2Player.transform.position.x;
+    float player2posY = GameManager.Pc2Player.transform.position.y;
 
     public virtual void Init()
     {
@@ -73,19 +77,37 @@ public abstract class EnemyShotManager : NoaBehaviour
             case ShotMovePattern.PlayerAim:
                 float vx = 0;
                 float vy = 0;
-                Player player1 = GameManager.Pc1Player;
-                Player player2 = GameManager.Pc2Player;
+
+                // 追加ディレイがある場合はグループで処理
+                if(param.delayShotCount != 0)
+                {
+                    if(count == 0)
+                    {
+                        player1posX = GameManager.Pc1Player.transform.position.x;
+                        player1posY = GameManager.Pc1Player.transform.position.y;
+                        player2posX = GameManager.Pc2Player.transform.position.x;
+                        player2posY = GameManager.Pc2Player.transform.position.y;
+                    }
+                }
+
+                else
+                {
+                    player1posX = GameManager.Pc1Player.transform.position.x;
+                    player1posY = GameManager.Pc1Player.transform.position.y;
+                    player2posX = GameManager.Pc2Player.transform.position.x;
+                    player2posY = GameManager.Pc2Player.transform.position.y;
+                }
 
                 switch(enemy.playerSlot)
                 {
                     case PlayerSlot.PC1:
-                        vx = player1.transform.position.x - transform.position.x;
-                        vy = player1.transform.position.y - transform.position.y;
+                        vx = player1posX - transform.position.x;
+                        vy = player1posY - transform.position.y;
                         break;
 
                     case PlayerSlot.PC2:
-                        vx = player2.transform.position.x - transform.position.x;
-                        vy = player2.transform.position.y - transform.position.y;
+                        vx = player2posX - transform.position.x;
+                        vy = player2posY - transform.position.y;
                         break;
                 }
                 InstBullet(vx, vy);
