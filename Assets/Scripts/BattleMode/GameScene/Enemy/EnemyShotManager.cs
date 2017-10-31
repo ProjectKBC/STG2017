@@ -12,22 +12,30 @@ public abstract class EnemyShotManager : NoaBehaviour
     protected AudioSource audioSource;
 
     protected float lastShotTime = 0;
-    PlayerSlot playerSlot;
+    int count = 0;
+    bool delaySwitch = false;
+    float player1posX;
+    float player1posY;
+    float player2posX;
+    float player2posY;
 
     public virtual void Init()
     {
         enemy = GetComponent<Enemy>();
         audioSource = GetComponent<AudioSource>();
+
+        player1posX = 0;
+        player1posY = 0;
+        player2posX = 0;
+        player2posY = 0;
     }
 
     protected override IEnumerator Start()
     {
+        if (NoaProcesser.BossProc.IsStay()) { yield return null; }
 
         Init();
         MyProc.started = true;
-
-        yield return enemy.MyProc.Stay();
-        yield return NoaProcesser.StayBoss();
 
         while (true)
         {
@@ -39,29 +47,84 @@ public abstract class EnemyShotManager : NoaBehaviour
         
     public virtual void Shot()
     {
-        
-        if (Time.time - lastShotTime < param.shotDelay) { return; }
+        if(delaySwitch)
+        {
+            if (Time.time - lastShotTime < param.shotDelay2) { return; }
+        }
+        else if (Time.time - lastShotTime < param.shotDelay) { return; }
 
-        switch(param.shotMovepattern)
+        switch(param.shotMovePattern)
         {
             // 直進
-            case ShotMovepattern.Straight:
-                InstBullet(Mathf.PI / 180 * 270);
+            case ShotMovePattern.Straight:
+                InstBullet();
                 break;
 
                 // 全方位
-            case ShotMovepattern.EveryDirection:
-                for(float rad = 0; rad < 360; rad += param.angleInterval)
+            case ShotMovePattern.EveryDirection:
+                if(param.angleInterval > 0)
                 {
-                    InstBullet(Mathf.PI / 180 * rad);
+                    for (float rad = 0; rad < 360; rad += param.angleInterval)
+                    {
+                        InstBullet(Mathf.PI / 180 * rad);
+                    }
                 }
                 break;
 
                 // 渦巻き状
-            case ShotMovepattern.Tornado:
+            case ShotMovePattern.Tornado:
                 InstBullet(Time.time * param.spinSpeed);
                 break;
+
+                // 自機狙い
+            case ShotMovePattern.PlayerAim:
+                float vx = 0;
+                float vy = 0;
+
+                // 追加ディレイがある場合はグループで処理
+                if(param.delayShotCount != 0)
+                {
+                    if(count == 0)
+                    {
+                        player1posX = GameManager.Pc1Player.transform.position.x;
+                        player1posY = GameManager.Pc1Player.transform.position.y;
+                        player2posX = GameManager.Pc2Player.transform.position.x;
+                        player2posY = GameManager.Pc2Player.transform.position.y;
+                    }
+                }
+
+                else
+                {
+                    player1posX = GameManager.Pc1Player.transform.position.x;
+                    player1posY = GameManager.Pc1Player.transform.position.y;
+                    player2posX = GameManager.Pc2Player.transform.position.x;
+                    player2posY = GameManager.Pc2Player.transform.position.y;
+                }
+
+                switch(enemy.playerSlot)
+                {
+                    case PlayerSlot.PC1:
+                        vx = player1posX - transform.position.x;
+                        vy = player1posY - transform.position.y;
+                        break;
+
+                    case PlayerSlot.PC2:
+                        vx = player2posX - transform.position.x;
+                        vy = player2posY - transform.position.y;
+                        break;
+                }
+                InstBullet(vx, vy);
+                break;
         }
+
+        count++;
+        delaySwitch = false;
+        if (count == param.delayShotCount)
+        {
+            count = 0;
+            delaySwitch = true;
+        }
+
      }
 
     protected void InstBullet()
@@ -71,11 +134,21 @@ public abstract class EnemyShotManager : NoaBehaviour
         EnemyBullet b = EnemyBullet.Instantiate(bullet, param, transform);
     }
 
+    // 主に角度を渡す
     protected void InstBullet(float _rad)
     {
         lastShotTime = Time.time;
         if (param.shotSound != null) { audioSource.PlayOneShot(param.shotSound); }
         EnemyBullet b = EnemyBullet.Instantiate(bullet, param, transform);
         b.transform.Rotate(new Vector2(Mathf.Cos(_rad), Mathf.Sin(_rad)));
+    }
+
+    // 主に座標を渡す
+    protected void InstBullet(float _x, float _y)
+    {
+        lastShotTime = Time.time;
+        if (param.shotSound != null) { audioSource.PlayOneShot(param.shotSound); }
+        EnemyBullet b = EnemyBullet.Instantiate(bullet, param, transform);
+        b.transform.Rotate(new Vector2(_x, _y).normalized);
     }
 }

@@ -3,6 +3,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum EnemyType
+{
+    small,
+    medium,
+    large
+}
+
 public enum MovePattern
 {
 	Straight,
@@ -16,8 +23,8 @@ public enum MovePattern
 [RequireComponent(typeof(Rigidbody2D))]
 public abstract class Enemy : NoaBehaviour
 {
-    Dictionary<ShotMovepattern, EnemyShotManager> enemyShotManager = new Dictionary<ShotMovepattern, EnemyShotManager>();
-    public ShotMovepattern currentShotPattern; // 弾の動き
+    Dictionary<ShotMovePattern, EnemyShotManager> enemyShotManager = new Dictionary<ShotMovePattern, EnemyShotManager>();
+    public ShotMovePattern currentShotPattern; // 弾の動き
     public PlayerSlot playerSlot;
     public float maxHitPoint;
     [SerializeField]
@@ -30,6 +37,7 @@ public abstract class Enemy : NoaBehaviour
 
     public float radius;
     public float score;
+    public EnemyType enemyType;
 
     public MovePattern movePattern;
 	public bool xAxisReverse; // x軸の反転の有無
@@ -55,7 +63,7 @@ public abstract class Enemy : NoaBehaviour
         foreach (EnemyShotManager x in tmp)
         {
             x.param.playerSlot = playerSlot;
-            enemyShotManager.Add(x.param.shotMovepattern, x);
+            enemyShotManager.Add(x.param.shotMovePattern, x);
         }
 
         hitPoint = maxHitPoint;
@@ -112,7 +120,7 @@ public abstract class Enemy : NoaBehaviour
 
     		// 直進
     		case MovePattern.Straight:
-			direction = new Vector2(0, xAxis * -1).normalized;
+			    direction = new Vector2(0, xAxis * -1).normalized;
     			pos += direction * Speed * Time.deltaTime;
     			break;
 
@@ -138,14 +146,16 @@ public abstract class Enemy : NoaBehaviour
     		case MovePattern.Chase:
     			Player player1 = GameManager.Pc1Player;
                 Player player2 = GameManager.Pc2Player;
-                
-                if (transform.position.x < -1)
+
+                switch(playerSlot)
                 {
-                    pos = Vector2.Lerp(transform.position, player1.transform.position, Speed * Time.deltaTime);
-                }
-                else if (transform.position.x > 1)
-                {
-                    pos = Vector2.Lerp(transform.position, player2.transform.position, Speed * Time.deltaTime);
+                    case PlayerSlot.PC1:
+                        pos = Vector2.Lerp(transform.position, player1.transform.position, Speed * Time.deltaTime);
+                        break;
+
+                    case PlayerSlot.PC2:
+                        pos = Vector2.Lerp(transform.position, player2.transform.position, Speed * Time.deltaTime);
+                        break;
                 }
     			break;
 
@@ -169,10 +179,12 @@ public abstract class Enemy : NoaBehaviour
 				{
 					direction = new Vector2 (yAxis * -1, 0).normalized;
 					pos += direction * Speed * Time.deltaTime;
-				} else {
+				}
+                else
+                {
 					Turn ();
 				}
-					break;
+				break;
 			
 		}
         transform.position = pos;
@@ -218,6 +230,8 @@ public abstract class Enemy : NoaBehaviour
     protected void Dead()
     {
         // todo: スコア処理
+        GameManager.SetParam(this);
+        NoaConsole.Log(this.score + ": " + this.name + " destroy", this.playerSlot);
         Destroy(this.gameObject);
     }
 }
