@@ -1290,8 +1290,8 @@ MonoBehaviour:
   score: 10
   moveTime: 0
   stopTime: 0
-  enemyType: 0
-  movePattern: 4
+  enemyType: 2
+  movePattern: 5
   xAxisReverse: 0
   yAxisReverse: 0
   xTurn: 1
