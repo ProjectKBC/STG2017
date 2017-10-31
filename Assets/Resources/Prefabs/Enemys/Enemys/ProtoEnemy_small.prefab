@@ -218,16 +218,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bullet: {fileID: 114129057209960936, guid: 1fd8d1e31b4a3db49a4d2d7acfe95546, type: 2}
   param:
-    shotMovepattern: 1
-    shotSound: {fileID: 0}
-    shotDelay: 1
-    lifeTime: 5
-    angleInterval: 25
-    spinSpeed: 0
+    shotMovePattern: 0
     speed: 2
+    shotDelay: 1
     power: 1
+    lifeTime: 5
     isPenetrate: 0
     initialPosition: {x: 0, y: 0, z: 0}
+    shotSound: {fileID: 0}
+    shotDelay2: 0
+    delayShotCount: 0
+    angleInterval: 25
+    spinSpeed: 0
 --- !u!114 &114989396698490348
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -245,6 +247,7 @@ MonoBehaviour:
   _speed: 1
   radius: 0
   score: 10
+  enemyType: 0
   movePattern: 0
   xAxisReverse: 0
   yAxisReverse: 0
@@ -259,7 +262,6 @@ SpriteRenderer:
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
-  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -275,7 +277,6 @@ SpriteRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 0
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
