@@ -35,6 +35,8 @@ public abstract class Enemy : NoaBehaviour
         set { _speed = value; }
     }
 
+    Vector2 currentPos = new Vector2();
+
     public float radius;
     public float score;
     public float moveTime; // 動かしていたい時間(0の時は機能しない)
@@ -50,6 +52,7 @@ public abstract class Enemy : NoaBehaviour
     public bool yTurn = true;
 
     float lastMoveTime = 0; // 最後に動いた時間
+    float moveStartTime;
 
     /*
      * 
@@ -72,6 +75,7 @@ public abstract class Enemy : NoaBehaviour
         }
 
         hitPoint = maxHitPoint;
+        MoveStart();
     }
 
     protected override IEnumerator Start()
@@ -110,6 +114,12 @@ public abstract class Enemy : NoaBehaviour
         CancelInvoke();
     }
 
+    private void MoveStart()
+    {
+        moveStartTime = Time.time;
+        currentPos = transform.position;
+    }
+
     // 移動軌跡などを書き込む関数
     public virtual void Move()
     {
@@ -120,44 +130,44 @@ public abstract class Enemy : NoaBehaviour
 		if (xAxisReverse) xAxis = -1;
 		if (yAxisReverse) yAxis = -1;
 
-		switch (movePattern)
-		{
+        switch (movePattern)
+        {
 
-    		// 直進
-    		case MovePattern.Straight:
-			    direction = new Vector2(0, xAxis * -1).normalized;
-    			pos += direction * Speed * Time.deltaTime;
-    			break;
+            // 直進
+            case MovePattern.Straight:
+                direction = new Vector2(0, xAxis * -1).normalized;
+                pos += direction * Speed * Time.deltaTime;
+                break;
 
-			// 斜め移動
-			case MovePattern.Slanting:
-				direction = new Vector2(yAxis * 1, xAxis * -1).normalized;
-				pos += direction * Speed * Time.deltaTime;
-				break;
+            // 斜め移動
+            case MovePattern.Slanting:
+                direction = new Vector2(yAxis * 1, xAxis * -1).normalized;
+                pos += direction * Speed * Time.deltaTime;
+                break;
 
-                // 円状に移動
-    		case MovePattern.Circle:
-    			direction = new Vector2(yAxis * Mathf.Cos(Time.time * _speed) * radius, xAxis * Mathf.Sin(Time.time * _speed) * radius).normalized;
-    			pos = transform.position;
+            // 円状に移動
+            case MovePattern.Circle:
+                direction = new Vector2(yAxis * Mathf.Cos(Time.time * _speed) * radius, xAxis * Mathf.Sin(Time.time * _speed) * radius).normalized;
+                pos = transform.position;
                 pos += direction * Speed * Time.deltaTime;
 
-    			transform.position = pos;
-                
-    			direction = new Vector2(yAxis * Mathf.Cos(Time.time * _speed), xAxis * Mathf.Sin(Time.time * _speed)).normalized;
-    			pos += direction * Speed * Time.deltaTime;
-    			break;
+                transform.position = pos;
 
-    		    // プレイヤーを追尾
-    		case MovePattern.Chase: // スピードを 1にするとヤバい。0.01ぐらいが程よい
-    			Player player1 = GameManager.Pc1Player;
+                direction = new Vector2(yAxis * Mathf.Cos(Time.time * _speed), xAxis * Mathf.Sin(Time.time * _speed)).normalized;
+                pos += direction * Speed * Time.deltaTime;
+                break;
+
+            // プレイヤーを追尾
+            case MovePattern.Chase: //
+                Player player1 = GameManager.Pc1Player;
                 Player player2 = GameManager.Pc2Player;
 
                 pos = playerSlot == PlayerSlot.PC1
-                    ? Vector2.Lerp(transform.position, player1.transform.position, Speed * Time.deltaTime)
-                    : Vector2.Lerp(transform.position, player2.transform.position, Speed * Time.deltaTime);  
-    			break;
+                    ? Vector2.Lerp(transform.position, player1.transform.position, _speed * Time.deltaTime)
+                    : Vector2.Lerp(transform.position, player2.transform.position, _speed * Time.deltaTime);
+                break;
 
-                // 壁に沿って蛇行
+            // 壁に沿って蛇行
             case MovePattern.Snake:
                 if ((-830 < pos.x && pos.x < -130) || (130 < pos.x && pos.x < 830))
                 {
@@ -172,19 +182,19 @@ public abstract class Enemy : NoaBehaviour
                 }
                 break;
 
-			case MovePattern.Side:
-				if ((-830 < pos.x && pos.x < -130) || (130 < pos.x && pos.x < 830))
-				{
-					direction = new Vector2 (yAxis * -1, 0).normalized;
-					pos += direction * Speed * Time.deltaTime;
-				}
+            // 左右移動
+            case MovePattern.Side:
+                if ((-830 < pos.x && pos.x < -130) || (130 < pos.x && pos.x < 830))
+                {
+                    direction = new Vector2(yAxis * -1, 0).normalized;
+                    pos += direction * Speed * Time.deltaTime;
+                }
                 else
                 {
-					Turn ();
-				}
-				break;
-			
-		}
+                    Turn();
+                }
+                break;
+        }
         transform.position = pos;
     }
 
@@ -219,7 +229,7 @@ public abstract class Enemy : NoaBehaviour
     {
         hitPoint -= _damage;
         Debug.Log(hitPoint);
-        if (hitPoint < 0)
+        if (hitPoint <= 0)
         {
             Dead();
         }

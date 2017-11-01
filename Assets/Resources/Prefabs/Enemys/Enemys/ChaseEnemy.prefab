@@ -244,7 +244,7 @@ MonoBehaviour:
   currentShotPattern: 0
   playerSlot: 0
   maxHitPoint: 10
-  _speed: 0.001
+  _speed: 0.1
   radius: 0
   score: 100
   moveTime: 0

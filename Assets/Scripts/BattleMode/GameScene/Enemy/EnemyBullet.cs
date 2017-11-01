@@ -18,14 +18,14 @@ public class EnemyBulletParam
 
     // 共通パラメータ
     [SerializeField] protected float speed; // 弾丸速度
-    public float shotDelay;         // ショット間隔
+    public float shotDelay;         // ショット間隔 Tornadoは0.02が目安
     public float power;             // 攻撃力
     public float lifeTime;          // 生存時間
     public bool isPenetrate;        // 貫通性の有無
     public Vector3 initialPosition; // 自機を起点とした初期位置
     public AudioClip shotSound; // ショット音
 
-    public float shotDelay2;        // 指定弾数撃った後のショット間隔(0の時は機能しない) 0.08だとワインダーみたいになる
+    public float shotDelay2;        // 指定弾数撃った後のショット間隔(0の時は機能しない) 普通のDelayを0.08とかにして組み合わせるとそれっぽくなる
     public int delayShotCount;      // 指定した弾数撃った後に追加Delay(0の時は機能しない)
 
     public float angleInterval;     // 弾幕の角度の間隔(全方位) 適用時は1とかにするとヤバい
