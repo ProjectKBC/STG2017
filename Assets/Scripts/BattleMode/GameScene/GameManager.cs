@@ -85,14 +85,20 @@ public sealed class GameManager : NoaBehaviour
 
     public static bool IsGameSet = false;
 
-    protected override IEnumerator Start()
+    private void Init()
     {
+
         // f:Killsの初期セットアップ
         foreach (EnemyType enemyType in Enum.GetValues(typeof(EnemyType)))
         {
             PC1Kills.Add(enemyType, 0);
             PC2Kills.Add(enemyType, 0);
         }
+    }
+
+    protected override IEnumerator Start()
+    {
+        Init();
 
         yield return new WaitWhile( () => PlayerManager.Inst.MyProc.IsStay() && GameStarter.MyProc.IsStay());
 
@@ -112,6 +118,14 @@ public sealed class GameManager : NoaBehaviour
 
         NoaProcesser.BossProc.started = true;
         Debug.Log("GameProc started!!");
+    }
+
+    private void Update()
+    {
+        if (Input.GetButtonDown("pl1_Pause") || Input.GetButtonDown("pl2_Pause"))
+        {
+            NoaProcesser.BossProc.pausing = !NoaProcesser.BossProc.pausing;
+        }
     }
 
     /**/
