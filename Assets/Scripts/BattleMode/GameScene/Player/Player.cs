@@ -205,10 +205,12 @@ public abstract class Player : NoaBehaviour
         // Shiftで低速移動
         if (GetButton("Slow"))
         {
+            transform.GetChild(0).gameObject.SetActive(true);
             pos += direction * Speed/2 * Time.deltaTime;
         }
         else
         {
+            transform.GetChild(0).gameObject.SetActive(false);
             pos += direction * Speed * Time.deltaTime;
         }
 

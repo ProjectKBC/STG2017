@@ -2,19 +2,29 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Emerge : MonoBehaviour {
+public class Emerge : NoaBehaviour {
 
 	Vector2 v;
 
 	public int Ypos = 200;
 
-	void Start () {
-		v = transform.position;
+    // f:
+    private PlayerSlot playerSlot;
+
+    // f:
+    private void Init() {
+        playerSlot = transform.parent.GetComponent<Appear>().playerSlot;
+    }
+
+	protected override IEnumerator Start () {
+        Init(); // f:
+        v = transform.position;
+
+        yield return null;
 	}
 	
 	void Update () {
-		if (transform.position.y > Ypos)
-		{
+		if (transform.position.y > Ypos) {
 			Move ();
 		}
 	}

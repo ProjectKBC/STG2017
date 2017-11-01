@@ -83,11 +83,11 @@ public abstract class Enemy : NoaBehaviour
         Init();
         MyProc.started = true;
 
-        yield return NoaProcesser.StayBoss();
+        yield return new WaitWhile(() => NoaProcesser.IsStayBoss() || NoaProcesser.IsStayPC(playerSlot));
 
         while (true)
         {
-            NoaProcesser.StayBoss();
+            yield return new WaitWhile(() => NoaProcesser.IsStayBoss() || NoaProcesser.IsStayPC(playerSlot));
 
             Shot();
             yield return new WaitForSeconds(0.01f);
@@ -96,7 +96,7 @@ public abstract class Enemy : NoaBehaviour
 
     protected void Update ()
     {
-        if (MyProc.IsStay() || NoaProcesser.IsStayBoss()) { return; }
+        if (MyProc.IsStay() || NoaProcesser.IsStayBoss() || NoaProcesser.IsStayPC(playerSlot)) { return; }
 
         Move();
         Shot();
@@ -201,7 +201,6 @@ public abstract class Enemy : NoaBehaviour
     // ショットする条件やショットそのものの処理
     public virtual void Shot()
     {
-        if (NoaProcesser.BossProc.IsStay()) { return; }
         enemyShotManager[currentShotPattern].Shot();
     }
 
