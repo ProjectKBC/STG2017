@@ -53,12 +53,12 @@ public abstract class Bullet : NoaBehaviour
 
     protected override IEnumerator Start()
     {
-        yield return player.MyProc.Stay();
+        yield return new WaitWhile( () => player.MyProc.IsStay());
 
         Init();
         MyProc.started = true;
 
-        yield return NoaProcesser.StayBoss();
+        yield return new WaitWhile(() => NoaProcesser.IsStayBoss() | NoaProcesser.IsStayPC(player.playerSlot));
 
         // lifeTime秒後に削除
         Destroy(gameObject, param.lifeTime);
@@ -66,7 +66,7 @@ public abstract class Bullet : NoaBehaviour
 
     protected void Update()
     {
-        if (MyProc.IsStay() || NoaProcesser.IsStayBoss()) { return; }
+        if (MyProc.IsStay() || NoaProcesser.IsStayBoss() || NoaProcesser.IsStayPC(player.playerSlot)) { return; }
 
         Move();
 

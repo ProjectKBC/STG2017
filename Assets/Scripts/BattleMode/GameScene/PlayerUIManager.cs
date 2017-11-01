@@ -99,14 +99,14 @@ public sealed class PlayerUIManager : NoaBehaviour
     {
         CreateUI();
 
-        yield return PlayerManager.Inst.MyProc.Stay();
-        yield return GameManager.Inst.MyProc.Stay();
+        yield return new WaitWhile( () => PlayerManager.Inst.MyProc.IsStay());
+        yield return new WaitWhile( () => GameManager.Inst.MyProc.IsStay());
 
         pc1Canvas.player = GameManager.Pc1Player; Debug.Log("puim: " + pc1Canvas.player);
         pc2Canvas.player = GameManager.Pc2Player; Debug.Log("puim: " + pc2Canvas.player);
 
-        yield return pc1Canvas.player.MyProc.Stay();
-        yield return pc2Canvas.player.MyProc.Stay();
+        yield return new WaitWhile( () => pc1Canvas.player.MyProc.IsStay());
+        yield return new WaitWhile( () => pc2Canvas.player.MyProc.IsStay());
 
         CheckStatus(pc1Canvas);
         CheckStatus(pc2Canvas);
@@ -116,16 +116,14 @@ public sealed class PlayerUIManager : NoaBehaviour
 
         MyProc.started = true;
         MyProc.Log(this, 4);
-
-        yield return NoaProcesser.StayBoss();
     }
 
     private void Update()
     {
         if (MyProc.IsStay()) { return; }
 
-        UpdateUI(pc1Canvas);
-        UpdateUI(pc2Canvas);
+        if (!NoaProcesser.IsStayPC(PlayerSlot.PC1)) { UpdateUI(pc1Canvas); }
+        if (!NoaProcesser.IsStayPC(PlayerSlot.PC2)) { UpdateUI(pc2Canvas); }
 
         if (NoaProcesser.IsStayBoss()) { return; }
     }

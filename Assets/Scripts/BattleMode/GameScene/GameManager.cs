@@ -85,14 +85,32 @@ public sealed class GameManager : NoaBehaviour
 
     public static bool IsGameSet = false;
 
-    protected override IEnumerator Start()
+    private AudioSource audioSource;
+    private List<AudioClip> BGMs = new List<AudioClip>();
+
+    private void Init()
     {
+        gameObject.AddComponent<AudioSource>();
+        audioSource = GetComponent<AudioSource>();
+        BGMs.Add(Resources.Load<AudioClip>("Sounds/BGMs/gameBGM1"));
+        BGMs.Add(Resources.Load<AudioClip>("Sounds/BGMs/gameBGM2"));
+        BGMs.Add(Resources.Load<AudioClip>("Sounds/BGMs/gameBGM3"));
+
         // f:Killsの初期セットアップ
         foreach (EnemyType enemyType in Enum.GetValues(typeof(EnemyType)))
         {
             PC1Kills.Add(enemyType, 0);
             PC2Kills.Add(enemyType, 0);
         }
+
+        System.Random r = new System.Random(4098);
+        audioSource.clip = BGMs[1];
+        audioSource.loop = true;
+    }
+
+    protected override IEnumerator Start()
+    {
+        Init();
 
         yield return new WaitWhile( () => PlayerManager.Inst.MyProc.IsStay() && GameStarter.MyProc.IsStay());
 
@@ -110,8 +128,31 @@ public sealed class GameManager : NoaBehaviour
 
         yield return new WaitUntil( () => Loading.Inst.MyProc.ended);
 
+        NoaProcesser.PC1Proc.started = true;
+        NoaProcesser.PC2Proc.started = true;
         NoaProcesser.BossProc.started = true;
         Debug.Log("GameProc started!!");
+
+        audioSource.Play();
+    }
+
+    private void Update()
+    {
+        // ポーズ
+        if (!NoaProcesser.BossProc.ended && (Input.GetButtonDown("pl1_Pause") || Input.GetButtonDown("pl2_Pause")))
+        {
+            if (NoaProcesser.BossProc.pausing)
+            {
+                Pause.Inst.Active(false);
+            }
+            else
+            {
+                Pause.Inst.Active(true);
+            }
+        }
+
+        // ゲームセット
+        if (NoaProcesser.PC1Proc.ended && NoaProcesser.PC2Proc.ended && !IsGameSet) { GameAllSet(); }
     }
 
     /**/
@@ -211,8 +252,10 @@ public sealed class GameManager : NoaBehaviour
         {
             case PlayerSlot.PC1:
                 ++PC1Kills[_deadEnemy.enemyType];
+                Debug.Log(_deadEnemy.enemyType + ": " + PC1Kills[_deadEnemy.enemyType]);
                 Pc1Score += _deadEnemy.score;
                 break;
+
             case PlayerSlot.PC2:
                 ++PC2Kills[_deadEnemy.enemyType];
                 Pc2Score += _deadEnemy.score;
@@ -221,15 +264,89 @@ public sealed class GameManager : NoaBehaviour
     }
     
     /* f:Game系 --------------------------------------------------------------------------- */
-    public static void GameSet(Player _loser)
+    public static void GameSet(Player _player)
+    {
+        switch (_player.playerSlot)
+        {
+            case PlayerSlot.PC1:
+                NoaProcesser.PC1Proc.ended = true;
+                GameObject.Find(CanvasName.UI + "/PC1Shutter").GetComponent<Image>().color = new Color(255 / 255f, 0 / 255f, 0 / 255f, 100 / 255f);
+
+                break;
+
+            case PlayerSlot.PC2:
+                NoaProcesser.PC2Proc.ended = true;
+                GameObject.Find(CanvasName.UI + "/PC2Shutter").GetComponent<Image>().color = new Color(255 / 255f, 0 / 255f, 0 / 255f, 100 / 255f);
+
+                break;
+        }
+    }
+
+    private void GameAllSet()
     {
         IsGameSet = true;
         NoaProcesser.BossProc.ended = true;
         
-        GameObject.Find(CanvasName.UI + "/PC1Shutter").GetComponent<Image>().color = new Color(255 / 255f, 0 / 255f, 0 / 255f, 100 / 255f);
-        GameObject.Find(CanvasName.UI + "/PC2Shutter").GetComponent<Image>().color = new Color(255 / 255f, 0 / 255f, 0 / 255f, 100 / 255f);
-        Instantiate(Resources.Load("Prefabs/UI/PC1Score"), GameObject.Find(CanvasName.UI).transform);
-        Instantiate(Resources.Load("Prefabs/UI/PC2Score"), GameObject.Find(CanvasName.UI).transform);
+        GameObject sc1 = Instantiate(Resources.Load("Prefabs/UI/PC1Score"), GameObject.Find(CanvasName.UI).transform) as GameObject;
+        GameObject sc2 = Instantiate(Resources.Load("Prefabs/UI/PC2Score"), GameObject.Find(CanvasName.UI).transform) as GameObject;
+
+        Text t;
+
+        Pc1Score += Pc1Player.hitPoint * 1000;
+        foreach (Transform x in sc1.GetComponentsInChildren<Transform>())
+        {
+            Debug.Log(x.name);
+            switch (x.name)
+            {
+                case "small_kills":
+                    t = x.gameObject.GetComponent<Text>();
+                    t.text = PC1Kills[EnemyType.small].ToString();
+                    break;
+
+                case "medium_kills":
+                    t = x.gameObject.GetComponent<Text>();
+                    t.text = PC1Kills[EnemyType.medium].ToString();
+                    break;
+
+                case "large_kills":
+                    t = x.gameObject.GetComponent<Text>();
+                    t.text = PC1Kills[EnemyType.large].ToString();
+                    break;
+
+                case "HP_bonus":
+                    t = x.gameObject.GetComponent<Text>();
+                    t.text = (Pc1Player.hitPoint * 1000).ToString();
+                    break;
+
+                case "total_score":
+                    t = x.gameObject.GetComponent<Text>();
+                    t.text = Pc1Score.ToString();
+                    break;
+            }
+        }
+
+        Pc2Score += Pc2Player.hitPoint * 1000;
+        foreach (Transform x in sc2.GetComponentsInChildren<Transform>())
+        {
+            switch (x.name)
+            {
+                case "small_kills":
+                    x.gameObject.GetComponent<Text>().text = PC2Kills[EnemyType.small].ToString();
+                    break;
+                case "medium_kills":
+                    x.gameObject.GetComponent<Text>().text = PC2Kills[EnemyType.medium].ToString();
+                    break;
+                case "large_kills":
+                    x.gameObject.GetComponent<Text>().text = PC2Kills[EnemyType.large].ToString();
+                    break;
+                case "HP_bonus":
+                    x.gameObject.GetComponent<Text>().text = (Pc2Player.hitPoint * 1000).ToString();
+                    break;
+                case "total_score":
+                    x.gameObject.GetComponent<Text>().text = Pc2Score.ToString();
+                    break;
+            }
+        }
     }
 
     /* f:Player系 ------------------------------------------------------------------------- */

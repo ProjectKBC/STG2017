@@ -60,10 +60,8 @@ public abstract class Player : NoaBehaviour
 
         while (true)
         {
-            if (NoaProcesser.IsStayBoss())
-            {
-                yield return new WaitWhile(() => NoaProcesser.IsStayBoss());
-            }
+            if (NoaProcesser.IsStayBoss()) { yield return new WaitWhile(() => NoaProcesser.IsStayBoss()); }
+            if (NoaProcesser.IsStayPC(playerSlot)) { yield return new WaitWhile(() => NoaProcesser.IsStayPC(playerSlot)); }
 
             InputManager();
             if(state.Contains("(KeyUp)")) Debug.Log("p:"+Time.time);
@@ -94,7 +92,7 @@ public abstract class Player : NoaBehaviour
 	
 	protected void Update ()
     {
-        if (MyProc.IsStay() || NoaProcesser.IsStayBoss()) { return; }
+        if (MyProc.IsStay() || NoaProcesser.IsStayBoss() || NoaProcesser.IsStayPC(playerSlot)) { return; }
 
         Move();
 	}
