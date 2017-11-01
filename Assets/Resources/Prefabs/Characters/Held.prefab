@@ -214,7 +214,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerSlot: 0
-  maxHitPoint: 100
+  maxHitPoint: 10
   _speed: 5
   skill: {fileID: 0}
 --- !u!114 &114316843415147412
