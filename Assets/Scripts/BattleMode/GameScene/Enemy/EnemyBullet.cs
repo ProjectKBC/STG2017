@@ -53,17 +53,13 @@ public abstract class EnemyBullet : NoaBehaviour
     // f: lifeTimeをpause機能に対応させる
     protected float bornTime = 0;
     protected float pausingTime = 0;
-
-
+    
     protected override IEnumerator Start()
     {
         Init();
         MyProc.started = true;
 
         yield return new WaitWhile(() => NoaProcesser.IsStayBoss() || NoaProcesser.IsStayPC(param.playerSlot));
-
-        // lifeTime秒後に削除
-        //Destroy(gameObject, param.lifeTime);
     }
 
     protected void Update()

@@ -9,15 +9,15 @@ namespace Held
 		override protected void Init()
 		{
             base.Init();
-            
-            // 真っすぐ進む
-            GetComponent<Rigidbody2D>().velocity = transform.up.normalized * param.Speed;
         }
 
 		override protected void Move()
 		{
             base.Move();
-		}
+            Vector2 pos = transform.position;
+            pos.y += param.Speed;
+            transform.position = pos;
+        }
 
         protected override void OnDestroy()
         {

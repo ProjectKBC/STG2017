@@ -76,15 +76,14 @@ public sealed class GameManager : NoaBehaviour
     // f:撃破数を格納する連想配列
     public static Dictionary<EnemyType, int> PC1Kills = new Dictionary<EnemyType, int>();
     public static Dictionary<EnemyType, int> PC2Kills = new Dictionary<EnemyType, int>();
-
-    // f:リザルト
-    // 残りHP
-    // 倒した敵機の数（種類別）
-    // totalスコア
-    // 勝ち負け
-
-    public static bool IsGameSet = false;
     
+    // f:
+    public static bool IsGameSet = false;
+
+    // f:ゲーム時間系
+    private static float startTime;
+    public static float ElapsedTime() { return Time.time - startTime + Pause.allElapsedTime; }
+
     private void Init()
     {
         // f:Killsの初期セットアップ
@@ -120,6 +119,8 @@ public sealed class GameManager : NoaBehaviour
         NoaProcesser.PC2Proc.started = true;
         NoaProcesser.BossProc.started = true;
         Debug.Log("GameProc started!!");
+
+        startTime = Time.time;
     }
 
     private void Update()

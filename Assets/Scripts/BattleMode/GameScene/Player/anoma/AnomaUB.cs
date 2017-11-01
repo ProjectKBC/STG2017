@@ -9,7 +9,6 @@ namespace Anoma
         override protected void Init()
         {
             base.Init();
-            
         }
 
         override protected void Move()

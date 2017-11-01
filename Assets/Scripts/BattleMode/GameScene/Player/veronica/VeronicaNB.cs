@@ -9,9 +9,6 @@ namespace Veronica
         override protected void Init()
         {
             base.Init();
-            
-            // 真っすぐ進む
-            GetComponent<Rigidbody2D>().velocity = transform.up.normalized * param.Speed;
         }
 
         override protected void Move()

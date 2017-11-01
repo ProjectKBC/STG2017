@@ -38,6 +38,9 @@ public sealed class SoundManager : NoaBehaviour
         MyProc.started = true;
 
         yield return new WaitWhile(() => NoaProcesser.IsStayBoss());
+
+        System.Random r = new System.Random();
+        audioSource.clip = BGMs[r.Next(BGMs.Count - 1)];
         audioSource.Play();
     }
 
