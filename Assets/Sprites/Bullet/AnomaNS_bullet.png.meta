@@ -1,11 +1,9 @@
 fileFormatVersion: 2
-guid: 6d6a54f03f9e34e49b835cbdff32f10e
-timeCreated: 1509543882
+guid: 8ac36eab15ac11b4d8b307048a0b0fb4
+timeCreated: 1509543457
 licenseType: Free
 TextureImporter:
-  fileIDToRecycleName:
-    21300000: Bullet_0
-    21300002: Bullet_1
+  fileIDToRecycleName: {}
   externalObjects: {}
   serializedVersion: 4
   mipmaps:
@@ -42,7 +40,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -87,35 +85,7 @@ TextureImporter:
     overridden: 0
   spriteSheet:
     serializedVersion: 2
-    sprites:
-    - serializedVersion: 2
-      name: Bullet_0
-      rect:
-        serializedVersion: 2
-        x: 5
-        y: 0
-        width: 6
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: Bullet_1
-      rect:
-        serializedVersion: 2
-        x: 17
-        y: 1
-        width: 14
-        height: 14
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
+    sprites: []
     outline: []
     physicsShape: []
   spritePackingTag: 
