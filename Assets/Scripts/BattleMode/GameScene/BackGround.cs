@@ -7,6 +7,7 @@ using UnityEngine;
 public class BackGround : NoaBehaviour
 {
     public float ScrollSpeed = 2f;
+    public PlayerSlot playerSlot;
     private MeshRenderer mr;
 
     float offset = 0f;
@@ -16,12 +17,12 @@ public class BackGround : NoaBehaviour
         mr = GetComponent<MeshRenderer>();
         MyProc.started = true;
 
-        yield return NoaProcesser.StayBoss();
+        yield return new WaitWhile( () => NoaProcesser.IsStayBoss() || NoaProcesser.IsStayPC(playerSlot));
     }
 
     private void Update()
     {
-        if (MyProc.IsStay() || NoaProcesser.IsStayBoss()) { return; }
+        if (MyProc.IsStay() || NoaProcesser.IsStayBoss() || NoaProcesser.IsStayPC(playerSlot)) { return; }
 
         offset = Mathf.Repeat(Time.time * ScrollSpeed, 1f);
         mr.material.SetTextureOffset("_MainTex", new Vector2(0f, offset));

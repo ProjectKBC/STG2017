@@ -30,17 +30,17 @@ public class PlayerEffectManager : NoaBehaviour
 
     protected override IEnumerator Start()
     {
-        yield return PlayerManager.Inst.MyProc.Stay();
+        yield return new WaitWhile( () => PlayerManager.Inst.MyProc.IsStay());
 
         Init();
         MyProc.started = true;
 
-        yield return NoaProcesser.StayBoss();
+        yield return new WaitWhile(() => NoaProcesser.IsStayBoss() || NoaProcesser.IsStayPC(player.playerSlot));
     }
 
     protected void Update ()
     {
-        if (MyProc.IsStay() || NoaProcesser.IsStayBoss()) { return; }
+        if (MyProc.IsStay() || NoaProcesser.IsStayBoss() || NoaProcesser.IsStayPC(player.playerSlot)) { return; }
 
         foreach (string key in player.shotManager.Keys)
         {

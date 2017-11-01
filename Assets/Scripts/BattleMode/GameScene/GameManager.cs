@@ -122,10 +122,27 @@ public sealed class GameManager : NoaBehaviour
 
     private void Update()
     {
-        if (Input.GetButtonDown("pl1_Pause") || Input.GetButtonDown("pl2_Pause"))
+        // BossとPCの連動
+        if (NoaProcesser.BossProc.started) { NoaProcesser.PC1Proc.started = NoaProcesser.PC2Proc.started = true; }
+        else { NoaProcesser.PC1Proc.started = NoaProcesser.PC2Proc.started = false; }
+        if (NoaProcesser.BossProc.ended) { NoaProcesser.PC1Proc.ended = NoaProcesser.PC2Proc.ended = true; }
+        else { NoaProcesser.PC1Proc.ended = NoaProcesser.PC2Proc.ended = false; }
+
+        // ポーズ
+        if (!NoaProcesser.BossProc.ended && (Input.GetButtonDown("pl1_Pause") || Input.GetButtonDown("pl2_Pause")))
         {
-            NoaProcesser.BossProc.pausing = !NoaProcesser.BossProc.pausing;
+            if (NoaProcesser.BossProc.pausing)
+            {
+                Pause.Inst.Active(false);
+            }
+            else
+            {
+                Pause.Inst.Active(true);
+            }
         }
+
+        // ゲームセット
+        if (NoaProcesser.PC1Proc.ended && NoaProcesser.PC2Proc.ended) { GameAllSet(); }
     }
 
     /**/
@@ -235,13 +252,29 @@ public sealed class GameManager : NoaBehaviour
     }
     
     /* f:Game系 --------------------------------------------------------------------------- */
-    public static void GameSet(Player _loser)
+    public static void GameSet(Player _player)
+    {
+        switch (_player.playerSlot)
+        {
+            case PlayerSlot.PC1:
+                NoaProcesser.PC1Proc.ended = true;
+                GameObject.Find(CanvasName.UI + "/PC1Shutter").GetComponent<Image>().color = new Color(255 / 255f, 0 / 255f, 0 / 255f, 100 / 255f);
+
+                break;
+
+            case PlayerSlot.PC2:
+                NoaProcesser.PC2Proc.ended = true;
+                GameObject.Find(CanvasName.UI + "/PC2Shutter").GetComponent<Image>().color = new Color(255 / 255f, 0 / 255f, 0 / 255f, 100 / 255f);
+
+                break;
+        }
+    }
+
+    private void GameAllSet()
     {
         IsGameSet = true;
         NoaProcesser.BossProc.ended = true;
         
-        GameObject.Find(CanvasName.UI + "/PC1Shutter").GetComponent<Image>().color = new Color(255 / 255f, 0 / 255f, 0 / 255f, 100 / 255f);
-        GameObject.Find(CanvasName.UI + "/PC2Shutter").GetComponent<Image>().color = new Color(255 / 255f, 0 / 255f, 0 / 255f, 100 / 255f);
         Instantiate(Resources.Load("Prefabs/UI/PC1Score"), GameObject.Find(CanvasName.UI).transform);
         Instantiate(Resources.Load("Prefabs/UI/PC2Score"), GameObject.Find(CanvasName.UI).transform);
     }
