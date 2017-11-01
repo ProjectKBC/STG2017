@@ -57,8 +57,6 @@ public abstract class EnemyBullet : NoaBehaviour
 
     protected override IEnumerator Start()
     {
-        yield return new WaitWhile( () => enemy.MyProc.IsStay());
-
         Init();
         MyProc.started = true;
 
@@ -73,7 +71,7 @@ public abstract class EnemyBullet : NoaBehaviour
         float tmpTime = 0;
         if (NoaProcesser.BossProc.pausing) { tmpTime = Time.time; }
 
-        if (MyProc.IsStay() || enemy.MyProc.IsStay() || NoaProcesser.IsStayBoss() || NoaProcesser.IsStayPC(param.playerSlot)) { return; }
+        if (MyProc.IsStay() || NoaProcesser.IsStayBoss() || NoaProcesser.IsStayPC(param.playerSlot)) { return; }
         
         if (tmpTime != 0) { pausingTime += Time.time - tmpTime; }
 

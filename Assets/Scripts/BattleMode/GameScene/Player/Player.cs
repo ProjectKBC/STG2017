@@ -64,7 +64,6 @@ public abstract class Player : NoaBehaviour
             if (NoaProcesser.IsStayPC(playerSlot)) { yield return new WaitWhile(() => NoaProcesser.IsStayPC(playerSlot)); }
 
             InputManager();
-            if(state.Contains("(KeyUp)")) Debug.Log("p:"+Time.time);
 
             if (state == "Skill" || state == "Skill(KeyUp)")
             {

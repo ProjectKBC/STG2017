@@ -54,18 +54,11 @@ public abstract class Enemy : NoaBehaviour
     float lastMoveTime = 0; // 最後に動いた時間
     float moveStartTime;
 
-    /*
-     * 
-     * パターン化したい
-     * 動き
-     * ショット
-    */
-
-    // ShotManagerを確保するリスト
     protected float hitPoint;
+    protected AudioClip explosionSound;
 
     protected void Init()
-    {        
+    {
         // ShotManagerの読み込み
         EnemyShotManager[] tmp = GetComponents<EnemyShotManager>();
         foreach (EnemyShotManager x in tmp)
@@ -73,6 +66,11 @@ public abstract class Enemy : NoaBehaviour
             x.param.playerSlot = playerSlot;
             enemyShotManager.Add(x.param.shotMovePattern, x);
         }
+        
+        explosionSound = (enemyType == EnemyType.small)  ? Resources.Load<AudioClip>("Sounds/SEs/explosion_small")
+                       : (enemyType == EnemyType.medium) ? Resources.Load<AudioClip>("Sounds/SEs/explosion_medium")
+                       : (enemyType == EnemyType.large)  ? Resources.Load<AudioClip>("Sounds/SEs/explosion_large")
+                       : null;
 
         hitPoint = maxHitPoint;
         MoveStart();
@@ -227,7 +225,6 @@ public abstract class Enemy : NoaBehaviour
     protected void Damage(float _damage)
     {
         hitPoint -= _damage;
-        Debug.Log(hitPoint);
         if (hitPoint <= 0)
         {
             Dead();
@@ -236,9 +233,10 @@ public abstract class Enemy : NoaBehaviour
 
     protected void Dead()
     {
-        // todo: スコア処理
         GameManager.SetParam(this);
         NoaConsole.Log(this.score + ": " + this.name + " destroy", this.playerSlot);
-        Destroy(this.gameObject);
+        
+        SoundManager.PlayOneShot(explosionSound);
+        Destroy(gameObject);
     }
 }

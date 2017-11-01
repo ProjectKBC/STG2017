@@ -21,7 +21,6 @@ public abstract class ShotManager : NoaBehaviour
     public ButtonCode buttonCode; // 発射ボタン
 
     protected Player player;
-    protected AudioSource audioSource;
     [System.NonSerialized] public bool Started = false;
 
     protected float lastShotTime = 0;
@@ -29,7 +28,6 @@ public abstract class ShotManager : NoaBehaviour
     public virtual void Init()
     {
         player = GetComponent<Player>();
-        audioSource = GetComponent<AudioSource>();
         bulletNum = param.bulletMaxNum;
     }
 
@@ -136,7 +134,7 @@ public abstract class ShotManager : NoaBehaviour
     protected void InstBullet()
     {
         lastShotTime = Time.time;
-        audioSource.PlayOneShot(param.shotSound);
+        SoundManager.PlayOneShot(param.shotSound);
         Bullet b = Bullet.Instantiate(bullet, param, transform);
     }
 
