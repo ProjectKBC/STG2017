@@ -64,6 +64,7 @@ public abstract class Player : NoaBehaviour
             if (NoaProcesser.IsStayPC(playerSlot)) { yield return new WaitWhile(() => NoaProcesser.IsStayPC(playerSlot)); }
 
             InputManager();
+            if(state.Contains("(KeyUp)")) Debug.Log("p:"+Time.time);
 
             if (state == "Skill" || state == "Skill(KeyUp)")
             {
@@ -204,12 +205,10 @@ public abstract class Player : NoaBehaviour
         // Shiftで低速移動
         if (GetButton("Slow"))
         {
-            transform.GetChild(0).gameObject.SetActive(true);
             pos += direction * Speed/2 * Time.deltaTime;
         }
         else
         {
-            transform.GetChild(0).gameObject.SetActive(false);
             pos += direction * Speed * Time.deltaTime;
         }
 
