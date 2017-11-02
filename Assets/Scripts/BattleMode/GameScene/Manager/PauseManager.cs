@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -23,17 +23,25 @@ public sealed class PauseManager : NoaBehaviour
 
     protected override IEnumerator Start()
     {
-        yield return new WaitUntil(() => PlayerManager.Inst.MyProc.started && SoundManager.Inst.MyProc.started);
-        Debug.Log("_5:PauseManagerが呼び出される。");
+        yield return new WaitUntil(() => NoaProcesser.BossProc.started);
+        PauseManager.DestroyMe(gameObject);
+    }
+
+    public IEnumerator Starting()
+    {
+        Debug.Log("5:PauseManagerが呼び出される。");
         GameObject obj = Instantiate(Resources.Load("Prefabs/target_pause"), GameObject.Find("PausingCanvas").transform) as GameObject;
         obj.name = "target_pause";
 
         yield return new WaitUntil(() => obj.GetComponent<Pause>().MyProc.started);
-
-        Debug.Log("6:PauseManagerがtarget_pauseを生成する。");
         MyProc.started = true;
+    }
 
-        yield return new WaitUntil(() => NoaProcesser.BossProc.started);
-        Destroy(gameObject);
+    public static void DestroyMe(GameObject _gameObject)
+    {
+        inst.MyProc.Reset();
+        inst = null;
+        Debug.Log("Destroy:PauseManager");
+        Destroy(_gameObject);
     }
 }

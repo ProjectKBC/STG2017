@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Pause : NoaBehaviour
 {
@@ -14,8 +15,8 @@ public class Pause : NoaBehaviour
 
     // f:ポーズ関連のUI
     private static GroupButton groupButton;
-    private static Button ReturnToGame;
-    private static Button QuitAndReturnToTitle;
+    //private static Button ReturnToGame;
+    //private static Button QuitAndReturnToTitle;
 
     protected override IEnumerator Start()
     {
@@ -24,8 +25,8 @@ public class Pause : NoaBehaviour
         Inst = this;
 
         groupButton  = GameObject.Find("PausingCanvas/target_pause/Pausing/Buttons").GetComponent<GroupButton>();
-        ReturnToGame = GameObject.Find("PausingCanvas/target_pause/Pausing/Buttons/ReturnToGame_Button").GetComponent<Button>();
-        QuitAndReturnToTitle = GameObject.Find("PausingCanvas/target_pause/Pausing/Buttons/QuitAndReturnToTitle_Button").GetComponent<Button>();
+        //ReturnToGame = GameObject.Find("PausingCanvas/target_pause/Pausing/Buttons/ReturnToGame_Button").GetComponent<Button>();
+        //QuitAndReturnToTitle = GameObject.Find("PausingCanvas/target_pause/Pausing/Buttons/QuitAndReturnToTitle_Button").GetComponent<Button>();
 
         GroupButton gb = new GroupButton();
         foreach (Transform x in transform.GetChild(0).GetComponentInChildren<Transform>())
@@ -51,7 +52,8 @@ public class Pause : NoaBehaviour
 
     public void OnClick_QuitAndReturnToTitle()
     {
-
+        GameManager.GameEsc();
+        SceneManager.LoadScene("ModeSelect");
     }
 
     public void Active(bool _IsOn)

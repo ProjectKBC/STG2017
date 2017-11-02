@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -23,15 +23,25 @@ public sealed class AppearManager : NoaBehaviour
 
     protected override IEnumerator Start()
     {
-        yield return new WaitUntil(() => PlayerManager.Inst.MyProc.started && SoundManager.Inst.MyProc.started);
-        Debug.Log("_3:AppearManagerが呼び出される。");
+        yield return new WaitUntil(() => NoaProcesser.BossProc.started);
+        AppearManager.DestroyMe(gameObject);
+    }
+
+    public void Starting()
+    {
+        Debug.Log("4:AppearManagerが呼び出される。");
         Instantiate(Resources.Load("Prefabs/PC1Emitter"), GameObject.Find("PC1Area/Canvas").transform).name = "target_pause";
         Instantiate(Resources.Load("Prefabs/PC2Emitter"), GameObject.Find("PC2Area/Canvas").transform).name = "target_pause";
-
-        Debug.Log("4:AppearManagerがAppearを生成する。");
+        
         MyProc.started = true;
 
-        yield return new WaitUntil(() => NoaProcesser.BossProc.started);
-        Destroy(gameObject);
+    }
+
+    public static void DestroyMe(GameObject _gameObject)
+    {
+        inst.MyProc.Reset();
+        inst = null;
+        Debug.Log("Destroy:AppearManager");
+        Destroy(_gameObject);
     }
 }

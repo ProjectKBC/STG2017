@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -29,8 +29,13 @@ public sealed class PlayerManager : NoaBehaviour
 
     protected override IEnumerator Start()
     {
-        yield return new WaitUntil(() => LoadingManager.Inst.MyProc.started);
-        Debug.Log("_3:PlayerManagerが呼び出される。");
+        yield return new WaitUntil(() => NoaProcesser.BossProc.started);
+        PlayerManager.DestroyMe(gameObject);
+    }
+
+    public void Starting()
+    {
+        Debug.Log("2:PlayerManagerが呼び出される。");
 
         System.Object[] tmp = Resources.LoadAll("Prefabs/Characters");
 
@@ -38,25 +43,9 @@ public sealed class PlayerManager : NoaBehaviour
         {
             GameObject x = tmp[i] as GameObject;
 
-            // 重複時の処理
-            while (true)
-            {
-                if (CharacterPrefabs.ContainsKey(x.name))
-                {
-                    x.name += "(duplicated)";
-                    continue;
-                }
-                break;
-            }
-
             CharacterPrefabs.Add(x.name, x);
         }
-
-        Debug.Log("4:PlayerManagerがキャラクターを読み込む。");
         MyProc.started = true;
-
-        yield return new WaitUntil( () => NoaProcesser.BossProc.started );
-        Destroy(gameObject);
     }
     
     public static GameObject GetCharacterPrefab(string _name)
@@ -64,5 +53,15 @@ public sealed class PlayerManager : NoaBehaviour
         if (CharacterPrefabs.ContainsKey(_name) == false) { return null; }
 
         return CharacterPrefabs[_name];
+    }
+
+    public static void DestroyMe(GameObject _gameObject)
+    {
+        CharacterPrefabs = new Dictionary<string, GameObject>();
+
+        inst.MyProc.Reset();
+        inst = null;
+        Debug.Log("Destroy:PlayerManager");
+        Destroy(_gameObject);
     }
 }
