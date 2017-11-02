@@ -25,7 +25,10 @@ public sealed class PauseManager : NoaBehaviour
     {
         yield return new WaitUntil(() => PlayerManager.Inst.MyProc.started && SoundManager.Inst.MyProc.started);
         Debug.Log("_5:PauseManagerが呼び出される。");
-        Instantiate(Resources.Load("Prefabs/target_pause"), GameObject.Find("PausingCanvas").transform).name = "target_pause";
+        GameObject obj = Instantiate(Resources.Load("Prefabs/target_pause"), GameObject.Find("PausingCanvas").transform) as GameObject;
+        obj.name = "target_pause";
+
+        yield return new WaitUntil(() => obj.GetComponent<Pause>().MyProc.started);
 
         Debug.Log("6:PauseManagerがtarget_pauseを生成する。");
         MyProc.started = true;

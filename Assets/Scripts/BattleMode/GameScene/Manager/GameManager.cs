@@ -120,6 +120,8 @@ public sealed class GameManager : NoaBehaviour
 
     private void Update()
     {
+        if (!NoaProcesser.BossProc.started) { return; }
+
         // ポーズ
         if (!NoaProcesser.BossProc.ended && (Input.GetButtonDown("pl1_Pause") || Input.GetButtonDown("pl2_Pause")))
         {

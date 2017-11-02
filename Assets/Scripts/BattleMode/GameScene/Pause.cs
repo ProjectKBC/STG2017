@@ -17,22 +17,30 @@ public class Pause : NoaBehaviour
     private static Button ReturnToGame;
     private static Button QuitAndReturnToTitle;
 
-    private void Init()
+    protected override IEnumerator Start()
     {
-        if (Inst != null) { Destroy(gameObject); return; }
+        if (Inst != null) { Destroy(gameObject); yield break; }
 
         Inst = this;
-        
+
         groupButton  = GameObject.Find("PausingCanvas/target_pause/Pausing/Buttons").GetComponent<GroupButton>();
         ReturnToGame = GameObject.Find("PausingCanvas/target_pause/Pausing/Buttons/ReturnToGame_Button").GetComponent<Button>();
         QuitAndReturnToTitle = GameObject.Find("PausingCanvas/target_pause/Pausing/Buttons/QuitAndReturnToTitle_Button").GetComponent<Button>();
-        
-        transform.GetChild(0).gameObject.SetActive(false);
-    }
 
-    protected override IEnumerator Start()
-    {
-        Init();
+        GroupButton gb = new GroupButton();
+        foreach (Transform x in transform.GetChild(0).GetComponentInChildren<Transform>())
+        {
+            if (x.name == "Buttons")
+            {
+                gb = x.GetComponent<GroupButton>();
+                break;
+            }
+        }
+        yield return new WaitUntil(() => gb.MyProc.started);
+
+        transform.GetChild(0).gameObject.SetActive(false);
+
+        MyProc.started = true;
         yield return null;
     }
 

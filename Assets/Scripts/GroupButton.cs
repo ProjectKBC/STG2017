@@ -3,18 +3,24 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class GroupButton : MonoBehaviour
+public class GroupButton : NoaBehaviour
 {
     private CanvasGroup canvasGroup;
     public GameObject firstSelect;
 
-    private void Start()
+    protected override IEnumerator Start()
     {
-        canvasGroup = GetComponent<CanvasGroup>();
+        canvasGroup = gameObject.AddComponent<CanvasGroup>();
+        //canvasGroup.interactable = false;
+        MyProc.started = true;
+
+        yield return null;
     }
 
     public void ActiveButtons(bool _IsOn)
     {
+        //yield return new WaitUntil( () => MyProc.started);
+
         if (_IsOn)
         {
             canvasGroup.interactable = true;
