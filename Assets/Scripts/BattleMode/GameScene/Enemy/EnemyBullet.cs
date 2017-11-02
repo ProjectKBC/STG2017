@@ -45,31 +45,39 @@ public abstract class EnemyBullet : NoaBehaviour
 {
     [System.NonSerialized] public EnemyBulletParam param;
     protected Enemy enemy;
-    Vector2 pos = new Vector2();
-    Vector2 direction = new Vector2();
-    Quaternion angle = new Quaternion();
 
+    protected Vector2 pos = new Vector2();
+    protected Vector2 direction = new Vector2();
+    protected Quaternion angle = new Quaternion();
 
+    // f: lifeTimeをpause機能に対応させる
+    protected float bornTime = 0;
+    protected float pausingTime = 0;
+    
     protected override IEnumerator Start()
     {
-        yield return enemy.MyProc.Stay();
-
         Init();
         MyProc.started = true;
 
-        yield return NoaProcesser.StayBoss();
-
-        // lifeTime秒後に削除
-        Destroy(gameObject, param.lifeTime);
+        yield return new WaitWhile(() => NoaProcesser.IsStayBoss() || NoaProcesser.IsStayPC(param.playerSlot));
     }
 
     protected void Update()
     {
-        if (MyProc.IsStay() || NoaProcesser.IsStayBoss()) { return; }
+        float tmpTime = 0;
+        if (NoaProcesser.BossProc.pausing) { tmpTime = Time.time; }
 
-        if (enemy.MyProc.started == false) { return; }
+        if (MyProc.IsStay() || NoaProcesser.IsStayBoss() || NoaProcesser.IsStayPC(param.playerSlot)) { return; }
+        
+        if (tmpTime != 0) { pausingTime += Time.time - tmpTime; }
 
         Move();
+
+        // f:時間経過で削除
+        if (Time.time - (bornTime + pausingTime) >= param.lifeTime)
+        {
+            Destroy(gameObject);
+        }
 
         // f:範囲外判定
         foreach (Transform x in GetComponentInChildren<Transform>())
@@ -88,7 +96,10 @@ public abstract class EnemyBullet : NoaBehaviour
     }
 
     // f:初期設定関数
-    public virtual void Init() { }
+    public virtual void Init()
+    {
+        bornTime = Time.time;
+    }
 
     // f: 
     public virtual void Move()

@@ -119,12 +119,17 @@ public sealed class PlayerUIManager : NoaBehaviour
         yield return null;
     }
 
+    private bool lastUpdateFlgPC1 = false;
+    private bool lastUpdateFlgPC2 = false;
     private void Update()
     {
         if (MyProc.IsStay()) { return; }
 
-        if (!NoaProcesser.IsStayPC(PlayerSlot.PC1)) { UpdateUI(pc1Canvas); }
-        if (!NoaProcesser.IsStayPC(PlayerSlot.PC2)) { UpdateUI(pc2Canvas); }
+        if (!NoaProcesser.IsStayPC(PlayerSlot.PC1) || !lastUpdateFlgPC1) { UpdateUI(pc1Canvas); }
+        if (!NoaProcesser.IsStayPC(PlayerSlot.PC2) || !lastUpdateFlgPC2) { UpdateUI(pc2Canvas); }
+
+        if (NoaProcesser.IsStayPC(PlayerSlot.PC1)) { lastUpdateFlgPC1 = true; }
+        if (NoaProcesser.IsStayPC(PlayerSlot.PC2)) { lastUpdateFlgPC2 = true; }
 
         if (NoaProcesser.IsStayBoss()) { return; }
     }

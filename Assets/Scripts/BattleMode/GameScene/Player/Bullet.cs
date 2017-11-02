@@ -21,10 +21,10 @@ public class BulletParam
     public float lifeTime;  // f:生存時間
 
     // f:移動速度 Speedを使うことを推奨
-    [SerializeField] protected float speed;
+    public float speed;
     public float Speed
     {
-        get { return speed * 100; }
+        get { return speed * 1.5f; }
         set { speed = value; }
     }
 
@@ -51,6 +51,10 @@ public abstract class Bullet : NoaBehaviour
     [System.NonSerialized] public BulletParam param;
     protected Player player;
 
+    // f: lifeTimeをpause機能に対応させる
+    protected float bornTime = 0;
+    protected float pausingTime = 0;
+
     protected override IEnumerator Start()
     {
         yield return new WaitWhile( () => player.MyProc.IsStay());
@@ -59,16 +63,24 @@ public abstract class Bullet : NoaBehaviour
         MyProc.started = true;
 
         yield return new WaitWhile(() => NoaProcesser.IsStayBoss() | NoaProcesser.IsStayPC(player.playerSlot));
-
-        // lifeTime秒後に削除
-        Destroy(gameObject, param.lifeTime);
     }
 
     protected void Update()
     {
-        if (MyProc.IsStay() || NoaProcesser.IsStayBoss() || NoaProcesser.IsStayPC(player.playerSlot)) { return; }
+        float tmpTime = 0;
+        if (NoaProcesser.BossProc.pausing) { tmpTime = Time.time; }
+
+        if (MyProc.IsStay() || NoaProcesser.IsStayBoss() || NoaProcesser.IsStayPC(param.playerSlot)) { return; }
+
+        if (tmpTime != 0) { pausingTime += Time.time - tmpTime; }
 
         Move();
+        
+        // f:時間経過で削除
+        if (Time.time - (bornTime + pausingTime) >= param.lifeTime)
+        {
+            Destroy(gameObject);
+        }
 
         // f:範囲外判定
         foreach (Transform x in GetComponentInChildren<Transform>())
@@ -87,7 +99,10 @@ public abstract class Bullet : NoaBehaviour
     }
 
     // f:初期設定関数
-    protected virtual void Init() { }
+    protected virtual void Init()
+    {
+        bornTime = Time.time;
+    }
 
     // f: 
     protected virtual void Move() { }
