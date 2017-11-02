@@ -53,7 +53,8 @@ public abstract class EnemyBullet : NoaBehaviour
     // f: lifeTimeをpause機能に対応させる
     protected float bornTime = 0;
     protected float pausingTime = 0;
-    
+    protected float tmpTime = 0;
+
     protected override IEnumerator Start()
     {
         Init();
@@ -64,12 +65,18 @@ public abstract class EnemyBullet : NoaBehaviour
 
     protected void Update()
     {
-        float tmpTime = 0;
-        if (NoaProcesser.BossProc.pausing) { tmpTime = Time.time; }
+        if (NoaProcesser.BossProc.pausing && tmpTime == 0)
+        {
+            tmpTime = Time.time;
+        }
 
         if (MyProc.IsStay() || NoaProcesser.IsStayBoss() || NoaProcesser.IsStayPC(param.playerSlot)) { return; }
         
-        if (tmpTime != 0) { pausingTime += Time.time - tmpTime; }
+        if (tmpTime != 0)
+        {
+            pausingTime += Time.time - tmpTime;
+            tmpTime = 0;
+        }
 
         Move();
 
