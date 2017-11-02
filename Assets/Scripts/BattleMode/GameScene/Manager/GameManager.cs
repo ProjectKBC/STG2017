@@ -87,7 +87,8 @@ public sealed class GameManager : NoaBehaviour
 
     // f:ゲーム時間系
     private static float startTime;
-    public  static float ElapsedTime() { return Time.time - startTime + Pause.allElapsedTime; }
+    public static float ElapsedTime() { return Time.time - startTime + Pause.allElapsedTime; }
+    public static float TimeLimit = 120; // c:時間制限
 
     private void Init()
     {
@@ -123,6 +124,8 @@ public sealed class GameManager : NoaBehaviour
     private void Update()
     {
         if (!NoaProcesser.BossProc.started) { return; }
+
+        CountDown();
 
         // ポーズ
         if (!NoaProcesser.BossProc.ended && (Input.GetButtonDown("pl1_Pause") || Input.GetButtonDown("pl2_Pause")))
@@ -272,6 +275,7 @@ public sealed class GameManager : NoaBehaviour
     {
         IsGameSet = true;
         NoaProcesser.BossProc.ended = true;
+        TimeLimit = 0;
         
         GameObject sc1 = Instantiate(Resources.Load("Prefabs/UI/PC1Score"), GameObject.Find(CanvasName.UI).transform) as GameObject;
         GameObject sc2 = Instantiate(Resources.Load("Prefabs/UI/PC2Score"), GameObject.Find(CanvasName.UI).transform) as GameObject;
@@ -335,6 +339,18 @@ public sealed class GameManager : NoaBehaviour
         }
     }
 
+    void CountDown()
+    {
+        if (TimeLimit <= 0) { return; }
+
+        TimeLimit -= Time.deltaTime;
+        if(TimeLimit <= 0)
+        {
+            GameSet(Pc1Player);
+            GameSet(Pc2Player);
+        }
+    }
+        
     public static void GameEsc()
     {
         SoundManager.DestroyMe(GameObject.Find("Managers/SoundManager"));

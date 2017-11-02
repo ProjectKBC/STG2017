@@ -42,6 +42,8 @@ public class PCCanvas
     public Player player;
 
     public Text ScoreText;
+    public Text TimeLimit;
+
     public Image hitPointImage;
     public Text  hitPointText;
     public Image TopGageImage;
@@ -91,6 +93,8 @@ public sealed class PlayerUIManager : NoaBehaviour
 
     public static PCCanvas pc1Canvas = new PCCanvas();
     public static PCCanvas pc2Canvas = new PCCanvas();
+
+    public PCCanvas timeLimitCanvas = new PCCanvas();
 
     private const float width  = 780;
     private const float height = 1020;
@@ -288,6 +292,10 @@ public sealed class PlayerUIManager : NoaBehaviour
             Instantiate(Resources.Load(ResourcesPath.Ui("PC2Canvas")), GameObject.Find(CanvasName.UI).transform) as GameObject;
         pc2Canvas.mainCanvas.name = "PC2Canvas";
         pc2Canvas.mainCanvas.AddComponent<PlayerUI>().playerSlot = PlayerSlot.PC2;
+
+        timeLimitCanvas.mainCanvas =
+            Instantiate(Resources.Load(ResourcesPath.Ui("TimeLimitCanvas")), GameObject.Find(CanvasName.UI).transform) as GameObject;
+        timeLimitCanvas.mainCanvas.name = "TimeLimitCanvas";
     }
 
     private void SettingUI(PCCanvas _c)
@@ -641,6 +649,20 @@ public sealed class PlayerUIManager : NoaBehaviour
                                 t.raycastTarget = true;
                                 */
                                 _c.ScoreText = t;
+                                break;
+                        }
+                    }
+                    break;
+
+                case "TimeLimitCanvas":
+                    target = child.gameObject.GetComponent<Canvas>();
+                    foreach (Transform c_child in target.transform)
+                    {
+                        switch (c_child.name)
+                        {
+                            case "Text":
+                                t = c_child.gameObject.GetComponent<Text>();
+                                _c.TimeLimit = t;
                                 break;
                         }
                     }
