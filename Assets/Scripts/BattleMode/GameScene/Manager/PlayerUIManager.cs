@@ -82,13 +82,14 @@ public sealed class PlayerUIManager : NoaBehaviour
             if (inst == null)
             {
                 GameObject go = new GameObject("PlayerUIManager");
+                go.transform.parent = GameObject.Find("Managers").transform;
                 inst = go.AddComponent<PlayerUIManager>();
             }
 
             return inst;
         }
     }
-    
+
     public PCCanvas pc1Canvas = new PCCanvas();
     public PCCanvas pc2Canvas = new PCCanvas();
 
@@ -97,17 +98,16 @@ public sealed class PlayerUIManager : NoaBehaviour
 
     protected override IEnumerator Start()
     {
+        yield return new WaitUntil(() => GameManager.Inst.MyProc.started);
+        yield return new WaitUntil(() => GameManager.Pc1Player.MyProc.started && GameManager.Pc2Player.MyProc.started);
+        Debug.Log("_11:PlayerUIManagerが呼び出される。");
+
+        Debug.Log("12:PlayerUIManagerがUIを生成する。");
         CreateUI();
+        pc1Canvas.player = GameManager.Pc1Player;
+        pc2Canvas.player = GameManager.Pc2Player;
 
-        yield return new WaitWhile( () => PlayerManager.Inst.MyProc.IsStay());
-        yield return new WaitWhile( () => GameManager.Inst.MyProc.IsStay());
-
-        pc1Canvas.player = GameManager.Pc1Player; Debug.Log("puim: " + pc1Canvas.player);
-        pc2Canvas.player = GameManager.Pc2Player; Debug.Log("puim: " + pc2Canvas.player);
-
-        yield return new WaitWhile( () => pc1Canvas.player.MyProc.IsStay());
-        yield return new WaitWhile( () => pc2Canvas.player.MyProc.IsStay());
-
+        Debug.Log("13:PlayerUIManagerがUIの初期設定をする。");
         CheckStatus(pc1Canvas);
         CheckStatus(pc2Canvas);
 
@@ -115,7 +115,8 @@ public sealed class PlayerUIManager : NoaBehaviour
         SettingUI(pc2Canvas);
 
         MyProc.started = true;
-        MyProc.Log(this, 4);
+
+        yield return null;
     }
 
     private bool lastUpdateFlgPC1 = false;
@@ -285,10 +286,12 @@ public sealed class PlayerUIManager : NoaBehaviour
     {
         pc1Canvas.mainCanvas = 
             Instantiate(Resources.Load(ResourcesPath.Ui("PC1Canvas")), GameObject.Find(CanvasName.UI).transform) as GameObject;
+        pc1Canvas.mainCanvas.name = "PC1Canvas";
         pc1Canvas.mainCanvas.AddComponent<PlayerUI>().playerSlot = PlayerSlot.PC1;
 
         pc2Canvas.mainCanvas = 
             Instantiate(Resources.Load(ResourcesPath.Ui("PC2Canvas")), GameObject.Find(CanvasName.UI).transform) as GameObject;
+        pc2Canvas.mainCanvas.name = "PC2Canvas";
         pc2Canvas.mainCanvas.AddComponent<PlayerUI>().playerSlot = PlayerSlot.PC2;
     }
 

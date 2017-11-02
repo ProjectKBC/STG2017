@@ -19,6 +19,7 @@ public sealed class PlayerManager : NoaBehaviour
             if (inst == null)
             {
                 GameObject go = new GameObject("PlayerManager");
+                go.transform.parent = GameObject.Find("Managers").transform;
                 inst = go.AddComponent<PlayerManager>();
             }
 
@@ -28,6 +29,9 @@ public sealed class PlayerManager : NoaBehaviour
 
     protected override IEnumerator Start()
     {
+        yield return new WaitUntil(() => LoadingManager.Inst.MyProc.started);
+        Debug.Log("_3:PlayerManagerが呼び出される。");
+
         System.Object[] tmp = Resources.LoadAll("Prefabs/Characters");
 
         for (int i = 0; i < tmp.Length; ++i)
@@ -48,10 +52,11 @@ public sealed class PlayerManager : NoaBehaviour
             CharacterPrefabs.Add(x.name, x);
         }
 
+        Debug.Log("4:PlayerManagerがキャラクターを読み込む。");
         MyProc.started = true;
-        MyProc.Log(this, 0);
 
-        yield return NoaProcesser.StayBoss();
+        yield return new WaitUntil( () => NoaProcesser.BossProc.started );
+        Destroy(gameObject);
     }
     
     public static GameObject GetCharacterPrefab(string _name)
