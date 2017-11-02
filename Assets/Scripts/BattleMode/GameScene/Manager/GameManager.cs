@@ -21,6 +21,7 @@ public sealed class GameManager : NoaBehaviour
             if (inst == null)
             {
                 GameObject go = new GameObject("GameManager");
+                go.transform.parent = GameObject.Find("Managers").transform;
                 inst = go.AddComponent<GameManager>();
             }
 
@@ -110,28 +111,23 @@ public sealed class GameManager : NoaBehaviour
 
     protected override IEnumerator Start()
     {
+        yield return new WaitUntil(() => PauseManager.Inst.MyProc.started && BackGroundManager.Inst.MyProc.started);
+        Debug.Log("_7:GameManagerが呼び出される。");
         Init();
 
-        yield return new WaitWhile( () => PlayerManager.Inst.MyProc.IsStay() && GameStarter.MyProc.IsStay());
-
+        yield return new WaitUntil(() => GameStarter.IsSetPCName);
+        Debug.Log("_8:GameManagerがPCNameを渡される。");
         CreatePlayer(Pc1Name, Pc2Name);
-        
-        yield return new WaitWhile
-            ( () =>
-                PlayerUIManager.Inst.MyProc.IsStay() &&
-                Pc1Player.MyProc.IsStay() &&
-                Pc2Player.MyProc.IsStay()
-            );
 
+        Debug.Log("9:GameManagerがPlayerを生成する。");
         MyProc.started = true;
-        MyProc.Log(this, 2);
-
-        yield return new WaitUntil( () => Loading.Inst.MyProc.ended);
+        
+        yield return new WaitUntil( () => GameStarter.MyProc.started);
 
         NoaProcesser.PC1Proc.started = true;
         NoaProcesser.PC2Proc.started = true;
         NoaProcesser.BossProc.started = true;
-        Debug.Log("GameProc started!!");
+        Debug.Log("_14:ゲームを開始する。");
 
         audioSource.Play();
     }

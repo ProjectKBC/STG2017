@@ -50,13 +50,13 @@ public abstract class Player : NoaBehaviour
 
     protected override IEnumerator Start()
     {
-        yield return new WaitWhile( () => PlayerManager.Inst.MyProc.IsStay());
-
+        Debug.Log("_9:Playerが生成される。");
         Init();
-        MyProc.started = true;
-        MyProc.Log(this, 3);
 
-        yield return new WaitWhile( () => NoaProcesser.IsStayBoss());
+        Debug.Log("10:Playerが初期設定をする。");
+        MyProc.started = true;
+
+        yield return new WaitUntil(() => NoaProcesser.BossProc.started);
 
         while (true)
         {
