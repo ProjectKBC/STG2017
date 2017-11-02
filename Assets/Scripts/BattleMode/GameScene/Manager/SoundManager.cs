@@ -14,6 +14,7 @@ public sealed class SoundManager : NoaBehaviour
             if (inst == null)
             {
                 GameObject go = new GameObject("SoundManager");
+                go.transform.parent = GameObject.Find("Managers").transform;
                 inst = go.AddComponent<SoundManager>();
             }
 
@@ -34,10 +35,15 @@ public sealed class SoundManager : NoaBehaviour
 
     protected override IEnumerator Start()
     {
+        yield return new WaitUntil(() => LoadingManager.Inst.MyProc.started);
+        Debug.Log("_3:SoundManagerが呼び出される。");
+
         Init();
+
+        Debug.Log("4:SoundManagerが音声を読み込む。");
         MyProc.started = true;
 
-        yield return new WaitWhile(() => NoaProcesser.IsStayBoss());
+        yield return new WaitUntil(() => NoaProcesser.BossProc.started);
 
         System.Random r = new System.Random();
         audioSource.clip = BGMs[r.Next(BGMs.Count - 1)];

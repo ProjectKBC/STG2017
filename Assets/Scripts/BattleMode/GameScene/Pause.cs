@@ -22,10 +22,10 @@ public class Pause : NoaBehaviour
         if (Inst != null) { Destroy(gameObject); return; }
 
         Inst = this;
-
-        groupButton = GameObject.Find("PausingCanvas/Pausing/Buttons").GetComponent<GroupButton>();
-        ReturnToGame = GameObject.Find("PausingCanvas/Pausing/Buttons/ReturnToGame_Button").GetComponent<Button>();
-        QuitAndReturnToTitle = GameObject.Find("PausingCanvas/Pausing/Buttons/QuitAndReturnToTitle_Button").GetComponent<Button>();
+        
+        groupButton  = GameObject.Find("PausingCanvas/target_pause/Pausing/Buttons").GetComponent<GroupButton>();
+        ReturnToGame = GameObject.Find("PausingCanvas/target_pause/Pausing/Buttons/ReturnToGame_Button").GetComponent<Button>();
+        QuitAndReturnToTitle = GameObject.Find("PausingCanvas/target_pause/Pausing/Buttons/QuitAndReturnToTitle_Button").GetComponent<Button>();
         
         transform.GetChild(0).gameObject.SetActive(false);
     }
