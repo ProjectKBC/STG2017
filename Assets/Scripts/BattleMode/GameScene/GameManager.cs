@@ -76,22 +76,36 @@ public sealed class GameManager : NoaBehaviour
     // f:撃破数を格納する連想配列
     public static Dictionary<EnemyType, int> PC1Kills = new Dictionary<EnemyType, int>();
     public static Dictionary<EnemyType, int> PC2Kills = new Dictionary<EnemyType, int>();
-    
-    // f:
+
+    // f:リザルト
+    // 残りHP
+    // 倒した敵機の数（種類別）
+    // totalスコア
+    // 勝ち負け
+
     public static bool IsGameSet = false;
 
-    // f:ゲーム時間系
-    private static float startTime;
-    public static float ElapsedTime() { return Time.time - startTime + Pause.allElapsedTime; }
+    private AudioSource audioSource;
+    private List<AudioClip> BGMs = new List<AudioClip>();
 
     private void Init()
     {
+        gameObject.AddComponent<AudioSource>();
+        audioSource = GetComponent<AudioSource>();
+        BGMs.Add(Resources.Load<AudioClip>("Sounds/BGMs/gameBGM1"));
+        BGMs.Add(Resources.Load<AudioClip>("Sounds/BGMs/gameBGM2"));
+        BGMs.Add(Resources.Load<AudioClip>("Sounds/BGMs/gameBGM3"));
+
         // f:Killsの初期セットアップ
         foreach (EnemyType enemyType in Enum.GetValues(typeof(EnemyType)))
         {
             PC1Kills.Add(enemyType, 0);
             PC2Kills.Add(enemyType, 0);
         }
+
+        System.Random r = new System.Random(4098);
+        audioSource.clip = BGMs[1];
+        audioSource.loop = true;
     }
 
     protected override IEnumerator Start()
@@ -106,21 +120,20 @@ public sealed class GameManager : NoaBehaviour
             ( () =>
                 PlayerUIManager.Inst.MyProc.IsStay() &&
                 Pc1Player.MyProc.IsStay() &&
-                Pc2Player.MyProc.IsStay() &&
-                SoundManager.Inst.MyProc.IsStay()
+                Pc2Player.MyProc.IsStay()
             );
 
         MyProc.started = true;
         MyProc.Log(this, 2);
 
-        yield return new WaitUntil(() => Loading.Inst.MyProc.ended);
+        yield return new WaitUntil( () => Loading.Inst.MyProc.ended);
 
         NoaProcesser.PC1Proc.started = true;
         NoaProcesser.PC2Proc.started = true;
         NoaProcesser.BossProc.started = true;
         Debug.Log("GameProc started!!");
 
-        startTime = Time.time;
+        audioSource.Play();
     }
 
     private void Update()
