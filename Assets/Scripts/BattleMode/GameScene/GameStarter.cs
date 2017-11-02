@@ -18,9 +18,10 @@ public class GameStarter : NoaBehaviour
         LoadingManager lm = LoadingManager.Inst;
         yield return new WaitUntil(() => lm.MyProc.started);
 
-        Debug.Log("3:GameStarterがPlayerManagerとSoundManagerを呼び出す");
+        Debug.Log("3:GameStarterがPlayerManagerとSoundManagerとAppearManagerを呼び出す");
         PlayerManager     plm  = PlayerManager.Inst;
         SoundManager      sm   = SoundManager.Inst;
+        AppearManager     am   = AppearManager.Inst;
 
         yield return new WaitUntil(() => plm.MyProc.started && sm.MyProc.started);
 
