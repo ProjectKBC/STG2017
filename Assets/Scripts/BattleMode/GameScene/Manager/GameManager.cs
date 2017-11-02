@@ -77,22 +77,36 @@ public sealed class GameManager : NoaBehaviour
     // f:撃破数を格納する連想配列
     public static Dictionary<EnemyType, int> PC1Kills = new Dictionary<EnemyType, int>();
     public static Dictionary<EnemyType, int> PC2Kills = new Dictionary<EnemyType, int>();
-    
-    // f:
+
+    // f:リザルト
+    // 残りHP
+    // 倒した敵機の数（種類別）
+    // totalスコア
+    // 勝ち負け
+
     public static bool IsGameSet = false;
 
-    // f:ゲーム時間系
-    private static float startTime;
-    public static float ElapsedTime() { return Time.time - startTime + Pause.allElapsedTime; }
+    private AudioSource audioSource;
+    private List<AudioClip> BGMs = new List<AudioClip>();
 
     private void Init()
     {
+        gameObject.AddComponent<AudioSource>();
+        audioSource = GetComponent<AudioSource>();
+        BGMs.Add(Resources.Load<AudioClip>("Sounds/BGMs/gameBGM1"));
+        BGMs.Add(Resources.Load<AudioClip>("Sounds/BGMs/gameBGM2"));
+        BGMs.Add(Resources.Load<AudioClip>("Sounds/BGMs/gameBGM3"));
+
         // f:Killsの初期セットアップ
         foreach (EnemyType enemyType in Enum.GetValues(typeof(EnemyType)))
         {
             PC1Kills.Add(enemyType, 0);
             PC2Kills.Add(enemyType, 0);
         }
+
+        System.Random r = new System.Random(4098);
+        audioSource.clip = BGMs[1];
+        audioSource.loop = true;
     }
 
     protected override IEnumerator Start()
@@ -107,7 +121,7 @@ public sealed class GameManager : NoaBehaviour
 
         Debug.Log("9:GameManagerがPlayerを生成する。");
         MyProc.started = true;
-
+        
         yield return new WaitUntil( () => GameStarter.MyProc.started);
 
         NoaProcesser.PC1Proc.started = true;
@@ -115,7 +129,7 @@ public sealed class GameManager : NoaBehaviour
         NoaProcesser.BossProc.started = true;
         Debug.Log("_14:ゲームを開始する。");
 
-        startTime = Time.time;
+        audioSource.Play();
     }
 
     private void Update()

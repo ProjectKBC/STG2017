@@ -8,9 +8,9 @@ public class Pause : NoaBehaviour
     // f:シングルトンではない!?
     public static Pause Inst = null;
 
-    // f:ポーズ時間
-    public static float allElapsedTime = 0;
-    private static float startTime;
+    // f:ポーズ時間を計測
+    public  static float pausingTime;
+    private static float tmpTime;
 
     // f:ポーズ関連のUI
     private static GroupButton groupButton;
@@ -50,19 +50,26 @@ public class Pause : NoaBehaviour
     {
         if (_IsOn)
         {
-            startTime = Time.time;
-
-            NoaProcesser.BossProc.pausing = true;
             transform.GetChild(0).gameObject.SetActive(true);
             groupButton.ActiveButtons(true);
+
+            // f:ポーズ経過時間の初期化とポーズ開始時刻の保存
+            pausingTime = 0;
+            tmpTime = Time.time;
+
+            NoaProcesser.BossProc.pausing = true;
         }
         else
         {
             groupButton.ActiveButtons(false);
             transform.GetChild(0).gameObject.SetActive(false);
-            NoaProcesser.BossProc.pausing = false;
 
-            allElapsedTime += Time.time - startTime;
+            // f:ポーズ経過時間の保存とポーズ開始時刻の初期化
+            pausingTime = Time.time - tmpTime;
+            tmpTime = 0;
+            Debug.Log("Pause: " + pausingTime);
+
+            NoaProcesser.BossProc.pausing = false;
         }
     }
 }
