@@ -48,6 +48,20 @@ public class NoaProcesser
             ? (!PC1Proc.started || PC1Proc.pausing || PC1Proc.ended)
             : (!PC2Proc.started || PC2Proc.pausing || PC2Proc.ended);
     }
+
+    public void Reset()
+    {
+        this.started = false;
+        this.pausing = false;
+        this.ended = false;
+    }
+
+    public static void ResetBoss()
+    {
+        BossProc.started = false;
+        BossProc.pausing = false;
+        BossProc.ended = false;
+    }
 }
 
 public abstract class NoaBehaviour : MonoBehaviour

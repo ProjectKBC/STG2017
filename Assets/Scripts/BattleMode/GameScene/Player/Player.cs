@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -50,10 +50,7 @@ public abstract class Player : NoaBehaviour
 
     protected override IEnumerator Start()
     {
-        Debug.Log("_9:Playerが生成される。");
         Init();
-
-        Debug.Log("10:Playerが初期設定をする。");
         MyProc.started = true;
 
         yield return new WaitUntil(() => NoaProcesser.BossProc.started);

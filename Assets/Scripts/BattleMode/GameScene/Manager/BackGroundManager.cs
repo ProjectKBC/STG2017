@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -24,15 +24,24 @@ public sealed class BackGroundManager : NoaBehaviour
 
     protected override IEnumerator Start()
     {
-        yield return new WaitUntil(() => PlayerManager.Inst.MyProc.started && SoundManager.Inst.MyProc.started);
-        Debug.Log("_5:BackGroundManagerが呼び出される。");
+        yield return new WaitUntil(() => NoaProcesser.BossProc.started);
+        BackGroundManager.DestroyMe(gameObject);
+    }
+
+    public void Starting()
+    {
+        Debug.Log("6:BackGroundManagerが呼び出される。");
         Instantiate(Resources.Load("Prefabs/UI/PC1BackGround"), GameObject.Find(CanvasName.UI).transform).name = "PC1BackGround";
         Instantiate(Resources.Load("Prefabs/UI/PC2BackGround"), GameObject.Find(CanvasName.UI).transform).name = "PC2BackGround";
-
-        Debug.Log("6:BackGroundManagerがステージ背景を生成する。");
+        
         MyProc.started = true;
+    }
 
-        yield return new WaitUntil( () => NoaProcesser.BossProc.started);
-        Destroy(gameObject);
+    public static void DestroyMe(GameObject _gameObject)
+    {
+        inst.MyProc.Reset();
+        inst = null;
+        Debug.Log("Destroy:BackGroundManager");
+        Destroy(_gameObject);
     }
 }

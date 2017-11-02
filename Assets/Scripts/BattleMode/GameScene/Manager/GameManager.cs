@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -28,6 +28,8 @@ public sealed class GameManager : NoaBehaviour
             return inst;
         }
     }
+
+    /* 定数 --------------------------------------------------------------------------- */
 
     // f:画面サイズ
     private const float WIDTH = 1920;
@@ -62,6 +64,8 @@ public sealed class GameManager : NoaBehaviour
     public static readonly Vector4 pc2Area =
         new Vector4(CENTER_X + FRAME_W, TOP - FRAME_H, RIGHT - FRAME_W, BOTTOM + FRAME_H);
 
+    /* 変数 ------------------------------------------------------------------------------------ */
+    
     // f:選択されたキャラクターの名前
     public static string Pc1Name { get; private set; }
     public static string Pc2Name { get; private set; }
@@ -77,7 +81,7 @@ public sealed class GameManager : NoaBehaviour
     // f:撃破数を格納する連想配列
     public static Dictionary<EnemyType, int> PC1Kills = new Dictionary<EnemyType, int>();
     public static Dictionary<EnemyType, int> PC2Kills = new Dictionary<EnemyType, int>();
-    
+
     // f:
     public static bool IsGameSet = false;
 
@@ -98,25 +102,23 @@ public sealed class GameManager : NoaBehaviour
 
     protected override IEnumerator Start()
     {
-        yield return new WaitUntil(() => PauseManager.Inst.MyProc.started && BackGroundManager.Inst.MyProc.started);
-        Debug.Log("_7:GameManagerが呼び出される。");
-        Init();
-
-        yield return new WaitUntil(() => GameStarter.IsSetPCName);
-        Debug.Log("_8:GameManagerがPCNameを渡される。");
-        CreatePlayer(Pc1Name, Pc2Name);
-
-        Debug.Log("9:GameManagerがPlayerを生成する。");
-        MyProc.started = true;
-
-        yield return new WaitUntil( () => GameStarter.MyProc.started);
+        GameStarter gs = GameObject.Find("GameStarter").GetComponent<GameStarter>();
+        yield return new WaitUntil(() => gs.MyProc.started);
 
         NoaProcesser.PC1Proc.started = true;
         NoaProcesser.PC2Proc.started = true;
         NoaProcesser.BossProc.started = true;
-        Debug.Log("_14:ゲームを開始する。");
+        Debug.Log("10:ゲームを開始する。");
 
         startTime = Time.time;
+    }
+
+    public void Starting()
+    {
+        Debug.Log("7:GameManagerが呼び出される。");
+        Init();
+        CreatePlayer(Pc1Name, Pc2Name);
+        MyProc.started = true;
     }
 
     private void Update()
@@ -348,6 +350,14 @@ public sealed class GameManager : NoaBehaviour
             GameSet(Pc2Player);
         }
     }
+        
+    public static void GameEsc()
+    {
+        SoundManager.DestroyMe(GameObject.Find("Managers/SoundManager"));
+        PlayerUIManager.DestroyMe(GameObject.Find("Managers/PlayerUIManager"));
+        GameManager.DestroyMe(GameObject.Find("Managers/GameManager"));
+        NoaProcesser.ResetBoss();
+    }
 
     /* f:Player系 ------------------------------------------------------------------------- */
     private static void CreatePlayer(string _pc1Name, string _pc2Name)
@@ -358,5 +368,23 @@ public sealed class GameManager : NoaBehaviour
         Pc2Player = Player.Instantiate(PlayerManager.GetCharacterPrefab(_pc2Name), PlayerSlot.PC2);
         Debug.Log("created " + Pc2Player);
     }
-    
+
+    /**/
+
+    public static void DestroyMe(GameObject _gameObject)
+    {
+        Pc1Name = null;
+        Pc1Player = null;
+        Pc1Score = 0;
+        PC1Kills = new Dictionary<EnemyType, int>();
+        Pc2Name = null;
+        Pc2Player = null;
+        Pc2Score = 0;
+        PC2Kills = new Dictionary<EnemyType, int>();
+
+        inst.MyProc.Reset();
+        inst = null;
+        Debug.Log("Destroy:GameManager");
+        Destroy(_gameObject);
+    }
 }

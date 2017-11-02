@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,53 +7,41 @@ using UnityEngine;
 // f:17/10/23
 public class GameStarter : NoaBehaviour
 {
-    public static new NoaProcesser MyProc = new NoaProcesser();
-    public static bool IsSetPCName = false;
     public string PC1Name;
     public string PC2Name;
-    
+
     protected override IEnumerator Start()
     {
-        Debug.Log("1:GameStarterがLoadingManagerを呼び出す");
-        LoadingManager lm = LoadingManager.Inst;
-        yield return new WaitUntil(() => lm.MyProc.started);
-
-        Debug.Log("3:GameStarterがPlayerManagerとSoundManagerとAppearManagerを呼び出す");
+        // f:初期設定
         PlayerManager     plm  = PlayerManager.Inst;
         SoundManager      sm   = SoundManager.Inst;
         AppearManager     am   = AppearManager.Inst;
-
-        yield return new WaitUntil(() => plm.MyProc.started && sm.MyProc.started);
-
-        Debug.Log("5:GameStarterがPauseManagerとBackGroundManagerを呼び出す");
         PauseManager      pm   = PauseManager.Inst;
         BackGroundManager bm   = BackGroundManager.Inst;
-
-        yield return new WaitUntil(() => pm.MyProc.started && bm.MyProc.started);
-
-        Debug.Log("7:GameStarterがGameManagerを呼び出す");
         GameManager       gm   = GameManager.Inst;
+        PlayerUIManager   puim = PlayerUIManager.Inst;
+        // f:
+
+        Debug.Log("1:target_loadingを生成する。");
+        Instantiate(Resources.Load("Prefabs/target_loading"), GameObject.Find("LoadingCanvas").transform).name = "target_loading";
+
+        plm.Starting();
+        sm.Starting();
+        am.Starting();
+        // yield return new WaitUntil(() => plm.MyProc.started && sm.MyProc.started && am.MyProc.started);
+        
+        yield return pm.Starting();
+        bm.Starting();
 
         GameManager.SetPCName(CharacterSelectManager.PC1Name ?? PC1Name, PlayerSlot.PC1);
         GameManager.SetPCName(CharacterSelectManager.PC2Name ?? PC2Name, PlayerSlot.PC2);
-        Debug.Log("8:GameStarterがPCNameを渡す。");
-        IsSetPCName = true;
-
-        yield return new WaitUntil(() => gm.MyProc.started);
-        Debug.Log("_9:Playerが生成される。");
-
+        gm.Starting();
+        
         yield return new WaitUntil( () => GameManager.Pc1Player.MyProc.started && GameManager.Pc2Player.MyProc.started);
-        Debug.Log("_10:Playerが初期設定をする。");
+        puim.Starting();
 
-        Debug.Log("11:GameStarterがPlayerUIManagerを呼び出す");
-        PlayerUIManager   puim = PlayerUIManager.Inst;
-
-        yield return new WaitUntil( () => PlayerUIManager.Inst.MyProc.started);
-
-        Debug.Log("_13:PlayerUIManagerがUIの初期設定をする。");
         MyProc.started = true;
 
-        yield return new WaitUntil( () => NoaProcesser.BossProc.started);
-        Debug.Log("14:ゲームを開始する。");
+        Destroy(gameObject);
     }
 }

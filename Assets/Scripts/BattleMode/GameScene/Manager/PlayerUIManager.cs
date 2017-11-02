@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -45,15 +45,15 @@ public class PCCanvas
     public Text TimeLimit;
 
     public Image hitPointImage;
-    public Text hitPointText;
+    public Text  hitPointText;
     public Image TopGageImage;
     public Image TopSubGageImage;
-    public Text TopGageText;
+    public Text  TopGageText;
     public Image LeftGageImage;
     public Image LeftSubGageImage;
-    public Text LeftGageText;
+    public Text  LeftGageText;
     public Image iconImage;
-    public Text iconText;
+    public Text  iconText;
 
     public bool isBarTypeTop    = false;
     public bool isBarTypeLeft   = false;
@@ -91,26 +91,24 @@ public sealed class PlayerUIManager : NoaBehaviour
         }
     }
 
-    public PCCanvas pc1Canvas = new PCCanvas();
-    public PCCanvas pc2Canvas = new PCCanvas();
+    public static PCCanvas pc1Canvas = new PCCanvas();
+    public static PCCanvas pc2Canvas = new PCCanvas();
 
     public PCCanvas timeLimitCanvas = new PCCanvas();
 
     private const float width  = 780;
     private const float height = 1020;
 
-    protected override IEnumerator Start()
-    {
-        yield return new WaitUntil(() => GameManager.Inst.MyProc.started);
-        yield return new WaitUntil(() => GameManager.Pc1Player.MyProc.started && GameManager.Pc2Player.MyProc.started);
-        Debug.Log("_11:PlayerUIManagerが呼び出される。");
+    protected override IEnumerator Start() { yield return null; }
 
-        Debug.Log("12:PlayerUIManagerがUIを生成する。");
+    public void Starting()
+    {
+        Debug.Log("8:PlayerUIManagerが呼び出される。");
+        
         CreateUI();
         pc1Canvas.player = GameManager.Pc1Player;
         pc2Canvas.player = GameManager.Pc2Player;
-
-        Debug.Log("13:PlayerUIManagerがUIの初期設定をする。");
+        
         CheckStatus(pc1Canvas);
         CheckStatus(pc2Canvas);
 
@@ -118,8 +116,6 @@ public sealed class PlayerUIManager : NoaBehaviour
         SettingUI(pc2Canvas);
 
         MyProc.started = true;
-
-        yield return null;
     }
 
     private bool lastUpdateFlgPC1 = false;
@@ -675,4 +671,14 @@ public sealed class PlayerUIManager : NoaBehaviour
         }
     }
 
+    public static void DestroyMe(GameObject _gameObject)
+    {
+        pc1Canvas = new PCCanvas();
+        pc2Canvas = new PCCanvas();
+
+        inst.MyProc.Reset();
+        inst = null;
+        Debug.Log("Destroy:PlayerUIManager");
+        Destroy(_gameObject);
+    }
 }
