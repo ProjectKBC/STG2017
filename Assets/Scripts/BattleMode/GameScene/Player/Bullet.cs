@@ -24,7 +24,7 @@ public class BulletParam
     public float speed;
     public float Speed
     {
-        get { return speed * 1.5f; }
+        get { return speed * 100f; }
         set { speed = value; }
     }
 
