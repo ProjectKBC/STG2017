@@ -20,7 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4256557667074034}
   - component: {fileID: 50735917730811534}
-  - component: {fileID: 114356108887234586}
+  - component: {fileID: 114597583638849360}
   m_Layer: 0
   m_Name: PC2Emitter
   m_TagString: Untagged
@@ -61,7 +61,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &114356108887234586
+--- !u!114 &114597583638849360
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -69,10 +69,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1900593479564030}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 26a382db7509e114baea1a0ba86e7034, type: 3}
+  m_Script: {fileID: 11500000, guid: 41da58bee377e41cf9f16ddd58f8ec7c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SmallMediumNumbers: 00000000060000001400000005000000
+  SmallMediumNumbers: 14000000060000001400000005000000
   large: 1
   SmallWaves:
   - {fileID: 1789732844706114, guid: 4fd3962fe06664f3d8e9208798e7773b, type: 2}

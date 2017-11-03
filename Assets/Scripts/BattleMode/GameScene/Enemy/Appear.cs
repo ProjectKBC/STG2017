@@ -142,7 +142,7 @@ public class Appear : NoaBehaviour
 					child2.GetComponent<Enemy> ().playerSlot = playerSlot;
 				}
 			}
-			yield return new WaitForSeconds (2);
+			yield return new WaitForSeconds (4);
 		}
 	}
 	/*
@@ -325,10 +325,12 @@ public IEnumerator SmallEnemy(int small)
 					child2.GetComponent<Enemy> ().playerSlot = playerSlot;
 				}
 			}
+			/*
 			while (ExistWaves[ExistWaves.Count - 1].transform.childCount != 0)
 			{
 				yield return new WaitForEndOfFrame ();
 			}
+			*/
 			Destroy (ExistWaves[ExistWaves.Count - 1]);
 			ExistWaves.RemoveAt (ExistWaves.Count - 1);
 			yield return new WaitForSeconds (2);
