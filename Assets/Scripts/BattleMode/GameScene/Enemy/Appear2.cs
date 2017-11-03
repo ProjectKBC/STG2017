@@ -89,30 +89,30 @@ public class Appear2 : NoaBehaviour
 		}
 		for (int test = 0; test < ExistWaves.Count; test++)
 		{
-			if (ExistWaves [test].transform.childCount == 0)
+			if (ExistWaves [test] != null)
 			{
-				Destroy (ExistWaves [test]);
-				ExistWaves.RemoveAt (test);
+				if (ExistWaves [test].transform.childCount == 0) {
+					Destroy (ExistWaves [test]);
+					ExistWaves.RemoveAt (test);
+				}
 			}
 		}
 
 
 		for (int test = 0; test < ExistWaves.Count; test++)
 		{
-			Transform[] t = ExistWaves[test].transform.GetComponentsInChildren<Transform>();
-			foreach (Transform child in t)
-			{
-				Transform[] t2 = child.transform.GetComponentsInChildren<Transform> ();
-				foreach (Transform child2 in t2)
-				{
-					if (child2.GetComponent<Transform> ().position.y < -800)
-					{
-						GameObject.Destroy (child2.gameObject);
-					}
+			if (ExistWaves [test] != null) {
+				Transform[] t = ExistWaves [test].transform.GetComponentsInChildren<Transform> ();
+				foreach (Transform child in t) {
+					Transform[] t2 = child.transform.GetComponentsInChildren<Transform> ();
+					foreach (Transform child2 in t2) {
+						if (child2.GetComponent<Transform> ().position.y < -800) {
+							GameObject.Destroy (child2.gameObject);
+						}
 
-					if (child2.GetComponent<Transform> ().position.x < -1500 || 800 < child2.GetComponent<Transform> ().position.x)
-					{
-						GameObject.Destroy (child2.gameObject);
+						if (child2.GetComponent<Transform> ().position.x < -1500 || 800 < child2.GetComponent<Transform> ().position.x) {
+							GameObject.Destroy (child2.gameObject);
+						}
 					}
 				}
 			}
