@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -89,7 +89,7 @@ public class Appear : NoaBehaviour
 		}
 		for (int test = 0; test < ExistWaves.Count; test++)
 		{
-			if (ExistWaves [test].transform.childCount == 0)
+			if (ExistWaves [test].transform.childCount <= 0)
 			{
 				Destroy (ExistWaves [test]);
 				ExistWaves.RemoveAt (test);

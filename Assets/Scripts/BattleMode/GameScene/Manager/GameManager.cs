@@ -88,7 +88,7 @@ public sealed class GameManager : NoaBehaviour
     // f:ゲーム時間系
     private static float startTime;
     public static float ElapsedTime() { return Time.time - startTime + Pause.allElapsedTime; }
-    public static float TimeLimit = 120; // c:時間制限
+    public static float TimeLimit = 180; // c:時間制限
 
     private void Init()
     {
@@ -210,6 +210,15 @@ public sealed class GameManager : NoaBehaviour
         Vector2 min = GetAreaMin(_playerSlot);
         Vector2 max = GetAreaMax(_playerSlot);
         Vector2 margin = new Vector2(50, 50);
+        return (_position.x < min.x - margin.x || _position.x > max.x + margin.x ||
+                _position.y < min.y - margin.y || _position.y > max.y + margin.y);
+    }
+
+    public static bool OutOfArea(Vector2 _position, PlayerSlot _playerSlot, float _margin)
+    {
+        Vector2 min = GetAreaMin(_playerSlot);
+        Vector2 max = GetAreaMax(_playerSlot);
+        Vector2 margin = new Vector2(_margin, _margin);
         return (_position.x < min.x - margin.x || _position.x > max.x + margin.x ||
                 _position.y < min.y - margin.y || _position.y > max.y + margin.y);
     }
@@ -337,6 +346,8 @@ public sealed class GameManager : NoaBehaviour
                     break;
             }
         }
+
+        Result.Inst.Active(true);
     }
 
     private void CountDown()
@@ -364,10 +375,10 @@ public sealed class GameManager : NoaBehaviour
     /* f:Player系 ------------------------------------------------------------------------- */
     private static void CreatePlayer(string _pc1Name, string _pc2Name)
     {
-        Pc1Player = Player.Instantiate(PlayerManager.GetCharacterPrefab(_pc1Name), PlayerSlot.PC1);
+        Pc1Player = Player.Instantiate(PlayerManager.Inst.GetCharacterPrefab(_pc1Name), PlayerSlot.PC1);
         Debug.Log("created " + Pc1Player);
 
-        Pc2Player = Player.Instantiate(PlayerManager.GetCharacterPrefab(_pc2Name), PlayerSlot.PC2);
+        Pc2Player = Player.Instantiate(PlayerManager.Inst.GetCharacterPrefab(_pc2Name), PlayerSlot.PC2);
         Debug.Log("created " + Pc2Player);
     }
 
@@ -383,8 +394,9 @@ public sealed class GameManager : NoaBehaviour
         Pc2Player = null;
         Pc2Score = 0;
         PC2Kills = new Dictionary<EnemyType, int>();
+        IsGameSet = false;
         TimeLimit = 120;
-
+        
         inst.MyProc.Reset();
         inst = null;
         Debug.Log("Destroy:GameManager");

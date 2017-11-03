@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -85,7 +85,7 @@ public abstract class Bullet : NoaBehaviour
         // f:範囲外判定
         foreach (Transform x in GetComponentInChildren<Transform>())
         {
-            if (GameManager.OutOfArea(x.position, player.playerSlot))
+            if (GameManager.OutOfArea(x.position, player.playerSlot, 300))
             {
                 Destroy(x.gameObject);
             }

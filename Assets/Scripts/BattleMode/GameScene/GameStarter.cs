@@ -17,6 +17,7 @@ public class GameStarter : NoaBehaviour
         SoundManager      sm   = SoundManager.Inst;
         AppearManager     am   = AppearManager.Inst;
         PauseManager      pm   = PauseManager.Inst;
+        ResultManager     rm   = ResultManager.Inst;
         BackGroundManager bm   = BackGroundManager.Inst;
         GameManager       gm   = GameManager.Inst;
         PlayerUIManager   puim = PlayerUIManager.Inst;
@@ -35,6 +36,7 @@ public class GameStarter : NoaBehaviour
         // yield return new WaitUntil(() => plm.MyProc.started && sm.MyProc.started && am.MyProc.started);
         
         yield return pm.Starting();
+        rm.Starting();
         bm.Starting();
 
         GameManager.SetPCName(CharacterSelectManager.PC1Name ?? PC1Name, PlayerSlot.PC1);

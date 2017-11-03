@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -61,6 +61,12 @@ public class NoaProcesser
         BossProc.started = false;
         BossProc.pausing = false;
         BossProc.ended = false;
+        PC1Proc.started = false;
+        PC1Proc.pausing = false;
+        PC1Proc.ended = false;
+        PC2Proc.started = false;
+        PC2Proc.pausing = false;
+        PC2Proc.ended = false;
     }
 }
 

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -100,6 +100,11 @@ public abstract class Enemy : NoaBehaviour
 
 		Move();
 		Shot();
+
+        if (GameManager.OutOfArea(transform.position, playerSlot, 300))
+        {
+            Destroy(gameObject);
+        }
 	}
 
 	void Turn()

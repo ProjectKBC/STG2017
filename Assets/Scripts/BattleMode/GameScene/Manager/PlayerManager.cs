@@ -8,7 +8,7 @@ using UnityEngine.UI;
 public sealed class PlayerManager : NoaBehaviour
 {
     // キャラクターのprefabを格納する連想配列
-    private static Dictionary<string, GameObject> CharacterPrefabs = new Dictionary<string, GameObject>();
+    private Dictionary<string, GameObject> CharacterPrefabs = new Dictionary<string, GameObject>();
 
     private static PlayerManager inst;
     private PlayerManager() { }
@@ -30,7 +30,7 @@ public sealed class PlayerManager : NoaBehaviour
     protected override IEnumerator Start()
     {
         yield return new WaitUntil(() => NoaProcesser.BossProc.started);
-        PlayerManager.DestroyMe(gameObject);
+        PlayerManager.Inst.DestroyMe(gameObject);
     }
 
     public void Starting()
@@ -48,14 +48,14 @@ public sealed class PlayerManager : NoaBehaviour
         MyProc.started = true;
     }
     
-    public static GameObject GetCharacterPrefab(string _name)
+    public GameObject GetCharacterPrefab(string _name)
     {
         if (CharacterPrefabs.ContainsKey(_name) == false) { return null; }
 
         return CharacterPrefabs[_name];
     }
 
-    public static void DestroyMe(GameObject _gameObject)
+    public void DestroyMe(GameObject _gameObject)
     {
         CharacterPrefabs = new Dictionary<string, GameObject>();
 
