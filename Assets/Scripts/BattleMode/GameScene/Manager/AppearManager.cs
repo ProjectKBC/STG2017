@@ -30,8 +30,8 @@ public sealed class AppearManager : NoaBehaviour
     public void Starting()
     {
         Debug.Log("4:AppearManagerが呼び出される。");
-        Instantiate(Resources.Load("Prefabs/PC1Emitter"), GameObject.Find("PC1Area/Canvas").transform).name = "target_pause";
-        Instantiate(Resources.Load("Prefabs/PC2Emitter"), GameObject.Find("PC2Area/Canvas").transform).name = "target_pause";
+        Instantiate(Resources.Load("Prefabs/Enemys/Emitters/PC1Emitter"), GameObject.Find("PC1Area/Canvas").transform).name = "target_pause";
+        Instantiate(Resources.Load("Prefabs/Enemys/Emitters/PC2Emitter"), GameObject.Find("PC2Area/Canvas").transform).name = "target_pause";
         
         MyProc.started = true;
 

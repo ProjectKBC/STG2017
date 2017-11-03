@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -89,7 +89,7 @@ public class Appear : NoaBehaviour
 		}
 		for (int test = 0; test < ExistWaves.Count; test++)
 		{
-			if (ExistWaves [test].transform.childCount == 0)
+			if (ExistWaves [test].transform.childCount <= 0)
 			{
 				Destroy (ExistWaves [test]);
 				ExistWaves.RemoveAt (test);
@@ -142,7 +142,7 @@ public class Appear : NoaBehaviour
 					child2.GetComponent<Enemy> ().playerSlot = playerSlot;
 				}
 			}
-			yield return new WaitForSeconds (4);
+			yield return new WaitForSeconds (2);
 		}
 	}
 	/*
@@ -325,12 +325,10 @@ public IEnumerator SmallEnemy(int small)
 					child2.GetComponent<Enemy> ().playerSlot = playerSlot;
 				}
 			}
-			/*
 			while (ExistWaves[ExistWaves.Count - 1].transform.childCount != 0)
 			{
 				yield return new WaitForEndOfFrame ();
 			}
-			*/
 			Destroy (ExistWaves[ExistWaves.Count - 1]);
 			ExistWaves.RemoveAt (ExistWaves.Count - 1);
 			yield return new WaitForSeconds (2);

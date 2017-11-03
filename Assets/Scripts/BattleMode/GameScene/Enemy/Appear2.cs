@@ -10,7 +10,7 @@ public class Appear2 : NoaBehaviour
 	public GameObject[] MediumWaves;
 	public GameObject[] LargeWaves;
 
-	private List<GameObject> ExistWaves2 = new List<GameObject>();
+	private List<GameObject> ExistWaves = new List<GameObject>();
 	public PlayerSlot playerSlot;
 
 	private int smallFig = 0;
@@ -80,39 +80,39 @@ public class Appear2 : NoaBehaviour
 		{
 			return;
 		}
-		if (ExistWaves2.Count == 0 && SmallEnemys == true && smallFig == SmallMediumNumbers [CurrentEnemy])
+		if (ExistWaves.Count == 0 && SmallEnemys == true && smallFig == SmallMediumNumbers [CurrentEnemy])
 		{
 			SmallEnemys = false;
-		} else if (ExistWaves2.Count == 0 && MediumEnemys == true && mediumFig == SmallMediumNumbers [CurrentEnemy])
+		} else if (ExistWaves.Count == 0 && MediumEnemys == true && mediumFig == SmallMediumNumbers [CurrentEnemy])
 		{
 			MediumEnemys = false;
 		}
-		for (int test = 0; test < ExistWaves2.Count; test++)
+		for (int test = 0; test < ExistWaves.Count; test++)
 		{
-			if (ExistWaves2 [test] != null) {
-				if (ExistWaves2 [test].transform.childCount == 0) {
-					Destroy (ExistWaves2 [test]);
-					ExistWaves2.RemoveAt (test);
-				}
+			if (ExistWaves [test].transform.childCount == 0)
+			{
+				Destroy (ExistWaves [test]);
+				ExistWaves.RemoveAt (test);
 			}
 		}
 
 
-		for (int test = 0; test < ExistWaves2.Count; test++)
+		for (int test = 0; test < ExistWaves.Count; test++)
 		{
-			if (ExistWaves2 [test] != null)
+			Transform[] t = ExistWaves[test].transform.GetComponentsInChildren<Transform>();
+			foreach (Transform child in t)
 			{
-				Transform[] t = ExistWaves2 [test].transform.GetComponentsInChildren<Transform> ();
-				foreach (Transform child in t) {
-					Transform[] t2 = child.transform.GetComponentsInChildren<Transform> ();
-					foreach (Transform child2 in t2) {
-						if (child2.GetComponent<Transform> ().position.y < -800) {
-							GameObject.Destroy (child2.gameObject);
-						}
+				Transform[] t2 = child.transform.GetComponentsInChildren<Transform> ();
+				foreach (Transform child2 in t2)
+				{
+					if (child2.GetComponent<Transform> ().position.y < -800)
+					{
+						GameObject.Destroy (child2.gameObject);
+					}
 
-						if (child2.GetComponent<Transform> ().position.x < -1500 || 800 < child2.GetComponent<Transform> ().position.x) {
-							GameObject.Destroy (child2.gameObject);
-						}
+					if (child2.GetComponent<Transform> ().position.x < -1500 || 800 < child2.GetComponent<Transform> ().position.x)
+					{
+						GameObject.Destroy (child2.gameObject);
 					}
 				}
 			}
@@ -131,9 +131,9 @@ public class Appear2 : NoaBehaviour
 		for (smallFig = 0; smallFig < small; smallFig++)
 		{
 			int rand = Random.Range (0, SmallWaves.Length); //ランダム
-			ExistWaves2.Add ((GameObject)Instantiate (SmallWaves [rand], transform.position, Quaternion.identity));
-			ExistWaves2[ExistWaves2.Count - 1].transform.parent = transform;
-			Transform[] t = ExistWaves2[ExistWaves2.Count - 1].transform.GetComponentsInChildren<Transform>();
+			ExistWaves.Add ((GameObject)Instantiate (SmallWaves [rand], transform.position, Quaternion.identity));
+			ExistWaves[ExistWaves.Count - 1].transform.parent = transform;
+			Transform[] t = ExistWaves[ExistWaves.Count - 1].transform.GetComponentsInChildren<Transform>();
 			foreach (Transform child in t)
 			{
 				Enemy[] t2 = child.transform.GetComponentsInChildren<Enemy> ();
@@ -157,9 +157,9 @@ public IEnumerator SmallEnemy(int small)
 		for (smallFig = 0; smallFig < small; smallFig++)
 		{
 			int rand = Random.Range (0, SmallWaves.Length); //ランダム
-			ExistWaves2.Add ((GameObject)Instantiate (SmallWaves [rand], transform.position, Quaternion.identity));
-			ExistWaves2[ExistWaves2.Count - 1].transform.parent = transform;
-			Transform[] t = ExistWaves2[ExistWaves2.Count - 1].transform.GetComponentsInChildren<Transform>();
+			ExistWaves.Add ((GameObject)Instantiate (SmallWaves [rand], transform.position, Quaternion.identity));
+			ExistWaves[ExistWaves.Count - 1].transform.parent = transform;
+			Transform[] t = ExistWaves[ExistWaves.Count - 1].transform.GetComponentsInChildren<Transform>();
 			foreach (Transform child in t) {
 				Enemy[] t2 = child.transform.GetComponentsInChildren<Enemy> ();
 				foreach (Enemy child2 in t2)
@@ -188,7 +188,7 @@ public IEnumerator SmallEnemy(int small)
 			int rand = Random.Range (0, SmallWaves.Length); //ランダム
 			GameObject wave = (GameObject)Instantiate (SmallWaves [rand], transform.position, Quaternion.identity);
 			wave.transform.parent = transform;
-			Transform[] t = ExistWaves2[ExistWaves2.Count - 1].transform.GetComponentsInChildren<Transform>();
+			Transform[] t = ExistWaves[ExistWaves.Count - 1].transform.GetComponentsInChildren<Transform>();
 			foreach (Transform child in t)
 			{
 				Enemy[] t2 = child.transform.GetComponentsInChildren<Enemy> ();
@@ -220,9 +220,9 @@ public IEnumerator SmallEnemy(int small)
 
 		for (mediumFig = 0; mediumFig < medium; mediumFig++)
 		{
-			ExistWaves2.Add((GameObject)Instantiate (MediumWaves [mediumFig], transform.position, Quaternion.identity));
-			ExistWaves2[ExistWaves2.Count - 1].transform.parent = transform;
-			Transform[] t = ExistWaves2[ExistWaves2.Count - 1].transform.GetComponentsInChildren<Transform>();
+			ExistWaves.Add((GameObject)Instantiate (MediumWaves [mediumFig], transform.position, Quaternion.identity));
+			ExistWaves[ExistWaves.Count - 1].transform.parent = transform;
+			Transform[] t = ExistWaves[ExistWaves.Count - 1].transform.GetComponentsInChildren<Transform>();
 			foreach (Transform child in t)
 			{
 				Enemy[] t2 = child.transform.GetComponentsInChildren<Enemy> ();
@@ -231,12 +231,12 @@ public IEnumerator SmallEnemy(int small)
 					child2.GetComponent<Enemy> ().playerSlot = playerSlot;
 				}
 			}
-			while (ExistWaves2[ExistWaves2.Count - 1].transform.childCount != 0)
+			while (ExistWaves[ExistWaves.Count - 1].transform.childCount != 0)
 			{
 				yield return new WaitForEndOfFrame ();
 			}
-			Destroy (ExistWaves2[ExistWaves2.Count - 1]);
-			ExistWaves2.RemoveAt (ExistWaves2.Count - 1);
+			Destroy (ExistWaves[ExistWaves.Count - 1]);
+			ExistWaves.RemoveAt (ExistWaves.Count - 1);
 			yield return new WaitForSeconds (2);
 		}
 		MediumEnemys = false;
@@ -254,9 +254,9 @@ public IEnumerator SmallEnemy(int small)
 
 		for (mediumFig = 0; mediumFig < medium; mediumFig++)
 		{
-			ExistWaves2.Add((GameObject)Instantiate (MediumWaves [mediumFig], transform.position, Quaternion.identity));
-			ExistWaves2[ExistWaves2.Count - 1].transform.parent = transform;
-			Transform[] t = ExistWaves2[ExistWaves2.Count - 1].transform.GetComponentsInChildren<Transform>();
+			ExistWaves.Add((GameObject)Instantiate (MediumWaves [mediumFig], transform.position, Quaternion.identity));
+			ExistWaves[ExistWaves.Count - 1].transform.parent = transform;
+			Transform[] t = ExistWaves[ExistWaves.Count - 1].transform.GetComponentsInChildren<Transform>();
 			foreach (Transform child in t)
 			{
 				Enemy[] t2 = child.transform.GetComponentsInChildren<Enemy> ();
@@ -282,9 +282,9 @@ public IEnumerator SmallEnemy(int small)
 
 		for (mediumFig = 0; mediumFig < medium; mediumFig++)
 		{
-			ExistWaves2.Add((GameObject)Instantiate (MediumWaves [mediumFig], transform.position, Quaternion.identity));
-			ExistWaves2[ExistWaves2.Count - 1].transform.parent = transform;
-			Transform[] t = ExistWaves2[ExistWaves2.Count - 1].transform.GetComponentsInChildren<Transform>();
+			ExistWaves.Add((GameObject)Instantiate (MediumWaves [mediumFig], transform.position, Quaternion.identity));
+			ExistWaves[ExistWaves.Count - 1].transform.parent = transform;
+			Transform[] t = ExistWaves[ExistWaves.Count - 1].transform.GetComponentsInChildren<Transform>();
 			foreach (Transform child in t)
 			{
 				Enemy[] t2 = child.transform.GetComponentsInChildren<Enemy> ();
@@ -293,12 +293,12 @@ public IEnumerator SmallEnemy(int small)
 					child2.GetComponent<Enemy> ().playerSlot = playerSlot;
 				}
 			}
-			while (ExistWaves2[0].transform.childCount != 0)
+			while (ExistWaves[0].transform.childCount != 0)
 			{
 				yield return new WaitForEndOfFrame ();
 			}
-			Destroy (ExistWaves2[0]);
-			ExistWaves2.RemoveAt (0);
+			Destroy (ExistWaves[0]);
+			ExistWaves.RemoveAt (0);
 			yield return new WaitForSeconds (2);
 		}
 		MediumEnemys = false;
@@ -314,9 +314,9 @@ public IEnumerator SmallEnemy(int small)
 
 		for (largeFig = 0; largeFig < large; largeFig++)
 		{
-			ExistWaves2.Add((GameObject)Instantiate (LargeWaves [largeFig], transform.position, Quaternion.identity));
-			ExistWaves2[ExistWaves2.Count - 1].transform.parent = transform;
-			Transform[] t = ExistWaves2[ExistWaves2.Count - 1].transform.GetComponentsInChildren<Transform>();
+			ExistWaves.Add((GameObject)Instantiate (LargeWaves [largeFig], transform.position, Quaternion.identity));
+			ExistWaves[ExistWaves.Count - 1].transform.parent = transform;
+			Transform[] t = ExistWaves[ExistWaves.Count - 1].transform.GetComponentsInChildren<Transform>();
 			foreach (Transform child in t)
 			{
 				Enemy[] t2 = child.transform.GetComponentsInChildren<Enemy> ();
@@ -325,12 +325,12 @@ public IEnumerator SmallEnemy(int small)
 					child2.GetComponent<Enemy> ().playerSlot = playerSlot;
 				}
 			}
-			while (ExistWaves2[ExistWaves2.Count - 1].transform.childCount != 0)
+			while (ExistWaves[ExistWaves.Count - 1].transform.childCount != 0)
 			{
 				yield return new WaitForEndOfFrame ();
 			}
-			Destroy (ExistWaves2[ExistWaves2.Count - 1]);
-			ExistWaves2.RemoveAt (ExistWaves2.Count - 1);
+			Destroy (ExistWaves[ExistWaves.Count - 1]);
+			ExistWaves.RemoveAt (ExistWaves.Count - 1);
 			yield return new WaitForSeconds (2);
 		}
 	}

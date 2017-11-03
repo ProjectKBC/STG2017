@@ -245,8 +245,8 @@ public abstract class Player : NoaBehaviour
 
     void Dead()
     {
+        Destroy(gameObject);
         GameManager.GameSet(this);
-        Destroy(this.gameObject);
     }
 
     // f:生成時にパラメータを渡すことができるInstantiate関数
