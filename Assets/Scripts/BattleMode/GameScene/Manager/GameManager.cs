@@ -339,9 +339,11 @@ public sealed class GameManager : NoaBehaviour
         }
     }
 
-    void CountDown()
+    private void CountDown()
     {
-        if (TimeLimit <= 0) { return; }
+        if (NoaProcesser.BossProc.pausing) { return; } // f:全体がポーズの時は処理をしない
+
+        if (TimeLimit + Pause.allElapsedTime <= 0) { return; }
 
         TimeLimit -= Time.deltaTime;
         if(TimeLimit <= 0)
