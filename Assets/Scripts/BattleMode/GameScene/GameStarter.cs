@@ -26,6 +26,10 @@ public class GameStarter : NoaBehaviour
         Instantiate(Resources.Load("Prefabs/target_loading"), GameObject.Find("LoadingCanvas").transform).name = "target_loading";
 
         plm.Starting();
+
+        // TimeLimitの生成
+        Instantiate(Resources.Load(ResourcesPath.Ui("TimeLimitCanvas")), GameObject.Find(CanvasName.UI).transform);
+
         sm.Starting();
         am.Starting();
         // yield return new WaitUntil(() => plm.MyProc.started && sm.MyProc.started && am.MyProc.started);

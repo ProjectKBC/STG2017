@@ -94,8 +94,6 @@ public sealed class PlayerUIManager : NoaBehaviour
     public static PCCanvas pc1Canvas = new PCCanvas();
     public static PCCanvas pc2Canvas = new PCCanvas();
 
-    public PCCanvas timeLimitCanvas = new PCCanvas();
-
     private const float width  = 780;
     private const float height = 1020;
 
@@ -292,10 +290,6 @@ public sealed class PlayerUIManager : NoaBehaviour
             Instantiate(Resources.Load(ResourcesPath.Ui("PC2Canvas")), GameObject.Find(CanvasName.UI).transform) as GameObject;
         pc2Canvas.mainCanvas.name = "PC2Canvas";
         pc2Canvas.mainCanvas.AddComponent<PlayerUI>().playerSlot = PlayerSlot.PC2;
-
-        timeLimitCanvas.mainCanvas =
-            Instantiate(Resources.Load(ResourcesPath.Ui("TimeLimitCanvas")), GameObject.Find(CanvasName.UI).transform) as GameObject;
-        timeLimitCanvas.mainCanvas.name = "TimeLimitCanvas";
     }
 
     private void SettingUI(PCCanvas _c)
