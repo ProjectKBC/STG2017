@@ -381,6 +381,7 @@ public sealed class GameManager : NoaBehaviour
         Pc2Player = null;
         Pc2Score = 0;
         PC2Kills = new Dictionary<EnemyType, int>();
+        TimeLimit = 120;
 
         inst.MyProc.Reset();
         inst = null;
