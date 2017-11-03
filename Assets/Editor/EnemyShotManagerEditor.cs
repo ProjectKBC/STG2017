@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
@@ -18,6 +18,7 @@ public class EnemyShotManagerEditor : Editor
         EditorGUILayout.LabelField("共通パラメータ");
         EditorGUI.indentLevel++;
 
+        enemyShotManager.bullet = EditorGUILayout.ObjectField("Bulletクラス", enemyShotManager.bullet, typeof(EnemyBullet), true) as EnemyBullet;
         var speed = serializedObject.FindProperty("param.speed");
         speed.floatValue = EditorGUILayout.FloatField("弾丸の速度", speed.floatValue);
         param.shotDelay = EditorGUILayout.FloatField("ショット間隔", param.shotDelay);
