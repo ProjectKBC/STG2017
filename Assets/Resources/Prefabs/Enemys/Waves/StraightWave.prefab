@@ -97,7 +97,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1789732844706114}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -480, y: 1600, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4796707075006554}
@@ -393,7 +393,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: edf3985aa729af243abb11ba12367d15, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentShotPattern: 0
+  currentShotPattern: 2
   playerSlot: 0
   maxHitPoint: 1
   _speed: 2
@@ -464,9 +464,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bullet: {fileID: 114176927848871392, guid: b73ef5cc873281944ae847bc9ed2b5d5, type: 2}
   param:
-    shotMovePattern: 0
+    shotMovePattern: 2
     speed: 1.5
-    shotDelay: 2
+    shotDelay: 0.5
     power: 1
     lifeTime: 10
     isPenetrate: 0
@@ -475,7 +475,7 @@ MonoBehaviour:
     shotDelay2: 0
     delayShotCount: 0
     angleInterval: 0
-    spinSpeed: 0
+    spinSpeed: 10
 --- !u!114 &114511808186650132
 MonoBehaviour:
   m_ObjectHideFlags: 1

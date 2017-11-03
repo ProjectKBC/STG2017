@@ -135,7 +135,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2968f07e780733845836b48230e8b310, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bullet: {fileID: 114486285830142444, guid: a6f253f708a3db04ea4e517722359793, type: 2}
+  bullet: {fileID: 114129057209960936, guid: 1fd8d1e31b4a3db49a4d2d7acfe95546, type: 2}
   param:
     shotMovePattern: 0
     speed: 1

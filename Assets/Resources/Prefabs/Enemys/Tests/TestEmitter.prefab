@@ -27,7 +27,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4899613104613418
 Transform:
   m_ObjectHideFlags: 1
@@ -72,11 +72,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26a382db7509e114baea1a0ba86e7034, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SmallMediumNumbers: 
+  SmallMediumNumbers: 00000000020000000000000002000000
   large: 1
   SmallWaves:
   - {fileID: 0}
-  MediumWaves: []
+  MediumWaves:
+  - {fileID: 1616891705377104, guid: 1119d6253305141dd8c0ab9b121c1dbe, type: 2}
+  - {fileID: 1870330390565648, guid: da97af6a78b8142b29703638d85c7dc3, type: 2}
   LargeWaves:
-  - {fileID: 0}
+  - {fileID: 1789732844706114, guid: a731bd224e083454ea366499015169a1, type: 2}
   playerSlot: 0
