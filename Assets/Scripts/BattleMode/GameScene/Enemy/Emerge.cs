@@ -2,36 +2,66 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Emerge : NoaBehaviour {
+public class Emerge : MonoBehaviour {
 
 	Vector2 v;
 
-	public int Ypos = 200;
+	public bool standbyPos = false;
+	public bool xMove = false;
 
-    // f:
-    private PlayerSlot playerSlot;
+	[Range(-1000, 600)]
+	public int StandbyXpos = 0;
+	[Range(-1600, 0)]
+	public int StandbyYpos = 0;
 
-    // f:
-    private void Init() {
-        playerSlot = transform.parent.GetComponent<Appear>().playerSlot;
-    }
+	[Range(-1000, 600)]
+	public int Xpos = 0;
+	[Range(-1600, 0)]
+	public int Ypos = -400;
 
-	protected override IEnumerator Start () {
-        Init(); // f:
-        v = transform.position;
+	public int xSpeed = 1;
+	public int ySpeed = 1;
 
-        yield return null;
-	}
-	
-	void Update () {
-		if (transform.position.y > Ypos) {
-			Move ();
+
+	void Start ()
+	{
+		v = transform.localPosition;
+		if (standbyPos)
+		{
+			DefaultPos ();
 		}
 	}
 
-	void Move()
+	void Update ()
 	{
-		v.y -= transform.position.y * 1 * Time.deltaTime;
-		transform.position = v;
+		if (standbyPos == false && transform.localPosition.y > Ypos)
+		{
+			FirstMove ();
+		}
+
+		if (xMove == true)
+		{
+			XMove ();
+		}
 	}
+
+	void DefaultPos()
+	{
+		v.x = StandbyXpos;
+		v.y = StandbyYpos;
+		transform.localPosition = v;
+	}
+
+	void FirstMove()
+	{
+		v.y += Ypos * Time.deltaTime;
+		transform.localPosition = v;
+	}
+
+	void XMove()
+	{
+		v.x += xSpeed * Time.deltaTime;
+		transform.localPosition = v;
+	}
+
 }
