@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Appear : NoaBehaviour
+public class Appear2 : NoaBehaviour
 {
 	public int[] SmallMediumNumbers;
 	public int large; //ラスボスの（ry いらなそう
