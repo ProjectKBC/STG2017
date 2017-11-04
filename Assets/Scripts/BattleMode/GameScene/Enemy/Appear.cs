@@ -98,7 +98,7 @@ public class Appear : NoaBehaviour
 			}
 		}
 
-
+		/*
 		for (int test = 0; test < ExistWaves.Count; test++)
 		{
 			if (ExistWaves [test] != null)
@@ -118,6 +118,7 @@ public class Appear : NoaBehaviour
 				}
 			}
 		}
+		*/
 	}
 
 	//時間で敵がでる
