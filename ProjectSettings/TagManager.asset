@@ -18,9 +18,9 @@ TagManager:
   - GameArea
   - Player
   - Bullet(Player)
+  - PlayerDamage
   - Enemy
   - Bullet(Enemy)
-  - 
   - 
   - 
   - 
@@ -63,4 +63,7 @@ TagManager:
     locked: 0
   - name: UI
     uniqueID: 2383432069
+    locked: 0
+  - name: PlayerDamage
+    uniqueID: 300197717
     locked: 0
