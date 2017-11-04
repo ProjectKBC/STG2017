@@ -735,7 +735,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: edf3985aa729af243abb11ba12367d15, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentShotPattern: 0
+  currentShotPattern: 3
   playerSlot: 0
   maxHitPoint: 1
   _speed: 2
@@ -760,7 +760,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: edf3985aa729af243abb11ba12367d15, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentShotPattern: 0
+  currentShotPattern: 3
   playerSlot: 0
   maxHitPoint: 1
   _speed: 2
@@ -787,9 +787,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bullet: {fileID: 114176927848871392, guid: b73ef5cc873281944ae847bc9ed2b5d5, type: 2}
   param:
-    shotMovePattern: 0
-    speed: 1.5
-    shotDelay: 0.4
+    shotMovePattern: 3
+    speed: 1.6
+    shotDelay: 2
     power: 1
     lifeTime: 10
     isPenetrate: 0
@@ -810,7 +810,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: edf3985aa729af243abb11ba12367d15, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentShotPattern: 0
+  currentShotPattern: 3
   playerSlot: 0
   maxHitPoint: 1
   _speed: 2
@@ -837,7 +837,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   standbyPos: 1
   xMove: 0
-  StandbyXpos: -800
+  StandbyXpos: 600
   StandbyYpos: -800
   Xpos: 0
   Ypos: 200
@@ -854,7 +854,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: edf3985aa729af243abb11ba12367d15, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentShotPattern: 0
+  currentShotPattern: 3
   playerSlot: 0
   maxHitPoint: 1
   _speed: 2
@@ -881,9 +881,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bullet: {fileID: 114176927848871392, guid: b73ef5cc873281944ae847bc9ed2b5d5, type: 2}
   param:
-    shotMovePattern: 0
-    speed: 1.5
-    shotDelay: 1
+    shotMovePattern: 3
+    speed: 2.2
+    shotDelay: 2
     power: 1
     lifeTime: 10
     isPenetrate: 0
@@ -904,7 +904,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: edf3985aa729af243abb11ba12367d15, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentShotPattern: 0
+  currentShotPattern: 3
   playerSlot: 0
   maxHitPoint: 1
   _speed: 2
@@ -931,9 +931,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bullet: {fileID: 114176927848871392, guid: b73ef5cc873281944ae847bc9ed2b5d5, type: 2}
   param:
-    shotMovePattern: 0
-    speed: 1.5
-    shotDelay: 0.8
+    shotMovePattern: 3
+    speed: 2
+    shotDelay: 2
     power: 1
     lifeTime: 10
     isPenetrate: 0
@@ -954,7 +954,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: edf3985aa729af243abb11ba12367d15, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentShotPattern: 0
+  currentShotPattern: 3
   playerSlot: 0
   maxHitPoint: 1
   _speed: 2
@@ -981,9 +981,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bullet: {fileID: 114176927848871392, guid: b73ef5cc873281944ae847bc9ed2b5d5, type: 2}
   param:
-    shotMovePattern: 0
-    speed: 1.5
-    shotDelay: 1.2
+    shotMovePattern: 3
+    speed: 2.4
+    shotDelay: 2
     power: 1
     lifeTime: 10
     isPenetrate: 0
@@ -1006,9 +1006,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bullet: {fileID: 114176927848871392, guid: b73ef5cc873281944ae847bc9ed2b5d5, type: 2}
   param:
-    shotMovePattern: 0
-    speed: 1.5
-    shotDelay: 1.4
+    shotMovePattern: 3
+    speed: 2.6
+    shotDelay: 2
     power: 1
     lifeTime: 10
     isPenetrate: 0
@@ -1031,9 +1031,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bullet: {fileID: 114176927848871392, guid: b73ef5cc873281944ae847bc9ed2b5d5, type: 2}
   param:
-    shotMovePattern: 0
-    speed: 1.5
-    shotDelay: 0.6
+    shotMovePattern: 3
+    speed: 1.8
+    shotDelay: 2
     power: 1
     lifeTime: 10
     isPenetrate: 0

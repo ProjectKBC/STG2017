@@ -739,7 +739,7 @@ MonoBehaviour:
   param:
     shotMovePattern: 0
     speed: 2
-    shotDelay: 0.6
+    shotDelay: 2
     power: 1
     lifeTime: 10
     isPenetrate: 0
@@ -764,7 +764,7 @@ MonoBehaviour:
   param:
     shotMovePattern: 0
     speed: 2
-    shotDelay: 0.8
+    shotDelay: 2
     power: 1
     lifeTime: 10
     isPenetrate: 0
@@ -789,7 +789,7 @@ MonoBehaviour:
   param:
     shotMovePattern: 0
     speed: 2
-    shotDelay: 1.4
+    shotDelay: 2
     power: 1
     lifeTime: 10
     isPenetrate: 0
@@ -958,7 +958,7 @@ MonoBehaviour:
   param:
     shotMovePattern: 0
     speed: 2
-    shotDelay: 1.2
+    shotDelay: 2
     power: 1
     lifeTime: 10
     isPenetrate: 0
@@ -983,7 +983,7 @@ MonoBehaviour:
   param:
     shotMovePattern: 0
     speed: 2
-    shotDelay: 1
+    shotDelay: 2
     power: 1
     lifeTime: 10
     isPenetrate: 0
@@ -1008,7 +1008,7 @@ MonoBehaviour:
   param:
     shotMovePattern: 0
     speed: 2
-    shotDelay: 1.6
+    shotDelay: 2
     power: 1
     lifeTime: 10
     isPenetrate: 0
