@@ -782,7 +782,7 @@ MonoBehaviour:
   bullet: {fileID: 114176927848871392, guid: b73ef5cc873281944ae847bc9ed2b5d5, type: 2}
   param:
     shotMovePattern: 0
-    speed: 1.5
+    speed: 2
     shotDelay: 2
     power: 1
     lifeTime: 10
@@ -832,7 +832,7 @@ MonoBehaviour:
   bullet: {fileID: 114176927848871392, guid: b73ef5cc873281944ae847bc9ed2b5d5, type: 2}
   param:
     shotMovePattern: 0
-    speed: 1.5
+    speed: 2
     shotDelay: 2
     power: 1
     lifeTime: 10
@@ -882,7 +882,7 @@ MonoBehaviour:
   bullet: {fileID: 114176927848871392, guid: b73ef5cc873281944ae847bc9ed2b5d5, type: 2}
   param:
     shotMovePattern: 0
-    speed: 1.5
+    speed: 2
     shotDelay: 2
     power: 1
     lifeTime: 10
@@ -907,7 +907,7 @@ MonoBehaviour:
   bullet: {fileID: 114176927848871392, guid: b73ef5cc873281944ae847bc9ed2b5d5, type: 2}
   param:
     shotMovePattern: 0
-    speed: 1.5
+    speed: 2
     shotDelay: 2
     power: 1
     lifeTime: 10
@@ -932,7 +932,7 @@ MonoBehaviour:
   bullet: {fileID: 114176927848871392, guid: b73ef5cc873281944ae847bc9ed2b5d5, type: 2}
   param:
     shotMovePattern: 0
-    speed: 1.5
+    speed: 2
     shotDelay: 2
     power: 1
     lifeTime: 10
@@ -1032,7 +1032,7 @@ MonoBehaviour:
   bullet: {fileID: 114176927848871392, guid: b73ef5cc873281944ae847bc9ed2b5d5, type: 2}
   param:
     shotMovePattern: 0
-    speed: 1.5
+    speed: 2
     shotDelay: 2
     power: 1
     lifeTime: 10
