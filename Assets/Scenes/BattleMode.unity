@@ -462,7 +462,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f60aee4a57f6e924aa2bfd8132e798b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PC1Name: Veronica
+  PC1Name: Anoma
   PC2Name: Held
 --- !u!4 &478723362
 Transform:

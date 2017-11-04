@@ -241,7 +241,7 @@ MonoBehaviour:
     shotDelay: 0
     lifeTime: 1
     speed: 3
-    power: 10
+    power: 5
     isPenetrate: 1
     shotMode: 1
     initialPosition: {x: 0, y: 0, z: 0}
@@ -278,7 +278,7 @@ MonoBehaviour:
     shotDelay: 1
     lifeTime: 1
     speed: 0
-    power: 3
+    power: 2
     isPenetrate: 1
     shotMode: 2
     initialPosition: {x: 0, y: 300, z: 0}

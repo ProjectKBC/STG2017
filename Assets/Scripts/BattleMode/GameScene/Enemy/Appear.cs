@@ -32,20 +32,16 @@ public class Appear : NoaBehaviour
 		{
 			for (CurrentEnemy = 0; CurrentEnemy < SmallMediumNumbers.Length; CurrentEnemy += 2)
 			{
-				while (MediumEnemys)
-				{
-					yield return new WaitForEndOfFrame ();
-				}
 				StartCoroutine ("SmallTime", SmallMediumNumbers [CurrentEnemy]);
 				while (SmallEnemys)
 				{
 					yield return new WaitForEndOfFrame ();
 				}
 				StartCoroutine ("MediumEnemy", SmallMediumNumbers [CurrentEnemy + 1]);
-			}
-			while (MediumEnemys)
-			{
-				yield return new WaitForEndOfFrame ();
+				while (MediumEnemys)
+				{
+					yield return new WaitForEndOfFrame ();
+				}
 			}
 			StartCoroutine ("SmallTime", SmallMediumNumbers [SmallMediumNumbers.Length - 1]);
 			while (SmallEnemys)
@@ -55,10 +51,6 @@ public class Appear : NoaBehaviour
 		} else {
 			for (CurrentEnemy = 0; CurrentEnemy < SmallMediumNumbers.Length; CurrentEnemy += 2)
 			{
-				while (MediumEnemys)
-				{
-					yield return new WaitForEndOfFrame ();
-				}
 				StartCoroutine ("SmallTime", SmallMediumNumbers [CurrentEnemy]);
 				while (SmallEnemys)
 				{
@@ -83,7 +75,7 @@ public class Appear : NoaBehaviour
 		if (ExistWaves.Count == 0 && SmallEnemys == true && smallFig == SmallMediumNumbers [CurrentEnemy])
 		{
 			SmallEnemys = false;
-		} else if (ExistWaves.Count == 0 && MediumEnemys == true && mediumFig == SmallMediumNumbers [CurrentEnemy])
+		} else if (ExistWaves.Count == 0 && MediumEnemys == true && mediumFig == SmallMediumNumbers [CurrentEnemy + 1])
 		{
 			MediumEnemys = false;
 		}
@@ -97,28 +89,6 @@ public class Appear : NoaBehaviour
 				}
 			}
 		}
-
-		/*
-		for (int test = 0; test < ExistWaves.Count; test++)
-		{
-			if (ExistWaves [test] != null)
-			{
-				Transform[] t = ExistWaves [test].transform.GetComponentsInChildren<Transform> ();
-				foreach (Transform child in t) {
-					Transform[] t2 = child.transform.GetComponentsInChildren<Transform> ();
-					foreach (Transform child2 in t2) {
-						if (child2.GetComponent<Transform> ().position.y < -800) {
-							GameObject.Destroy (child2.gameObject);
-						}
-
-						if (child2.GetComponent<Transform> ().position.x < -1500 || 800 < child2.GetComponent<Transform> ().position.x) {
-							GameObject.Destroy (child2.gameObject);
-						}
-					}
-				}
-			}
-		}
-		*/
 	}
 
 	//時間で敵がでる
@@ -269,7 +239,6 @@ public IEnumerator SmallEnemy(int small)
 			}
 			yield return new WaitForSeconds (2);
 		}
-		MediumEnemys = false;
 	}
 
 	/*
@@ -317,8 +286,8 @@ public IEnumerator SmallEnemy(int small)
 		for (largeFig = 0; largeFig < large; largeFig++)
 		{
 			ExistWaves.Add((GameObject)Instantiate (LargeWaves [largeFig], transform.position, Quaternion.identity));
-			ExistWaves[ExistWaves.Count - 1].transform.parent = transform;
-			Transform[] t = ExistWaves[ExistWaves.Count - 1].transform.GetComponentsInChildren<Transform>();
+			ExistWaves[0].transform.parent = transform;
+			Transform[] t = ExistWaves[0].transform.GetComponentsInChildren<Transform>();
 			foreach (Transform child in t)
 			{
 				Enemy[] t2 = child.transform.GetComponentsInChildren<Enemy> ();
@@ -327,12 +296,11 @@ public IEnumerator SmallEnemy(int small)
 					child2.GetComponent<Enemy> ().playerSlot = playerSlot;
 				}
 			}
-			while (ExistWaves[ExistWaves.Count - 1].transform.childCount != 0)
-			{
-				yield return new WaitForEndOfFrame ();
+			while (ExistWaves.Count != 0 && ExistWaves [0].transform.childCount != 0) {
+					yield return new WaitForEndOfFrame ();
 			}
-			Destroy (ExistWaves[ExistWaves.Count - 1]);
-			ExistWaves.RemoveAt (ExistWaves.Count - 1);
+			Destroy (ExistWaves[0]);
+			ExistWaves.RemoveAt (0);
 			yield return new WaitForSeconds (2);
 		}
 	}
