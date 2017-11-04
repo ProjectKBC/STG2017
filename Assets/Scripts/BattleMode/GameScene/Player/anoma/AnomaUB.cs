@@ -6,10 +6,10 @@ namespace Anoma
 {
     public sealed class AnomaUB : Bullet
     {
-        override protected void Init()
+		override protected void Init()
         {
             base.Init();
-            
+			            
         }
 
         override protected void Move()
