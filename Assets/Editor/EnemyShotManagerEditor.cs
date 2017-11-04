@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEditor;
 
 [CustomEditor(typeof(EnemyShotManager), true)]
+[CanEditMultipleObjects]
 public class EnemyShotManagerEditor : Editor
 {
 
