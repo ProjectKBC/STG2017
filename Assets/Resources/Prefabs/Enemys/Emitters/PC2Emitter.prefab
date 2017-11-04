@@ -72,7 +72,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26a382db7509e114baea1a0ba86e7034, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SmallMediumNumbers: 00000000060000001400000005000000
+  SmallMediumNumbers: 14000000060000001400000005000000
   large: 1
   SmallWaves:
   - {fileID: 1789732844706114, guid: 4fd3962fe06664f3d8e9208798e7773b, type: 2}
