@@ -819,7 +819,7 @@ MonoBehaviour:
   param:
     shotMovePattern: 2
     speed: 1
-    shotDelay: 0.02
+    shotDelay: 0.1
     power: 1
     lifeTime: 10
     isPenetrate: 0
@@ -828,7 +828,7 @@ MonoBehaviour:
     shotDelay2: 0
     delayShotCount: 0
     angleInterval: 0
-    spinSpeed: 5
+    spinSpeed: 2
 --- !u!114 &114367140673590214
 MonoBehaviour:
   m_ObjectHideFlags: 1

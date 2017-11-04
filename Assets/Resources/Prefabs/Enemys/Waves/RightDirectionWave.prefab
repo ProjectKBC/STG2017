@@ -302,7 +302,7 @@ MonoBehaviour:
   param:
     shotMovePattern: 1
     speed: 2
-    shotDelay: 1
+    shotDelay: 3
     power: 1
     lifeTime: 5
     isPenetrate: 0
@@ -327,7 +327,7 @@ MonoBehaviour:
   param:
     shotMovePattern: 1
     speed: 2
-    shotDelay: 1
+    shotDelay: 3
     power: 1
     lifeTime: 5
     isPenetrate: 0
