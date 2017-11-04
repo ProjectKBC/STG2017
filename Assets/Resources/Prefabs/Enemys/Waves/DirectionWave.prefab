@@ -384,7 +384,7 @@ MonoBehaviour:
   StandbyXpos: 0
   StandbyYpos: 0
   Xpos: 0
-  Ypos: -400
+  Ypos: -600
   xSpeed: 1
   ySpeed: 1
 --- !u!212 &212351661204698168
