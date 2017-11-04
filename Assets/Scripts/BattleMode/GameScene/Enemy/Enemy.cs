@@ -41,8 +41,6 @@ public abstract class Enemy : NoaBehaviour
 
 	public float radius;
 	public float score;
-	public float moveTime; // 動かしていたい時間(0の時は機能しない)
-	public float stopTime; // 止めておきたい時間(0の時は機能しない)
 	public EnemyType enemyType;
 
 	public MovePattern movePattern;
@@ -53,11 +51,12 @@ public abstract class Enemy : NoaBehaviour
 	public bool xTurn = true;
 	public bool yTurn = true;
 
-	float lastMoveTime = 0; // 最後に動いた時間
 	float moveStartTime;
 
 	protected float hitPoint;
 	protected AudioClip explosionSound;
+
+    public bool OnStage = false;
 
 	protected void Init()
 	{
@@ -99,9 +98,25 @@ public abstract class Enemy : NoaBehaviour
 		if (MyProc.IsStay() || NoaProcesser.IsStayBoss() || NoaProcesser.IsStayPC(playerSlot)) { return; }
 
 		Move();
-		Shot();
+        //Shot();
 
+        if(!GameManager.OutOfArea(transform.position, playerSlot, -10) && !OnStage)
+        {
+            OnStage = true;
+        }
+
+        if (OnStage == false) { return; }
+
+        /*
         if (GameManager.OutOfArea(transform.position, playerSlot, 400))
+        {
+            Destroy(gameObject);
+        }
+        */
+
+        Shot();
+
+        if(GameManager.OutOfArea(transform.position, playerSlot, 100) && OnStage)
         {
             Destroy(gameObject);
         }
