@@ -255,7 +255,7 @@ MonoBehaviour:
     shotDelay: 0.25
     lifeTime: 5
     speed: 20
-    power: 9
+    power: 5
     isPenetrate: 0
     shotMode: 2
     initialPosition: {x: 0, y: 0, z: 0}
@@ -301,7 +301,7 @@ MonoBehaviour:
   param:
     name: "\u30EB\u30AC\u30FCP08"
     shotSound: {fileID: 8300000, guid: 9bb1680d6ab69b443905cd2c55ac46df, type: 3}
-    shotDelay: 0.08
+    shotDelay: 0.125
     lifeTime: 5
     speed: 10
     power: 1
