@@ -125,7 +125,10 @@ public sealed class GameManager : NoaBehaviour
     {
         if (!NoaProcesser.BossProc.started) { return; }
 
-        CountDown();
+        if(TimeLimit > 0)
+        {
+            CountDown();
+        }
 
         // ポーズ
         if (!NoaProcesser.BossProc.ended && (Input.GetButtonDown("pl1_Pause") || Input.GetButtonDown("pl2_Pause")))
@@ -395,7 +398,7 @@ public sealed class GameManager : NoaBehaviour
         Pc2Score = 0;
         PC2Kills = new Dictionary<EnemyType, int>();
         IsGameSet = false;
-        TimeLimit = 120;
+        TimeLimit = 180;
         
         inst.MyProc.Reset();
         inst = null;
