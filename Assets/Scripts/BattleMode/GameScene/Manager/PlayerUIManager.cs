@@ -42,6 +42,8 @@ public class PCCanvas
     public Player player;
 
     public Text ScoreText;
+    public Text TimeLimit;
+
     public Image hitPointImage;
     public Text  hitPointText;
     public Image TopGageImage;
@@ -641,6 +643,20 @@ public sealed class PlayerUIManager : NoaBehaviour
                                 t.raycastTarget = true;
                                 */
                                 _c.ScoreText = t;
+                                break;
+                        }
+                    }
+                    break;
+
+                case "TimeLimitCanvas":
+                    target = child.gameObject.GetComponent<Canvas>();
+                    foreach (Transform c_child in target.transform)
+                    {
+                        switch (c_child.name)
+                        {
+                            case "Text":
+                                t = c_child.gameObject.GetComponent<Text>();
+                                _c.TimeLimit = t;
                                 break;
                         }
                     }

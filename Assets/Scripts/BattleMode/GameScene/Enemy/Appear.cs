@@ -1,14 +1,16 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Appear : NoaBehaviour
 {
-	public int[] figs;
+	public int[] SmallMediumNumbers;
 	public int large; //ラスボスの（ry いらなそう
 	public GameObject[] SmallWaves;
 	public GameObject[] MediumWaves;
 	public GameObject[] LargeWaves;
+
+	private List<GameObject> ExistWaves = new List<GameObject>();
 	public PlayerSlot playerSlot;
 
 	private int smallFig = 0;
@@ -19,9 +21,6 @@ public class Appear : NoaBehaviour
 	private bool SmallEnemys = false;
 	private bool MediumEnemys = false;
 
-	List<GameObject> ExistWaves = new List<GameObject>();
-
-
 	protected override IEnumerator Start ()
 	{
 		if (NoaProcesser.IsStayBoss ()) 
@@ -29,43 +28,43 @@ public class Appear : NoaBehaviour
 			yield return null;
 		}
 
-		if (figs.Length % 2 == 1)
+		if (SmallMediumNumbers.Length % 2 == 1)
 		{
-			for (CurrentEnemy = 0; CurrentEnemy < figs.Length; CurrentEnemy += 2)
+			for (CurrentEnemy = 0; CurrentEnemy < SmallMediumNumbers.Length; CurrentEnemy += 2)
 			{
 				while (MediumEnemys)
 				{
 					yield return new WaitForEndOfFrame ();
 				}
-				StartCoroutine ("SmallTime", figs [CurrentEnemy]);
+				StartCoroutine ("SmallTime", SmallMediumNumbers [CurrentEnemy]);
 				while (SmallEnemys)
 				{
 					yield return new WaitForEndOfFrame ();
 				}
-				StartCoroutine ("MediumEnemy", figs [CurrentEnemy + 1]);
+				StartCoroutine ("MediumEnemy", SmallMediumNumbers [CurrentEnemy + 1]);
 			}
 			while (MediumEnemys)
 			{
 				yield return new WaitForEndOfFrame ();
 			}
-			StartCoroutine ("SmallTime", figs [figs.Length - 1]);
+			StartCoroutine ("SmallTime", SmallMediumNumbers [SmallMediumNumbers.Length - 1]);
 			while (SmallEnemys)
 			{
 				yield return new WaitForEndOfFrame ();
 			}
 		} else {
-			for (CurrentEnemy = 0; CurrentEnemy < figs.Length; CurrentEnemy += 2)
+			for (CurrentEnemy = 0; CurrentEnemy < SmallMediumNumbers.Length; CurrentEnemy += 2)
 			{
 				while (MediumEnemys)
 				{
 					yield return new WaitForEndOfFrame ();
 				}
-				StartCoroutine ("SmallTime", figs [CurrentEnemy]);
+				StartCoroutine ("SmallTime", SmallMediumNumbers [CurrentEnemy]);
 				while (SmallEnemys)
 				{
 					yield return new WaitForEndOfFrame ();
 				}
-				StartCoroutine ("MediumEnemy", figs [CurrentEnemy + 1]);
+				StartCoroutine ("MediumEnemy", SmallMediumNumbers [CurrentEnemy + 1]);
 				while (MediumEnemys)
 				{
 					yield return new WaitForEndOfFrame ();
@@ -81,25 +80,22 @@ public class Appear : NoaBehaviour
 		{
 			return;
 		}
-		if (ExistWaves.Count == 0 && SmallEnemys == true && smallFig == figs [CurrentEnemy])
+		if (ExistWaves.Count == 0 && SmallEnemys == true && smallFig == SmallMediumNumbers [CurrentEnemy])
 		{
 			SmallEnemys = false;
-		} else if (ExistWaves.Count == 0 && MediumEnemys == true && mediumFig == figs [CurrentEnemy])
+		} else if (ExistWaves.Count == 0 && MediumEnemys == true && mediumFig == SmallMediumNumbers [CurrentEnemy])
 		{
 			MediumEnemys = false;
 		}
-		if (SmallEnemys == true)
+		for (int test = 0; test < ExistWaves.Count; test++)
 		{
-			for (int test = 0; test < ExistWaves.Count; test++)
+			if (ExistWaves [test].transform.childCount <= 0)
 			{
-				if (ExistWaves [test].transform.childCount == 0)
-				{
-					Destroy (ExistWaves [test]);
-					ExistWaves.RemoveAt (test);
-				}
+				Destroy (ExistWaves [test]);
+				ExistWaves.RemoveAt (test);
 			}
 		}
-			
+
 
 		for (int test = 0; test < ExistWaves.Count; test++)
 		{
@@ -109,7 +105,12 @@ public class Appear : NoaBehaviour
 				Transform[] t2 = child.transform.GetComponentsInChildren<Transform> ();
 				foreach (Transform child2 in t2)
 				{
-					if (child2.GetComponent<Transform> ().position.y < -650)
+					if (child2.GetComponent<Transform> ().position.y < -800)
+					{
+						GameObject.Destroy (child2.gameObject);
+					}
+
+					if (child2.GetComponent<Transform> ().position.x < -1500 || 800 < child2.GetComponent<Transform> ().position.x)
 					{
 						GameObject.Destroy (child2.gameObject);
 					}
@@ -141,10 +142,10 @@ public class Appear : NoaBehaviour
 					child2.GetComponent<Enemy> ().playerSlot = playerSlot;
 				}
 			}
-			yield return new WaitForSeconds (6);
+			yield return new WaitForSeconds (2);
 		}
 	}
-/*
+	/*
 public IEnumerator SmallEnemy(int small)
 	{
 		SmallEnemys = true;
@@ -242,6 +243,7 @@ public IEnumerator SmallEnemy(int small)
 	}
 	*/
 
+	// 中ボス、テスト改良系、雑魚敵と同じ気がするけど便宜上
 	public IEnumerator MediumEnemy (int medium)
 	{
 		MediumEnemys = true;
@@ -263,16 +265,45 @@ public IEnumerator SmallEnemy(int small)
 					child2.GetComponent<Enemy> ().playerSlot = playerSlot;
 				}
 			}
-			while (ExistWaves[ExistWaves.Count - 1].transform.childCount != 0)
-			{
-				yield return new WaitForEndOfFrame ();
-			}
-			Destroy (ExistWaves[ExistWaves.Count - 1]);
-			ExistWaves.RemoveAt (ExistWaves.Count - 1);
 			yield return new WaitForSeconds (2);
 		}
 		MediumEnemys = false;
 	}
+
+	/*
+	//中ボスが出る、1つのwaveづつ出る
+	public IEnumerator MediumEnemy (int medium)
+	{
+		MediumEnemys = true;
+		if (MediumWaves.Length == 0)
+		{
+			yield break;
+		}
+
+		for (mediumFig = 0; mediumFig < medium; mediumFig++)
+		{
+			ExistWaves.Add((GameObject)Instantiate (MediumWaves [mediumFig], transform.position, Quaternion.identity));
+			ExistWaves[ExistWaves.Count - 1].transform.parent = transform;
+			Transform[] t = ExistWaves[ExistWaves.Count - 1].transform.GetComponentsInChildren<Transform>();
+			foreach (Transform child in t)
+			{
+				Enemy[] t2 = child.transform.GetComponentsInChildren<Enemy> ();
+				foreach (Enemy child2 in t2)
+				{
+					child2.GetComponent<Enemy> ().playerSlot = playerSlot;
+				}
+			}
+			while (ExistWaves[0].transform.childCount != 0)
+			{
+				yield return new WaitForEndOfFrame ();
+			}
+			Destroy (ExistWaves[0]);
+			ExistWaves.RemoveAt (0);
+			yield return new WaitForSeconds (2);
+		}
+		MediumEnemys = false;
+	}
+	*/
 
 	public IEnumerator LargeEnemy ()
 	{

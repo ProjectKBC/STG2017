@@ -34,8 +34,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1863881792594910}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -480, y: 800, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 390, y: 280, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -72,7 +72,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26a382db7509e114baea1a0ba86e7034, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  figs: 05000000020000000300000002000000
+  SmallMediumNumbers: 14000000060000001400000005000000
   large: 1
   SmallWaves:
   - {fileID: 1789732844706114, guid: 4fd3962fe06664f3d8e9208798e7773b, type: 2}
@@ -82,9 +82,25 @@ MonoBehaviour:
   - {fileID: 1338913027592690, guid: 13c0ebc912be342daa36aa7d23835f6b, type: 2}
   - {fileID: 1079376580675908, guid: 546ad251af8f74b5b8f69b6b68515f21, type: 2}
   - {fileID: 1360934185444936, guid: 291caaf655d8446d1b61ac802b5bdeab, type: 2}
+  - {fileID: 1848281027896830, guid: fe52a87f5f2d24674a5a2daa210fa081, type: 2}
+  - {fileID: 1295044535862328, guid: c3f3b72abb8c14bc98aa93ca3abe10c7, type: 2}
+  - {fileID: 1789732844706114, guid: 4fd3962fe06664f3d8e9208798e7773b, type: 2}
+  - {fileID: 1577927342263768, guid: 9d1b1f56c16694d579a4b28c77520895, type: 2}
+  - {fileID: 1475075930037862, guid: 0c0ecd05c39ff468f974a209e4b192ad, type: 2}
+  - {fileID: 1926206851847218, guid: bebec772ef1a04e7a8bf33d922e1c89f, type: 2}
+  - {fileID: 1929712692042064, guid: bf0fcaca43c5748c4b8328b2d3bcfa8f, type: 2}
+  - {fileID: 1583252086657032, guid: 39e5d716d72144424b3cc196b3fe1b9e, type: 2}
+  - {fileID: 1506315820237642, guid: edca25e817ac74671ac90f307f13a6b6, type: 2}
+  - {fileID: 1062542701000518, guid: 6fa8a7f6bfd7e4382957127c345dbce9, type: 2}
+  - {fileID: 1432016891752678, guid: 3c3ef3bc805434a1fbbd54675222e8b7, type: 2}
+  - {fileID: 1034688562948596, guid: 8e2bb8b11127d49db98ee1ea10af7615, type: 2}
   MediumWaves:
-  - {fileID: 1616891705377104, guid: 1119d6253305141dd8c0ab9b121c1dbe, type: 2}
   - {fileID: 1870330390565648, guid: da97af6a78b8142b29703638d85c7dc3, type: 2}
+  - {fileID: 1616891705377104, guid: 1119d6253305141dd8c0ab9b121c1dbe, type: 2}
+  - {fileID: 1789732844706114, guid: 4fd3962fe06664f3d8e9208798e7773b, type: 2}
+  - {fileID: 1475075930037862, guid: 0c0ecd05c39ff468f974a209e4b192ad, type: 2}
+  - {fileID: 1577927342263768, guid: 9d1b1f56c16694d579a4b28c77520895, type: 2}
+  - {fileID: 1926206851847218, guid: bebec772ef1a04e7a8bf33d922e1c89f, type: 2}
   LargeWaves:
   - {fileID: 1988679875578048, guid: 0ed661d2c71974219a4454c60cd30aca, type: 2}
   playerSlot: 0
