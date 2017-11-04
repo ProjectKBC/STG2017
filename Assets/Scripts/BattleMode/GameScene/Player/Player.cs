@@ -223,23 +223,37 @@ public abstract class Player : NoaBehaviour
         {
             case LayerName.BulletEnemy:
                 EnemyBullet b = c.transform.parent.GetComponent<EnemyBullet>();
-                Damage(b.param.power);
+                StartCoroutine("Damage", b.param.power);
                 Destroy(c.gameObject); // 弾の削除
                 break;
 
             case LayerName.Enemy:
-                
-                Damage(0.0f); // 自分のダメージ処理
+
+                StartCoroutine("Damage", 0.0f);
                 break;
         }
     }
 
-    void Damage(float _damage)
+    IEnumerator Damage(float _damage)
     {
         hitPoint -= _damage;
         if (hitPoint <= 0)
         {
             Dead();
+        }
+        if (_damage != 0.0f)
+        {
+            gameObject.layer = LayerMask.NameToLayer("PlayerDamage");
+            int count = 10;
+            while (count > 0)
+            {
+                GetComponent<Renderer>().material.color = new Color(1, 1, 1, 0);
+                yield return new WaitForSeconds(0.05f);
+                GetComponent<Renderer>().material.color = new Color(1, 1, 1, 1);
+                yield return new WaitForSeconds(0.05f);
+                count--;
+            }
+            gameObject.layer = LayerMask.NameToLayer("Player");
         }
     }
 
