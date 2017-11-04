@@ -101,7 +101,7 @@ public abstract class Enemy : NoaBehaviour
 		Move();
 		Shot();
 
-        if (GameManager.OutOfArea(transform.position, playerSlot, 300))
+        if (GameManager.OutOfArea(transform.position, playerSlot, 400))
         {
             Destroy(gameObject);
         }
