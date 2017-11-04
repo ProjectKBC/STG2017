@@ -937,7 +937,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   standbyPos: 1
   xMove: 0
-  StandbyXpos: 600
+  StandbyXpos: 400
   StandbyYpos: -1500
   Xpos: 0
   Ypos: 200
