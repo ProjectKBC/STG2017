@@ -68,12 +68,12 @@ public class CharacterSelectManager : MonoBehaviour {
 		GameObject work_image = new GameObject("WorkImage");
 		work_image.transform.parent = GameObject.Find("Canvas").transform;
 		if (PC1 == "PC1") {
-			work_image.AddComponent<RectTransform> ().anchoredPosition = new Vector3 (-500, -325, 0);
+			work_image.AddComponent<RectTransform> ().anchoredPosition = new Vector3 (-400, -250, 0);
 		} else {
-			work_image.AddComponent<RectTransform> ().anchoredPosition = new Vector3 (400, -325, 0);
+			work_image.AddComponent<RectTransform> ().anchoredPosition = new Vector3 (400, -250, 0);
 		}
 		work_image.GetComponent<RectTransform>().localScale = new Vector3(4, 4, 1);
-		work_image.AddComponent<Image>().sprite = Resources.Load<Sprite>("sprites/UI/"+selectName+"_icon");
+		work_image.AddComponent<Image>().sprite = Resources.Load<Sprite>("sprites/UI/"+selectName+"_stand");
 		work_image.GetComponent<Image>().preserveAspect = true;
 		work_image.GetComponent<Image>().SetNativeSize();
 	}
