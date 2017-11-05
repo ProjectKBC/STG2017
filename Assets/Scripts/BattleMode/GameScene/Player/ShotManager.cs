@@ -29,6 +29,7 @@ public abstract class ShotManager : NoaBehaviour
     {
         player = GetComponent<Player>();
         bulletNum = param.bulletMaxNum;
+        CanChargeShot = false;
     }
 
     protected override IEnumerator Start()
@@ -74,7 +75,7 @@ public abstract class ShotManager : NoaBehaviour
     }
 
     public float chargeBeginTime = 0;
-    protected bool  canChargeShot = false;
+    public bool CanChargeShot { get; private set; }
     protected bool ChargeShot()
     {
         // チャージ開始判定
@@ -87,15 +88,15 @@ public abstract class ShotManager : NoaBehaviour
         if (Time.time - chargeBeginTime >= param.chargeTime)
         {
             Debug.Log("can shot");
-            canChargeShot = true;
+            CanChargeShot = true;
         }
 
         // チャージ発射判定
-        if (player.state == param.name + "(KeyUp)" && canChargeShot)
+        if (player.state == param.name + "(KeyUp)" && CanChargeShot)
         {
             InstBullet();
             chargeBeginTime = 0;
-            canChargeShot = false;
+            CanChargeShot = false;
             return true;
         }
 
@@ -158,7 +159,7 @@ public abstract class ShotManager : NoaBehaviour
     protected void ChargeMaintenance()
     {
         chargeBeginTime = 0;
-        canChargeShot = false;
+        CanChargeShot = false;
     }
 
     protected void LimitMaintenance()

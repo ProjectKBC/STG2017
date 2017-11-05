@@ -11,21 +11,30 @@ public class PlayerEffectManager : NoaBehaviour
     }
 
     private Player player;
-    
+
     // チャージエフェクト
     private List<ParticleSystem> chargeEffect;
+    private List<ParticleSystem> chargeEffect_ready;
     private GameObject changeEffectObj;
+    private GameObject changeEffect_readyObj;
 
 
     private void Init()
     {
         player = GetComponent<Player>();
-        
+
         // チャージエフェクト
         changeEffectObj = (GameObject)Instantiate(Resources.Load("Prefabs/Effects/ChargeEffect"), transform.position, Quaternion.identity);
         changeEffectObj.transform.parent = transform;
         chargeEffect = new List<ParticleSystem>(changeEffectObj.GetComponentsInChildren<ParticleSystem>());
-        Stop(EffectType.ChargeEffect);
+        changeEffect_readyObj = (GameObject)Instantiate(Resources.Load("Prefabs/Effects/ChargeEffect_ready"), transform.position, Quaternion.identity);
+        changeEffect_readyObj.transform.parent = transform;
+        chargeEffect_ready = new List<ParticleSystem>(changeEffect_readyObj.GetComponentsInChildren<ParticleSystem>());
+
+        changeEffectObj.gameObject.SetActive(false);
+        foreach (ParticleSystem x in chargeEffect) { x.Stop(); }
+        changeEffect_readyObj.gameObject.SetActive(false);
+        foreach (ParticleSystem x in chargeEffect_ready) { x.Stop(); }
     }
 
     protected override IEnumerator Start()
@@ -51,19 +60,35 @@ public class PlayerEffectManager : NoaBehaviour
                     break;
 
                 case ShotMode.ChargeShot:
-                    if (player.state == key)
+                    if (player.state == key && player.shotManager[key].CanChargeShot == false)
                     {
-                        foreach (ParticleSystem x in chargeEffect)
+                        if (chargeEffect[0].isStopped)
                         {
-                            if (x.isStopped == false) { goto BREAK; }
+                            foreach (ParticleSystem x in chargeEffect) { x.Play(); }
+                            changeEffectObj.gameObject.SetActive(true);
                         }
-                        Play(EffectType.ChargeEffect);
                     }
                     else
                     {
-                        Stop(EffectType.ChargeEffect); break;
+                        changeEffectObj.gameObject.SetActive(false);
+                        foreach (ParticleSystem x in chargeEffect) { x.Stop(); }
                     }
-                    BREAK: ;
+
+                    if (player.state == key && player.shotManager[key].CanChargeShot == true)
+                    {
+
+                        if (chargeEffect_ready[0].isStopped)
+                        {
+                            foreach (ParticleSystem x in chargeEffect_ready) { x.Play(); }
+                            changeEffect_readyObj.gameObject.SetActive(true);
+                        }
+                    }
+                    else
+                    {
+                        changeEffect_readyObj.gameObject.SetActive(false);
+                        foreach (ParticleSystem x in chargeEffect_ready) { x.Stop(); }
+                    }
+
                     break;
 
                 case ShotMode.LimitShot:
