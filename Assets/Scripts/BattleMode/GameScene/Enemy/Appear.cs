@@ -20,6 +20,7 @@ public class Appear : NoaBehaviour
 
 	private bool SmallEnemys = false;
 	private bool MediumEnemys = false;
+	private bool LargeEnemys = false;
 
 	protected override IEnumerator Start ()
 	{
@@ -28,42 +29,41 @@ public class Appear : NoaBehaviour
 			yield return null;
 		}
 
-		if (SmallMediumNumbers.Length % 2 == 1)
+		while (true)
 		{
-			for (CurrentEnemy = 0; CurrentEnemy < SmallMediumNumbers.Length; CurrentEnemy += 2)
-			{
-				StartCoroutine ("SmallTime", SmallMediumNumbers [CurrentEnemy]);
-				while (SmallEnemys)
-				{
+
+			if (SmallMediumNumbers.Length % 2 == 1) {
+				for (CurrentEnemy = 0; CurrentEnemy < SmallMediumNumbers.Length; CurrentEnemy += 2) {
+					StartCoroutine ("SmallTime", SmallMediumNumbers [CurrentEnemy]);
+					while (SmallEnemys) {
+						yield return new WaitForEndOfFrame ();
+					}
+					StartCoroutine ("MediumEnemy", SmallMediumNumbers [CurrentEnemy + 1]);
+					while (MediumEnemys) {
+						yield return new WaitForEndOfFrame ();
+					}
+				}
+				StartCoroutine ("SmallTime", SmallMediumNumbers [SmallMediumNumbers.Length - 1]);
+				while (SmallEnemys) {
 					yield return new WaitForEndOfFrame ();
 				}
-				StartCoroutine ("MediumEnemy", SmallMediumNumbers [CurrentEnemy + 1]);
-				while (MediumEnemys)
-				{
-					yield return new WaitForEndOfFrame ();
+			} else {
+				for (CurrentEnemy = 0; CurrentEnemy < SmallMediumNumbers.Length; CurrentEnemy += 2) {
+					StartCoroutine ("SmallTime", SmallMediumNumbers [CurrentEnemy]);
+					while (SmallEnemys) {
+						yield return new WaitForEndOfFrame ();
+					}
+					StartCoroutine ("MediumEnemy", SmallMediumNumbers [CurrentEnemy + 1]);
+					while (MediumEnemys) {
+						yield return new WaitForEndOfFrame ();
+					}
 				}
 			}
-			StartCoroutine ("SmallTime", SmallMediumNumbers [SmallMediumNumbers.Length - 1]);
-			while (SmallEnemys)
-			{
+			StartCoroutine ("LargeEnemy");
+			while (LargeEnemys) {
 				yield return new WaitForEndOfFrame ();
 			}
-		} else {
-			for (CurrentEnemy = 0; CurrentEnemy < SmallMediumNumbers.Length; CurrentEnemy += 2)
-			{
-				StartCoroutine ("SmallTime", SmallMediumNumbers [CurrentEnemy]);
-				while (SmallEnemys)
-				{
-					yield return new WaitForEndOfFrame ();
-				}
-				StartCoroutine ("MediumEnemy", SmallMediumNumbers [CurrentEnemy + 1]);
-				while (MediumEnemys)
-				{
-					yield return new WaitForEndOfFrame ();
-				}
-			}
 		}
-		StartCoroutine ("LargeEnemy");
 	}
 
 	void Update()
@@ -78,6 +78,9 @@ public class Appear : NoaBehaviour
 		} else if (ExistWaves.Count == 0 && MediumEnemys == true && mediumFig == SmallMediumNumbers [CurrentEnemy + 1])
 		{
 			MediumEnemys = false;
+		} else if (ExistWaves.Count == 0 && LargeEnemys == true && largeFig == large)
+		{
+			LargeEnemys = false;
 		}
 		for (int test = 0; test < ExistWaves.Count; test++)
 		{
@@ -278,6 +281,7 @@ public IEnumerator SmallEnemy(int small)
 
 	public IEnumerator LargeEnemy ()
 	{
+		LargeEnemys = true;
 		if (LargeWaves.Length == 0)
 		{
 			yield break;
@@ -297,10 +301,8 @@ public IEnumerator SmallEnemy(int small)
 				}
 			}
 			while (ExistWaves.Count != 0 && ExistWaves [0].transform.childCount != 0) {
-					yield return new WaitForEndOfFrame ();
+				yield return new WaitForEndOfFrame ();
 			}
-			Destroy (ExistWaves[0]);
-			ExistWaves.RemoveAt (0);
 			yield return new WaitForSeconds (2);
 		}
 	}
