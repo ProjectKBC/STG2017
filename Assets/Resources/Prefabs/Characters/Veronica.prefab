@@ -252,7 +252,7 @@ MonoBehaviour:
       barType: 2
       effectType: 1
       countType: 0
-    chargeTime: 1.5
+    chargeTime: 2
     rechargeTime: 0
     bulletMaxNum: 1
     reloadTime: 10
@@ -275,7 +275,7 @@ MonoBehaviour:
   param:
     name: "\u30A2\u30D7\u30C1\u30C6\u30E5\u30FC\u30C9"
     shotSound: {fileID: 8300000, guid: db194f9a10c769b4593bd68c0e15a3f3, type: 3}
-    shotDelay: 1.5
+    shotDelay: 1.2
     lifeTime: 1
     speed: 0
     power: 1
