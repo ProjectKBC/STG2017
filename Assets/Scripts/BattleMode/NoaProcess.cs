@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 
 public class NoaProcesser
 {
@@ -70,7 +71,7 @@ public class NoaProcesser
     }
 }
 
-public abstract class NoaBehaviour : MonoBehaviour
+public abstract class NoaBehaviour : NetworkBehaviour
 {
     public NoaProcesser MyProc = new NoaProcesser();
 
