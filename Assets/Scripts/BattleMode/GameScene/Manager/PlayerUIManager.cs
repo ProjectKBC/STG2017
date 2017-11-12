@@ -105,13 +105,13 @@ public sealed class PlayerUIManager : NoaBehaviour
         
         CreateUI();
         pc1Canvas.player = GameManager.Pc1Player;
-        pc2Canvas.player = GameManager.Pc2Player;
+        //pc2Canvas.player = GameManager.Pc2Player;
         
         CheckStatus(pc1Canvas);
-        CheckStatus(pc2Canvas);
+        //CheckStatus(pc2Canvas);
 
         SettingUI(pc1Canvas);
-        SettingUI(pc2Canvas);
+        //SettingUI(pc2Canvas);
 
         MyProc.started = true;
     }
@@ -123,10 +123,10 @@ public sealed class PlayerUIManager : NoaBehaviour
         if (MyProc.IsStay()) { return; }
 
         if (!NoaProcesser.IsStayPC(PlayerSlot.PC1) || !lastUpdateFlgPC1) { UpdateUI(pc1Canvas); }
-        if (!NoaProcesser.IsStayPC(PlayerSlot.PC2) || !lastUpdateFlgPC2) { UpdateUI(pc2Canvas); }
+        //if (!NoaProcesser.IsStayPC(PlayerSlot.PC2) || !lastUpdateFlgPC2) { UpdateUI(pc2Canvas); }
 
         if (NoaProcesser.IsStayPC(PlayerSlot.PC1)) { lastUpdateFlgPC1 = true; }
-        if (NoaProcesser.IsStayPC(PlayerSlot.PC2)) { lastUpdateFlgPC2 = true; }
+        //if (NoaProcesser.IsStayPC(PlayerSlot.PC2)) { lastUpdateFlgPC2 = true; }
 
         if (NoaProcesser.IsStayBoss()) { return; }
     }
@@ -286,10 +286,12 @@ public sealed class PlayerUIManager : NoaBehaviour
         pc1Canvas.mainCanvas.name = "PC1Canvas";
         pc1Canvas.mainCanvas.AddComponent<PlayerUI>().playerSlot = PlayerSlot.PC1;
 
+		/*
         pc2Canvas.mainCanvas = 
             Instantiate(Resources.Load(ResourcesPath.Ui("PC2Canvas")), GameObject.Find(CanvasName.UI).transform) as GameObject;
         pc2Canvas.mainCanvas.name = "PC2Canvas";
         pc2Canvas.mainCanvas.AddComponent<PlayerUI>().playerSlot = PlayerSlot.PC2;
+        */
     }
 
     private void SettingUI(PCCanvas _c)

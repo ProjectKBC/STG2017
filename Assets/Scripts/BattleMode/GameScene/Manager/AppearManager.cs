@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 
 public sealed class AppearManager : NoaBehaviour
 {
@@ -30,10 +31,12 @@ public sealed class AppearManager : NoaBehaviour
     public void Starting()
     {
         Debug.Log("4:AppearManagerが呼び出される。");
-        Instantiate(Resources.Load("Prefabs/Enemys/Emitters/PC1Emitter"), GameObject.Find("PC1Area/Canvas").transform).name = "target_pause";
-        Instantiate(Resources.Load("Prefabs/Enemys/Emitters/PC2Emitter"), GameObject.Find("PC2Area/Canvas").transform).name = "target_pause";
-        
-        MyProc.started = true;
+			NetworkServer.Spawn ((GameObject)Instantiate (Resources.Load ("Prefabs/Enemys/Emitters/PC1Emitter"), GameObject.Find ("PC1Area/Canvas").transform));
+				//.name = "target_pause";
+			//NetworkServer.Spawn ((GameObject)Instantiate (Resources.Load("Prefabs/Enemys/Emitters/PC2Emitter"), GameObject.Find("PC2Area/Canvas").transform));
+				//.name = "target_pause";
+
+		MyProc.started = true;
 
     }
 

@@ -117,7 +117,7 @@ public sealed class GameManager : NoaBehaviour
     {
         Debug.Log("7:GameManagerが呼び出される。");
         Init();
-        CreatePlayer(Pc1Name, Pc2Name);
+		CreatePlayer (Pc1Name);//, Pc2Name);
         MyProc.started = true;
     }
 
@@ -376,13 +376,15 @@ public sealed class GameManager : NoaBehaviour
     }
 
     /* f:Player系 ------------------------------------------------------------------------- */
-    private static void CreatePlayer(string _pc1Name, string _pc2Name)
+	private static void CreatePlayer(string _pc1Name)//, string _pc2Name)
     {
         Pc1Player = Player.Instantiate(PlayerManager.Inst.GetCharacterPrefab(_pc1Name), PlayerSlot.PC1);
         Debug.Log("created " + Pc1Player);
 
+		/*
         Pc2Player = Player.Instantiate(PlayerManager.Inst.GetCharacterPrefab(_pc2Name), PlayerSlot.PC2);
         Debug.Log("created " + Pc2Player);
+        */
     }
 
     /**/

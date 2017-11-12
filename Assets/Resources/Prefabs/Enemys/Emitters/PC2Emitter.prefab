@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4256557667074034}
   - component: {fileID: 50735917730811534}
   - component: {fileID: 114356108887234586}
+  - component: {fileID: 114475669341906916}
   m_Layer: 0
   m_Name: PC2Emitter
   m_TagString: Untagged
@@ -104,3 +105,35 @@ MonoBehaviour:
   LargeWaves:
   - {fileID: 1988679875578048, guid: 0ed661d2c71974219a4454c60cd30aca, type: 2}
   playerSlot: 1
+--- !u!114 &114475669341906916
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1900593479564030}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 372142912, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SceneId:
+    m_Value: 0
+  m_AssetId:
+    i0: 81
+    i1: 220
+    i2: 128
+    i3: 60
+    i4: 35
+    i5: 65
+    i6: 212
+    i7: 100
+    i8: 74
+    i9: 229
+    i10: 30
+    i11: 246
+    i12: 20
+    i13: 212
+    i14: 134
+    i15: 127
+  m_ServerOnly: 0
+  m_LocalPlayerAuthority: 1
