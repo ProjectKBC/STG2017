@@ -24,7 +24,7 @@ public class GameStarter : NoaBehaviour
         GameManager       gm   = GameManager.Inst;
         PlayerUIManager   puim = PlayerUIManager.Inst;
         // f:
-		while (NetworkServer.active == false) {
+		while (NetworkManager.numPlayers != 2) {
 			yield return new WaitForEndOfFrame ();
 		}
         Debug.Log("1:target_loadingを生成する。");

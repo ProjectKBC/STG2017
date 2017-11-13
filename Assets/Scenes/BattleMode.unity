@@ -1240,6 +1240,7 @@ GameObject:
   - component: {fileID: 1766376055}
   - component: {fileID: 1766376054}
   - component: {fileID: 1766376053}
+  - component: {fileID: 1766376058}
   m_Layer: 8
   m_Name: PC2Area
   m_TagString: Untagged
@@ -1333,6 +1334,38 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &1766376058
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1766376052}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 372142912, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SceneId:
+    m_Value: 0
+  m_AssetId:
+    i0: 0
+    i1: 0
+    i2: 0
+    i3: 0
+    i4: 0
+    i5: 0
+    i6: 0
+    i7: 0
+    i8: 0
+    i9: 0
+    i10: 0
+    i11: 0
+    i12: 0
+    i13: 0
+    i14: 0
+    i15: 0
+  m_ServerOnly: 0
+  m_LocalPlayerAuthority: 1
 --- !u!1 &1782166820
 GameObject:
   m_ObjectHideFlags: 0
@@ -1443,6 +1476,7 @@ GameObject:
   - component: {fileID: 1832596169}
   - component: {fileID: 1832596168}
   - component: {fileID: 1832596172}
+  - component: {fileID: 1832596173}
   m_Layer: 8
   m_Name: PC1Area
   m_TagString: Untagged
@@ -1536,6 +1570,38 @@ SortingGroup:
   m_SortingLayerID: 895334273
   m_SortingLayer: 1
   m_SortingOrder: 0
+--- !u!114 &1832596173
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1832596167}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 372142912, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SceneId:
+    m_Value: 0
+  m_AssetId:
+    i0: 0
+    i1: 0
+    i2: 0
+    i3: 0
+    i4: 0
+    i5: 0
+    i6: 0
+    i7: 0
+    i8: 0
+    i9: 0
+    i10: 0
+    i11: 0
+    i12: 0
+    i13: 0
+    i14: 0
+    i15: 0
+  m_ServerOnly: 0
+  m_LocalPlayerAuthority: 1
 --- !u!1 &1908396262
 GameObject:
   m_ObjectHideFlags: 0
@@ -1544,8 +1610,8 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1908396265}
-  - component: {fileID: 1908396264}
   - component: {fileID: 1908396263}
+  - component: {fileID: 1908396264}
   m_Layer: 0
   m_Name: NetworkManager
   m_TagString: Untagged
@@ -1576,7 +1642,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1908396262}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: -822479833, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Script: {fileID: 11500000, guid: 3e45c55b22dd2465aa6b6786119ea31b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_NetworkPort: 7777
@@ -1589,11 +1655,15 @@ MonoBehaviour:
   m_MaxDelay: 0.01
   m_LogLevel: 2
   m_PlayerPrefab: {fileID: 0}
-  m_AutoCreatePlayer: 1
+  m_AutoCreatePlayer: 0
   m_PlayerSpawnMethod: 0
   m_OfflineScene: 
   m_OnlineScene: 
-  m_SpawnPrefabs: []
+  m_SpawnPrefabs:
+  - {fileID: 1863881792594910, guid: 0507812416aaf4923b727b846de0a148, type: 2}
+  - {fileID: 1381941399765418, guid: d00a09f99b4d08b43b5738dd99d39b76, type: 2}
+  - {fileID: 0}
+  - {fileID: 0}
   m_CustomConfig: 0
   m_MaxConnections: 4
   m_ConnectionConfig:
@@ -1636,7 +1706,7 @@ MonoBehaviour:
     m_MaxTimerTimeout: 12000
     m_MinNetSimulatorTimeout: 1
     m_MaxNetSimulatorTimeout: 12000
-  m_Channels: 
+  m_Channels: 0500000000000000
   m_UseWebSockets: 0
   m_UseSimulator: 0
   m_SimulatedLatency: 1
