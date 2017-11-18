@@ -31,9 +31,7 @@ public sealed class AppearManager : NoaBehaviour
     public void Starting()
     {
         Debug.Log("4:AppearManagerが呼び出される。");
-		GameObject obj = (GameObject)Instantiate (Resources.Load ("Prefabs/Enemys/Emitters/PC1Emitter"), GameObject.Find ("PC1Area/Canvas").transform);
-		//ClientScene.RegisterPrefab(obj);
-		NetworkServer.Spawn(obj);
+			NetworkServer.Spawn ((GameObject)Instantiate (Resources.Load ("Prefabs/Enemys/Emitters/PC1Emitter"), GameObject.Find ("PC1Area/Canvas").transform));
 				//.name = "target_pause";
 			//NetworkServer.Spawn ((GameObject)Instantiate (Resources.Load("Prefabs/Enemys/Emitters/PC2Emitter"), GameObject.Find("PC2Area/Canvas").transform));
 				//.name = "target_pause";

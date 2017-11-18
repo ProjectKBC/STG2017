@@ -2,7 +2,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Networking;
 
 public enum PlayerSlot
 {
@@ -272,6 +271,7 @@ public abstract class Player : NoaBehaviour
                              : new Vector3(GameManager.RECT.z / 2, GameManager.RECT.w / 2);
         Quaternion rotation = Quaternion.Euler(0, 0, 0);
         Player player = Instantiate(_player, position, rotation) as Player;
+
         SetupPlayer(player, _slot);
 
         return player;
@@ -302,14 +302,14 @@ public abstract class Player : NoaBehaviour
                              : new Vector3(GameManager.RECT.z / 2, GameManager.RECT.w / 2);
         Quaternion rotation = Quaternion.Euler(0, 0, 0);
         GameObject obj = Instantiate(_obj, position, rotation);
-		//ClientScene.RegisterPrefab(obj);
-		NetworkServer.Spawn(obj);
+
         return SetupPlayer(obj, _slot);
     }
 
     protected static Player SetupPlayer(GameObject _obj, PlayerSlot _slot)
     {
         Player player = _obj.GetComponent<Player>();
+
         SetupPlayer(player, _slot);
         return player;       
     }
