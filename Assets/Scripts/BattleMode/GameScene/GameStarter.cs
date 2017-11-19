@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
+
 
 // f:旧FireLitStoneクラス
 // f:名前がダサいのと、仕様の簡潔化をした。
@@ -22,6 +24,10 @@ public class GameStarter : NoaBehaviour
         GameManager       gm   = GameManager.Inst;
         PlayerUIManager   puim = PlayerUIManager.Inst;
         // f:
+
+		while (NetworkServer.active == false) {
+			yield return new WaitForEndOfFrame ();
+		}
 
         Debug.Log("1:target_loadingを生成する。");
         Instantiate(Resources.Load("Prefabs/target_loading"), GameObject.Find("LoadingCanvas").transform).name = "target_loading";
